@@ -1,0 +1,30 @@
+[
+  {
+    "Path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\styles\\global.css",
+    "Hash": "A41D1ECD5F76FACD0ABDCBEECC8E9471FF1FDF5DD8B82A654622C7025EA515A4"
+  },
+  {
+    "Path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\pages\\index.astro",
+    "Hash": "949B7CB3B5FC5434DEC30C62A436D80297277DA28E27F5BA4FCAA1C333F57636"
+  },
+  {
+    "Path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\pages\\animals.astro",
+    "Hash": "EEDDCE0AB518C0A1AB41ED965780A4356EF5D9FEF14396A1DE95E0DCCB88036B"
+  },
+  {
+    "Path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\pages\\activities.astro",
+    "Hash": "6D39E92242D5F0FB2C4725D989B95C3BDF759DD2E94DAEB76C4E8C498FB45D4A"
+  },
+  {
+    "Path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\pages\\menu.astro",
+    "Hash": "C8907C50EBAFD611D641CB43224A9D2B99BA03406EEE5DA7E36691357DAB5851"
+  },
+  {
+    "Path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\components\\site\\Header.astro",
+    "Hash": "F2F0DF0B14C0780C95D53075E0E006F255EA9A632F9001182AA4DC96EDB4B5B1"
+  },
+  {
+    "Path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\layouts\\SiteLayout.astro",
+    "Hash": "6E8E8E9008C3E43580B8CF904879FF44516CB429A3D83A8EA11F054C5FAF0BBD"
+  }
+]

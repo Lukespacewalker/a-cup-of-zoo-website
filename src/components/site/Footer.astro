@@ -1,0 +1,18 @@
+---
+import logo from "../../../logo.jpg";
+import { allowedExternalUrl } from "../../lib/business/links";
+import { briefPhone, mapsPhone } from "../../lib/content/fixture-data";
+interface Props { mapsUrl: string | null; phoneE164: string | null; }
+const { mapsUrl, phoneE164 } = Astro.props;
+const maps = allowedExternalUrl(mapsUrl, "maps");
+---
+<footer class="footer shell">
+  <a class="footer-logo-wrap" href="/"><img class="footer-logo" src={logo.src} alt="A Cup of Zoo Cafe & Farm" /></a>
+  <p>คาเฟ่สัตว์สำหรับครอบครัว ที่คลอง 6 ปทุมธานี</p>
+  {phoneE164 ? <p><a href={`tel:${phoneE164}`}>098 983 8037</a></p> : <p>เบอร์จากเพจ <a href={`tel:${briefPhone.e164}`}>{briefPhone.display}</a> · เบอร์บน Google Maps <a href={`tel:${mapsPhone.e164}`}>{mapsPhone.display}</a></p>}
+  {maps && <a href={maps}>ดูเส้นทาง</a>}
+  <nav class="footer-nav" aria-label="ท้ายหน้า">
+    <a href="/animals/">สัตว์</a> · <a href="/activities/">กิจกรรม</a> · <a href="/menu/">เมนู</a> · <a href="/news/">ข่าว</a> · <a href="/visit/">มาเที่ยว</a>
+  </nav>
+</footer>
+<div class="sticky-cta"><a class="visit-link" href="/visit/">พาครอบครัวมาเที่ยว</a></div>

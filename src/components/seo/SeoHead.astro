@@ -1,0 +1,21 @@
+---
+import type { PublicVenueDto } from "@lukespace-cms/client";
+import { cafeJsonLd, pageTitle } from "../../lib/seo/metadata";
+
+interface Props {
+  title: string;
+  description: string;
+  environment: "local" | "staging" | "production";
+  venue?: PublicVenueDto | null;
+}
+const { title, description, environment, venue = null } = Astro.props;
+const canonical = environment === "production" && Astro.site && !Astro.site.hostname.endsWith(".invalid")
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : null;
+const jsonLd = venue ? cafeJsonLd(venue) : null;
+---
+<title>{pageTitle(title)}</title>
+<meta name="description" content={description} />
+{environment !== "production" && <meta name="robots" content="noindex, nofollow" />}
+{canonical && <link rel="canonical" href={canonical} />}
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

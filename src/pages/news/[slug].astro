@@ -1,0 +1,23 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import ContentUnavailable from "../../components/content/ContentUnavailable.astro";
+import { isDemoPost, loadPost, thaiTranslation } from "../../lib/content/load-page";
+import { renderMarkdown } from "../../lib/content/markdown";
+import { loadPage } from "../../lib/content/load-page";
+
+const slug = Astro.params.slug ?? "";
+const result = await loadPost(slug);
+const shell = await loadPage();
+if (result.problem === "unavailable") Astro.response.status = 503;
+if (result.problem === "missing") Astro.response.status = 404;
+const translation = result.post ? thaiTranslation(result.post) : null;
+---
+<SiteLayout title={translation?.title ?? "ไม่พบข่าว"} description={translation?.seoDescription || translation?.excerpt || "ข่าวของ A Cup of Zoo"} page={shell}>
+  {result.problem === "unavailable" && <ContentUnavailable />}
+  {result.problem === "missing" && <p class="page-intro">ไม่พบข่าวนี้ <a href="/news/">กลับไปหน้าข่าว</a></p>}
+  {result.post && translation && <article class="page-intro prose">
+    {isDemoPost(result.post) && <span class="badge">ตัวอย่างระบบ</span>}
+    <h1>{translation.title}</h1>
+    <div set:html={renderMarkdown(translation.bodyMarkdown)} />
+  </article>}
+</SiteLayout>

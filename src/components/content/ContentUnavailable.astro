@@ -1,0 +1,5 @@
+---
+interface Props { detail?: string; }
+const { detail = "ขณะนี้โหลดข้อมูลส่วนนี้ไม่ได้" } = Astro.props;
+---
+<p class="note" role="status">{detail} <a href="/">กลับหน้าแรก</a></p>

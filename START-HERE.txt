@@ -1,0 +1,18 @@
+A Cup of Zoo / Codex handoff v0.1
+
+ไฟล์แผนหลักมีเพียงไฟล์เดียว:
+docs/superpowers/plans/2026-09-23-a-cup-of-zoo.md
+
+แตกโฟลเดอร์ docs, reference-assets และ reference-data ลงใน frontend workspace ที่ต้องการใช้กับ Codex
+อย่าวางเว็บ Astro ลงใน CMS-Platform โดยไม่ตั้งใจ ให้ CMS อยู่ใน checkout แยกที่ Codex เข้าถึงได้
+ไม่มีโค้ดเว็บไซต์ในชุดนี้ มีแผน รูปต้นฉบับ 10 รูป และบันทึกแหล่งข้อมูลสำหรับเริ่มงาน
+
+ให้ Codex อ่านแผนและทำ Phase 0–2 เพื่อทดลองในเครื่อง หยุดก่อน deploy
+คำสั่งเริ่มงานอยู่ท้ายแผน §11
+
+reference-assets เป็นข้อมูลอ้างอิง ไม่ใช่ public assets ที่อนุญาตให้ deploy ทั้งโฟลเดอร์
+ภาพ child-with-dogs-reference.png ต้องไม่ใช้ในหน้าเว็บโดย default
+ข้อมูลเปิดร้านยังเป็นข้อมูลจากบรีฟ การตรวจ Facebook/Google Maps ในครั้งนี้ยังไม่สำเร็จ
+ห้ามเปลี่ยนสถานะเป็น verified โดยไม่มีหลักฐานใหม่
+
+ขอบเขตรอบนี้ไม่รวม paid cloud resources, remote migration, DNS, push หรือ production launch

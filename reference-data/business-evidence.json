@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "project": "acupofzoo",
+  "preparedOn": "2026-09-23",
+  "purpose": "ข้อมูลอ้างอิงสำหรับ prototype ไม่ใช่การรับรองข้อมูลปัจจุบันจาก Facebook/Google Maps",
+  "sources": [
+    {
+      "id": "user-brief",
+      "type": "user_brief",
+      "url": null,
+      "checkedAt": "2026-09-23",
+      "verifiedAt": null,
+      "accessStatus": "provided_in_conversation",
+      "note": "ข้อความผู้ใช้ระบุชื่อ พื้นที่ตั้ง เวลาเปิด ข้อยกเว้นวันอังคาร ที่จอดรถ เบอร์ และ Maps link"
+    },
+    {
+      "id": "facebook-candidate",
+      "type": "facebook",
+      "url": "https://www.facebook.com/Acupofzoocafe/",
+      "checkedAt": "2026-09-24",
+      "verifiedAt": "2026-09-24",
+      "accessStatus": "page_read",
+      "note": "เปิดเพจได้ ชื่อ A Cup of Zoo Café และโพสต์ของเพจใส่ลิงก์ Maps เดียวกับที่ผู้ใช้ให้ โพสต์ระบุเวลา 10:00–19:00 ปิดอังคาร ยกเว้นอังคารที่ตรงวันหยุดนักขัตฤกษ์ เบอร์ 098 983 8037 และที่อยู่ 27/8 ม.3 ถ.เลียบคลองแอล 5-6 ซอย สุทธิพันธ์ 11 ต.คลองหก อ.คลองหลวง ปทุมธานี 12120 ไม่ได้นำรายชื่อสายพันธุ์จากโพสต์โปรโมตมาใช้ เพราะยังไม่มีภาพยืนยันครบ"
+    },
+    {
+      "id": "google-maps",
+      "type": "google_maps",
+      "url": "https://maps.app.goo.gl/A6AVc2ScgEJwSrbVA",
+      "checkedAt": "2026-09-24",
+      "verifiedAt": null,
+      "accessStatus": "listing_read",
+      "note": "เปิดลิงก์ที่ผู้ใช้ให้เมื่อ 24 กันยายน 2026 ได้หน้ารายการชื่อ A Cup of Zoo Cafe&Farm ที่ตำบลคลองหก อำเภอคลองหลวง ปทุมธานี 12120 เบอร์บนรายการคือ 092 279 1890 ซึ่งไม่ตรงกับบรีฟ ข้อความเวลาที่อ่านได้มีแค่ใกล้เปิดเวลา 10:00 ยังไม่ได้เปิดตารางทั้งสัปดาห์ จึงไม่ยืนยันเวลาเปิดทั้งสัปดาห์ ไม่นำคะแนนรีวิวหรือช่วงราคาที่ผู้ใช้รายงานมาใช้"
+    },
+    {
+      "id": "existing-website",
+      "type": "website",
+      "url": "https://acupofzoo.com/",
+      "checkedAt": "2026-09-23",
+      "verifiedAt": null,
+      "accessStatus": "insufficient_content",
+      "note": "ผลที่อ่านได้เป็น redirect และไม่เพียงพอต่อการตรวจเว็บไซต์เดิม"
+    }
+  ],
+  "initialValues": {
+    "displayName": "A Cup of Zoo",
+    "locationLabel": "คลอง 6 ปทุมธานี",
+    "addressLine": "27/8 ม.3 ถ.เลียบคลองแอล 5-6 ซอย สุทธิพันธ์ 11 ต.คลองหก อ.คลองหลวง ปทุมธานี 12120",
+    "facebookUrl": "https://www.facebook.com/Acupofzoocafe/",
+    "phoneDisplay": "098 983 8037",
+    "phoneE164": "+66989838037",
+    "mapsListedPhoneDisplay": "092 279 1890",
+    "mapsListedPhoneE164": "+66922791890",
+    "phoneConflict": true,
+    "mapsUrl": "https://maps.app.goo.gl/A6AVc2ScgEJwSrbVA",
+    "facebookUrl": null,
+    "timezone": "Asia/Bangkok",
+    "regularHours": [
+      {
+        "isoWeekday": 1,
+        "closed": false,
+        "opens": "10:00",
+        "closes": "19:00"
+      },
+      {
+        "isoWeekday": 2,
+        "closed": true,
+        "opens": null,
+        "closes": null
+      },
+      {
+        "isoWeekday": 3,
+        "closed": false,
+        "opens": "10:00",
+        "closes": "19:00"
+      },
+      {
+        "isoWeekday": 4,
+        "closed": false,
+        "opens": "10:00",
+        "closes": "19:00"
+      },
+      {
+        "isoWeekday": 5,
+        "closed": false,
+        "opens": "10:00",
+        "closes": "19:00"
+      },
+      {
+        "isoWeekday": 6,
+        "closed": false,
+        "opens": "10:00",
+        "closes": "19:00"
+      },
+      {
+        "isoWeekday": 7,
+        "closed": false,
+        "opens": "10:00",
+        "closes": "19:00"
+      }
+    ],
+    "hoursExceptions": [],
+    "hoursVerification": "user_provided",
+    "holidayNote": "ตามข้อมูลที่ได้รับ ร้านเปิดในวันอังคารที่ตรงกับวันหยุดนักขัตฤกษ์ โปรดตรวจสอบประกาศร้านก่อนเดินทาง",
+    "parkingNote": "มีที่จอดรถตามข้อมูลจากบรีฟ ยังไม่ยืนยันจำนวนที่จอดหรือค่าบริการ",
+    "admissionPrice": null,
+    "admissionText": null,
+    "coordinates": null,
+    "placeId": null,
+    "drivingTime": null,
+    "publicTransitDirections": null,
+    "petBringPolicy": null,
+    "overallVerification": "user_provided"
+  },
+  "claims": [
+    {
+      "field": "displayName",
+      "sourceIds": [
+        "user-brief"
+      ],
+      "verificationStatus": "user_provided",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    {
+      "field": "locationLabel",
+      "sourceIds": [
+        "user-brief",
+        "google-maps"
+      ],
+      "verificationStatus": "source_verified",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    {
+      "field": "addressLine",
+      "sourceIds": [
+        "google-maps"
+      ],
+      "verificationStatus": "source_verified",
+      "approvedBy": null,
+      "approvedAt": null,
+      "note": "ข้อความที่อยู่ตามที่รายการ Google Maps แสดง ไม่ใช่บ้านเลขที่"
+    },
+    {
+      "field": "mapsListedPhoneE164",
+      "sourceIds": [
+        "google-maps"
+      ],
+      "verificationStatus": "source_verified",
+      "approvedBy": null,
+      "approvedAt": null,
+      "note": "เป็นเบอร์ที่เห็นบนรายการ Maps ไม่ได้เลือกให้เป็นเบอร์สาธารณะเพราะขัดกับบรีฟ"
+    },
+    {
+      "field": "phoneE164",
+      "sourceIds": [
+        "user-brief"
+      ],
+      "verificationStatus": "user_provided",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    {
+      "field": "facebookUrl",
+      "sourceIds": [
+        "facebook-candidate",
+        "google-maps"
+      ],
+      "verificationStatus": "source_verified",
+      "approvedBy": null,
+      "approvedAt": null,
+      "note": "เพจใช้ลิงก์ Maps เดียวกับที่ผู้ใช้ให้ และชื่อร้านตรงกัน"
+    },
+    {
+      "field": "mapsUrl",
+      "sourceIds": [
+        "user-brief"
+      ],
+      "verificationStatus": "user_provided",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    {
+      "field": "regularHours",
+      "sourceIds": [
+        "user-brief"
+      ],
+      "verificationStatus": "user_provided",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    {
+      "field": "holidayNote",
+      "sourceIds": [
+        "user-brief"
+      ],
+      "verificationStatus": "user_provided",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    {
+      "field": "parkingNote",
+      "sourceIds": [
+        "user-brief"
+      ],
+      "verificationStatus": "user_provided",
+      "approvedBy": null,
+      "approvedAt": null
+    }
+  ],
+  "releaseRequirements": [
+    "ตรวจว่า Facebook candidate เป็นเพจของร้านจริงก่อนเปิด CTA",
+    "เจ้าของยืนยันเวลาเปิดและวันพิเศษ พร้อมวันที่ยืนยัน",
+    "ยืนยันลิงก์หมุดและข้อมูลการเดินทางก่อนเปิดจริง",
+    "ค่าเข้าและเงื่อนไขต้องยืนยันจากร้าน ไม่ใช้ข้อมูลรีวิวแทน",
+    "null คือยังไม่ทราบ ไม่ใช่ฟรี ไม่มีข้อจำกัด หรือเปิดตลอด",
+    "ไฟล์นี้เก็บภายใน ไม่ส่ง provenance ภายในหรือผู้อนุมัติออก public API"
+  ]
+}

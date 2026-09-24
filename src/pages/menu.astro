@@ -1,0 +1,75 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Picture from "../components/content/Picture.astro";
+import { loadPage } from "../lib/content/load-page";
+import { menuCatalog, type MenuItem } from "../lib/content/menu-catalog";
+
+const page = await loadPage();
+const media = page.venue?.media ?? [];
+
+function priceLabel(item: MenuItem) {
+  return item.price ?? "ราคาจะแสดงเมื่อร้านยืนยัน";
+}
+---
+<SiteLayout title="เมนู" description="เครื่องดื่ม ของหวาน และอาหารของ A Cup of Zoo" page={page}>
+  <header class="page-intro menu-mast">
+    <p class="eyebrow">Menu</p>
+    <h1>เครื่องดื่ม ของหวาน และอาหาร</h1>
+    <p>เลือกเครื่องดื่มหรือของหวานสักอย่าง แล้วใช้เวลาดี ๆ กับคนที่มาด้วยกัน รายการและราคาที่ร้านยังไม่ยืนยันจะอัปเดตอีกครั้ง</p>
+    <nav class="menu-jump" aria-label="หมวดเมนู">
+      {menuCatalog.map((section) => <a href={`#${section.id}`}>{section.title}</a>)}
+    </nav>
+  </header>
+  <div class="menu-board">
+  {menuCatalog.map((section) => {
+    const highlight = section.items.find((item) => item.highlight) ?? null;
+    const rest = section.items.filter((item) => item !== highlight);
+    return (
+      <section class="menu-section" id={section.id}>
+        <header class="menu-section__head">
+          <svg class="paw" viewBox="0 0 32 32" aria-hidden="true"><circle cx="7" cy="11" r="3" fill="currentColor"/><circle cx="16" cy="7" r="3.2" fill="currentColor"/><circle cx="25" cy="11" r="3" fill="currentColor"/><ellipse cx="16" cy="20" rx="7" ry="5.5" fill="currentColor"/></svg>
+          <span>{section.index}</span>
+          <div>
+            <h2>{section.title}</h2>
+            <p>{section.lede}</p>
+          </div>
+        </header>
+        {highlight && (
+          <article class="menu-feature">
+            <Picture mediaId={highlight.shopMediaId} media={media} alt={highlight.name} eager />
+            <div>
+              <p class="eyebrow">ไฮไลต์</p>
+              <h3>{highlight.name}</h3>
+              <p>{highlight.note}</p>
+              <p class="menu-price">{priceLabel(highlight)}</p>
+            </div>
+          </article>
+        )}
+        {rest.length > 0 && (
+          <ul class="menu-list">
+            {rest.map((item) => (
+              <li>
+                {item.shopMediaId && <Picture mediaId={item.shopMediaId} media={media} alt="" />}
+                <div>
+                  <h3>{item.name}</h3>
+                  <p>{item.note}</p>
+                </div>
+                <span>{priceLabel(item)}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {section.items.length === 0 && (
+          <div class="menu-waiting">
+            {section.mood && <img src={section.mood.src} alt={section.moodAlt} />}
+            <div>
+              <h3>ยังไม่มีรายการ</h3>
+              <p>ร้านยังไม่ได้ยืนยันรายการในหมวดนี้ สอบถามเมนูประจำวันกับทางร้านได้เลย</p>
+            </div>
+          </div>
+        )}
+      </section>
+    );
+  })}
+  </div>
+</SiteLayout>

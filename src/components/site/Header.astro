@@ -1,0 +1,74 @@
+---
+import logo from "../../../logo.jpg";
+const links = [
+  ["/", "หน้าแรก"],
+  ["/animals/", "สัตว์"],
+  ["/activities/", "กิจกรรม"],
+  ["/menu/", "เมนู"],
+  ["/news/", "ข่าว"],
+];
+---
+<header class="site-header">
+  <a class="wordmark" href="/"><img src={logo.src} alt="A Cup of Zoo Cafe & Farm" /></a>
+  <nav class="desktop-nav" aria-label="หลัก">
+    {links.map(([href, label]) => <a href={href}>{label}</a>)}
+    <a class="visit-link" href="/visit/">พาครอบครัวมา</a>
+  </nav>
+  <button class="theme-button" type="button" aria-label="โหมดสีตามเครื่อง">
+    <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18V3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>
+    <svg class="icon-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4 19 19M19 5l-1.6 1.6M6.6 17.4 5 19"/></svg>
+    <svg class="icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.5 3.2a8.2 8.2 0 1 0 5.3 12.6A7 7 0 0 1 15.5 3.2z"/></svg>
+  </button>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">เมนู</button>
+</header>
+<nav id="mobile-nav" class="mobile-panel" aria-label="มือถือ" hidden>
+  {links.map(([href, label]) => <a href={href}>{label}</a>)}
+  <a href="/visit/">มาเที่ยว</a>
+</nav>
+<script>
+  const button = document.querySelector(".menu-button");
+  const panel = document.querySelector("#mobile-nav");
+  if (button instanceof HTMLButtonElement && panel instanceof HTMLElement) {
+    const close = () => {
+      panel.hidden = true;
+      panel.dataset.open = "false";
+      button.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+      button.focus();
+    };
+    const open = () => {
+      panel.hidden = false;
+      panel.dataset.open = "true";
+      button.setAttribute("aria-expanded", "true");
+      document.body.classList.add("menu-open");
+      panel.querySelector("a")?.focus();
+    };
+    button.addEventListener("click", () => panel.hidden ? open() : close());
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !panel.hidden) close();
+    });
+  }
+
+  const themeButton = document.querySelector(".theme-button");
+  const order = ["auto", "light", "dark"] as const;
+  type Theme = typeof order[number];
+  const labels: Record<Theme, string> = { auto: "โหมดสีตามเครื่อง", light: "โหมดสว่าง", dark: "โหมดมืด" };
+  const paintTheme = (theme: Theme) => {
+    document.documentElement.dataset.theme = theme;
+    if (!(themeButton instanceof HTMLButtonElement)) return;
+    themeButton.setAttribute("aria-label", labels[theme]);
+    for (const name of order) {
+      const icon = themeButton.querySelector(`.icon-${name}`);
+      if (icon instanceof SVGElement) icon.style.display = name === theme ? "block" : "none";
+    }
+  };
+  const initial = document.documentElement.dataset.theme;
+  paintTheme(initial === "light" || initial === "dark" ? initial : "auto");
+  themeButton?.addEventListener("click", () => {
+    const saved = document.documentElement.dataset.theme;
+    const current: Theme = saved === "light" || saved === "dark" ? saved : "auto";
+    const next = order[(order.indexOf(current) + 1) % order.length];
+    localStorage.setItem("cup-theme", next);
+    paintTheme(next);
+  });
+</script>

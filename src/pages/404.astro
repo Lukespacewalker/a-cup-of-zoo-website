@@ -1,0 +1,12 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { loadPage } from "../lib/content/load-page";
+const page = await loadPage();
+Astro.response.status = 404;
+---
+<SiteLayout title="ไม่พบหน้า" description="ไม่พบหน้าที่ต้องการในเว็บ A Cup of Zoo" page={page}>
+  <header class="page-intro">
+    <h1>ไม่พบหน้านี้</h1>
+    <p><a href="/">กลับหน้าแรก</a></p>
+  </header>
+</SiteLayout>

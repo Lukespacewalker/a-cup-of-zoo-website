@@ -1,0 +1,48 @@
+---
+import "@fontsource/mali/400.css";
+import "@fontsource/mali/500.css";
+import "@fontsource/mali/700.css";
+import "@fontsource/noto-sans-thai/400.css";
+import "@fontsource/noto-sans-thai/500.css";
+import "@fontsource/noto-sans-thai/600.css";
+import "@fontsource/cormorant-garamond/500.css";
+import "@fontsource/cormorant-garamond/600.css";
+import "../styles/global.css";
+import SeoHead from "../components/seo/SeoHead.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import PrototypeNotice from "../components/site/PrototypeNotice.astro";
+import type { PageData } from "../lib/content/load-page";
+
+interface Props {
+  title: string;
+  description: string;
+  page: Pick<PageData, "mode" | "environment" | "venue">;
+  includeJsonLd?: boolean;
+}
+const { title, description, page, includeJsonLd = false } = Astro.props;
+---
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem("cup-theme");
+        document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : "auto";
+      })();
+    </script>
+    <SeoHead title={title} description={description} environment={page.environment} venue={includeJsonLd ? page.venue : null} />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">ข้ามไปเนื้อหา</a>
+    <PrototypeNotice mode={page.mode} />
+    <Header />
+    <main id="content">
+      <div class="shell">
+        <slot />
+      </div>
+    </main>
+    <Footer mapsUrl={page.venue?.content.mapsUrl ?? null} phoneE164={page.venue?.content.phoneE164 ?? null} />
+  </body>
+</html>
