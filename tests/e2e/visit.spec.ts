@@ -20,3 +20,30 @@ test("mobile menu opens and Escape closes it", async ({ page }) => {
   await page.keyboard.press("Escape");
   await expect(page.getByRole("navigation", { name: "มือถือ" })).toBeHidden();
 });
+
+test("theme control responds to keyboard activation and persists after navigation", async ({ page }) => {
+  await page.goto("/");
+  await page.evaluate(() => localStorage.setItem("cup-theme", "light"));
+  await page.reload();
+  const theme = page.getByRole("button", { name: "โหมดสว่าง", exact: true });
+  await theme.focus();
+  const lightBackground = await page.locator("body").evaluate((body) => getComputedStyle(body).backgroundColor);
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("button", { name: "โหมดมืด", exact: true })).toBeVisible();
+  expect(await page.locator("body").evaluate((body) => getComputedStyle(body).backgroundColor)).not.toBe(lightBackground);
+  await page.goto("/animals/");
+  await expect(page.getByRole("button", { name: "โหมดมืด", exact: true })).toBeVisible();
+});
+
+test("photo journal supports visible keyboard focus and reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await page.getByRole("link", { name: "เดินเล่นในสวนและมุมคาเฟ่", exact: true }).focus();
+  await page.keyboard.press("Tab");
+  const friends = page.getByRole("link", { name: "รู้จักเพื่อนสัตว์ที่ A Cup of Zoo", exact: true });
+  await expect(friends).toBeFocused();
+  expect(await friends.evaluate((link) => link.matches(":focus-visible") && getComputedStyle(link).outlineStyle !== "none")).toBe(true);
+  expect(await friends.evaluate((link) => getComputedStyle(link).transitionDuration)).toBe("0s");
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/\/animals\/$/);
+});

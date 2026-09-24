@@ -1,0 +1,6 @@
+---
+import logo from "../../../logo.jpg";
+interface Props { class?: string; }
+const className = Astro.props.class;
+---
+<span class:list={["fox-seal", className]} aria-hidden="true"><img src={logo.src} alt="" /></span>

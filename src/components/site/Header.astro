@@ -7,11 +7,13 @@ const links = [
   ["/menu/", "เมนู"],
   ["/news/", "ข่าว"],
 ];
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => href === "/" ? currentPath === "/" : currentPath.startsWith(href);
 ---
 <header class="site-header">
   <a class="wordmark" href="/"><img src={logo.src} alt="A Cup of Zoo Cafe & Farm" /></a>
   <nav class="desktop-nav" aria-label="หลัก">
-    {links.map(([href, label]) => <a href={href}>{label}</a>)}
+    {links.map(([href, label]) => <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>{label}</a>)}
     <a class="visit-link" href="/visit/">พาครอบครัวมา</a>
   </nav>
   <button class="theme-button" type="button" aria-label="โหมดสีตามเครื่อง">
@@ -22,8 +24,8 @@ const links = [
   <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">เมนู</button>
 </header>
 <nav id="mobile-nav" class="mobile-panel" aria-label="มือถือ" hidden>
-  {links.map(([href, label]) => <a href={href}>{label}</a>)}
-  <a href="/visit/">มาเที่ยว</a>
+  {links.map(([href, label]) => <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>{label}</a>)}
+  <a href="/visit/" aria-current={isCurrent("/visit/") ? "page" : undefined}>มาเที่ยว</a>
 </nav>
 <script>
   const button = document.querySelector(".menu-button");

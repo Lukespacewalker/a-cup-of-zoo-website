@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import FoxSeal from "../components/site/FoxSeal.astro";
 import Picture from "../components/content/Picture.astro";
 import ContentUnavailable from "../components/content/ContentUnavailable.astro";
 import { loadPage } from "../lib/content/load-page";
@@ -7,7 +8,7 @@ const page = await loadPage();
 const items = page.venue?.content.activities.filter((item) => item.visible).sort((a, b) => a.sortOrder - b.sortOrder) ?? [];
 ---
 <SiteLayout title="กิจกรรม" description="บรรยากาศและพื้นที่ของ A Cup of Zoo จากภาพร้าน" page={page}>
-  <header class="page-intro"><p class="eyebrow">SPACE & MOMENTS</p><h1>พื้นที่ให้ใช้เวลาด้วยกัน</h1><p>เดินเล่น พักในคาเฟ่ และแวะชมเพื่อนสัตว์ตามมุมต่าง ๆ ของร้าน หากอยากทำกิจกรรมใกล้ชิดกับสัตว์ สอบถามพนักงานถึงรอบและเงื่อนไขก่อนนะ</p></header>
+  <header class="page-intro"><FoxSeal class="page-intro__fox" /><p class="eyebrow">SPACE & MOMENTS</p><h1>พื้นที่ให้ใช้เวลาด้วยกัน</h1><p>เดินเล่น พักในคาเฟ่ และแวะชมเพื่อนสัตว์ตามมุมต่าง ๆ ของร้าน หากอยากทำกิจกรรมใกล้ชิดกับสัตว์ สอบถามพนักงานถึงรอบและเงื่อนไขก่อนนะ</p></header>
   {page.venueProblem && <ContentUnavailable />}
   <section class="band activity-grid">
     {items.map((item) => <article class="card"><Picture mediaId={item.mediaAssetId} media={page.venue?.media ?? []} /><h2>{item.title}</h2><p>{item.description}</p></article>)}

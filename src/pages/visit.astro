@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import FoxSeal from "../components/site/FoxSeal.astro";
 import ContentUnavailable from "../components/content/ContentUnavailable.astro";
 import { loadPage } from "../lib/content/load-page";
 import { allowedExternalUrl, phoneHref } from "../lib/business/links";
@@ -14,6 +15,7 @@ const phone = phoneHref(content?.phoneE164 ?? null);
 ---
 <SiteLayout title="มาเที่ยว" description="เวลาเปิด พื้นที่ตั้ง และการเดินทางไป A Cup of Zoo" page={page} includeJsonLd>
   <header class="page-intro">
+    <FoxSeal class="page-intro__fox" />
     <h1>ชวนทั้งบ้านมาหา</h1>
     <p>เวลาและเบอร์ด้านล่างอิงโพสต์ของเพจ Facebook ร้าน รายการ Google Maps ยังขึ้นเบอร์อีกหมายเลขหนึ่ง</p>
   </header>

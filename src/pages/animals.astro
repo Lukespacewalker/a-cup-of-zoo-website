@@ -1,20 +1,22 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import FoxSeal from "../components/site/FoxSeal.astro";
 import Picture from "../components/content/Picture.astro";
 import { loadPage } from "../lib/content/load-page";
-import { animalGroups, stickers } from "../lib/content/decor";
+import { animalGroups } from "../lib/content/decor";
 
 const page = await loadPage();
 ---
 <SiteLayout title="สัตว์" description="น้องสัตว์ที่เพจ A Cup of Zoo เล่าไว้ ทั้งหมา แมว สัตว์เล็ก และนก" page={page}>
   <header class="page-intro">
-    <p class="eyebrow"><img src={stickers.meerkat.src} alt="" />OUR LITTLE FRIENDS</p>
+    <FoxSeal class="page-intro__fox" />
+    <p class="eyebrow">OUR LITTLE FRIENDS</p>
     <h1>มีใครอยู่ที่นี่บ้าง</h1>
     <p>ทำความรู้จักเพื่อน ๆ ที่เพจร้านแนะนำไว้ ภาพวาดใช้ตกแต่ง ส่วนภาพถ่ายด้านล่างเป็นภาพจริงจากร้าน</p>
   </header>
   <section class="groups" aria-label="กลุ่มสัตว์ในร้าน">
-    {animalGroups.map((group) => <article class="group"><img src={group.sticker.src} alt="" /><h2>{group.title}</h2><p>{group.names}</p></article>)}
-    <article class="group"><img src={stickers.goat.src} alt="" /><h2>แพะตัวจิ๋ว</h2><p>เพจเรียกน้องตัวนี้ว่าแพะพิกมี และจัดไว้ในกลุ่มสัตว์แปลกตา</p></article>
+    {animalGroups.map((group, index) => <article class="group"><span class="group-marker" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><h2>{group.title}</h2><p>{group.names}</p></article>)}
+    <article class="group"><span class="group-marker" aria-hidden="true">{String(animalGroups.length + 1).padStart(2, "0")}</span><h2>แพะตัวจิ๋ว</h2><p>เพจเรียกน้องตัวนี้ว่าแพะพิกมี และจัดไว้ในกลุ่มสัตว์แปลกตา</p></article>
   </section>
   <p class="section-note">รายชื่อจากโพสต์ของเพจร้านวันที่ 9 ธันวาคม 2025</p>
   <section class="band">

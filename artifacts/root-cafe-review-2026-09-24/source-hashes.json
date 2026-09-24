@@ -1,0 +1,58 @@
+[
+  {
+    "path": "astro.config.mjs",
+    "sha256": "79C3E033F3F4F1AFFDF324F449A818259230767BFEAE856CCE5DE139130DBA04"
+  },
+  {
+    "path": "docs/superpowers/plans/2026-09-23-a-cup-of-zoo.md",
+    "sha256": "80A440C0706947E5D720FE380A3DA3FF3BB628D863019B946B932F6632592A34"
+  },
+  {
+    "path": "src/components/site/Header.astro",
+    "sha256": "C84D0F778217D2BE35514995CA2A919B59DD71D5E4026A9E00D8526F7532F5B3"
+  },
+  {
+    "path": "src/components/site/FoxSeal.astro",
+    "sha256": "CF29B3BA0391C46C5D1B667C2782452E5A262C9B621408535213A97C80A74521"
+  },
+  {
+    "path": "src/layouts/SiteLayout.astro",
+    "sha256": "0678C37F30E9AA8F0079DFB7CB7C239A222AA4EF84435758E6C5F721B207087A"
+  },
+  {
+    "path": "src/pages/activities.astro",
+    "sha256": "6E5DBAD2C39419C2E5824882EEAB5C710979B2ACE36441E6A7E2C83EB374232D"
+  },
+  {
+    "path": "src/pages/animals.astro",
+    "sha256": "4EAAB121D7A1C083F88BF95BD2FD62C3AFBA4D3DDFC97F6BAD55F6EB11679C8D"
+  },
+  {
+    "path": "src/pages/index.astro",
+    "sha256": "F51FB6DBE83077110664104D595E9143786B2A57C4B9C51EF2E1E61FA57C2815"
+  },
+  {
+    "path": "src/pages/menu.astro",
+    "sha256": "CC654BB1A88035BA776FE63F139ED8D150C27D61E3569DF5ED41411EEB4D0FF7"
+  },
+  {
+    "path": "src/pages/visit.astro",
+    "sha256": "0CA87E5C7D949E56E20526A02D108C206D23F05E8E8A43831090008EFA11F68C"
+  },
+  {
+    "path": "src/styles/global.css",
+    "sha256": "327A74BE33BEF5DB855D5CA0FDAA5E017C71B36F57FC2B4913050276BD8ACF73"
+  },
+  {
+    "path": "src/styles/garden.css",
+    "sha256": "A068480015E85B9B947A383BDC82EA6F9429E52B2E86D97437F06FED7ABB1D32"
+  },
+  {
+    "path": "src/styles/cafe-home.css",
+    "sha256": "682384CBAA3187953C159946DD26A148D9917ADE15F2BD05700E6D07456DE505"
+  },
+  {
+    "path": "tests/e2e/visit.spec.ts",
+    "sha256": "8D6DC5C42A45DBC690FCDC400497F34CFE315987CCC37D28EB3024584D45D23C"
+  }
+]
