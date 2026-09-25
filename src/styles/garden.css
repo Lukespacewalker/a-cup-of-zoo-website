@@ -69,10 +69,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--fox-ink); outli
 .group-marker { color: var(--fox-ink); font-family: var(--font); font-size: 1.45rem; }
 .group h2, .group h3 { margin: 0; font-size: 1.35rem; }
 .group p { grid-column: 2; margin: 0; }
-.activity-grid { gap: 2rem; }
-.activity-grid .card:nth-child(even) { margin-top: 3rem; }
-.gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding-top: 3rem; }
-.gallery .card { border-top: 1px solid var(--line); padding-top: 1.2rem; }
 .menu-board { background: none; border: 0; border-radius: 0; padding: 0 0 2rem; }
 .menu-feature img, .menu-waiting img { border-radius: 2px; object-position: top center; }
 .spread .lead img, .spread .stack img { height: auto; aspect-ratio: 1; }
@@ -107,8 +103,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--fox-ink); outli
   .wordmark img { width: 8rem; height: 8rem; margin-top: -2.15rem; }
   .menu-button { background: none; border: 1px solid var(--line); border-radius: 3px; padding: .2rem .7rem; font-size: .85rem; }
   .mobile-panel { inset: 6.8rem 1.25rem auto; border: 1px solid var(--line); border-radius: 3px; z-index: 11; }
-  .gallery { grid-template-columns: 1fr; }
-  .activity-grid .card:nth-child(even) { margin-top: 0; }
   .footer { padding: 2.5rem 1.25rem calc(var(--sticky) + 1rem); }
 }
 @media (max-width: 560px) {

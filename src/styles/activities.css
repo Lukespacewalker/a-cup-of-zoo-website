@@ -1,0 +1,47 @@
+/* Give each part of the venue room to read like a place, not a card. */
+.spaces { padding-top: clamp(3rem, 6vw, 5rem); }
+
+.space-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(15rem, .72fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  align-items: center;
+  padding-bottom: clamp(3.5rem, 7vw, 6rem);
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.space-feature:nth-child(even) { grid-template-columns: minmax(15rem, .72fr) minmax(0, 1.65fr); }
+.space-feature:nth-child(even) .space-feature__media { order: 2; }
+.space-feature__media { min-width: 0; }
+.space-feature__media img {
+  display: block;
+  width: 100%;
+  height: clamp(26rem, 43vw, 35rem);
+  object-fit: cover;
+  object-position: center;
+  border-radius: 2px;
+}
+
+.space-feature__copy { max-width: 19rem; }
+.space-feature__number { display: block; color: var(--fox-ink); font-size: .8rem; letter-spacing: .12em; }
+.space-feature__copy h2 { margin: 1.2rem 0 .8rem; font-size: clamp(2.2rem, 3.3vw, 3.2rem); line-height: 1.3; }
+.space-feature__copy p { margin: 0; color: var(--muted-text); }
+
+.arrival { margin: 0 0 5rem; }
+.arrival__heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 1.7rem; }
+.arrival__heading .chapter-label { margin-bottom: .4rem; }
+.arrival__heading h2 { margin: 0; font-size: clamp(2.2rem, 3.3vw, 3.2rem); }
+.arrival__heading > p { max-width: 18rem; margin: 0; color: var(--muted-text); }
+.arrival > img { display: block; width: 100%; height: auto; border-radius: 2px; }
+
+@media (max-width: 700px) {
+  .spaces { padding-top: 2.5rem; }
+  .space-feature, .space-feature:nth-child(even) { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding-bottom: 3.5rem; margin-bottom: 3.5rem; }
+  .space-feature:nth-child(even) .space-feature__media { order: 0; }
+  .space-feature__media img { height: clamp(20rem, 74vw, 29rem); }
+  .space-feature__copy { max-width: 34rem; }
+  .space-feature__copy h2 { margin: .5rem 0; }
+  .arrival__heading { display: block; }
+  .arrival__heading > p { margin-top: .5rem; max-width: 34rem; }
+}

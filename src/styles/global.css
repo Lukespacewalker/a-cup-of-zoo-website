@@ -305,14 +305,14 @@ h1, h2, h3 {
 
 .section-head h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 0; }
 
-.photo-row, .menu-grid, .activity-grid, .news-grid {
+.photo-row, .menu-grid, .news-grid {
   display: grid;
   gap: 0.9rem;
   margin-top: 1rem;
 }
 
 .photo-row { grid-template-columns: 1.2fr 0.9fr 0.9fr; }
-.menu-grid, .activity-grid { grid-template-columns: 1fr 1fr; }
+.menu-grid { grid-template-columns: 1fr 1fr; }
 .news-grid { grid-template-columns: 1fr; }
 
 .card {
@@ -470,7 +470,7 @@ h1, h2, h3 {
 @media (max-width: 860px) {
   .desktop-nav { display: none; }
   .menu-button { display: inline-flex; align-items: center; justify-content: center; }
-  .hero, .family, .groups, .photo-row, .menu-grid, .activity-grid, .spread, .pills, .menu-feature, .menu-waiting { grid-template-columns: 1fr; }
+  .hero, .family, .groups, .photo-row, .menu-grid, .spread, .pills, .menu-feature, .menu-waiting { grid-template-columns: 1fr; }
   .menu-list li { grid-template-columns: 4.2rem 1fr; }
   .menu-list li span { grid-column: 2; }
   .pill + .pill { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
