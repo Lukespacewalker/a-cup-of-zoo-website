@@ -1,0 +1,109 @@
+---
+import "@fontsource/itim/400.css";
+import "@fontsource/noto-sans-thai-looped/400.css";
+import "@fontsource/mali/500.css";
+import { runtimeConfig } from "../lib/content/runtime-config";
+
+if (runtimeConfig().environment !== "local") {
+  return new Response("Not found", { status: 404 });
+}
+const options = [
+  { id: "itim", label: "A", name: "Itim", note: "ลายมือกลม ๆ เป็นกันเอง" },
+  { id: "looped", label: "B", name: "Noto Sans Thai Looped", note: "ตัวไทยมีหัว รูปทรงเป็นระเบียบ" },
+];
+---
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>ลองคู่ฟอนต์ — A Cup of Zoo</title>
+  </head>
+  <body>
+    <main>
+      <header class="comparison-header">
+        <p>A CUP OF ZOO · ลองคู่ฟอนต์</p>
+        <h1>สองบุคลิกของวันสบาย ๆ</h1>
+        <p>หัวข้อใช้ Mali เหมือนกันทั้งสองแบบ เปรียบเทียบเนื้อหาที่ขนาดและน้ำหนักเท่ากัน</p>
+        <fieldset>
+          <legend>ขนาดตัวอย่างข้อความ</legend>
+          <label><input type="radio" name="sample-size" value="16" /> 16 px</label>
+          <label><input type="radio" name="sample-size" value="18" checked /> 18 px</label>
+          <label><input type="radio" name="sample-size" value="20" /> 20 px</label>
+        </fieldset>
+      </header>
+      <div class="comparison-grid">
+        {options.map((option) => <section class:list={["font-option", option.id]} aria-labelledby={`title-${option.id}`}>
+          <header class="option-header">
+            <span class="option-letter">{option.label}</span>
+            <div><h2 id={`title-${option.id}`}>{option.name}</h2><p>{option.note}</p></div>
+            <a href={`/?font-preview=${option.id}`} target="_blank" rel="noopener">เปิดเว็บเต็ม ↗</a>
+          </header>
+          <div class="specimen">
+            <p class="sample-caption">Mali 500 · หัวข้อ</p>
+            <h3>จิบอะไรดี…<br /><span>มีเพื่อนรออยู่</span></h3>
+            <p class="sample-caption">{option.name} 400 · เนื้อหา</p>
+            <p class="sample-body">จากมุมของเจ้าเหมียวไปจนถึงริมบ่อ มีเพื่อนให้ค่อย ๆ ทำความรู้จักระหว่างเดินเล่นในร้าน เลือกมุมที่ชอบ สั่งเครื่องดื่มสักแก้ว แล้วปล่อยให้วันนี้ผ่านไปช้า ๆ</p>
+            <p class="sample-body sample-details">คลอง 6 ปทุมธานี<br />เวลา 10:00–19:00 · ปิดวันอังคาร<br />ยกเว้นวันหยุดนักขัตฤกษ์</p>
+          </div>
+          <p class="site-label">ลองเลื่อนเว็บจริงด้านล่าง หรือเปิดเว็บเต็มเพื่อดูบนจอใหญ่</p>
+          <iframe src={`/?font-preview=${option.id}`} title={`เว็บไซต์แบบ ${option.name} และหัวข้อ Mali`} loading="eager"></iframe>
+        </section>)}
+      </div>
+      <p class="comparison-note">เลือกแบบ B แล้ว · <a href="/">ดูเว็บไซต์ที่ใช้ Noto Sans Thai Looped + Mali</a></p>
+    </main>
+    <script>
+      for (const input of document.querySelectorAll<HTMLInputElement>('input[name="sample-size"]')) {
+        input.addEventListener("change", () => {
+          if (input.checked) document.documentElement.style.setProperty("--sample-size", `${input.value}px`);
+        });
+      }
+    </script>
+  </body>
+</html>
+<style>
+  :global(:root) { --sample-size: 18px; color-scheme: light; }
+  :global(*) { box-sizing: border-box; }
+  :global(body) { margin: 0; background: #f5f1e8; color: #443d30; font: 15px/1.7 "Noto Sans Thai Looped", sans-serif; }
+  main { max-width: 1340px; padding: 32px 28px; margin: auto; }
+  .comparison-header { text-align: center; padding-bottom: 28px; }
+  .comparison-header > p:first-child { font-size: 12px; letter-spacing: .1em; color: #62694f; }
+  h1 { font: 500 clamp(25px, 3vw, 34px)/1.5 "Mali", sans-serif; margin: 12px 0; }
+  .comparison-header > p { margin: 8px 0; }
+  fieldset { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; border: 0; padding: 8px 0 0; margin: 0; }
+  legend { padding-top: 12px; color: #6b6253; font-size: 13px; }
+  fieldset label { display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 6px 14px; border: 1px solid #d5cbbb; border-radius: 3px; cursor: pointer; }
+  input { accent-color: #586149; }
+  .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .font-option { min-width: 0; border: 1px solid #d5cbbb; background: #fffaf0; }
+  .option-header { display: flex; align-items: center; gap: 12px; padding: 20px 24px; border-bottom: 1px solid #e1d9ca; }
+  .option-letter { display: grid; place-items: center; width: 38px; height: 38px; background: #e6e7d8; border-radius: 50%; flex: none; }
+  .option-header h2 { margin: 0; font-size: 19px; font-weight: 500; }
+  .option-header p { margin: 0; font-size: 12px; color: #706656; }
+  a { color: #59634b; text-underline-offset: 4px; }
+  a:focus-visible, input:focus-visible { outline: 2px solid #a15434; outline-offset: 5px; }
+  .option-header > a { margin-left: auto; white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; font-size: 13px; }
+  .specimen { padding: 24px 30px; }
+  .sample-caption { margin: 0; font: 12px/1.6 "Noto Sans Thai Looped", sans-serif; color: #726754; }
+  .specimen h3 { margin: 14px 0 28px; font: 500 32px/1.55 "Mali", sans-serif; }
+  .specimen h3 span { color: #a15434; }
+  .sample-body { font-size: var(--sample-size); font-weight: 400; line-height: 1.8; margin: 12px 0 0; }
+  .itim .sample-body { font-family: "Itim", sans-serif; }
+  .looped .sample-body { font-family: "Noto Sans Thai Looped", sans-serif; }
+  .sample-details { border-top: 1px dashed #d5cbbb; margin-top: 24px; padding-top: 16px; }
+  .site-label { font-size: 12px; margin: 0; padding: 14px 24px; background: #e6e7d8; border-block: 1px solid #d5cbbb; }
+  iframe { width: 100%; height: 720px; display: block; border: 0; background: #f5f1e8; }
+  .comparison-note { text-align: center; font-size: 13px; margin: 24px 0 0; }
+  @media (max-width: 900px) {
+    main { padding-inline: 16px; }
+    .option-header { flex-wrap: wrap; padding: 16px; }
+    .option-header > a { margin-left: 50px; }
+    .specimen { padding: 24px; }
+    .specimen h3 { font-size: 27px; }
+  }
+  @media (max-width: 640px) {
+    .comparison-grid { grid-template-columns: 1fr; }
+    .option-header > a { margin-left: auto; }
+  }
+</style>

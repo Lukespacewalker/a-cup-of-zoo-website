@@ -1,29 +1,28 @@
 ---
-import "@fontsource/mali/400.css";
 import "@fontsource/mali/500.css";
-import "@fontsource/mali/700.css";
-import "@fontsource/noto-sans-thai/400.css";
-import "@fontsource/noto-sans-thai/500.css";
-import "@fontsource/noto-sans-thai/600.css";
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/cormorant-garamond/600.css";
+import "@fontsource/noto-sans-thai-looped/400.css";
+import "@fontsource/noto-sans-thai-looped/500.css";
+import "@fontsource/noto-sans-thai-looped/600.css";
+import "@fontsource/noto-sans-thai-looped/700.css";
 import "../styles/global.css";
 import "../styles/garden.css";
+import "../styles/font-preview.css";
 import SeoHead from "../components/seo/SeoHead.astro";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
-import PrototypeNotice from "../components/site/PrototypeNotice.astro";
 import type { PageData } from "../lib/content/load-page";
 
 interface Props {
   title: string;
   description: string;
-  page: Pick<PageData, "mode" | "environment" | "venue">;
+  page: Pick<PageData, "environment" | "venue">;
   includeJsonLd?: boolean;
 }
 const { title, description, page, includeJsonLd = false } = Astro.props;
+const requestedFont = Astro.url.searchParams.get("font-preview");
+const previewFont = page.environment === "local" && (requestedFont === "itim" || requestedFont === "looped") ? requestedFont : undefined;
 ---
-<html lang="th">
+<html lang="th" data-font-preview={previewFont}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,7 +36,6 @@ const { title, description, page, includeJsonLd = false } = Astro.props;
   </head>
   <body>
     <a class="skip-link" href="#content">ข้ามไปเนื้อหา</a>
-    <PrototypeNotice mode={page.mode} />
     <Header />
     <main id="content">
       <div class="shell">
@@ -45,5 +43,14 @@ const { title, description, page, includeJsonLd = false } = Astro.props;
       </div>
     </main>
     <Footer mapsUrl={page.venue?.content.mapsUrl ?? null} phoneE164={page.venue?.content.phoneE164 ?? null} />
+    {previewFont && <script is:inline define:vars={{ previewFont }}>
+      // Keep the selected local comparison when visiting another page.
+      for (const link of document.querySelectorAll("a[href]")) {
+        const url = new URL(link.getAttribute("href"), location.href);
+        if (url.origin !== location.origin || url.pathname === "/font-preview/") continue;
+        url.searchParams.set("font-preview", previewFont);
+        link.href = url.href;
+      }
+    </script>}
   </body>
 </html>

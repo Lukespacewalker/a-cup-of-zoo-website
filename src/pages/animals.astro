@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import FoxSeal from "../components/site/FoxSeal.astro";
+import AnimalDoodle from "../components/site/AnimalDoodle.astro";
 import Picture from "../components/content/Picture.astro";
 import { loadPage } from "../lib/content/load-page";
 import { animalGroups } from "../lib/content/decor";
@@ -22,10 +23,10 @@ const page = await loadPage();
   <section class="band">
     <div class="section-head"><h2>ภาพถ่ายจากร้าน</h2></div>
     <div class="spread">
-      <article class="card lead"><Picture mediaId="cat-portrait" media={page.venue?.media ?? []} alt="แมวของร้าน" /><h3>แมว</h3></article>
+      <article class="card lead"><div class="animal-photo"><Picture mediaId="cat-portrait" media={page.venue?.media ?? []} alt="แมวของร้าน" /><AnimalDoodle animal="cat" /></div><h3>แมว</h3></article>
       <div class="stack">
         <article class="card"><Picture mediaId="cats-and-dog" media={page.venue?.media ?? []} alt="แมวและสุนัขของร้าน" /><h3>แมวและสุนัข</h3></article>
-        <article class="card"><Picture mediaId="ducks-pond" media={page.venue?.media ?? []} alt="เป็ดในบ่อของร้าน" /><h3>เป็ด</h3></article>
+        <article class="card"><div class="animal-photo"><Picture mediaId="ducks-pond" media={page.venue?.media ?? []} alt="เป็ดในบ่อของร้าน" /><AnimalDoodle animal="duck" /></div><h3>เป็ด</h3></article>
       </div>
     </div>
   </section>

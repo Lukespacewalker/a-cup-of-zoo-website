@@ -1,10 +1,11 @@
 import { defineConfig, envField } from "astro/config";
-import node from "@astrojs/node";
+import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   site: "https://acupofzoo.invalid",
   output: "server",
-  adapter: node({ mode: "standalone" }),
+  adapter: cloudflare(),
+  session: false,
   trailingSlash: "always",
   devToolbar: { enabled: false },
   server: { host: "127.0.0.1", port: 4321 },

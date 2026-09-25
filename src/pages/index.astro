@@ -4,6 +4,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import Picture from "../components/content/Picture.astro";
 import ContentUnavailable from "../components/content/ContentUnavailable.astro";
 import FoxSeal from "../components/site/FoxSeal.astro";
+import AnimalDoodle from "../components/site/AnimalDoodle.astro";
 import { loadPage, isDemoPost, thaiTranslation } from "../lib/content/load-page";
 import { allowedExternalUrl } from "../lib/business/links";
 
@@ -25,10 +26,12 @@ const news = page.posts.slice(0, 2);
     <div class="cover-photos">
       <figure class="cover-photo cover-photo--garden">
         <a href="/activities/" aria-label="เดินเล่นในสวนและมุมคาเฟ่"><Picture eager mediaId="cafe-garden-seating" media={media} alt="มุมนั่งริมสวนและผ้าม่านญี่ปุ่นในร้าน" /></a>
+        <AnimalDoodle animal="rabbit" />
         <figcaption>มุมโปรดสักมุม <span aria-hidden="true">↗</span></figcaption>
       </figure>
       <figure class="cover-photo cover-photo--friends">
         <a href="/animals/" aria-label="รู้จักเพื่อนสัตว์ที่ A Cup of Zoo"><Picture eager mediaId="cats-and-dog" media={media} alt="แมวสองตัวอยู่ด้วยกันกับสุนัขของร้าน A Cup of Zoo" /></a>
+        <AnimalDoodle animal="cat" />
         <figcaption><span class="handwritten">ยินดีต้อนรับเข้าบ้านของพวกเรา</span><span aria-hidden="true">♡</span></figcaption>
       </figure>
       <figure class="cover-photo cover-photo--drink">
@@ -58,6 +61,7 @@ const news = page.posts.slice(0, 2);
     </figure>
     <figure class="pond-portrait">
       <a href="/animals/" aria-label="พบเพื่อนริมบ่อและสัตว์อื่น ๆ"><Picture mediaId="ducks-pond" media={media} alt="กลุ่มเป็ดกำลังว่ายในบ่อน้ำสีเขียวของร้าน" /></a>
+      <AnimalDoodle animal="duck" />
       <figcaption><span class="handwritten">แก๊งริมบ่อ</span><span>เดินต่ออีกนิด ก็เจอกันแล้ว</span></figcaption>
     </figure>
   </section>

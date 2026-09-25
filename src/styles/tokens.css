@@ -18,7 +18,8 @@
   --on-band: #fff6ec;
   --header: 5rem;
   --sticky: calc(4.75rem + env(safe-area-inset-bottom));
-  --font: "Mali", "Noto Sans Thai", sans-serif;
+  --font: "Noto Sans Thai Looped", sans-serif;
+  --heading: "Mali", sans-serif;
   color-scheme: light;
 }
 

@@ -10,19 +10,21 @@
     "test:e2e": "playwright test",
     "build": "bun run prepare:assets && astro build",
     "preview": "astro preview --host 127.0.0.1 --port 4321",
+    "deploy:preview": "bun run build && wrangler deploy",
     "verify:content": "bun run scripts/verify-content.ts"
   },
   "dependencies": {
-    "@astrojs/node": "11",
-    "@fontsource/cormorant-garamond": "^5.2.8",
+    "@astrojs/cloudflare": "^14.3.3",
+    "@fontsource/itim": "^5.3.0",
     "@fontsource/mali": "^5.3.0",
-    "@fontsource/noto-sans-thai": "^5.2.8",
+    "@fontsource/noto-sans-thai-looped": "^5.3.0",
     "@lukespace-cms/client": "file:../CMS-Platform-acupofzoo/packages/client",
     "astro": "7.3.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@playwright/test": "^1.56.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.139.0"
   }
 }

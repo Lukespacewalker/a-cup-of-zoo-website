@@ -46,14 +46,6 @@ h1, h2, h3 {
 
 .skip-link:focus { top: 1rem; }
 
-.notice {
-  width: var(--page);
-  margin: 0.6rem auto 0;
-  padding: 0.35rem 0;
-  color: var(--cocoa);
-  border-bottom: 1px solid var(--line);
-}
-
 .site-header {
   width: var(--page);
   margin: 0.8rem auto 0;

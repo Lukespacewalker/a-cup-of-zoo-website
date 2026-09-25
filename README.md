@@ -1,8 +1,19 @@
 # A Cup of Zoo
 
-เว็บตัวอย่างในเครื่องของคาเฟ่ A Cup of Zoo ใช้ Astro และอ่านข้อมูลจาก CMS โปรไฟล์ `acupofzoo` เมื่อสั่งให้เชื่อม
+เว็บคาเฟ่ A Cup of Zoo ใช้ Astro และมีทางอ่านข้อมูลจาก CMS โปรไฟล์ `acupofzoo` เมื่อเปิดโหมด CMS
 
-ยังไม่ deploy ไม่ได้เปลี่ยน DNS และยังไม่ใช้ทรัพยากรคลาวด์
+## Cloudflare preview
+
+เว็บ preview อยู่ที่ https://a-cup-of-zoo-preview.suttisak-lukesp.workers.dev/ บน Cloudflare Workers ใช้ `SITE_ENV=staging` และ `CONTENT_MODE=fixture` จึงยังอ่านข้อมูลตัวอย่างในโปรเจกต์ ไม่ได้เชื่อม CMS ที่เผยแพร่บนคลาวด์ หน้า preview ตั้ง `noindex` และยังไม่ได้ผูกโดเมนร้าน
+
+ปรับ Worker ที่ `wrangler.jsonc` และ deploy จาก workspace นี้ด้วย:
+
+```sh
+bun install
+bun run deploy:preview
+```
+
+การติดตั้ง dependency ต้องมี `../CMS-Platform-acupofzoo/packages/client` ในเครื่อง เพราะแพ็กเกจ client ยังอ้างผ่าน `file:` จึงยังไม่พร้อมสำหรับ Cloudflare Git build จาก repository เดี่ยว หากจะเปิด production ต้องมี CMS URL ที่เข้าถึงได้จาก Cloudflare ตั้ง `CONTENT_MODE=cms`, `CMS_BASE_URL`, `SITE_ENV=production` และแก้ `site` กับ URL ใน sitemap จาก `.invalid` เป็นโดเมนจริงก่อน โดยโค้ดปฏิเสธ fixture ใน production
 
 ## เปิดหน้าเว็บด้วยข้อมูลตัวอย่าง
 
