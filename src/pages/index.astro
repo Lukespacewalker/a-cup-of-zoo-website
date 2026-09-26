@@ -16,7 +16,7 @@ const maps = allowedExternalUrl(content?.mapsUrl ?? null, "maps");
 const menu = content?.menuHighlights.filter((item) => item.visible).sort((a, b) => a.sortOrder - b.sortOrder) ?? [];
 const news = page.posts.slice(0, 2);
 ---
-<SiteLayout title="A Cup of Zoo" description="คาเฟ่สัตว์คลอง 6 สำหรับครอบครัว แวะจิบเครื่องดื่ม เดินเล่นในสวน และพบเพื่อนสัตว์ที่ A Cup of Zoo" page={page} includeJsonLd>
+<SiteLayout title="คาเฟ่สัตว์ คลอง 6 ปทุมธานี" description="A Cup of Zoo คาเฟ่สัตว์และฟาร์ม คลอง 6 ปทุมธานี แวะจิบเครื่องดื่ม ทานขนม เดินเล่นในสวน และทำความรู้จักเพื่อนสัตว์ พร้อมข้อมูลเมนูและการเดินทาง" page={page} includeJsonLd>
   <section class="cafe-cover" aria-labelledby="home-title">
     <div class="cover-title">
       <p class="cafe-address">A CUP OF ZOO <span aria-hidden="true">·</span> คาเฟ่และฟาร์ม คลอง 6</p>

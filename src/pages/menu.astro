@@ -1,77 +1,73 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import "../styles/menu-catalog.css";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import FoxSeal from "../components/site/FoxSeal.astro";
-import Picture from "../components/content/Picture.astro";
 import { loadPage } from "../lib/content/load-page";
-import { menuCatalog, type MenuItem } from "../lib/content/menu-catalog";
-
+import { menuCatalog, sandwichExtras } from "../lib/content/menu-catalog";
 const page = await loadPage();
-const media = page.venue?.media ?? [];
-
-function priceLabel(item: MenuItem) {
-  return item.price ?? "ราคาจะแสดงเมื่อร้านยืนยัน";
-}
+const photos = import.meta.glob<{ default: ImageMetadata }>("../assets/food-menu/*.jpg", { eager: true });
+const photo = (number: number) => photos[`../assets/food-menu/page-${String(number).padStart(2, "0")}.jpg`].default;
+const menuSchema = {
+  "@context": "https://schema.org", "@type": "Menu", name: "เมนูอาหาร A Cup of Zoo", inLanguage: "th",
+  hasMenuSection: menuCatalog.map((section) => ({
+    "@type": "MenuSection", name: section.title,
+    hasMenuItem: section.items.map((item) => ({
+      "@type": "MenuItem", name: item.name, description: item.note,
+      offers: item.variants
+        ? item.variants.map((variant) => ({ "@type": "Offer", name: variant.label, price: variant.price, priceCurrency: "THB" }))
+        : { "@type": "Offer", price: item.price, priceCurrency: "THB" },
+    })),
+  })),
+};
 ---
-<SiteLayout title="เมนู" description="เครื่องดื่ม ของหวาน และอาหารของ A Cup of Zoo" page={page}>
-  <header class="page-intro menu-mast">
+<SiteLayout title="เมนูอาหารและราคา คาเฟ่ คลอง 6" description="เลือกอาหาร 47 รายการที่ A Cup of Zoo คลอง 6 ปทุมธานี ทั้งจานซิกเนเจอร์ แซนวิช สเต็ก สปาเก็ตตี้ ข้าว และเมนูจากพืช พร้อมราคาและตัวเลือกเพิ่มไส้" page={page}>
+  <header class="page-intro menu-mast" id="menu-top">
     <FoxSeal class="page-intro__fox" />
-    <p class="eyebrow">Menu</p>
-    <h1>เครื่องดื่ม ของหวาน และอาหาร</h1>
-    <p>เลือกเครื่องดื่มหรือของหวานสักอย่าง แล้วใช้เวลาดี ๆ กับคนที่มาด้วยกัน รายการและราคาที่ร้านยังไม่ยืนยันจะอัปเดตอีกครั้ง</p>
+    <p class="eyebrow">At our table</p>
+    <h1>มื้ออร่อยที่ A Cup of Zoo</h1>
+    <p>เลือกจานที่ชอบ แล้วนั่งใช้เวลาด้วยกัน มีทั้งจานทานเล่น มื้ออิ่ม และเมนูจากพืช</p>
+    <p class="catalog-note">ราคาต่อจานเป็นบาท · รายการและราคาตามเมนูร้านที่ตรวจเมื่อ 26 กันยายน 2569</p>
     <nav class="menu-jump" aria-label="หมวดเมนู">
       {menuCatalog.map((section) => <a href={`#${section.id}`}>{section.title}</a>)}
     </nav>
   </header>
-  <div class="menu-board">
-  {menuCatalog.map((section) => {
-    const highlight = section.items.find((item) => item.highlight) ?? null;
-    const rest = section.items.filter((item) => item !== highlight);
-    return (
-      <section class="menu-section" id={section.id}>
-        <header class="menu-section__head">
-          <svg class="paw" viewBox="0 0 32 32" aria-hidden="true"><circle cx="7" cy="11" r="3" fill="currentColor"/><circle cx="16" cy="7" r="3.2" fill="currentColor"/><circle cx="25" cy="11" r="3" fill="currentColor"/><ellipse cx="16" cy="20" rx="7" ry="5.5" fill="currentColor"/></svg>
-          <span>{section.index}</span>
-          <div>
-            <h2>{section.title}</h2>
-            <p>{section.lede}</p>
-          </div>
-        </header>
-        {highlight && (
-          <article class="menu-feature">
-            <Picture mediaId={highlight.shopMediaId} media={media} alt={highlight.name} eager />
-            <div>
-              <p class="eyebrow">ไฮไลต์</p>
-              <h3>{highlight.name}</h3>
-              <p>{highlight.note}</p>
-              <p class="menu-price">{priceLabel(highlight)}</p>
-            </div>
-          </article>
-        )}
-        {rest.length > 0 && (
-          <ul class="menu-list">
-            {rest.map((item) => (
-              <li>
-                {item.shopMediaId && <Picture mediaId={item.shopMediaId} media={media} alt="" />}
-                <div>
-                  <h3>{item.name}</h3>
-                  <p>{item.note}</p>
-                </div>
-                <span>{priceLabel(item)}</span>
-              </li>
-            ))}
+  <div class="food-catalog">
+    {menuCatalog.map((section, index) => <section class="food-section" id={section.id} aria-labelledby={`${section.id}-title`}>
+      <header class="food-section__heading">
+        <p class="eyebrow">{String(index + 1).padStart(2, "0")} / {String(menuCatalog.length).padStart(2, "0")}</p>
+        <h2 id={`${section.id}-title`}>{section.title}</h2>
+        <p>{section.lede}</p>
+      </header>
+      <div class="food-section__body">
+        <div class="food-section__photos">
+          <Image src={photo(section.imagePages[0])} alt={section.imageAlt} widths={[320, 560]} sizes="(max-width: 700px) 90vw, 30vw" format="webp" loading={index === 0 ? "eager" : "lazy"} />
+          {section.imagePages.length > 1 && <details class="food-gallery">
+            <summary>ดูภาพเพิ่มเติม · {section.title}</summary>
+            {section.imagePages.slice(1).map((number) => <Image src={photo(number)} alt={`ภาพเมนู${section.title}จากร้าน`} width={560} format="webp" loading="lazy" />)}
+          </details>}
+        </div>
+        <div>
+          <ul class="food-list">
+            {section.items.map((item) => <li data-menu-code={item.code} id={`dish-${item.code.toLowerCase()}`}>
+              <div class="food-list__title"><h3><span class="dish-code">{item.code}</span> {item.name}</h3>{!item.variants && <span class="dish-price">{item.price} บาท</span>}</div>
+              <p>{item.note}</p>
+              {item.variants && <dl class="price-options">{item.variants.map((variant) => <div><dt>{variant.label}</dt><dd>{variant.price} บาท</dd></div>)}</dl>}
+            </li>)}
           </ul>
-        )}
-        {section.items.length === 0 && (
-          <div class="menu-waiting">
-            {section.mood && <img src={section.mood.src} alt={section.moodAlt} />}
-            <div>
-              <h3>ยังไม่มีรายการ</h3>
-              <p>ร้านยังไม่ได้ยืนยันรายการในหมวดนี้ สอบถามเมนูประจำวันกับทางร้านได้เลย</p>
-            </div>
-          </div>
-        )}
-      </section>
-    );
-  })}
+          {section.id === "sandwiches" && <div class="sandwich-extras">
+            {sandwichExtras.map((group) => <section><h3>{group.title}</h3><dl class="price-options">{group.items.map((item) => <div><dt>{item.name}</dt><dd>+{item.price} บาท</dd></div>)}</dl></section>)}
+          </div>}
+        </div>
+      </div>
+      <a class="catalog-back" href="#menu-top">กลับไปเลือกหมวด ↑</a>
+    </section>)}
   </div>
+  <aside class="catalog-end">
+    <h2>เครื่องดื่มและขนม</h2>
+    <p>สอบถามรายการเครื่องดื่มและขนมที่พร้อมเสิร์ฟกับพนักงานที่ร้าน</p>
+    <div class="actions"><a class="button" href="/activities/">ดูแพ็กเกจและกิจกรรม</a><a class="button secondary" href="/visit/">วางแผนมาเที่ยว</a></div>
+  </aside>
+  <script type="application/ld+json" set:html={JSON.stringify(menuSchema).replace(/</g, "\\u003c")} />
 </SiteLayout>

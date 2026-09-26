@@ -4,7 +4,7 @@ import ContentUnavailable from "../../components/content/ContentUnavailable.astr
 import { isDemoPost, loadPage, thaiTranslation } from "../../lib/content/load-page";
 const page = await loadPage();
 ---
-<SiteLayout title="ข่าว" description="ข่าวที่เผยแพร่แล้วของ A Cup of Zoo" page={page}>
+<SiteLayout title="ข่าวและประกาศจากร้าน" description="ติดตามข่าวและประกาศที่เผยแพร่จาก A Cup of Zoo คาเฟ่สัตว์ คลอง 6 ปทุมธานี ตรวจสอบข้อมูลจากร้านก่อนวางแผนแวะมาเที่ยว" page={page}>
   <header class="page-intro"><h1>ข่าวจากร้าน</h1></header>
   {page.postsProblem && <ContentUnavailable />}
   {!page.postsProblem && page.posts.length === 0 && <p class="page-intro">ยังไม่มีข่าวที่เผยแพร่</p>}

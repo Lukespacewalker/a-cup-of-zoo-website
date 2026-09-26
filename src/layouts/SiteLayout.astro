@@ -42,7 +42,7 @@ const previewFont = page.environment === "local" && (requestedFont === "itim" ||
         <slot />
       </div>
     </main>
-    <Footer mapsUrl={page.venue?.content.mapsUrl ?? null} phoneE164={page.venue?.content.phoneE164 ?? null} />
+    <Footer mapsUrl={page.venue?.content.mapsUrl ?? null} />
     {previewFont && <script is:inline define:vars={{ previewFont }}>
       // Keep the selected local comparison when visiting another page.
       for (const link of document.querySelectorAll("a[href]")) {

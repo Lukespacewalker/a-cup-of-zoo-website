@@ -13,7 +13,11 @@ bun install
 bun run deploy:preview
 ```
 
-การติดตั้ง dependency ต้องมี `../CMS-Platform-acupofzoo/packages/client` ในเครื่อง เพราะแพ็กเกจ client ยังอ้างผ่าน `file:` จึงยังไม่พร้อมสำหรับ Cloudflare Git build จาก repository เดี่ยว หากจะเปิด production ต้องมี CMS URL ที่เข้าถึงได้จาก Cloudflare ตั้ง `CONTENT_MODE=cms`, `CMS_BASE_URL`, `SITE_ENV=production` และแก้ `site` กับ URL ใน sitemap จาก `.invalid` เป็นโดเมนจริงก่อน โดยโค้ดปฏิเสธ fixture ใน production
+การติดตั้ง dependency ต้องมี `../CMS-Platform-acupofzoo/packages/client` ในเครื่อง เพราะแพ็กเกจ client ยังอ้างผ่าน `file:` จึงยังไม่พร้อมสำหรับ Cloudflare Git build จาก repository เดี่ยว หากจะเปิด production ต้องมี CMS URL ที่เข้าถึงได้จาก Cloudflare ตั้ง `CONTENT_MODE=cms`, `CMS_BASE_URL`, `SITE_ENV=production` และแก้ `site` ใน `astro.config.mjs` จาก `.invalid` เป็นโดเมนจริงก่อน canonical, sitemap และข้อมูลร้านจะใช้โดเมนจากจุดเดียวกัน โดยโค้ดปฏิเสธ fixture ใน production
+
+## SEO ระหว่างเตรียมเว็บไซต์
+
+คง `noindex` และ robots ที่ปิดการ crawl สำหรับ local/staging ตามเดิม มี title/description แยกตามหน้า, Open Graph, Twitter Card และ structured data ร้านกาแฟแล้ว ดูสิ่งที่ทำและงานก่อนเปิดจริงใน [SEO readiness](docs/seo-readiness.md)
 
 ## เปิดหน้าเว็บด้วยข้อมูลตัวอย่าง
 
@@ -52,6 +56,8 @@ $env:CONTENT_MODE="cms"; $env:CMS_BASE_URL="http://127.0.0.1:8787"; bun run dev
 แอดมินอยู่ที่ http://localhost:5173 หน้าข้อมูลร้านใช้บันทึกร่างก่อน แล้วค่อยเผยแพร่ หน้าเว็บอ่านเฉพาะชุดที่เผยแพร่แล้ว
 
 ## ตรวจ
+
+เมนูและกิจกรรมแบบ native: รายการอาหารอยู่ที่ `src/lib/content/menu-catalog.ts`, แพ็กเกจและกิจกรรมอยู่ที่ `src/lib/content/activities-catalog.ts` ภาพเก็บใน `src/assets/food-menu/` ดูแหล่งข้อมูล ขอบเขต และข้อยกเว้นใน [บันทึกนำเข้าเมนู](docs/menu-import.md) ไม่ต้องใช้ Heyzine ในหน้าเว็บ
 
 ```sh
 bun run check

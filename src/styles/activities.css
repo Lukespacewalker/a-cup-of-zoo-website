@@ -1,4 +1,32 @@
 /* Give each part of the venue room to read like a place, not a card. */
+.activity-section { padding: 2.5rem 0; border-bottom: 1px solid var(--line); scroll-margin-top: 8rem; }
+.activity-section > h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); margin-top: .5rem; }
+.pass-grid, .zone-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; }
+.pass-grid { margin-top: 2rem; }
+.zone-pass { padding: 1.5rem; border: 1px solid var(--line); background: var(--paper); border-radius: .5rem; }
+.zone-pass h3 { margin-top: 0; }
+.pass-price { font-size: 2.5rem; line-height: 1.3; margin: .5rem 0; color: var(--cocoa-deep); }
+.pass-price span { font-size: 1rem; }
+.zone-pass ul, .activity-terms ul, .zone-grid ul { padding-left: 1.3rem; }
+.zone-pass li, .activity-terms li, .zone-grid li { margin: .5rem 0; }
+.activity-terms { margin-top: 2rem; }
+.experience-list { list-style: none; margin: 0; padding: 0; }
+.experience-list > li { display: flex; justify-content: space-between; gap: 2rem; padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
+.experience-list h3 { margin: 0; font-size: 1.2rem; }
+.experience-list p { margin: .4rem 0 0; }
+.experience-price { flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.experience-price span, .activity-footnote { color: var(--muted-text); font-size: .9rem; }
+.animal-food-list { max-width: 45rem; }
+.animal-food-list > div { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--line); padding: .6rem 0; }
+.animal-food-list dd { margin: 0; white-space: nowrap; }
+.animal-food-list small { display: block; }
+.garden-spots { columns: 2; column-gap: 3rem; padding-left: 1.5rem; }
+.garden-spots li { break-inside: avoid; padding: .3rem 0; }
+@media (max-width: 700px) {
+  .pass-grid, .zone-grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .experience-list > li { display: block; }
+  .garden-spots { columns: 1; }
+}
 .spaces { padding-top: clamp(3rem, 6vw, 5rem); }
 
 .space-feature {

@@ -2,7 +2,7 @@
   "version": 1,
   "project": "acupofzoo",
   "preparedOn": "2026-09-23",
-  "purpose": "ข้อมูลอ้างอิงสำหรับ prototype ไม่ใช่การรับรองข้อมูลปัจจุบันจาก Facebook/Google Maps",
+  "purpose": "Internal provenance for sourced menu, activities and business information. Historical sources retained.",
   "sources": [
     {
       "id": "user-brief",
@@ -39,6 +39,44 @@
       "verifiedAt": null,
       "accessStatus": "insufficient_content",
       "note": "ผลที่อ่านได้เป็น redirect และไม่เพียงพอต่อการตรวจเว็บไซต์เดิม"
+    },
+    {
+      "id": "shop-menu-2026-09-26",
+      "type": "shop_menu",
+      "url": "https://heyzine.com/flip-book/72a5470ad6.html",
+      "pdfUrl": "https://cdnm.heyzine.com/files/uploaded/v3/72a5470ad6ff9bcf33d20a262cac73e8510a25e1.pdf",
+      "checkedAt": "2026-09-26",
+      "verifiedAt": "2026-09-26",
+      "accessStatus": "all_24_pages_read",
+      "localFile": "reference-data/menu-source-2026-09-26.pdf",
+      "sha256": "c7a0a697aaf9da0d78ee3bb12d2c8b78bf1a5a28f14e6b04e11ed0f14b180ea5",
+      "note": "47 distinct food codes, 10 sandwich add-on rows, packages and activities on pages 2-3, map/hours on page 24. No separate drinks/dessert price list. B2 and B4 repeat on promo pages 8 and 10."
+    },
+    {
+      "id": "maps-2026-09-26",
+      "type": "google_maps",
+      "url": "https://www.google.com/maps/place/A+cup+of+zoo+caf%C3%A9/@14.0624359,100.7214907,18.8z/data=!4m6!3m5!1s0x311d832435d52fff:0xbc56f5d0ec0344ad!8m2!3d14.0625625!4d100.7213125!16s%2Fg%2F11smr215py",
+      "checkedAt": "2026-09-26",
+      "verifiedAt": "2026-09-26",
+      "accessStatus": "listing_read",
+      "note": "Observed cafe name, Khlong Hok location, phone 0922791890, Facebook and matching menu link. Weekly hours not exposed in browser; supplied screenshot and menu page 24 are the weekly-hours evidence."
+    },
+    {
+      "id": "hours-screenshot-2026-09-26",
+      "type": "user_screenshot",
+      "checkedAt": "2026-09-26",
+      "verifiedAt": null,
+      "accessStatus": "provided_in_conversation",
+      "localFile": "reference-data/hours-2026-09-26.png",
+      "note": "10:00-19:00, closed Tuesday; holiday exception corroborated separately by menu page 24."
+    },
+    {
+      "id": "user-followup-2026-09-26",
+      "type": "user_brief",
+      "checkedAt": "2026-09-26",
+      "verifiedAt": null,
+      "accessStatus": "provided_in_conversation",
+      "note": "User chose native menu/activities without Heyzine, only available menu for now, both Facebook 0989838037 and Maps 0922791890 phone numbers, retain noindex."
     }
   ],
   "initialValues": {
@@ -50,9 +88,8 @@
     "phoneE164": "+66989838037",
     "mapsListedPhoneDisplay": "092 279 1890",
     "mapsListedPhoneE164": "+66922791890",
-    "phoneConflict": true,
-    "mapsUrl": "https://maps.app.goo.gl/A6AVc2ScgEJwSrbVA",
-    "facebookUrl": null,
+    "phoneConflict": false,
+    "mapsUrl": "https://www.google.com/maps/place/A+cup+of+zoo+caf%C3%A9/@14.0624359,100.7214907,18.8z/data=!4m6!3m5!1s0x311d832435d52fff:0xbc56f5d0ec0344ad!8m2!3d14.0625625!4d100.7213125!16s%2Fg%2F11smr215py",
     "timezone": "Asia/Bangkok",
     "regularHours": [
       {
@@ -99,17 +136,21 @@
       }
     ],
     "hoursExceptions": [],
-    "hoursVerification": "user_provided",
-    "holidayNote": "ตามข้อมูลที่ได้รับ ร้านเปิดในวันอังคารที่ตรงกับวันหยุดนักขัตฤกษ์ โปรดตรวจสอบประกาศร้านก่อนเดินทาง",
+    "hoursVerification": "source_verified",
+    "holidayNote": "ปิดวันอังคาร ยกเว้นตรงกับวันหยุดนักขัตฤกษ์",
     "parkingNote": "มีที่จอดรถตามข้อมูลจากบรีฟ ยังไม่ยืนยันจำนวนที่จอดหรือค่าบริการ",
     "admissionPrice": null,
-    "admissionText": null,
+    "admissionText": "โซนคาเฟ่ไม่มีค่าเข้า ขั้นต่ำ 1 ออร์เดอร์ต่อคน; One Zone 249 บาท; All Zone 349 บาท",
     "coordinates": null,
     "placeId": null,
     "drivingTime": null,
     "publicTransitDirections": null,
     "petBringPolicy": null,
-    "overallVerification": "user_provided"
+    "overallVerification": "source_verified_with_pending_details",
+    "phoneNumbers": [
+      "+66989838037",
+      "+66922791890"
+    ]
   },
   "claims": [
     {
@@ -134,12 +175,12 @@
     {
       "field": "addressLine",
       "sourceIds": [
-        "google-maps"
+        "facebook-candidate"
       ],
       "verificationStatus": "source_verified",
       "approvedBy": null,
       "approvedAt": null,
-      "note": "ข้อความที่อยู่ตามที่รายการ Google Maps แสดง ไม่ใช่บ้านเลขที่"
+      "note": "Exact street address from Facebook, not the abbreviated Maps address."
     },
     {
       "field": "mapsListedPhoneE164",
@@ -154,11 +195,14 @@
     {
       "field": "phoneE164",
       "sourceIds": [
-        "user-brief"
+        "facebook-candidate",
+        "maps-2026-09-26",
+        "user-followup-2026-09-26"
       ],
-      "verificationStatus": "user_provided",
+      "verificationStatus": "source_verified",
       "approvedBy": null,
-      "approvedAt": null
+      "approvedAt": null,
+      "note": "Both numbers observed in shop sources and user selected both for public display; no primary-number conflict remains."
     },
     {
       "field": "facebookUrl",
@@ -174,27 +218,31 @@
     {
       "field": "mapsUrl",
       "sourceIds": [
-        "user-brief"
+        "maps-2026-09-26"
       ],
-      "verificationStatus": "user_provided",
+      "verificationStatus": "source_verified",
       "approvedBy": null,
       "approvedAt": null
     },
     {
       "field": "regularHours",
       "sourceIds": [
-        "user-brief"
+        "facebook-candidate",
+        "shop-menu-2026-09-26",
+        "hours-screenshot-2026-09-26"
       ],
-      "verificationStatus": "user_provided",
+      "verificationStatus": "source_verified",
       "approvedBy": null,
       "approvedAt": null
     },
     {
       "field": "holidayNote",
       "sourceIds": [
-        "user-brief"
+        "facebook-candidate",
+        "shop-menu-2026-09-26",
+        "hours-screenshot-2026-09-26"
       ],
-      "verificationStatus": "user_provided",
+      "verificationStatus": "source_verified",
       "approvedBy": null,
       "approvedAt": null
     },
@@ -206,9 +254,63 @@
       "verificationStatus": "user_provided",
       "approvedBy": null,
       "approvedAt": null
+    },
+    {
+      "field": "menuCatalog",
+      "sourceIds": [
+        "shop-menu-2026-09-26"
+      ],
+      "verificationStatus": "source_verified",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    {
+      "field": "activityPackages",
+      "sourceIds": [
+        "shop-menu-2026-09-26"
+      ],
+      "verificationStatus": "source_verified",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    {
+      "field": "activityPrices",
+      "sourceIds": [
+        "shop-menu-2026-09-26"
+      ],
+      "verificationStatus": "source_verified",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    {
+      "field": "admissionText",
+      "sourceIds": [
+        "shop-menu-2026-09-26"
+      ],
+      "verificationStatus": "source_verified",
+      "approvedBy": null,
+      "approvedAt": null
     }
   ],
   "releaseRequirements": [
+    "Keep noindex until launch is explicitly authorized.",
+    "Confirm production domain and CMS content before launch.",
+    "Reconfirm time-sensitive package promotions and special opening days before launch.",
+    "Parking capacity/fees, transit and outside-pet policy remain unconfirmed.",
+    "admissionPrice stays null because there is no universal fee; use sourced multi-tier admissionText/packages.",
+    "Internal provenance must not be exposed as public API content."
+  ],
+  "updatedOn": "2026-09-26",
+  "historicalConflicts": {
+    "phone": {
+      "facebook": "0989838037",
+      "maps": "0922791890",
+      "menuPage2": "0929262324",
+      "menuPage24": "0924264551",
+      "resolution": "User selected Facebook and Maps numbers on 2026-09-26. Other printed numbers are retained only as historical evidence."
+    }
+  },
+  "historicalReleaseRequirements": [
     "ตรวจว่า Facebook candidate เป็นเพจของร้านจริงก่อนเปิด CTA",
     "เจ้าของยืนยันเวลาเปิดและวันพิเศษ พร้อมวันที่ยืนยัน",
     "ยืนยันลิงก์หมุดและข้อมูลการเดินทางก่อนเปิดจริง",

@@ -1,4 +1,8 @@
 import type { PostDto, PublicVenueDto } from "@lukespace-cms/client";
+import { admissionSummary } from "./activities-catalog";
+import { shopPhones } from "../business/contact";
+
+export const mapsUrl = "https://www.google.com/maps/place/A+cup+of+zoo+caf%C3%A9/@14.0624359,100.7214907,18.8z/data=!4m6!3m5!1s0x311d832435d52fff:0xbc56f5d0ec0344ad!8m2!3d14.0625625!4d100.7213125!16s%2Fg%2F11smr215py";
 
 const hours = [1, 2, 3, 4, 5, 6, 7].map((isoWeekday) => isoWeekday === 2
   ? { isoWeekday: isoWeekday as 1 | 2 | 3 | 4 | 5 | 6 | 7, closed: true, opens: null, closes: null }
@@ -25,24 +29,24 @@ export const fixtureVenue: PublicVenueDto = {
     displayName: "A Cup of Zoo",
     locationLabel: "คลอง 6 ปทุมธานี",
     addressLine: "27/8 ม.3 ถ.เลียบคลองแอล 5-6 ซอย สุทธิพันธ์ 11 ต.คลองหก อ.คลองหลวง ปทุมธานี 12120",
-    phoneE164: "+66989838037",
-    mapsUrl: "https://maps.app.goo.gl/A6AVc2ScgEJwSrbVA",
+    phoneE164: shopPhones[0].e164,
+    mapsUrl,
     facebookUrl: "https://www.facebook.com/Acupofzoocafe/",
     timezone: "Asia/Bangkok",
     regularHours: hours,
     hoursExceptions: [],
     holidayNote: "หากวันอังคารตรงกับวันหยุดนักขัตฤกษ์ ร้านเปิดตามปกติ แนะนำให้เช็กประกาศบนเพจร้านก่อนเดินทาง",
     hoursVerification: "source_verified",
-    admissionText: "สอบถามค่าเข้าชมและเงื่อนไขกับทางร้าน",
+    admissionText: admissionSummary,
     animals: [
       { id: "cat-portrait", title: "แมว", description: "แมวของร้านจากภาพที่ได้รับมา ยังไม่ได้ตั้งชื่อหรือระบุสายพันธุ์", mediaAssetId: "cat-portrait", featured: true, visible: true, sortOrder: 0 },
       { id: "cats-and-dog", title: "แมวและสุนัข", description: "แมวและสุนัขอยู่ด้วยกันในภาพจากร้าน ไม่ได้ระบุชื่อรายตัวหรือสายพันธุ์", mediaAssetId: "cats-and-dog", featured: false, visible: true, sortOrder: 1 },
       { id: "ducks-pond", title: "เป็ด", description: "เป็ดในบ่อน้ำของร้าน", mediaAssetId: "ducks-pond", featured: true, visible: true, sortOrder: 2 },
     ],
     activities: [
-      { id: "cafe-garden-seating", title: "มุมนั่งในสวน", description: "มุมนั่งกลางแจ้งของร้าน มีโต๊ะและต้นไม้ ภาพนี้ไม่ได้ยืนยันว่าสัมผัสหรือให้อาหารสัตว์ได้", mediaAssetId: "cafe-garden-seating", featured: true, visible: true, sortOrder: 0 },
+      { id: "cafe-garden-seating", title: "มุมนั่งในสวน", description: "พักผ่อนท่ามกลางต้นไม้ แล้วเดินต่อไปชมสวนญี่ปุ่นและมุมต่าง ๆ ของร้าน", mediaAssetId: "cafe-garden-seating", featured: true, visible: true, sortOrder: 0 },
       { id: "cafe-interior-gallery", title: "มุมนั่งในร้าน", description: "บรรยากาศมุมนั่งภายในคาเฟ่", mediaAssetId: "cafe-interior-gallery", featured: false, visible: true, sortOrder: 1 },
-      { id: "pond", title: "ริมน้ำ", description: "พื้นที่ริมน้ำที่มีเป็ดในภาพ ไม่ได้ยืนยันรอบกิจกรรมหรือค่าใช้จ่าย", mediaAssetId: "ducks-pond", featured: false, visible: true, sortOrder: 2 },
+      { id: "pond", title: "ริมน้ำ", description: "แวะชมเป็ดและปลาริมน้ำ มีอาหารปลาและเป็ดให้เลือกซื้อที่ร้าน", mediaAssetId: "ducks-pond", featured: false, visible: true, sortOrder: 2 },
     ],
     menuHighlights: [
       { id: "drinks", title: "เครื่องดื่ม", description: "เครื่องดื่มของร้านจากภาพที่ได้รับมา ยังไม่มีชื่อสูตรหรือราคาที่ยืนยัน", mediaAssetId: "drinks", featured: true, visible: true, sortOrder: 0 },
@@ -50,15 +54,12 @@ export const fixtureVenue: PublicVenueDto = {
     ],
     faqs: [
       { id: "hours", question: "วันอังคารเปิดไหม", answer: "ปกติร้านปิดวันอังคาร แต่หากตรงกับวันหยุดนักขัตฤกษ์จะเปิดตามปกติ แนะนำให้เช็กประกาศบนเพจร้านก่อนเดินทาง" },
-      { id: "admission", question: "ค่าเข้าชมเท่าไร", answer: "ยังไม่มีข้อมูลค่าเข้าชมที่ยืนยันได้ สอบถามราคาและเงื่อนไขกับทางร้านโดยตรง" },
-      { id: "phone", question: "โทรหาร้านได้ที่เบอร์ไหน", answer: "โพสต์บนเพจร้านระบุ 098 983 8037 แต่ Google Maps แสดง 092 279 1890 แนะนำให้เช็กเบอร์ล่าสุดบนเพจร้านก่อนโทร" },
+      { id: "admission", question: "ค่าเข้าชมเท่าไร", answer: admissionSummary },
+      { id: "children", question: "เด็กมีค่าเข้าไหม", answer: "เด็กสูงต่ำกว่า 100 ซม. เข้าฟรี และต้องมีผู้ใหญ่เข้าร่วมกิจกรรมด้วยอย่างน้อย 1 คน เด็กที่เข้า Indoor ต้องซื้อถุงเท้าใหม่ 49 บาท" },
+      { id: "phone", question: "โทรหาร้านได้ที่เบอร์ไหน", answer: `ติดต่อได้ทั้ง ${shopPhones.map((phone) => phone.display).join(" และ ")}` },
       { id: "parking", question: "มีที่จอดรถไหม", answer: "มีที่จอดรถตามข้อมูลที่ได้รับ แต่ยังไม่มีข้อมูลยืนยันเรื่องจำนวนที่จอดและค่าบริการ" },
     ],
   },
 };
 
 export const fixturePosts: PostDto[] = [];
-
-export const mapsUrl = "https://maps.app.goo.gl/A6AVc2ScgEJwSrbVA";
-export const briefPhone = { display: "098 983 8037", e164: "+66989838037", source: "บรีฟ" };
-export const mapsPhone = { display: "092 279 1890", e164: "+66922791890", source: "Google Maps" };

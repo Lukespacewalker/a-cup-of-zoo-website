@@ -3,17 +3,16 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import FoxSeal from "../components/site/FoxSeal.astro";
 import ContentUnavailable from "../components/content/ContentUnavailable.astro";
 import { loadPage } from "../lib/content/load-page";
-import { allowedExternalUrl, phoneHref } from "../lib/business/links";
+import { allowedExternalUrl } from "../lib/business/links";
 import { dayName, formatDay } from "../lib/business/format-hours";
-import { mapsPhone } from "../lib/content/fixture-data";
+import { shopPhones } from "../lib/business/contact";
 
 const page = await loadPage();
 const content = page.venue?.content;
 const maps = allowedExternalUrl(content?.mapsUrl ?? null, "maps");
 const facebook = allowedExternalUrl(content?.facebookUrl ?? null, "facebook");
-const phone = phoneHref(content?.phoneE164 ?? null);
 ---
-<SiteLayout title="มาเที่ยว" description="เวลาเปิด ที่อยู่ และการเดินทางไป A Cup of Zoo" page={page} includeJsonLd>
+<SiteLayout title="เวลาเปิด แผนที่ และการเดินทางไปคาเฟ่ คลอง 6" description="วางแผนมาเที่ยว A Cup of Zoo คลอง 6 ปทุมธานี เช็กเวลาเปิด วันหยุด ที่อยู่ แผนที่ และช่องทางติดต่อ พร้อมคำถามที่พบบ่อยก่อนเดินทาง" page={page} includeJsonLd>
   <header class="page-intro">
     <FoxSeal class="page-intro__fox" />
     <h1>แวะมาหาเราที่ร้าน</h1>
@@ -22,21 +21,21 @@ const phone = phoneHref(content?.phoneE164 ?? null);
   {page.venueProblem && <ContentUnavailable detail={page.venueProblem === "missing" ? "ยังไม่ได้เผยแพร่ข้อมูลร้าน" : undefined} />}
   {content && <section class="band">
     <h2>เวลาเปิดร้าน</h2>
-    <p>เวลาเปิดตามโพสต์บนเพจ Facebook ของร้าน</p>
+    <p>เวลาเปิดปกติของร้าน</p>
     <ul class="hours">
       {content.regularHours.map((entry) => <li><span>{dayName(entry.isoWeekday)}</span><span>{formatDay(entry)}</span></li>)}
     </ul>
     {content.holidayNote && <p>{content.holidayNote}</p>}
     <h2>ที่อยู่และเส้นทาง</h2>
     <p>{content.locationLabel}</p>
-    {content.addressLine && <p>ที่อยู่บน Google Maps: {content.addressLine}</p>}
+    {content.addressLine && <p>ที่อยู่ร้าน: {content.addressLine}</p>}
     <p>{content.admissionText ?? "สอบถามค่าเข้าชมและเงื่อนไขกับทางร้าน"}</p>
+    <p><a href="/activities/#passes">ดูสิทธิประโยชน์แพ็กเกจและเงื่อนไขเด็ก</a></p>
     <div class="actions">
       {maps && <a class="button" href={maps}>ดูเส้นทาง</a>}
       {facebook && <a class="button secondary" href={facebook}>หน้า Facebook</a>}
-      {phone && <a class="button secondary" href={phone}>โทร 098 983 8037</a>}
+      {shopPhones.map((phone) => <a class="button secondary" href={`tel:${phone.e164}`}>โทร {phone.display}</a>)}
     </div>
-    <p>เบอร์โทรด้านบนมาจากโพสต์บนเพจร้าน ส่วน Google Maps แสดงเบอร์ <a href={`tel:${mapsPhone.e164}`}>{mapsPhone.display}</a> แนะนำให้เช็กเบอร์ล่าสุดบนเพจร้านก่อนโทร</p>
     <h2>คำถามที่พบบ่อย</h2>
     {content.faqs.map((faq) => <article><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}
   </section>}

@@ -8,12 +8,13 @@ import { animalGroups } from "../lib/content/decor";
 
 const page = await loadPage();
 ---
-<SiteLayout title="สัตว์" description="น้องสัตว์ที่เพจ A Cup of Zoo เล่าไว้ ทั้งหมา แมว สัตว์เล็ก และนก" page={page}>
+<SiteLayout title="รู้จักน้องสัตว์ที่คาเฟ่ คลอง 6" description="ทำความรู้จักน้องสัตว์ที่ A Cup of Zoo คลอง 6 ปทุมธานี ทั้งสุนัข แมว สัตว์เล็ก และนก พร้อมภาพถ่ายจากร้านและข้อมูลที่เพจร้านแนะนำ" page={page}>
   <header class="page-intro">
     <FoxSeal class="page-intro__fox" />
     <p class="eyebrow">OUR LITTLE FRIENDS</p>
     <h1>มีใครอยู่ที่นี่บ้าง</h1>
     <p>ทำความรู้จักเพื่อน ๆ ที่เพจร้านแนะนำไว้ ภาพวาดใช้ตกแต่ง ส่วนภาพถ่ายด้านล่างเป็นภาพจริงจากร้าน</p>
+    <p><a href="/activities/#animal-zones">ดูโซนสัตว์ทั้ง 6 โซนและแพ็กเกจเข้าชม</a></p>
   </header>
   <section class="groups" aria-label="กลุ่มสัตว์ในร้าน">
     {animalGroups.map((group, index) => <article class="group"><span class="group-marker" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><h2>{group.title}</h2><p>{group.names}</p></article>)}

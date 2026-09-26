@@ -5,17 +5,56 @@ import FoxSeal from "../components/site/FoxSeal.astro";
 import Picture from "../components/content/Picture.astro";
 import ContentUnavailable from "../components/content/ContentUnavailable.astro";
 import { loadPage } from "../lib/content/load-page";
+import { admissionSummary, passes, animalZones, experiences, animalFood, gardenSpots } from "../lib/content/activities-catalog";
 const page = await loadPage();
 const items = page.venue?.content.activities.filter((item) => item.visible).sort((a, b) => a.sortOrder - b.sortOrder) ?? [];
 ---
-<SiteLayout title="กิจกรรม" description="บรรยากาศและพื้นที่ของ A Cup of Zoo จากภาพร้าน" page={page}>
-  <header class="page-intro">
+<SiteLayout title="กิจกรรม โซนสัตว์ และราคาแพ็กเกจ คลอง 6" description="ดูแพ็กเกจ One Zone 249 บาท และ All Zone 349 บาทที่ A Cup of Zoo คลอง 6 พร้อมโซนสัตว์ กิจกรรมให้อาหาร ป้อนนมแพะ สวนญี่ปุ่น และเงื่อนไขเด็ก" page={page}>
+  <header class="page-intro" id="activities-top">
     <FoxSeal class="page-intro__fox" />
     <p class="eyebrow">SPACE & MOMENTS</p>
-    <h1>พื้นที่ให้ใช้เวลาด้วยกัน</h1>
-    <p>เดินเล่น พักในคาเฟ่ และแวะชมเพื่อนสัตว์ตามมุมต่าง ๆ ของร้าน หากอยากทำกิจกรรมใกล้ชิดกับสัตว์ สอบถามพนักงานถึงรอบและเงื่อนไขก่อนนะ</p>
+    <h1>หนึ่งวันกับเพื่อนสัตว์และสวนสวย</h1>
+    <p>นั่งพักในคาเฟ่ เดินเล่นในสวนญี่ปุ่น หรือเลือกแพ็กเกจเข้าไปใกล้ชิดกับเพื่อนสัตว์</p>
+    <nav class="menu-jump" aria-label="หมวดกิจกรรม"><a href="#passes">แพ็กเกจและเงื่อนไข</a><a href="#animal-zones">โซนสัตว์</a><a href="#experiences">กิจกรรมและราคา</a><a href="#garden">เดินเล่นในสวน</a></nav>
   </header>
   {page.venueProblem && <ContentUnavailable />}
+  <section class="activity-section" id="passes" aria-labelledby="passes-title">
+    <p class="eyebrow">Choose your day</p>
+    <h2 id="passes-title">แพ็กเกจและการเข้าชม</h2>
+    <p>{admissionSummary}</p>
+    <p>มาเฉพาะคาเฟ่ได้โดยไม่ต้องซื้อแพ็กเกจ แวะทานอาหาร ชมสวนญี่ปุ่น บ่อปลาคาร์ฟ พายเรือ ชมสัตว์ในคาเฟ่ และชมแพะกับกระต่ายจากพื้นที่ชมสัตว์ ส่วนการเข้าโซนสัตว์ใกล้ชิดให้เลือกแพ็กเกจด้านล่าง</p>
+    <div class="pass-grid">{passes.map((pass) => <article class="zone-pass" id={pass.id}>
+      <h3>{pass.name}</h3><p class="pass-price">{pass.price} <span>บาท / คน</span></p>
+      <p>{pass.description}</p><ul>{pass.benefits.map((benefit) => <li>{benefit}</li>)}</ul>
+    </article>)}</div>
+    <div class="activity-terms">
+      <h3>พาเด็ก ๆ มาเที่ยว</h3>
+      <ul><li>เด็กสูงต่ำกว่า 100 ซม. เข้าฟรี</li><li>เด็กทุกคนต้องมีผู้ใหญ่เข้าร่วมกิจกรรมด้วยอย่างน้อย 1 คน</li><li>เด็กที่เข้าโซน Indoor ต้องซื้อถุงเท้าใหม่ 49 บาท</li></ul>
+      <p><strong>น้องสัตว์โซน Outdoor เข้าบ้านเวลา 18:00 น.</strong> ส่วนคาเฟ่เปิดถึง 19:00 น.</p>
+      <p>สัตว์อาจข่วนหรือกัดได้ กรุณาดูแลเด็กและทรัพย์สินตลอดเวลา และทำกิจกรรมตามคำแนะนำของพนักงาน</p>
+    </div>
+  </section>
+  <section class="activity-section" id="animal-zones" aria-labelledby="zones-title">
+    <h2 id="zones-title">พบเพื่อนสัตว์ทั้ง 6 โซน</h2>
+    <div class="zone-grid"><section><h3>Indoor</h3><ul>{animalZones.indoor.map((name) => <li>{name}</li>)}</ul></section><section><h3>Outdoor</h3><ul>{animalZones.outdoor.map((name) => <li>{name}</li>)}</ul></section></div>
+  </section>
+  <section class="activity-section" id="experiences" aria-labelledby="experiences-title">
+    <h2 id="experiences-title">กิจกรรมที่ชวนทำด้วยกัน</h2>
+    <ul class="experience-list">{experiences.map((activity) => <li id={activity.id}>
+      <div><h3>{activity.name}</h3><p>{activity.note}</p></div>
+      <p class="experience-price">{activity.originalPrice && <span>ปกติ <s>{activity.originalPrice}</s> บาท<br /></span>}<strong>{activity.price} บาท</strong> / {activity.unit}</p>
+    </li>)}</ul>
+    <h3>อาหารสัตว์ที่เลือกซื้อเพิ่มได้</h3>
+    <dl class="animal-food-list">{animalFood.map((food) => <div><dt>{food.name}{food.note && <small>{food.note}</small>}</dt><dd>{food.price} บาท</dd></div>)}</dl>
+    <p class="activity-footnote">ราคาและสิทธิประโยชน์ตามเมนูร้านที่ตรวจเมื่อ 26 กันยายน 2569 สอบถามพนักงานเรื่องโปรโมชันตะกร้าอาหารสัตว์และกิจกรรมที่พร้อมให้บริการในวันที่มาเที่ยว</p>
+  </section>
+  <section class="activity-section" id="garden" aria-labelledby="garden-title">
+    <h2 id="garden-title">เดินเล่นตามมุมต่าง ๆ ของร้าน</h2>
+    <p>เลือกแวะมุมที่ชอบจาก 15 จุดในแผนผังร้าน มีทั้งสวน มุมถ่ายรูป และพื้นที่สัตว์ที่เข้าตามแพ็กเกจ</p>
+    <ol class="garden-spots">{gardenSpots.map((spot) => <li>{spot}</li>)}</ol>
+    <p>ในแผนผังยังมีสวนทะเลทราย ห้องน้ำ และที่จอดรถ สำหรับกิจกรรมพายเรือสอบถามพนักงานก่อนใช้งาน</p>
+    <div class="actions"><a class="button" href="/menu/">เลือกเมนูอาหาร</a><a class="button secondary" href="/visit/">ดูเวลาเปิดและเส้นทาง</a></div>
+  </section>
   {items.length > 0 && <section class="spaces" aria-label="มุมต่าง ๆ ของร้าน">
     {items.map((item, index) => <article class="space-feature">
       <div class="space-feature__media"><Picture mediaId={item.mediaAssetId} media={page.venue?.media ?? []} eager={index === 0} /></div>

@@ -2,8 +2,11 @@ import { expect, test } from "@playwright/test";
 
 test("visit CTA keeps the supplied Maps destination", async ({ page }) => {
   await page.goto("/visit/");
-  await expect(page.getByRole("link", { name: "ดูเส้นทาง", exact: true }).first()).toHaveAttribute("href", "https://maps.app.goo.gl/A6AVc2ScgEJwSrbVA");
+  await expect(page.getByRole("link", { name: "ดูเส้นทาง", exact: true }).first()).toHaveAttribute("href", /!1s0x311d832435d52fff:0xbc56f5d0ec0344ad/);
   await expect(page.locator('a[href="tel:+66989838037"]').first()).toBeVisible();
+  await expect(page.locator('a[href="tel:+66922791890"]').first()).toBeVisible();
+  await expect(page.locator('footer a[href="tel:+66989838037"]')).toBeVisible();
+  await expect(page.locator('footer a[href="tel:+66922791890"]')).toBeVisible();
 });
 
 test("mobile layout has no horizontal overflow", async ({ page }) => {
