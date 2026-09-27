@@ -32,17 +32,46 @@
 .friends-copy .cafe-link { margin-top: .7rem; }
 .fox-greeting { margin-top: 2rem; display: flex; align-items: center; gap: .6rem; }
 .fox-greeting > span { font-family: var(--heading); font-size: .85rem; color: var(--leaf); max-width: 8rem; }
-.friend-portrait, .pond-portrait { margin: 0; min-width: 0; }
-.friend-portrait a, .pond-portrait a { display: block; }
-.friend-portrait img, .pond-portrait img { width: 100%; height: auto; aspect-ratio: 1; border-radius: .5rem; }
+.friend-portrait, .pond-portrait {
+  margin: 0;
+  min-width: 0;
+  background: var(--card-sheet);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 1.2rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.friend-portrait:hover, .pond-portrait:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-border);
+  box-shadow: var(--card-shadow-hover);
+}
+.friend-portrait a, .pond-portrait a { display: block; overflow: hidden; border-radius: 14px; }
+.friend-portrait img, .pond-portrait img { width: 100%; height: auto; aspect-ratio: 1; border-radius: 14px; }
 .pond-portrait { position: relative; margin-top: 5rem; }
-.pond-portrait > .animal-doodle { position: absolute; right: .5rem; top: .5rem; width: 3.2rem; height: auto; padding: .4rem; background: var(--paper); border-radius: 50%; }
-.friend-portrait figcaption, .pond-portrait figcaption { padding-top: .8rem; display: flex; flex-direction: column; gap: .3rem; }
-.friend-portrait .handwritten, .pond-portrait .handwritten { font-size: 1.1rem; color: var(--fox-ink); }
+.pond-portrait > .animal-doodle { position: absolute; right: .5rem; top: .5rem; width: 3.2rem; height: auto; padding: .4rem; background: var(--paper); border-radius: 50%; box-shadow: 0 4px 12px rgba(78, 59, 50, 0.12); }
+.friend-portrait figcaption, .pond-portrait figcaption { padding-top: .9rem; display: flex; flex-direction: column; gap: .3rem; }
+.friend-portrait .handwritten, .pond-portrait .handwritten { font-size: 1.15rem; color: var(--fox-ink); font-weight: 600; }
 .friend-portrait figcaption > span:last-child, .pond-portrait figcaption > span:last-child { color: var(--muted-text); font-size: .9rem; }
 .cafe-table { position: relative; display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; border-top: 1px solid var(--line); padding: clamp(3rem, 6vw, 5rem) 0; }
-.table-photo { margin: 0; }
-.table-photo img { width: 100%; height: auto; aspect-ratio: 1.15; object-fit: cover; border-radius: .5rem; }
+.table-photo {
+  margin: 0;
+  background: var(--card-sheet);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 1.2rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.table-photo:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-border);
+  box-shadow: var(--card-shadow-hover);
+}
+.table-photo img { width: 100%; height: auto; aspect-ratio: 1.15; object-fit: cover; border-radius: 14px; }
 .table-photo figcaption, .garden-main figcaption { margin-top: .8rem; font-size: .9rem; color: var(--muted-text); }
 .table-copy h2, .garden-heading h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); margin: 0 0 1rem; line-height: 1.5; }
 .table-copy h2 .handwritten { color: var(--fox-ink); }

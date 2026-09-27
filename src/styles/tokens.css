@@ -20,6 +20,14 @@
   --sticky: calc(4.75rem + env(safe-area-inset-bottom));
   --font: "Noto Sans Thai Looped", sans-serif;
   --heading: "Mali", sans-serif;
+  --gold: #c29d62;
+  --gold-deep: #9d7b42;
+  --gold-light: rgba(194, 157, 98, 0.14);
+  --gold-border: rgba(194, 157, 98, 0.35);
+  --card-sheet: rgba(255, 252, 247, 0.85);
+  --card-border: rgba(210, 195, 178, 0.5);
+  --card-shadow: 0 12px 32px -4px rgba(78, 59, 50, 0.07), 0 4px 12px rgba(78, 59, 50, 0.03);
+  --card-shadow-hover: 0 20px 42px -6px rgba(78, 59, 50, 0.13), 0 6px 16px rgba(78, 59, 50, 0.05);
   color-scheme: light;
 }
 
@@ -43,6 +51,14 @@
   --on-button: #2a1814;
   --band: #3a2420;
   --on-band: #fff6ec;
+  --gold: #e2be85;
+  --gold-deep: #f3d7a8;
+  --gold-light: rgba(226, 190, 133, 0.18);
+  --gold-border: rgba(226, 190, 133, 0.35);
+  --card-sheet: rgba(46, 32, 28, 0.85);
+  --card-border: rgba(243, 215, 200, 0.18);
+  --card-shadow: 0 14px 34px -4px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 22px 44px -6px rgba(0, 0, 0, 0.55);
   color-scheme: dark;
 }
 

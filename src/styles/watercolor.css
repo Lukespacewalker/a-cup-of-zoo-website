@@ -23,15 +23,33 @@ main h1, main h2 { font-family: var(--heading); font-weight: 500; text-wrap: bal
 html[lang="en"] main h1 .handwritten,
 html[lang="en"] main h2 .handwritten { font-family: inherit; font-style: normal; }
 .fox-seal.watercolor-seal { height: auto; overflow: visible; mix-blend-mode: normal; filter: none; transform: none; }
-.paper-photo { border-radius: 0 !important; }
+.paper-photo {
+  border-radius: 16px !important;
+  border: 1px solid var(--gold-border, rgba(194, 157, 98, 0.35));
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+              var(--card-shadow, 0 12px 30px -4px rgba(78, 59, 50, 0.08));
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  overflow: hidden;
+  display: block;
+}
 
-/* The supplied brushes are dark on white: subtract luminance from opaque alpha.
-   A browser without composite/luminance support keeps the complete photograph. */
+.paper-photo:hover {
+  transform: translateY(-4px) scale(1.015);
+  border-color: var(--gold, #c29d62);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+              var(--card-shadow-hover, 0 20px 42px -6px rgba(78, 59, 50, 0.15));
+}
+
+/* Optional artistic brush mask for vintage watercolor mode */
 @supports (mask-composite: subtract) and (mask-mode: luminance) {
-  .paper-photo {
+  .paper-photo--brushed {
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
     --brush: url("../assets/watercolor/brush-wide.webp");
     --brush-size: 114% 146%;
-    /* Feather the last 2% to remove faint JPEG-white seams at the outer box. */
     -webkit-mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent), linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent), linear-gradient(#000, #000), var(--brush);
     mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent), linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent), linear-gradient(#000, #000), var(--brush);
     mask-mode: alpha, alpha, alpha, luminance;
@@ -44,8 +62,6 @@ html[lang="en"] main h2 .handwritten { font-family: inherit; font-style: normal;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
   }
-  .paper-photo--portrait { --brush: url("../assets/watercolor/brush-upright.webp"); --brush-size: 128% 119%; }
-  .paper-photo--soft { --brush: url("../assets/watercolor/brush-soft.webp"); --brush-size: 112% 163%; }
 }
 .cafe-cover.watercolor-cover { padding-top: clamp(1.7rem, 3.5vw, 3rem); }
 .watercolor-cover .cover-title { max-width: 60rem; margin-inline: auto; }
