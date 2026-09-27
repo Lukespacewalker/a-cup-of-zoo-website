@@ -488,10 +488,7 @@ h1, h2, h3 {
   .spread .stack img { height: 15.4rem; }
 }
 
-[data-theme="dark"] body { background-image: none; }
-
 @media (prefers-color-scheme: dark) {
-  :root[data-theme="auto"] body { background-image: none; }
   :root[data-theme="auto"] .wordmark img,
   :root[data-theme="auto"] .footer-logo {
     mix-blend-mode: normal;

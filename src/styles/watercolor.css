@@ -1,8 +1,21 @@
 /* A continuous sheet of paper; imagery is decorative, information stays crisp. */
 body {
-  background-image: linear-gradient(color-mix(in srgb, var(--milk) 60%, transparent), color-mix(in srgb, var(--milk) 60%, transparent)), url("../assets/watercolor/canvas-paper.webp");
+  --paper-tint: 60%;
+  --paper-blend: multiply;
+  background-image: linear-gradient(color-mix(in srgb, var(--milk) var(--paper-tint), transparent), color-mix(in srgb, var(--milk) var(--paper-tint), transparent)), url("../assets/watercolor/canvas-paper.webp");
   background-size: auto, 760px;
-  background-blend-mode: normal, multiply;
+  background-blend-mode: normal, var(--paper-blend);
+}
+/* Soft light reveals the fibres without putting a pale sheet over dark colours. */
+[data-theme="dark"] body {
+  --paper-tint: 35%;
+  --paper-blend: soft-light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] body {
+    --paper-tint: 35%;
+    --paper-blend: soft-light;
+  }
 }
 .watercolor-animal { display: block; height: auto; object-fit: contain; pointer-events: none; }
 /* Mali's Thai and Latin glyphs give both languages the same gentle hand. */
