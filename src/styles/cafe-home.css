@@ -7,6 +7,184 @@
 .cover-title h1 > span { display: inline-block; color: var(--fox-ink); }
 .cover-lede { margin: .8rem auto 0; color: var(--muted-text); }
 .cover-actions { justify-content: center; margin-top: 1.5rem; }
+.cover-crest {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+}
+.cover-crest img {
+  width: min(100%, 340px);
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(78, 59, 50, 0.08));
+  transition: transform 0.4s ease;
+}
+.cover-crest img:hover {
+  transform: scale(1.03);
+}
+
+.hero-showcase {
+  width: 100%;
+  max-width: 1180px;
+  margin: 2.5rem auto 0;
+  padding-inline: 0;
+}
+
+.hero-video-wrapper {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: clamp(18px, 2.5vw, 28px);
+  overflow: hidden;
+  background: #1a1412;
+  border: 1px solid var(--gold-border);
+  box-shadow: 0 20px 48px -10px rgba(78, 59, 50, 0.18), 0 0 0 1px var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-video-badge {
+  position: absolute;
+  top: clamp(0.85rem, 2vw, 1.4rem);
+  left: clamp(0.85rem, 2vw, 1.4rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  background: var(--card-sheet);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--gold-border);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--cocoa-deep);
+  letter-spacing: 0.02em;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2e7d32;
+  box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.6);
+  animation: hero-pulse 2s infinite;
+}
+
+@keyframes hero-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(46, 125, 50, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+}
+
+.hero-video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(1rem, 2.5vw, 1.8rem);
+  background: linear-gradient(180deg, transparent 0%, rgba(20, 14, 12, 0.72) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  z-index: 2;
+}
+
+.hero-video-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: #fffaf4;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.hero-video-caption .caption-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f3d7a8;
+  font-weight: 600;
+}
+
+.hero-video-caption .caption-text {
+  font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+  font-weight: 500;
+}
+
+.hero-video-control {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--card-sheet);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--gold-border);
+  color: var(--cocoa-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.hero-video-control:hover {
+  transform: scale(1.08);
+  border-color: var(--gold);
+}
+
+@media (max-width: 560px) {
+  .cover-crest img {
+    width: 220px;
+  }
+  .hero-showcase {
+    margin-top: 1.6rem;
+  }
+  .hero-video-wrapper {
+    border-radius: 16px;
+    aspect-ratio: 16 / 10;
+  }
+  .hero-video-badge {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    top: 0.65rem;
+    left: 0.65rem;
+  }
+  .hero-video-overlay {
+    padding: 0.85rem 1rem;
+  }
+  .hero-video-caption .caption-text {
+    font-size: 0.8rem;
+  }
+  .hero-video-control {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video {
+    display: none;
+  }
+  .hero-video-wrapper {
+    background: url('/videos/hero-animal-poster.webp') center/cover no-repeat;
+  }
+  .pulse-dot {
+    animation: none;
+  }
+}
+
 .cover-mascot { position: absolute; width: 5rem; height: 5rem; right: 0; top: 1rem; color: var(--fox-ink); }
 .cover-photos { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; padding: 2.5rem 0 0; }
 .cover-photo { margin: 0; min-width: 0; }

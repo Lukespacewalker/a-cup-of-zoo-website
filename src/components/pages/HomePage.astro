@@ -26,20 +26,73 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
 <SiteLayout locale={locale} title={t("คาเฟ่สัตว์ คลอง 6 ปทุมธานี", "Animal café in Khlong 6, Pathum Thani")} description={t("A Cup of Zoo คาเฟ่สัตว์และฟาร์ม คลอง 6 ปทุมธานี แวะจิบเครื่องดื่ม ทานขนม เดินเล่นในสวน และทำความรู้จักเพื่อนสัตว์ พร้อมข้อมูลเมนูและการเดินทาง", "Visit A Cup of Zoo animal café and farm in Khlong 6, Pathum Thani. Enjoy a drink, food and a stroll through the garden. Explore our menu, animal passes and directions.")} page={page} includeJsonLd>
   <section class="cafe-cover watercolor-cover" aria-labelledby="home-title">
     <div class="cover-title">
+      <div class="cover-crest">
+        <Image src={heroArtwork} alt={t("ภาพสีน้ำป้าย A Cup of Zoo Cafe & Farm ท่ามกลางกิ่งไม้และดอกไม้", "Watercolor artwork of the A Cup of Zoo Cafe & Farm sign, with flowering branches and greenery")} widths={[360, 540, 720]} sizes="(max-width: 600px) 260px, 380px" loading="eager" fetchpriority="high" />
+      </div>
       <p class="cafe-address">A CUP OF ZOO <span aria-hidden="true">·</span>{t(" คาเฟ่และฟาร์ม คลอง 6", " Café & farm · Khlong 6")}</p>
       <h1 id="home-title">{t("จิบอะไรดี… ", "A little sip… ")}<span>{t("มีเพื่อนรออยู่", "a friendly hello")}</span></h1>
       <p class="cover-lede">{t("วันสบาย ๆ ในสวน กับกาแฟ ขนม และเพื่อนขนฟู", "Slow days in the garden, with coffee, treats and furry friends.")}</p>
       <div class="actions cover-actions"><a class="button" href={href("/menu/")}>{t("ดูเมนูอาหาร ", "Food menu ")}<span aria-hidden="true">↗</span></a><a class="button secondary" href={href("/visit/")}>{t("วางแผนมาเที่ยว ", "Plan your visit ")}<span aria-hidden="true">↗</span></a></div>
     </div>
-    <figure class="hero-art">
-      <Image src={heroArtwork} alt={t("ภาพสีน้ำป้าย A Cup of Zoo Cafe & Farm ท่ามกลางกิ่งไม้และดอกไม้", "Watercolor artwork of the A Cup of Zoo Cafe & Farm sign, with flowering branches and greenery")} widths={[480, 800, 1200, 1536]} sizes="100vw" loading="eager" fetchpriority="high" />
-    </figure>
+    <div class="hero-showcase">
+      <div class="hero-video-wrapper">
+        <video
+          id="hero-video-player"
+          class="hero-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          poster="/videos/hero-animal-poster.webp"
+          aria-label={t("วิดีโอสัตว์น่ารักกำลังเล่นอย่างเพลิดเพลินที่ A Cup of Zoo", "Video of a playful animal at A Cup of Zoo")}
+        >
+          <source src="/videos/hero-animal.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-video-badge" aria-hidden="true">
+          <span class="pulse-dot"></span>
+          <span>{t("บรรยากาศสดใสในคาเฟ่ & ฟาร์ม", "Life & joy at the cafe & farm")}</span>
+        </div>
+        <div class="hero-video-overlay">
+          <div class="hero-video-caption">
+            <span class="caption-tag">{t("เพื่อนตัวโปรด", "Cafe Resident")}</span>
+            <span class="caption-text">{t("แวะมาทักทายและเล่นด้วยกันได้ทุกวัน", "Come say hello and play together every day")}</span>
+          </div>
+          <button type="button" class="hero-video-control" id="hero-video-toggle" aria-label={t("หยุดชั่วคราวหรือเล่นวิดีโอ", "Pause or play video")}>
+            <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/></svg>
+            <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="cover-bottom">
       <p>{t("วันสบาย ๆ ในสวน", "A slow day in the garden")}<br /><span>{t("กับกาแฟ ขนม และเพื่อนขนฟู", "Coffee, treats and furry friends")}</span></p>
       <a class="wander-link" href="#friends">{t("เดินเล่นด้วยกัน ", "Take a stroll with us ")}<span aria-hidden="true">↓</span></a>
       <a class="cafe-link cover-visit" href={href("/visit/")}>{t("แวะมาที่คลอง 6 ", "Visit us in Khlong 6 ")}<span aria-hidden="true">↗</span></a>
     </div>
   </section>
+
+  <script is:inline>
+    (() => {
+      const video = document.getElementById("hero-video-player");
+      const toggleBtn = document.getElementById("hero-video-toggle");
+      if (!video || !toggleBtn) return;
+      const pauseIcon = toggleBtn.querySelector(".icon-pause");
+      const playIcon = toggleBtn.querySelector(".icon-play");
+
+      toggleBtn.addEventListener("click", () => {
+        if (video.paused) {
+          video.play();
+          if (pauseIcon) pauseIcon.style.display = "block";
+          if (playIcon) playIcon.style.display = "none";
+        } else {
+          video.pause();
+          if (pauseIcon) pauseIcon.style.display = "none";
+          if (playIcon) playIcon.style.display = "block";
+        }
+      });
+    })();
+  </script>
   {page.venueProblem && <ContentUnavailable detail={page.venueProblem === "missing" ? t("ยังไม่ได้เผยแพร่ข้อมูลร้าน", "Café information has not been published yet.") : undefined} />}
 
   <section class="friends-story" id="friends" aria-labelledby="friends-title">

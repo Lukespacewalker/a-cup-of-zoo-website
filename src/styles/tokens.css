@@ -79,6 +79,14 @@
     --on-button: #2a1814;
     --band: #3a2420;
     --on-band: #fff6ec;
+    --gold: #e2be85;
+    --gold-deep: #f3d7a8;
+    --gold-light: rgba(226, 190, 133, 0.18);
+    --gold-border: rgba(226, 190, 133, 0.35);
+    --card-sheet: rgba(46, 32, 28, 0.85);
+    --card-border: rgba(243, 215, 200, 0.18);
+    --card-shadow: 0 14px 34px -4px rgba(0, 0, 0, 0.4);
+    --card-shadow-hover: 0 22px 44px -6px rgba(0, 0, 0, 0.55);
     color-scheme: dark;
   }
 }

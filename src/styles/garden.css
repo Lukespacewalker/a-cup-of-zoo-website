@@ -32,6 +32,75 @@
   --card-shadow: 0 12px 32px -4px rgba(78, 59, 50, 0.07), 0 4px 12px rgba(78, 59, 50, 0.03);
   --card-shadow-hover: 0 20px 42px -6px rgba(78, 59, 50, 0.13), 0 6px 16px rgba(78, 59, 50, 0.05);
 }
+
+html[data-theme="dark"] {
+  --milk: #241815;
+  --paper: #2e201c;
+  --blush: #5c3b34;
+  --butter: #3d3224;
+  --sage: #6e8a68;
+  --leaf: #a4bfa0;
+  --fox: #e3865c;
+  --sun: #e2be85;
+  --garden-field: #382823;
+  --accent-text: #f3d7a8;
+  --fox-ink: #f38f6b;
+  --muted-text: #cbbba9;
+  --cocoa: #f3d7c8;
+  --cocoa-deep: #fff1e6;
+  --ink: #f6e7dc;
+  --line: rgba(243, 215, 200, 0.2);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --button: #f3b18f;
+  --on-button: #2a1814;
+  --button-hover: #f3cbb5;
+  --on-button-hover: #2a1814;
+  --band: #3a2420;
+  --gold: #e2be85;
+  --gold-deep: #f3d7a8;
+  --gold-light: rgba(226, 190, 133, 0.18);
+  --gold-border: rgba(226, 190, 133, 0.35);
+  --card-sheet: rgba(46, 32, 28, 0.88);
+  --card-border: rgba(243, 215, 200, 0.18);
+  --card-shadow: 0 14px 34px -4px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 22px 44px -6px rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    --milk: #241815;
+    --paper: #2e201c;
+    --blush: #5c3b34;
+    --butter: #3d3224;
+    --sage: #6e8a68;
+    --leaf: #a4bfa0;
+    --fox: #e3865c;
+    --sun: #e2be85;
+    --garden-field: #382823;
+    --accent-text: #f3d7a8;
+    --fox-ink: #f38f6b;
+    --muted-text: #cbbba9;
+    --cocoa: #f3d7c8;
+    --cocoa-deep: #fff1e6;
+    --ink: #f6e7dc;
+    --line: rgba(243, 215, 200, 0.2);
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --button: #f3b18f;
+    --on-button: #2a1814;
+    --button-hover: #f3cbb5;
+    --on-button-hover: #2a1814;
+    --band: #3a2420;
+    --gold: #e2be85;
+    --gold-deep: #f3d7a8;
+    --gold-light: rgba(226, 190, 133, 0.18);
+    --gold-border: rgba(226, 190, 133, 0.35);
+    --card-sheet: rgba(46, 32, 28, 0.88);
+    --card-border: rgba(243, 215, 200, 0.18);
+    --card-shadow: 0 14px 34px -4px rgba(0, 0, 0, 0.4);
+    --card-shadow-hover: 0 22px 44px -6px rgba(0, 0, 0, 0.55);
+  }
+}
+
 body { background-image: none; font-size: 1rem; line-height: 1.85; }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font); font-weight: 500; line-height: 1.5; letter-spacing: 0; }
 a, button { transition: color .2s ease, background-color .2s ease, transform .25s ease; }
@@ -86,7 +155,7 @@ html[lang="en"] h1, html[lang="en"] h2 { text-wrap: balance; }
   box-shadow: 0 4px 14px -3px rgba(78, 59, 50, 0.06);
 }
 .button.secondary:hover {
-  background: #ffffff;
+  background: var(--gold-light);
   color: var(--cocoa-deep);
   border-color: var(--gold);
   transform: translateY(-2px);
