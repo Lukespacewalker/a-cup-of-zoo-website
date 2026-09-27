@@ -1,5 +1,7 @@
 # A Cup of Zoo: Codex Implementation Plan v0.1
 
+> **Google Maps embed · 27 กันยายน 2026:** ผู้ใช้ขอเพิ่มแผนที่ฝังในหน้าการเดินทางแล้ว ข้อกำหนดเดิมที่ใช้ external Maps link อย่างเดียวถูกแทนที่เฉพาะ `/visit/` และ `/en/visit/` ด้วย iframe แบบ lazy-load พร้อมคงลิงก์เส้นทางเดิม ดู [บันทึกแผนที่ล่าสุด](../../visit-map.md)
+
 > **Cloudflare preview · 25 กันยายน 2026:** คำว่า "ยังไม่ deploy" และ "ไม่เผยแพร่เว็บ" ในบันทึกเก่าด้านล่างถูกแทนที่สำหรับ preview แล้ว เว็บขึ้น [Cloudflare Worker preview](https://a-cup-of-zoo-preview.suttisak-lukesp.workers.dev/) ด้วย `SITE_ENV=staging` และ `CONTENT_MODE=fixture` ยังไม่ใช่ production ที่เชื่อม CMS หรือโดเมนร้าน ขั้นตอนล่าสุดอยู่ใน [README](../../../README.md#cloudflare-preview)
 
 > **Current typography · 25 กันยายน 2026:** ผู้ใช้เลือกแบบ B แล้ว: ใช้ Noto Sans Thai Looped สำหรับเนื้อหา เมนูนำทาง คำบรรยายภาพ และข้อมูลร้าน ใช้ Mali 500 สำหรับหัวข้อทุกหน้า แทนที่สถานะรอเลือกในบันทึกด้านล่าง เกณฑ์จบคือหน้าเว็บปกติใช้คู่ฟอนต์นี้โดยไม่ต้องมี query, หัวข้อและเนื้อหาโหลดฟอนต์จริง, ไม่มีข้อความล้นที่ 320/390/1440 px และ check/build ผ่าน เก็บหน้าเปรียบเทียบไว้ดูย้อนหลังเฉพาะ local

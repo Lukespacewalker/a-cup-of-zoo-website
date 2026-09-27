@@ -17,6 +17,8 @@ const page = await loadPage();
 const content = localizedVenue(page.venue, locale)?.content;
 const maps = allowedExternalUrl(content?.mapsUrl ?? null, "maps");
 const facebook = allowedExternalUrl(content?.facebookUrl ?? null, "facebook");
+// Google Maps CID from the café's existing directions link.
+const mapEmbed = `https://www.google.com/maps?cid=13571304804789208237&output=embed&hl=${locale}`;
 ---
 <SiteLayout locale={locale} title={t("เวลาเปิด แผนที่ และการเดินทางไปคาเฟ่ คลอง 6", "Opening hours, map & directions · Khlong 6")} description={t("วางแผนมาเที่ยว A Cup of Zoo คลอง 6 ปทุมธานี เช็กเวลาเปิด วันหยุด ที่อยู่ แผนที่ และช่องทางติดต่อ พร้อมคำถามที่พบบ่อยก่อนเดินทาง", "Plan a visit to A Cup of Zoo, Khlong 6, Pathum Thani. Check opening hours, Tuesday closures, public holidays, the address, map, phone numbers and visitor questions.")} page={page} includeJsonLd>
   <header class="page-intro">
@@ -35,6 +37,16 @@ const facebook = allowedExternalUrl(content?.facebookUrl ?? null, "facebook");
     <h2>{t("ที่อยู่และเส้นทาง", "Address & directions")}</h2>
     <p>{content.locationLabel}</p>
     {content.addressLine && <p>{t("ที่อยู่ร้าน: ", "Address: ")}{content.addressLine}</p>}
+    {maps && <iframe
+      class="visit-map"
+      src={mapEmbed}
+      title={t("แผนที่ร้าน A Cup of Zoo บน Google Maps", "A Cup of Zoo location on Google Maps")}
+      width="960"
+      height="420"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>}
     <p>{content.admissionText ?? t("สอบถามค่าเข้าชมและเงื่อนไขกับทางร้าน", "Check admission prices and conditions with the café.")}</p>
     <p><a href={href("/activities/#passes")}>{t("ดูสิทธิประโยชน์แพ็กเกจและเงื่อนไขเด็ก", "Pass benefits and child admission")}</a></p>
     <div class="actions">
@@ -46,3 +58,15 @@ const facebook = allowedExternalUrl(content?.facebookUrl ?? null, "facebook");
     {content.faqs.map((faq) => <article><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}
   </section>}
 </SiteLayout>
+
+<style>
+  .visit-map {
+    display: block;
+    width: 100%;
+    height: clamp(320px, 50vw, 420px);
+    margin-block: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: .4rem;
+    background: var(--paper);
+  }
+</style>
