@@ -1,5 +1,7 @@
 # A Cup of Zoo
 
+> ภาษาไทยใช้เส้นทางเดิม ภาษาอังกฤษอยู่ที่ /en/ รวมหน้าแรก สัตว์ เมนู กิจกรรม และข้อมูลการเดินทาง ข่าวยังเป็นภาษาไทย ดู [ขอบเขต TH/EN และหลักฐานล่าสุด](docs/review/th-en-2026-09-27/README.md)
+
 เว็บคาเฟ่ A Cup of Zoo ใช้ Astro และมีทางอ่านข้อมูลจาก CMS โปรไฟล์ `acupofzoo` เมื่อเปิดโหมด CMS
 
 ## Cloudflare preview
@@ -20,6 +22,8 @@ bun run deploy:preview
 คง `noindex` และ robots ที่ปิดการ crawl สำหรับ local/staging ตามเดิม มี title/description แยกตามหน้า, Open Graph, Twitter Card และ structured data ร้านกาแฟแล้ว ดูสิ่งที่ทำและงานก่อนเปิดจริงใน [SEO readiness](docs/seo-readiness.md)
 
 ## เปิดหน้าเว็บด้วยข้อมูลตัวอย่าง
+
+ธีม boutique ล่าสุดพร้อมภาพตรวจมือถือ/desktop และขอบเขตการทดสอบอยู่ใน [บันทึกตรวจธีม](docs/review/boutique-2026-09-27/README.md) ยังไม่ได้ deploy ธีมชุดนี้
 
 ```sh
 bun install

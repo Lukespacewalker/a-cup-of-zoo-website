@@ -1,0 +1,46 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import FoxSeal from "../site/FoxSeal.astro";
+import Picture from "../content/Picture.astro";
+import { loadPage } from "../../lib/content/load-page";
+import { animalGroups } from "../../lib/content/decor";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = translator(locale);
+const href = (path: string) => localePath(path, locale);
+const englishGroups = [
+  ["Dogs", "Shetland Sheepdog, Border Collie, Pomeranian"],
+  ["Cats", "Maine Coon, Ragdoll, Persian, Sphynx, Scottish Fold"],
+  ["Other animal friends", "Meerkat, fennec fox, iguana, ball python, pygmy goat"],
+  ["Little companions", "Rabbit, prairie dog, hamster, Gatsby mouse"],
+  ["Birds", "Galah cockatoo, parrot, lovebird, cockatiel"],
+];
+const groups = locale === "th" ? animalGroups : animalGroups.map((group, index) => ({ ...group, title: englishGroups[index][0], names: englishGroups[index][1] }));
+
+const page = await loadPage();
+---
+<SiteLayout locale={locale} title={t("รู้จักน้องสัตว์ที่คาเฟ่ คลอง 6", "Meet the animals · Khlong 6 café")} description={t("ทำความรู้จักน้องสัตว์ที่ A Cup of Zoo คลอง 6 ปทุมธานี ทั้งสุนัข แมว สัตว์เล็ก และนก พร้อมภาพถ่ายจากร้านและข้อมูลที่เพจร้านแนะนำ", "Meet the dogs, cats, small animals and birds introduced by A Cup of Zoo in Khlong 6, Pathum Thani, with real café photos and animal-zone information.")} page={page}>
+  <header class="page-intro">
+    <FoxSeal class="page-intro__fox" />
+    <p class="eyebrow">OUR LITTLE FRIENDS</p>
+    <h1>{t("มีใครอยู่ที่นี่บ้าง", "Meet our animal friends")}</h1>
+    <p>{t("ทำความรู้จักเพื่อน ๆ ที่เพจร้านแนะนำไว้ ภาพวาดใช้ตกแต่ง ส่วนภาพถ่ายด้านล่างเป็นภาพจริงจากร้าน", "Meet the friends introduced on the café’s page. The doodles are decorations; the photographs below show the actual café.")}</p>
+    <p><a href={href("/activities/#animal-zones")}>{t("ดูโซนสัตว์ทั้ง 6 โซนและแพ็กเกจเข้าชม", "Explore all 6 animal zones and admission passes")}</a></p>
+  </header>
+  <section class="groups" aria-label={t("กลุ่มสัตว์ในร้าน", "Animal groups at the café")}>
+    {groups.map((group, index) => <article class="group"><span class="group-marker" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><h2>{group.title}</h2><p>{group.names}</p></article>)}
+    <article class="group"><span class="group-marker" aria-hidden="true">{String(animalGroups.length + 1).padStart(2, "0")}</span><h2>{t("แพะตัวจิ๋ว", "Little goats")}</h2><p>{t("เพจเรียกน้องตัวนี้ว่าแพะพิกมี และจัดไว้ในกลุ่มสัตว์แปลกตา", "The café’s page describes these as pygmy goats and includes them among the other animal friends.")}</p></article>
+  </section>
+  <p class="section-note">{t("รายชื่อจากโพสต์ของเพจร้านวันที่ 9 ธันวาคม 2025", "Animal list from the café’s post dated 9 December 2025.")}</p>
+  <section class="band">
+    <div class="section-head"><h2>{t("ภาพถ่ายจากร้าน", "Photographs from the café")}</h2></div>
+    <div class="spread">
+      <article class="card lead"><div class="animal-photo"><Picture class="paper-photo paper-photo--soft" mediaId="cat-portrait" media={page.venue?.media ?? []} alt={t("แมวของร้าน", "A cat at the café")} /></div><h3>{t("แมว", "Cats")}</h3></article>
+      <div class="stack">
+        <article class="card"><Picture class="paper-photo paper-photo--soft" mediaId="cats-and-dog" media={page.venue?.media ?? []} alt={t("แมวและสุนัขของร้าน", "The café's cats and dog")} /><h3>{t("แมวและสุนัข", "Cats and a dog")}</h3></article>
+        <article class="card"><div class="animal-photo"><Picture class="paper-photo paper-photo--soft" mediaId="ducks-pond" media={page.venue?.media ?? []} alt={t("เป็ดในบ่อของร้าน", "Ducks in the café pond")} /></div><h3>{t("เป็ด", "Ducks")}</h3></article>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

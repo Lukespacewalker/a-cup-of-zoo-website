@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import WatercolorAnimal from "./WatercolorAnimal.astro";
+import wishingCorner from "../../assets/watercolor/wishing-corner.png";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+interface Props { locale: Locale; compact?: boolean; }
+const { locale, compact = false } = Astro.props;
+const t = translator(locale);
+const id = compact ? "wishes" : "wishing-corner";
+---
+<section class:list={["wishing-story", { "wishing-story--detail": !compact }]} id={id} aria-labelledby={`${id}-title`}>
+  <figure class="wishing-photo">
+    <Image src={wishingCorner} class="paper-photo paper-photo--soft" alt={t("น้องจิ้งจอกเก้าหางในสวน ล้อมรอบด้วยแผ่นคำขอพรจากผู้มาเยือน", "The Nine-Tailed Fox in the garden, surrounded by visitors’ wooden wish plaques")} widths={[480, 800, 1080]} sizes="(max-width: 700px) 100vw, 55vw" loading="lazy" />
+    <figcaption>{t("คำอธิษฐานเล็ก ๆ ที่ผู้มาเยือนฝากไว้", "Little wishes left by visitors")}</figcaption>
+  </figure>
+  <div class="wishing-copy">
+    <WatercolorAnimal animal="fox" class="wishing-mascot" />
+    <p class="chapter-label">{t("อีกหนึ่งมุมของสวน", "A little corner of the garden")}</p>
+    <h2 id={`${id}-title`}>{t("มุมขอพรกับ", "Make a wish with our ")}<br />{t("น้องจิ้งจอกเก้าหาง", "Nine-Tailed Fox")}</h2>
+    <p>{t("ระหว่างเดินเล่น แวะทักน้องจิ้งจอกเก้าหางที่มุมขอพร แผ่นคำอธิษฐานที่แขวนอยู่รอบ ๆ เป็นความตั้งใจที่ผู้มาเยือนฝากไว้ในสวนของเรา", "Say hello to our Nine-Tailed Fox at the wishing corner. The wooden plaques hanging around the garden hold wishes left by visitors.")}</p>
+    {compact ? <a class="cafe-link" href={localePath("/activities/", locale) + "#wishing-corner"}>{t("แวะดูมุมขอพร", "Discover the wishing corner")}<span aria-hidden="true">↗</span></a> : <p>{t("ในร้านยังมีน้องจิ้งจอกเก้าหางท่าประนมมืออยู่คู่กับจุดเซียมซี ให้ค่อย ๆ แวะชมระหว่างเดินเล่น", "You can also find our Nine-Tailed Fox with its paws joined beside the fortune-stick corner as you explore the café.")}</p>}
+  </div>
+</section>

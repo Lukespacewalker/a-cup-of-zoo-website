@@ -1,0 +1,20 @@
+$ bun run prepare:assets && astro build
+$ bun run scripts/prepare-assets.ts
+Prepared 9 site images
+08:33:23 [@astrojs/cloudflare] Enabling image processing with Cloudflare Images for production with the "IMAGES" Images binding.
+08:33:23 [types] Generated 61ms
+08:33:23 [build] output: "server"
+08:33:23 [build] mode: "server"
+08:33:23 [build] directory: H:\repos\Lukespacewalker\a-cup-of-zoo-website\dist\
+08:33:23 [build] adapter: @astrojs/cloudflare
+08:33:23 [build] Collecting build info...
+08:33:23 [build] ✓ Completed in 109ms.
+08:33:23 [build] Building server entrypoints...
+08:33:23 [vite] ✓ built in 643ms
+08:33:24 [vite] ✓ built in 498ms
+08:33:24 [vite] ✓ built in 15ms
+08:33:24 [build] Rearranging server assets...
+08:33:24 [build] ✓ Completed in 1.45s.
+08:33:24 [@astrojs/cloudflare] Injected immutable Cache-Control for /_astro/* into _headers.
+08:33:24 [build] Server built in 1.58s
+08:33:24 [build] Complete!

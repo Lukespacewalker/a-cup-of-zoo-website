@@ -1,0 +1,269 @@
+{
+  "head": "efe43dac53ce641e36e995b87e951e7181ddc295",
+  "files": [
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\pages\\index.astro",
+      "sha256": "718bb5ddd3df0b617d309e96940f5b624047e12d476def1b6381056fad6fbf14"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\styles\\cafe-home.css",
+      "sha256": "4bd2057dbc93099435537b0bcf6a764899bf8ceb94244eb05d3e2b1a74bf1230"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\styles\\garden.css",
+      "sha256": "8e09e52c4ab633c0a3699d3f6dc0c4ed941ac8045c8c229e9a4c896a3cd171f2"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\components\\site\\Footer.astro",
+      "sha256": "2d01ec4219aabc35905639348d36b96ee1a26600f88bc7a6e787dfcfc2368e69"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\playwright.config.ts",
+      "sha256": "0b8e82efc65940593e861ee22d867318e82036617eabdd9704e7b31015171211"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\tests\\e2e\\theme.spec.ts",
+      "sha256": "84f59451dc2f495ce580914def488fff38eada794ff8f2ca8a14a43078b9f68b"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\lib\\content\\menu-catalog.ts",
+      "sha256": "9757d6d173dcf130440d11a29f763723e896279049bc8a1240ff92942ad01808"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\lib\\content\\activities-catalog.ts",
+      "sha256": "19e7eef4e51b68a183d3c73a978d0a6e221c769d694dc0edc52544d9f7465448"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\lib\\business\\contact.ts",
+      "sha256": "105a82246f6d5c1d57c4d7ea7d4fe426f5f79cb3916bd20e26cc47bbc8335558"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\components\\seo\\SeoHead.astro",
+      "sha256": "532161ffee9ba1e77af28ae8502f12ef7184cf5b0a337fc55b7149127a838232"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-04.jpg",
+      "sha256": "8900431a0c68adaa94378ac453738f02654ee25ac4f2a5623014c56cc9c83641"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-05.jpg",
+      "sha256": "ec1b46ed6a979ad59c4e12282d422d1de9045dae716ea3083b5dac81786c5bc9"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-06.jpg",
+      "sha256": "c15837d5ddda881dac83f9093807ea1be84d9378a1a170099923771615b8873a"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-07.jpg",
+      "sha256": "9db46f0ea1764af5867ae2ca5e90a2528c512180bdf2b6d43f76bbc77fe54cf6"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-08.jpg",
+      "sha256": "fc8f653d8e918c5835371e67fd55751fea9108dfddf5b380cdbbb3056556e4f5"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-09.jpg",
+      "sha256": "81ecf0c195d22b8c12b1e0e76160aa5f407c329974cb44a660c447015a4c8b7b"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-10.jpg",
+      "sha256": "d2ba7abd8f4499bd549c39183e39cf19ad57ee62a9f267c8308fa40b914f652e"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-11.jpg",
+      "sha256": "21b22e57f5157c3bdcec68b691f4f04e1e990126b18510eaf5946156d44554da"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-12.jpg",
+      "sha256": "097bf58afe976ebe36004a0c58dbe3cd8ecfdb2d8f75d595e34c4b32f453ea06"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-13.jpg",
+      "sha256": "00f013c0587b1e199e9d141674db046e86a7c2792af408018ee2bc23a8da77a9"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-14.jpg",
+      "sha256": "aa7bc4b1302cf2bec95bd54f2ac17e15d4acf0fc0988b06ab94ddaf3c16452f9"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-15.jpg",
+      "sha256": "73fd4dd06e95dd0bc4d8cb983f9e5fb4719311eb22432035df3813214a045779"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-16.jpg",
+      "sha256": "4c2cc51ddf0e8ed93fbd88383eda9795a7a76f972c4616b3df54e6af5200b715"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-17.jpg",
+      "sha256": "140b0048c93d32c7d54d62b7b2e35c9accc03bf7ed87bdaa1fff4b1f6f4a795b"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-18.jpg",
+      "sha256": "bd5bcb998fb7dbec1fcd97404de2fb8f1fd735085f7c793423a01cc02d74cce1"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-19.jpg",
+      "sha256": "b576e87ad4fdad5ad7acdef5b34055bef2f12093888bf04c53d8a50ca20c0651"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-20.jpg",
+      "sha256": "3e5211c24f07a96b9001a41e2019f0d2e831e469d8c702052f9422458854d769"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-21.jpg",
+      "sha256": "f477fdc95eab4cec861a20d346471fa074d972c419370af14961bbf47dac90ad"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-22.jpg",
+      "sha256": "3db5b2776ac68bb42c311df6a4cecd90d01da41f02efdad35145f76589f1c989"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\src\\assets\\food-menu\\page-23.jpg",
+      "sha256": "f786a56a20ab3b3aba873521b97f05acbc7d37533ba24034013800fbb344f5d6"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\activities-1440-dark.png",
+      "sha256": "c297fe7e26fe49e5b75ec5f57eabb5345ffbe4d783bbae62841d848bdbfa07db"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\activities-1440-light.png",
+      "sha256": "fd0b6642cb8facdac4dd84b9a6ce1c738a4cfcd10b1290c776ad99ac8994d4bd"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\activities-390-dark.png",
+      "sha256": "0e4fc39be6441eb946fb0e3520c5f060513f54d2d523c148136caa7538d8c14c"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\activities-390-light.png",
+      "sha256": "79cb62c22cc6d4bf5b5c7329038af09cd7d67c2942305c63e68f88cebf686c3c"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\animals-1440-dark.png",
+      "sha256": "fc622984a52b1f0fa25bc3ede613c3b6c83bcbb12535a89c8320e4dfcc3a82fb"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\animals-1440-light.png",
+      "sha256": "906d9883917e991797e151f841be7254cc22aeeb10ba4a0c79b83013b8f5b422"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\animals-390-dark.png",
+      "sha256": "6a4f53ee771222a7c30e588b4575bd21e755b68fa08f39322c99138252e3385b"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\animals-390-light.png",
+      "sha256": "c2a05c36f871e3d3db9eb627b98cd5eecbe1d337e1026f938b745ec174906942"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\cover-1440-dark.png",
+      "sha256": "9cafdc8af73bd42b3f3f169ce278d6dfb9c9d2e1e943a08956a258d95f1236e7"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\cover-1440-light.png",
+      "sha256": "4c64eb3c8e72858811a58e23c6edb4a417f51b54455ecf3c02edb4584b2e753b"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\cover-390-dark.png",
+      "sha256": "2d73843f0c37b6ffa663f30a107e9ddccfde9fd2fb09f19d41447cf84cb8341c"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\cover-390-light.png",
+      "sha256": "860219a10bd590379747430db0b34847f92274d12814d7ffe162db6b1b6501f0"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\food-1440-dark.png",
+      "sha256": "7cc19f7f87fd07838d9e2cb5ad8760a1a7935ef2330e5378857f97d396b261d1"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\food-1440-light.png",
+      "sha256": "0025e68b5816c1ab4add7a44e4eee464ec017cbaae2a0d861d0400eaf1a72d9f"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\food-390-dark.png",
+      "sha256": "b77d3d01bd958833f86dabe9bb6be23128f21142817a695e30b6dc38fd8b8ee0"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\food-390-light.png",
+      "sha256": "6fe49e5e33ed7340fad62d11aef89b73780508880b43365f482f9ef83632de08"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\home-1440-dark.png",
+      "sha256": "45501e0d47b48f31d3b70a04848927c6ce8992afc7dc3935833928ea36ed3557"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\home-1440-light.png",
+      "sha256": "5d29161267f22262a2cec2d563f4c25b297461f5c8a1dd7bdab6111cd5ebb1c1"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\home-390-dark.png",
+      "sha256": "720d8dabb13fabe9e0dc41e469855c3e4468376f339cda93856c5358db2e8949"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\home-390-light.png",
+      "sha256": "703eeb4562c59449f06e6f05d55ca8f147ddaa7f76808f2934d89ec0e86ecb30"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\menu-1440-dark.png",
+      "sha256": "c9d8daaadc256cfbb4187c1d52951fb6f35531151702927667a7f8fc80ad65cd"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\menu-1440-light.png",
+      "sha256": "68f87b4ededed19b3876d472795071a31075a1ce862abef2c0848024491a9b95"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\menu-390-dark.png",
+      "sha256": "4023e081b5ad7d52ef9f4e142c1df91a1ce450531ca325e97e17010d19e548d5"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\menu-390-light.png",
+      "sha256": "c863068ee4fc0a8de3c74788b126f44a1f7b183eb7e62b1327cf07bc2c500f58"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\news-1440-dark.png",
+      "sha256": "598b90512c9fd152d68e642da58005a198f04cbd58079aef34bfae9665f3dced"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\news-1440-light.png",
+      "sha256": "3ccae3d586b662f84b01091980d6ac1396d09ce241da69eeaa17e6307fb1c300"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\news-390-dark.png",
+      "sha256": "eef461ace178612abfeae77d10f4228f552b7149e748f773503f11e436fc8441"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\news-390-light.png",
+      "sha256": "095c87064986978623ec211da3203fd6a88236dca6bcf5be300b86d21714803b"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\passes-1440-dark.png",
+      "sha256": "53ebcb1050fe220762a20b31b1e841d51e92fc125a1f22f8c2f910e9cf5985af"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\passes-1440-light.png",
+      "sha256": "d5792dd26f59e64e0978dbcafc4806ab7a59c17fb4111ddeaf71a09186278ae2"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\passes-390-dark.png",
+      "sha256": "11c59e656667017f36710a9ef5ea099d9ab54b7486910cca8a7362a2dcae6e4c"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\passes-390-light.png",
+      "sha256": "73f8beca47a310b8be8f663b8b900944e4558a101fb24787858cb12ad7323e2f"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\visit-1440-dark.png",
+      "sha256": "2f0068e7c10f334c90ff139794a910b186a8955bcdddd78edb37778df2a24589"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\visit-1440-light.png",
+      "sha256": "37cfe7fb3fd5989e4cfb5ce77455de27a78df647e5d2b9e1e911504f8a3bfceb"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\visit-390-dark.png",
+      "sha256": "b65b5ac5e55db639698d3fe9dd403191caf80854af0be843e2c53dfddf374006"
+    },
+    {
+      "path": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website\\docs\\review\\boutique-2026-09-27\\visit-390-light.png",
+      "sha256": "91b67ca02b18d430b69b88cbb3e103aae8cdb823ab2852da247beb961eb29780"
+    }
+  ]
+}

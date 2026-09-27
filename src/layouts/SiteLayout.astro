@@ -7,22 +7,27 @@ import "@fontsource/noto-sans-thai-looped/700.css";
 import "../styles/global.css";
 import "../styles/garden.css";
 import "../styles/font-preview.css";
+import "../styles/watercolor.css";
 import SeoHead from "../components/seo/SeoHead.astro";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
 import type { PageData } from "../lib/content/load-page";
+import { localeFromPath, translator, type Locale } from "../lib/i18n/locale";
+import { localizedVenue } from "../lib/i18n/venue";
 
 interface Props {
   title: string;
   description: string;
   page: Pick<PageData, "environment" | "venue">;
   includeJsonLd?: boolean;
+  locale?: Locale;
 }
-const { title, description, page, includeJsonLd = false } = Astro.props;
+const { title, description, page, includeJsonLd = false, locale = localeFromPath(Astro.url.pathname) } = Astro.props;
+const t = translator(locale);
 const requestedFont = Astro.url.searchParams.get("font-preview");
 const previewFont = page.environment === "local" && (requestedFont === "itim" || requestedFont === "looped") ? requestedFont : undefined;
 ---
-<html lang="th" data-font-preview={previewFont}>
+<html lang={locale} data-font-preview={previewFont}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,10 +37,10 @@ const previewFont = page.environment === "local" && (requestedFont === "itim" ||
         document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : "auto";
       })();
     </script>
-    <SeoHead title={title} description={description} environment={page.environment} venue={includeJsonLd ? page.venue : null} />
+    <SeoHead title={title} description={description} environment={page.environment} venue={includeJsonLd ? localizedVenue(page.venue, locale) : null} locale={locale} />
   </head>
   <body>
-    <a class="skip-link" href="#content">ข้ามไปเนื้อหา</a>
+    <a class="skip-link" href="#content">{t("ข้ามไปเนื้อหา", "Skip to content")}</a>
     <Header />
     <main id="content">
       <div class="shell">

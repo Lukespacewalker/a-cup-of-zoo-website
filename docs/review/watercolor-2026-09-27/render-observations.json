@@ -1,0 +1,218 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/activities/",
+    "width": 320,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/activities/",
+    "width": 390,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/activities/",
+    "width": 1440,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/",
+    "width": 320,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/activities/",
+    "width": 320,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/activities/",
+    "width": 390,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/activities/",
+    "width": 1440,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/",
+    "width": 320,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/activities/",
+    "width": 320,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/",
+    "width": 390,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/activities/",
+    "width": 390,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/",
+    "width": 1440,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/activities/",
+    "width": 1440,
+    "theme": "light",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/",
+    "width": 320,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/activities/",
+    "width": 320,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/",
+    "width": 390,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/activities/",
+    "width": 390,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/",
+    "width": 1440,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  },
+  {
+    "route": "/en/activities/",
+    "width": 1440,
+    "theme": "dark",
+    "overflow": false,
+    "brokenImages": [],
+    "maskApplied": true,
+    "robots": "noindex, nofollow"
+  }
+]

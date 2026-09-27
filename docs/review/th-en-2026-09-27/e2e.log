@@ -1,0 +1,39 @@
+
+Running 22 tests using 6 workers
+
+(node:97260) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:101276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:92740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:93268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:75572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  4 tests\e2e\navigation.spec.ts:5:1 › main routes render server HTML (511ms)
+  ok  5 tests\e2e\visit.spec.ts:3:1 › visit CTA keeps the supplied Maps destination (468ms)
+  ok  2 tests\e2e\seo.spec.ts:3:1 › prototype stays noindex (824ms)
+  ok  8 tests\e2e\seo.spec.ts:10:1 › preview keeps crawlers out and its sitemap empty (431ms)
+  ok  7 tests\e2e\visit.spec.ts:12:1 › mobile layout has no horizontal overflow (957ms)
+  ok  3 tests\e2e\menu.spec.ts:3:1 › all food and prices are server rendered without an external flipbook (2.0s)
+  ok  6 tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages (2.0s)
+  ok 10 tests\e2e\visit.spec.ts:18:1 › mobile menu opens and Escape closes it (872ms)
+  ok 11 tests\e2e\menu.spec.ts:30:1 › activities explain separate admission, benefits, children and all feeding choices (766ms)
+  ok 12 tests\e2e\theme.spec.ts:23:1 › color control persists and auto follows the system preference (1.2s)
+  ok  1 tests\e2e\locale.spec.ts:3:1 › English primary paths render complete English content and matching metadata (3.5s)
+  ok 13 tests\e2e\visit.spec.ts:27:1 › theme control responds to keyboard activation and persists after navigation (1.2s)
+  ok 17 tests\e2e\visit.spec.ts:41:1 › photo journal supports visible keyboard focus and reduced motion (865ms)
+  ok 16 tests\e2e\locale.spec.ts:37:1 › untranslated news explicitly returns to English home without false alternates (1.0s)
+  ok  9 tests\e2e\seo.spec.ts:18:1 › public pages have distinct metadata and usable social images (3.8s)
+  ok 19 tests\e2e\seo.spec.ts:47:1 › unknown route is a real 404 (150ms)
+  ok 20 tests\e2e\seo.spec.ts:52:1 › unverified review score is not invented (332ms)
+  ok 14 tests\e2e\menu.spec.ts:49:1 › menu and activities fit narrow phones and desktop with working category navigation (3.0s)
+  ok 21 tests\e2e\seo.spec.ts:60:1 › news empty state is not an error (255ms)
+  ok 18 tests\e2e\locale.spec.ts:47:1 › English menu and child planning work without JavaScript and match Thai numeric content (2.1s)
+  ok 22 tests\e2e\locale.spec.ts:73:1 › switching locale retains matching page and category hash on mobile (1.3s)
+  ok 15 tests\e2e\theme.spec.ts:40:1 › all primary pages fit supported widths in light, dark and automatic themes (8.0s)
+
+  22 passed (12.1s)

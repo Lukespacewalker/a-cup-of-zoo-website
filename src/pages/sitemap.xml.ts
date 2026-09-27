@@ -2,8 +2,9 @@ import type { APIRoute } from "astro";
 import { isDemoPost, thaiTranslation } from "../lib/content/posts";
 import { gatewayFromRuntime, runtimeConfig } from "../lib/content/runtime-config";
 import { configuredSite, sitemapXml } from "../lib/seo/metadata";
+import { bilingualPaths, localePath } from "../lib/i18n/locale";
 
-const staticPaths = ["/", "/animals/", "/activities/", "/menu/", "/visit/", "/news/"];
+const staticPaths = [...bilingualPaths, ...bilingualPaths.map(path => localePath(path, "en")), "/news/"];
 
 export const GET: APIRoute = async ({ site }) => {
   const config = runtimeConfig();

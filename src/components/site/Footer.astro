@@ -2,17 +2,21 @@
 import logo from "../../../logo.jpg";
 import { allowedExternalUrl } from "../../lib/business/links";
 import { shopPhones } from "../../lib/business/contact";
+import { localeFromPath, localePath, translator } from "../../lib/i18n/locale";
+const locale = localeFromPath(Astro.url.pathname);
+const t = translator(locale);
+const href = (path: string) => localePath(path, locale);
 interface Props { mapsUrl: string | null; }
 const { mapsUrl } = Astro.props;
 const maps = allowedExternalUrl(mapsUrl, "maps");
 ---
 <footer class="footer shell">
-  <a class="footer-logo-wrap" href="/"><img class="footer-logo" src={logo.src} alt="A Cup of Zoo Cafe & Farm" /></a>
-  <p>คาเฟ่สัตว์สำหรับครอบครัว ที่คลอง 6 ปทุมธานี</p>
+  <a class="footer-logo-wrap" href={href("/")}><img class="footer-logo" src={logo.src} alt="A Cup of Zoo Cafe & Farm" /></a>
+  <p>{t("คาเฟ่สัตว์สำหรับครอบครัว ที่คลอง 6 ปทุมธานี", "A family animal café in Khlong 6, Pathum Thani")}</p>
   <p>{shopPhones.map((phone, index) => <>{index > 0 && " · "}<a href={`tel:${phone.e164}`}>{phone.display}</a></>)}</p>
-  {maps && <a href={maps}>ดูเส้นทาง</a>}
-  <nav class="footer-nav" aria-label="ท้ายหน้า">
-    <a href="/animals/">สัตว์</a> · <a href="/activities/">กิจกรรม</a> · <a href="/menu/">เมนู</a> · <a href="/news/">ข่าว</a> · <a href="/visit/">มาเที่ยว</a>
+  {maps && <a href={maps}>{t("ดูเส้นทาง", "Directions")}</a>}
+  <nav class="footer-nav" aria-label={t("ท้ายหน้า", "Footer navigation")}>
+    <a href={href("/animals/")}>{t("สัตว์", "Animals")}</a> · <a href={href("/activities/")}>{t("กิจกรรม", "Activities")}</a> · <a href={href("/menu/")}>{t("เมนู", "Menu")}</a> · <a href="/news/">{t("ข่าว", "News (Thai)")}</a> · <a href={href("/visit/")}>{t("มาเที่ยว", "Plan your visit")}</a>
   </nav>
 </footer>
-<div class="sticky-cta"><a class="visit-link" href="/visit/">พาครอบครัวมาเที่ยว</a></div>
+<nav class="sticky-cta" aria-label={t("ทางลัดมาเที่ยว", "Visit shortcuts")}><a class="button secondary" href={href("/menu/")}>{t("ดูเมนูอาหาร", "Food menu")}</a><a class="visit-link" href={href("/visit/")}>{t("วางแผนมาเที่ยว", "Plan your visit")}</a></nav>

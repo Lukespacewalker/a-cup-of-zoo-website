@@ -1,0 +1,11 @@
+$ astro check
+08:35:00 [@astrojs/cloudflare] Enabling image processing with Cloudflare Images for production with the "IMAGES" Images binding.
+08:35:00 [vite] Re-optimizing dependencies because vite config has changed
+08:35:00 [vite] Re-optimizing dependencies because vite config has changed
+08:35:00 [types] Generated 485ms
+08:35:00 [check] Getting diagnostics for Astro files in H:\repos\Lukespacewalker\a-cup-of-zoo-website...
+Result (54 files): 
+- 0 errors
+- 0 warnings
+- 0 hints
+

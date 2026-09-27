@@ -1,0 +1,48 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import FoxSeal from "../site/FoxSeal.astro";
+import ContentUnavailable from "../content/ContentUnavailable.astro";
+import { loadPage } from "../../lib/content/load-page";
+import { allowedExternalUrl } from "../../lib/business/links";
+import { dayName, formatDay } from "../../lib/business/format-hours";
+import { shopPhones } from "../../lib/business/contact";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+import { localizedVenue } from "../../lib/i18n/venue";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = translator(locale);
+const href = (path: string) => localePath(path, locale);
+
+const page = await loadPage();
+const content = localizedVenue(page.venue, locale)?.content;
+const maps = allowedExternalUrl(content?.mapsUrl ?? null, "maps");
+const facebook = allowedExternalUrl(content?.facebookUrl ?? null, "facebook");
+---
+<SiteLayout locale={locale} title={t("เวลาเปิด แผนที่ และการเดินทางไปคาเฟ่ คลอง 6", "Opening hours, map & directions · Khlong 6")} description={t("วางแผนมาเที่ยว A Cup of Zoo คลอง 6 ปทุมธานี เช็กเวลาเปิด วันหยุด ที่อยู่ แผนที่ และช่องทางติดต่อ พร้อมคำถามที่พบบ่อยก่อนเดินทาง", "Plan a visit to A Cup of Zoo, Khlong 6, Pathum Thani. Check opening hours, Tuesday closures, public holidays, the address, map, phone numbers and visitor questions.")} page={page} includeJsonLd>
+  <header class="page-intro">
+    <FoxSeal class="page-intro__fox" />
+    <h1>{t("แวะมาหาเราที่ร้าน", "Plan your visit")}</h1>
+    <p>{t("เช็กเวลาเปิด ที่อยู่ และเส้นทางก่อนแวะมา", "Check opening hours, the address and directions before you visit.")}</p>
+  </header>
+  {page.venueProblem && <ContentUnavailable detail={page.venueProblem === "missing" ? t("ยังไม่ได้เผยแพร่ข้อมูลร้าน", "Café information has not been published yet.") : undefined} />}
+  {content && <section class="band">
+    <h2>{t("เวลาเปิดร้าน", "Opening hours")}</h2>
+    <p>{t("เวลาเปิดปกติของร้าน", "Regular café opening hours")}</p>
+    <ul class="hours">
+      {content.regularHours.map((entry) => <li><span>{dayName(entry.isoWeekday, locale)}</span><span>{formatDay(entry, locale)}</span></li>)}
+    </ul>
+    {content.holidayNote && <p>{content.holidayNote}</p>}
+    <h2>{t("ที่อยู่และเส้นทาง", "Address & directions")}</h2>
+    <p>{content.locationLabel}</p>
+    {content.addressLine && <p>{t("ที่อยู่ร้าน: ", "Address: ")}{content.addressLine}</p>}
+    <p>{content.admissionText ?? t("สอบถามค่าเข้าชมและเงื่อนไขกับทางร้าน", "Check admission prices and conditions with the café.")}</p>
+    <p><a href={href("/activities/#passes")}>{t("ดูสิทธิประโยชน์แพ็กเกจและเงื่อนไขเด็ก", "Pass benefits and child admission")}</a></p>
+    <div class="actions">
+      {maps && <a class="button" href={maps}>{t("ดูเส้นทาง", "Directions")}</a>}
+      {facebook && <a class="button secondary" href={facebook}>{t("หน้า Facebook", "Facebook page")}</a>}
+      {shopPhones.map((phone) => <a class="button secondary" href={`tel:${phone.e164}`}>{t("โทร ", "Call ")}{phone.display}</a>)}
+    </div>
+    <h2>{t("คำถามที่พบบ่อย", "Visitor questions")}</h2>
+    {content.faqs.map((faq) => <article><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}
+  </section>}
+</SiteLayout>

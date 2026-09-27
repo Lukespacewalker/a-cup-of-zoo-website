@@ -1,0 +1,386 @@
+[
+  {
+    "locale": "th",
+    "theme": "light",
+    "width": 320,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "English",
+        "href": "http://127.0.0.1:4321/en/",
+        "x": 157.578125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "โหมดสว่าง",
+        "href": null,
+        "x": 211.15625,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      }
+    ]
+  },
+  {
+    "locale": "th",
+    "theme": "light",
+    "width": 390,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "English",
+        "href": "http://127.0.0.1:4321/en/",
+        "x": 219.953125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "โหมดสว่าง",
+        "href": null,
+        "x": 273.53125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      }
+    ]
+  },
+  {
+    "locale": "th",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "English",
+        "href": "http://127.0.0.1:4321/en/",
+        "x": 1070.578125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "โหมดสว่าง",
+        "href": null,
+        "x": 1276,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      }
+    ]
+  },
+  {
+    "locale": "th",
+    "theme": "dark",
+    "width": 320,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "English",
+        "href": "http://127.0.0.1:4321/en/",
+        "x": 157.578125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "โหมดมืด",
+        "href": null,
+        "x": 211.15625,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      }
+    ]
+  },
+  {
+    "locale": "th",
+    "theme": "dark",
+    "width": 390,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "English",
+        "href": "http://127.0.0.1:4321/en/",
+        "x": 219.953125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "โหมดมืด",
+        "href": null,
+        "x": 273.53125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      }
+    ]
+  },
+  {
+    "locale": "th",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "English",
+        "href": "http://127.0.0.1:4321/en/",
+        "x": 1070.578125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "โหมดมืด",
+        "href": null,
+        "x": 1276,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      }
+    ]
+  },
+  {
+    "locale": "en",
+    "theme": "light",
+    "width": 320,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "Thai",
+        "href": "http://127.0.0.1:4321/",
+        "x": 157.578125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "Light colour theme",
+        "href": null,
+        "x": 211.15625,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      }
+    ]
+  },
+  {
+    "locale": "en",
+    "theme": "light",
+    "width": 390,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "Thai",
+        "href": "http://127.0.0.1:4321/",
+        "x": 204.828125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "Light colour theme",
+        "href": null,
+        "x": 258.40625,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      }
+    ]
+  },
+  {
+    "locale": "en",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "Thai",
+        "href": "http://127.0.0.1:4321/",
+        "x": 1109.03125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "Light colour theme",
+        "href": null,
+        "x": 1276,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 103, 84)"
+      }
+    ]
+  },
+  {
+    "locale": "en",
+    "theme": "dark",
+    "width": 320,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "Thai",
+        "href": "http://127.0.0.1:4321/",
+        "x": 157.578125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "Dark colour theme",
+        "href": null,
+        "x": 211.15625,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      }
+    ]
+  },
+  {
+    "locale": "en",
+    "theme": "dark",
+    "width": 390,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "Thai",
+        "href": "http://127.0.0.1:4321/",
+        "x": 204.828125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "Dark colour theme",
+        "href": null,
+        "x": 258.40625,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      }
+    ]
+  },
+  {
+    "locale": "en",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "controls": [
+      {
+        "selector": ".language-switch",
+        "label": "Thai",
+        "href": "http://127.0.0.1:4321/",
+        "x": 1109.03125,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      },
+      {
+        "selector": ".theme-button",
+        "label": "Dark colour theme",
+        "href": null,
+        "x": 1276,
+        "width": 44,
+        "height": 44,
+        "border": "0px",
+        "radius": "50%",
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "rgb(195, 185, 165)"
+      }
+    ]
+  }
+]

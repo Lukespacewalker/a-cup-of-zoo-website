@@ -1,0 +1,1239 @@
+{
+  "revision": "watercolor-mali-v1",
+  "createdAt": "2026-09-27T02:19:57.406Z",
+  "head": "efe43dac53ce641e36e995b87e951e7181ddc295",
+  "maker": "Root; prior TH/EN and boutique delta remains uncommitted. New watercolor work, final Mali h1/h2 and balanced wrapping included.",
+  "isolation": "Shared filesystem; reviewer read-only for product and tests. Root owns fixture server.",
+  "dirtyState": [
+    "M README.md",
+    " M docs/menu-import.md",
+    " M docs/seo-readiness.md",
+    " M playwright.config.ts",
+    " M src/components/content/ContentUnavailable.astro",
+    " M src/components/content/Picture.astro",
+    " M src/components/seo/SeoHead.astro",
+    " M src/components/site/Footer.astro",
+    " M src/components/site/FoxSeal.astro",
+    " M src/components/site/Header.astro",
+    " M src/layouts/SiteLayout.astro",
+    " M src/lib/business/format-hours.ts",
+    " M src/lib/seo/metadata.ts",
+    " M src/pages/404.astro",
+    " M src/pages/activities.astro",
+    " M src/pages/animals.astro",
+    " M src/pages/index.astro",
+    " M src/pages/menu.astro",
+    " M src/pages/sitemap.xml.ts",
+    " M src/pages/visit.astro",
+    " M src/styles/cafe-home.css",
+    " M src/styles/garden.css",
+    " M tests/e2e/visit.spec.ts",
+    "?? docs/review/boutique-2026-09-27/README.md",
+    "?? docs/review/boutique-2026-09-27/activities-1440-dark.png",
+    "?? docs/review/boutique-2026-09-27/activities-1440-light.png",
+    "?? docs/review/boutique-2026-09-27/activities-390-dark.png",
+    "?? docs/review/boutique-2026-09-27/activities-390-light.png",
+    "?? docs/review/boutique-2026-09-27/animals-1440-dark.png",
+    "?? docs/review/boutique-2026-09-27/animals-1440-light.png",
+    "?? docs/review/boutique-2026-09-27/animals-390-dark.png",
+    "?? docs/review/boutique-2026-09-27/animals-390-light.png",
+    "?? docs/review/boutique-2026-09-27/audience-assessment.md",
+    "?? docs/review/boutique-2026-09-27/audience-check.mjs",
+    "?? docs/review/boutique-2026-09-27/audience-observations.json",
+    "?? docs/review/boutique-2026-09-27/capture.mjs",
+    "?? docs/review/boutique-2026-09-27/cover-1440-dark.png",
+    "?? docs/review/boutique-2026-09-27/cover-1440-light.png",
+    "?? docs/review/boutique-2026-09-27/cover-390-dark.png",
+    "?? docs/review/boutique-2026-09-27/cover-390-light.png",
+    "?? docs/review/boutique-2026-09-27/food-1440-dark.png",
+    "?? docs/review/boutique-2026-09-27/food-1440-light.png",
+    "?? docs/review/boutique-2026-09-27/food-390-dark.png",
+    "?? docs/review/boutique-2026-09-27/food-390-light.png",
+    "?? docs/review/boutique-2026-09-27/garden-doodles-1440.png",
+    "?? docs/review/boutique-2026-09-27/garden-doodles-390.png",
+    "?? docs/review/boutique-2026-09-27/home-1440-dark.png",
+    "?? docs/review/boutique-2026-09-27/home-1440-light.png",
+    "?? docs/review/boutique-2026-09-27/home-390-dark.png",
+    "?? docs/review/boutique-2026-09-27/home-390-light.png",
+    "?? docs/review/boutique-2026-09-27/menu-1440-dark.png",
+    "?? docs/review/boutique-2026-09-27/menu-1440-light.png",
+    "?? docs/review/boutique-2026-09-27/menu-390-dark.png",
+    "?? docs/review/boutique-2026-09-27/menu-390-light.png",
+    "?? docs/review/boutique-2026-09-27/news-1440-dark.png",
+    "?? docs/review/boutique-2026-09-27/news-1440-light.png",
+    "?? docs/review/boutique-2026-09-27/news-390-dark.png",
+    "?? docs/review/boutique-2026-09-27/news-390-light.png",
+    "?? docs/review/boutique-2026-09-27/passes-1440-dark.png",
+    "?? docs/review/boutique-2026-09-27/passes-1440-light.png",
+    "?? docs/review/boutique-2026-09-27/passes-390-dark.png",
+    "?? docs/review/boutique-2026-09-27/passes-390-light.png",
+    "?? docs/review/boutique-2026-09-27/render-observations.json",
+    "?? docs/review/boutique-2026-09-27/review-target.json",
+    "?? docs/review/boutique-2026-09-27/visit-1440-dark.png",
+    "?? docs/review/boutique-2026-09-27/visit-1440-light.png",
+    "?? docs/review/boutique-2026-09-27/visit-390-dark.png",
+    "?? docs/review/boutique-2026-09-27/visit-390-light.png",
+    "?? docs/review/th-en-2026-09-27/404-observations.json",
+    "?? docs/review/th-en-2026-09-27/404-red.log",
+    "?? docs/review/th-en-2026-09-27/README.md",
+    "?? docs/review/th-en-2026-09-27/build-final.log",
+    "?? docs/review/th-en-2026-09-27/build.log",
+    "?? docs/review/th-en-2026-09-27/capture-404.mjs",
+    "?? docs/review/th-en-2026-09-27/capture.mjs",
+    "?? docs/review/th-en-2026-09-27/check-final.log",
+    "?? docs/review/th-en-2026-09-27/check.log",
+    "?? docs/review/th-en-2026-09-27/e2e-affected.log",
+    "?? docs/review/th-en-2026-09-27/e2e-final.log",
+    "?? docs/review/th-en-2026-09-27/e2e.log",
+    "?? docs/review/th-en-2026-09-27/en-404-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-404-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/en-404-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-404-320-light.png",
+    "?? docs/review/th-en-2026-09-27/en-404-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-404-390-light.png",
+    "?? docs/review/th-en-2026-09-27/en-activities-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-activities-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/en-activities-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-activities-320-light.png",
+    "?? docs/review/th-en-2026-09-27/en-activities-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-activities-390-light.png",
+    "?? docs/review/th-en-2026-09-27/en-animals-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-animals-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/en-animals-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-animals-320-light.png",
+    "?? docs/review/th-en-2026-09-27/en-animals-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-animals-390-light.png",
+    "?? docs/review/th-en-2026-09-27/en-cover-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-cover-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/en-cover-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-cover-320-light.png",
+    "?? docs/review/th-en-2026-09-27/en-cover-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-cover-390-light.png",
+    "?? docs/review/th-en-2026-09-27/en-food-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-food-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/en-food-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-food-320-light.png",
+    "?? docs/review/th-en-2026-09-27/en-food-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-food-390-light.png",
+    "?? docs/review/th-en-2026-09-27/en-home-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-home-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/en-home-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-home-320-light.png",
+    "?? docs/review/th-en-2026-09-27/en-home-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-home-390-light.png",
+    "?? docs/review/th-en-2026-09-27/en-menu-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-menu-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/en-menu-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-menu-320-light.png",
+    "?? docs/review/th-en-2026-09-27/en-menu-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-menu-390-light.png",
+    "?? docs/review/th-en-2026-09-27/en-passes-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-passes-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/en-passes-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-passes-320-light.png",
+    "?? docs/review/th-en-2026-09-27/en-passes-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-passes-390-light.png",
+    "?? docs/review/th-en-2026-09-27/en-visit-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-visit-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/en-visit-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-visit-320-light.png",
+    "?? docs/review/th-en-2026-09-27/en-visit-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/en-visit-390-light.png",
+    "?? docs/review/th-en-2026-09-27/independent-review-initial.md",
+    "?? docs/review/th-en-2026-09-27/independent-review.md",
+    "?? docs/review/th-en-2026-09-27/plan.md",
+    "?? docs/review/th-en-2026-09-27/render-observations.json",
+    "?? docs/review/th-en-2026-09-27/review-target-v1.json",
+    "?? docs/review/th-en-2026-09-27/review-target.json",
+    "?? docs/review/th-en-2026-09-27/th-activities-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-activities-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/th-activities-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-activities-320-light.png",
+    "?? docs/review/th-en-2026-09-27/th-activities-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-activities-390-light.png",
+    "?? docs/review/th-en-2026-09-27/th-animals-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-animals-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/th-animals-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-animals-320-light.png",
+    "?? docs/review/th-en-2026-09-27/th-animals-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-animals-390-light.png",
+    "?? docs/review/th-en-2026-09-27/th-cover-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-cover-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/th-cover-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-cover-320-light.png",
+    "?? docs/review/th-en-2026-09-27/th-cover-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-cover-390-light.png",
+    "?? docs/review/th-en-2026-09-27/th-food-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-food-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/th-food-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-food-320-light.png",
+    "?? docs/review/th-en-2026-09-27/th-food-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-food-390-light.png",
+    "?? docs/review/th-en-2026-09-27/th-home-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-home-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/th-home-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-home-320-light.png",
+    "?? docs/review/th-en-2026-09-27/th-home-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-home-390-light.png",
+    "?? docs/review/th-en-2026-09-27/th-menu-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-menu-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/th-menu-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-menu-320-light.png",
+    "?? docs/review/th-en-2026-09-27/th-menu-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-menu-390-light.png",
+    "?? docs/review/th-en-2026-09-27/th-passes-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-passes-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/th-passes-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-passes-320-light.png",
+    "?? docs/review/th-en-2026-09-27/th-passes-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-passes-390-light.png",
+    "?? docs/review/th-en-2026-09-27/th-visit-1440-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-visit-1440-light.png",
+    "?? docs/review/th-en-2026-09-27/th-visit-320-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-visit-320-light.png",
+    "?? docs/review/th-en-2026-09-27/th-visit-390-dark.png",
+    "?? docs/review/th-en-2026-09-27/th-visit-390-light.png",
+    "?? docs/review/th-en-2026-09-27/unit.log",
+    "?? docs/review/watercolor-2026-09-27/README.md",
+    "?? docs/review/watercolor-2026-09-27/activities-ducks-390.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-1440-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-1440-dark.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-1440-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-1440-light.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-320-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-320-dark.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-320-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-320-light.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-390-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-390-dark.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-390-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-en-390-light.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-1440-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-1440-dark.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-1440-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-1440-light.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-320-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-320-dark.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-320-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-320-light.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-390-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-390-dark.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-390-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/activities-th-390-light.png",
+    "?? docs/review/watercolor-2026-09-27/affected-final.log",
+    "?? docs/review/watercolor-2026-09-27/asset-notes.md",
+    "?? docs/review/watercolor-2026-09-27/baseline.json",
+    "?? docs/review/watercolor-2026-09-27/build.log",
+    "?? docs/review/watercolor-2026-09-27/check.log",
+    "?? docs/review/watercolor-2026-09-27/e2e.log",
+    "?? docs/review/watercolor-2026-09-27/friends-en-1440-dark.png",
+    "?? docs/review/watercolor-2026-09-27/friends-en-1440-light.png",
+    "?? docs/review/watercolor-2026-09-27/friends-en-390-dark.png",
+    "?? docs/review/watercolor-2026-09-27/friends-en-390-light.png",
+    "?? docs/review/watercolor-2026-09-27/full-warm.png",
+    "?? docs/review/watercolor-2026-09-27/hero-en-1440-dark.png",
+    "?? docs/review/watercolor-2026-09-27/hero-en-1440-light.png",
+    "?? docs/review/watercolor-2026-09-27/hero-en-320-dark.png",
+    "?? docs/review/watercolor-2026-09-27/hero-en-320-light.png",
+    "?? docs/review/watercolor-2026-09-27/hero-en-390-dark.png",
+    "?? docs/review/watercolor-2026-09-27/hero-en-390-light.png",
+    "?? docs/review/watercolor-2026-09-27/hero-th-1440-dark.png",
+    "?? docs/review/watercolor-2026-09-27/hero-th-1440-light.png",
+    "?? docs/review/watercolor-2026-09-27/hero-th-320-dark.png",
+    "?? docs/review/watercolor-2026-09-27/hero-th-320-light.png",
+    "?? docs/review/watercolor-2026-09-27/hero-th-390-dark.png",
+    "?? docs/review/watercolor-2026-09-27/hero-th-390-light.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-1440-dark-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-1440-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-1440-dark.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-1440-light-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-1440-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-1440-light.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-320-dark-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-320-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-320-dark.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-320-light-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-320-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-320-light.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-390-dark-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-390-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-390-dark.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-390-light-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-390-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-en-390-light.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-1440-dark-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-1440-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-1440-dark.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-1440-light-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-1440-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-1440-light.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-320-dark-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-320-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-320-dark.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-320-light-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-320-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-320-light.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-390-dark-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-390-dark-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-390-dark.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-390-light-friends.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-390-light-wishes.png",
+    "?? docs/review/watercolor-2026-09-27/home-th-390-light.png",
+    "?? docs/review/watercolor-2026-09-27/mali-en-320-balance.png",
+    "?? docs/review/watercolor-2026-09-27/mali-th-320-balance.png",
+    "?? docs/review/watercolor-2026-09-27/menu-dark-before-seal-fix.png",
+    "?? docs/review/watercolor-2026-09-27/menu-en-390-dark.png",
+    "?? docs/review/watercolor-2026-09-27/render-check.mjs",
+    "?? docs/review/watercolor-2026-09-27/render-observations.json",
+    "?? docs/review/watercolor-2026-09-27/wishes-en-1440-dark.png",
+    "?? docs/review/watercolor-2026-09-27/wishes-en-1440-light.png",
+    "?? docs/review/watercolor-2026-09-27/wishes-en-390-dark.png",
+    "?? docs/review/watercolor-2026-09-27/wishes-en-390-light.png",
+    "?? docs/superpowers/plans/2026-09-27-watercolor-canvas.md",
+    "?? src/assets/watercolor/brush-soft.jpg",
+    "?? src/assets/watercolor/brush-soft.webp",
+    "?? src/assets/watercolor/brush-upright.jpg",
+    "?? src/assets/watercolor/brush-upright.webp",
+    "?? src/assets/watercolor/brush-wide.jpg",
+    "?? src/assets/watercolor/brush-wide.webp",
+    "?? src/assets/watercolor/canvas-paper.png",
+    "?? src/assets/watercolor/canvas-paper.webp",
+    "?? src/assets/watercolor/ducks.png",
+    "?? src/assets/watercolor/meerkats.png",
+    "?? src/assets/watercolor/nine-tailed-fox.png",
+    "?? src/assets/watercolor/shop-sign-hero.png",
+    "?? src/assets/watercolor/shop-sign-source.png",
+    "?? src/assets/watercolor/wishing-corner.png",
+    "?? src/components/pages/ActivitiesPage.astro",
+    "?? src/components/pages/AnimalsPage.astro",
+    "?? src/components/pages/HomePage.astro",
+    "?? src/components/pages/MenuPage.astro",
+    "?? src/components/pages/VisitPage.astro",
+    "?? src/components/site/WatercolorAnimal.astro",
+    "?? src/components/site/WishingCorner.astro",
+    "?? src/lib/i18n/activities.ts",
+    "?? src/lib/i18n/locale.ts",
+    "?? src/lib/i18n/menu.ts",
+    "?? src/lib/i18n/venue.ts",
+    "?? src/pages/en/activities.astro",
+    "?? src/pages/en/animals.astro",
+    "?? src/pages/en/index.astro",
+    "?? src/pages/en/menu.astro",
+    "?? src/pages/en/visit.astro",
+    "?? src/styles/watercolor.css",
+    "?? tests/e2e/locale.spec.ts",
+    "?? tests/e2e/theme.spec.ts",
+    "?? tests/e2e/watercolor.spec.ts",
+    "?? tests/unit/locale.test.ts"
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "7d9f7515b5188147e0e54f001d5bdafe65e4becffe7d79b7b7326b43e4e6cdae"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "d54979353b78644b629df543990b18d51a73510239fffcc946daa4970fa3224c"
+    },
+    {
+      "path": "Gemini_Generated_Image_9b1wrs9b1wrs9b1w.jpg",
+      "sha256": "06780607b98161630f2e44d574ed6c1e511245a9cfe166cb068890f8ba65bc4b"
+    },
+    {
+      "path": "Gemini_Generated_Image_m61o5qm61o5qm61o.jpg",
+      "sha256": "732b33a66db19de1c6a436b2812bf016552f87117db3b31b12f9f16362bcca89"
+    },
+    {
+      "path": "Gemini_Generated_Image_t7rvlft7rvlft7rv.jpg",
+      "sha256": "50f87f2d48c46b831f18b03a01dfd7990f03a5260a303a3058fe16e10c6a99a1"
+    },
+    {
+      "path": "Gemini_Generated_Image_y8pasty8pasty8pa.jpg",
+      "sha256": "3a8647a4f0233f69d44c8cc161be28ae08b992db724452ceceb4805e3f4192b9"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1dd630d69f00d8ab7fd1175f626a9421814afe43399d9318e3d3c5b5d513241c"
+    },
+    {
+      "path": "START-HERE.txt",
+      "sha256": "5e19297829ddc6af79f3402254b187642ad0bbc50c41908a1825c8b176b309e5"
+    },
+    {
+      "path": "astro.config.mjs",
+      "sha256": "287db1dc18041513baf08db724f0fc5516c2f2e8bfda34e63022ebd28460e7a8"
+    },
+    {
+      "path": "bun.lock",
+      "sha256": "f65f95aaf36578da74321fa137244e94cba3c826782c8891cfe206d83657ba8e"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-1440-dark-wishes.png",
+      "sha256": "19161f7a492fdab8209a820e77152ccdb206358d1be464ac629593d629cb9cf0"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-1440-dark.png",
+      "sha256": "b2a9bca415122355e121eeef10b49dd710289596f99d7d82ababaa800bf04e1c"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-1440-light-wishes.png",
+      "sha256": "7c276255e1831cb0d72e7915f0c6a4c03baea5149b28baa9d1940d7f5145dd52"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-1440-light.png",
+      "sha256": "4501175edec98e9cd10edbba0be69685b5e3f62985603379f383400298ff9d39"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-320-dark-wishes.png",
+      "sha256": "c5276e9d205f8d07bad717cb8d33b5eea6d993e1e5248560cf74dcdf0dd42469"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-320-dark.png",
+      "sha256": "37eaa4882de3bdb5fe37596cf0525bedaad41e4946a386f3ce525565e5fcbb1d"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-320-light-wishes.png",
+      "sha256": "86011359472f3a5a32703eb04aa7b23137ae0d9e9be4199782559f87fdb247e3"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-320-light.png",
+      "sha256": "f9ac4abd684c9d1b3a13ea9d2987372db913df34f72b7ffeba47fd8297cb9b50"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-390-dark-wishes.png",
+      "sha256": "92d24610fd7f656535893bf01954591cecfbbc82a5ccdc5192dd7cbf3322d0ea"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-390-dark.png",
+      "sha256": "fb0cf12e6e5369059f67a772a743a150ea24a5f76d617b16e8dc99fb0a59966c"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-390-light-wishes.png",
+      "sha256": "9565976d158bd7036db07f8915ef936ad808dd0cd02d0f3f34f0dff2b24965bc"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-en-390-light.png",
+      "sha256": "bc6ae1f8a4dfb2ab5de3b3b4375571ef071258de4714c1b9d749dfd96edc1075"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-1440-dark-wishes.png",
+      "sha256": "14f08842f30ac5389d75f640202f757991b3889b4421387a1c2fd967eecbcc66"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-1440-dark.png",
+      "sha256": "dfb70d1918ea6810adc7f9ca2b66fa7972401132c800e86eaad7aff6446e3c21"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-1440-light-wishes.png",
+      "sha256": "ef44bd943dcc414a0c6b065b937215633325e087ef85b6b321f9b043bc60e9e3"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-1440-light.png",
+      "sha256": "32f49402443ecd432c43dcbc738cce09cb24844b83f794e53bdd1480c04bd504"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-320-dark-wishes.png",
+      "sha256": "c8121654362cb818a294d37416237ce5ca6a912f646340edc7c4ad0796eb4b56"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-320-dark.png",
+      "sha256": "ab27f5e87f2b982e7a259db04f2104fbe43a08537561fba987fe5803fd83337e"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-320-light-wishes.png",
+      "sha256": "95c7c029d450979091f962c833de49aa36b1103788124897bedd1ef1891fecf2"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-320-light.png",
+      "sha256": "14bef9c837307416ab1ded37290ea7e0dceb1a7295c38870a40e81a1a46e9cb1"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-390-dark-wishes.png",
+      "sha256": "931dc419bd85ee3d13d8500409c61ad1b8180136a21000714979c26fc867132b"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-390-dark.png",
+      "sha256": "4f51984c4e7e291a7182438fcbcb3af693d4efe882868893624f7adfe41996bb"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-390-light-wishes.png",
+      "sha256": "ccef386a6864f329870e0f548ffebefbd182f8c98c6e0af27b391bfce98ec7d5"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/activities-th-390-light.png",
+      "sha256": "32442546e704acad9eda281e441ce1aa88d7222a1a9b0abcb092d1bfcc0bb356"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/affected-final.log",
+      "sha256": "b9b3a47901dbce8511b43f56abd9885e4141c7912db9a2d21b9946f30844bde9"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/asset-notes.md",
+      "sha256": "21eaf80f09ae19572d97d4707400ef81451cd19df1b4958d53e18dada4cc815c"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/build.log",
+      "sha256": "2703277197637821f025982c15a71c17a1a6a6289edc4609c20bef31d711b43c"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/check.log",
+      "sha256": "e1347e10fa3b87110e30ebb2ab837c6403e78f52eaea44ae40d1670aac9320a0"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/e2e.log",
+      "sha256": "6555bb5028287c8f484b1b0b803d41afaab5bf3103029d7f54b9f0c2164822fa"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-en-1440-dark.png",
+      "sha256": "6dbf76dc3bc20115b8a4c37a86ca3de7a5c9cf62fa661310cd12a13354f76f6b"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-en-1440-light.png",
+      "sha256": "2cf438e55b6b260052534481b7d8b3f0d2e2304fda1805083e1232e3bfcb411e"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-en-320-dark.png",
+      "sha256": "a4d1dfc5e3c7b1b51099c5d7e78c26120f89180d4daabb9dd164b7f1ab0d8409"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-en-320-light.png",
+      "sha256": "d5ee3ab0d15402517f96f73c950f78f1c8620e68ce07baa0131561630070a3cd"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-en-390-dark.png",
+      "sha256": "9d442133794cf96da5c22b950902332197a51023bea16bced7bcb0e28760c0c4"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-en-390-light.png",
+      "sha256": "b5f051502cb78a7db65bbeafc942c55fdf1851391ad267c17c6ed8d8adc5afbe"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-th-1440-dark.png",
+      "sha256": "c46d18cc5c5948d38aaf043e467194b83f5773c2ac79128e04931beacfed0723"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-th-1440-light.png",
+      "sha256": "459ebb35b4b6e6907f9caffa782d3ed8e20770747ae57a77467a2f67d338fd4d"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-th-320-dark.png",
+      "sha256": "28c7bc62eb247a4e25ccfae68b71600ccec347d39390d4a1288c715f8a895a02"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-th-320-light.png",
+      "sha256": "da80943ca50096ad91a70ba4a1bb0bb50ab75d70d67cb37e554a38f3aff504d2"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-th-390-dark.png",
+      "sha256": "851c15bb0e99e9a9fbc48667bc0aeb72bcba6979efa19fce7aa9811709031444"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/hero-th-390-light.png",
+      "sha256": "9d12d1243271813db727a2c7fda34cd99b4f08c4bed98c41ff50ee20b228e766"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-1440-dark-friends.png",
+      "sha256": "e90ed9d27719e1e317cc40a95a570494c4ffa9e1f11b59a350d716c134d91a0f"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-1440-dark-wishes.png",
+      "sha256": "6376a613972ab39a09aa6c129414449cfa2c82a58133cb944acc3448adf11f04"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-1440-dark.png",
+      "sha256": "c66a57ea4b469fb68908ae324d00fcbfdad7598bf009d027fecdbbed716c02bf"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-1440-light-friends.png",
+      "sha256": "7de3a766cef5568306fcb9aedf9052b4edf21364717aac1fd43a825628c9df7f"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-1440-light-wishes.png",
+      "sha256": "6d528b2f873f2be10c7cfec96566122a5e18d08d275870ac8ead092168deac67"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-1440-light.png",
+      "sha256": "1de8e7be7a8bd2531dc174e01ea99a486c271432aa4fb4a70af5e1327e98bd17"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-320-dark-friends.png",
+      "sha256": "f3ff833366685226fd412a11e9ec181b3cf64f22b6208a8e7957c7c37cd94574"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-320-dark-wishes.png",
+      "sha256": "348febf6818d9a9fd3220da32a0da53381248d39dcfb37809be509a44a2fe2db"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-320-dark.png",
+      "sha256": "751c831daf602bcbf81432aeb69259bcca18ad24682955b34c9c079ef8c20ebd"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-320-light-friends.png",
+      "sha256": "902fefdee3ce3592d85163a2f7bf89a17a68afa4845bab68cf36ca7bb19b8ecf"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-320-light-wishes.png",
+      "sha256": "3ff9f31535674f61c0ea7a899b291e64f69800977c4d5d2c5447a2ffe81a37b5"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-320-light.png",
+      "sha256": "bcc1d7dce327f72822afa60ab41a5db7d35392537e34a95f008952cb157d8f56"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-390-dark-friends.png",
+      "sha256": "6c422824b475baabdd385e5ef9fdad47259c40488a3c6e6bd880017bea4666cf"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-390-dark-wishes.png",
+      "sha256": "7aa5bd24ea4513eda29dc66a1531540c1f6f24379c4119f23accc854963d812d"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-390-dark.png",
+      "sha256": "1c177ca7443cf8ec0d3aecea309fcd4c0a56404db323a44e955d703774d87ba6"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-390-light-friends.png",
+      "sha256": "c9d5b6100db556820680f48986cf00a996ec7d4e932076ea77ac60b0ca490099"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-390-light-wishes.png",
+      "sha256": "5f8ab866e4a1164c91347dee427d7a6f2f34b1fa81f4602e93b480e8006647cf"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-en-390-light.png",
+      "sha256": "c573ee44a88e0848aa8d00f6fc1edd67be91c1bdf2daf5459d05cc12ec4ffc41"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-1440-dark-friends.png",
+      "sha256": "b68be50cefc6ac0a04ac8bd98220fe5da1c52edb6dd11e6a76e95376ed0f1a47"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-1440-dark-wishes.png",
+      "sha256": "4cb9f65c5adf52f628dcf36c83ac9fa8eb10a8bd0380b03b9f94193d0c02dd34"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-1440-dark.png",
+      "sha256": "3880862ce037c4c683036b7fe92c0f4963df3054d8398ff970fa053e11683b72"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-1440-light-friends.png",
+      "sha256": "4dceb2caecf3435822865440ee7c8a752f8fb84381d29d5f48d3a2cfd80efc5e"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-1440-light-wishes.png",
+      "sha256": "5ddd52fd1c8098ce979e47860b60dfcf3b8ce82ca69af33bb57e1d00a3803393"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-1440-light.png",
+      "sha256": "1b7a51703667b05706a77a9fb74eecaab8381d5ab41414fd9abd944b2f4b44d6"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-320-dark-friends.png",
+      "sha256": "65364cb38acad74e22267b272a32f35b6e9ab9c516eaefa45d59696f41d10cf8"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-320-dark-wishes.png",
+      "sha256": "2b4b200826e2c0ff629e074aa9195f70c4a8520fc4f11585a5425a52b131e566"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-320-dark.png",
+      "sha256": "7f2e884800cf31860fe3e0c4ef3e895a52c9545ea51a76e2f4043bf079a3a145"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-320-light-friends.png",
+      "sha256": "3a9799fd6e769b376f0307f6c6d6c22eb7ddf9334baced3fdbbda602288ce067"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-320-light-wishes.png",
+      "sha256": "20d95e28af37aecbf7722eaae02e756cbe47c6ae736dc169bb0744c75d255129"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-320-light.png",
+      "sha256": "8cd4c5aed7319e80af8ab2203136153ff069e0c71b7eca9f4222a54785e9f254"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-390-dark-friends.png",
+      "sha256": "13bf23bf41c340a78f780aae6c583e29657bc88b5b14efda6b226059b235a235"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-390-dark-wishes.png",
+      "sha256": "d6468a9850b677dbd72b03691145c21ef74bbec95922e9dd68ca579cc96b054a"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-390-dark.png",
+      "sha256": "0a9c4c9dede62e182f2fa0cd06f7796f517bf2ac773e9d93c92e99712b40eca1"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-390-light-friends.png",
+      "sha256": "98df2de15a7aae6ba70f6bb42d60b061a7476a58e1c90eabedb35bb802f5fbe9"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-390-light-wishes.png",
+      "sha256": "da1df5adce572818c516ec7126e0c260e3a79405fac9b674ffe9b0296bc4fdcb"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/home-th-390-light.png",
+      "sha256": "db2d1b951f5df5932e4b1750bc16c3a8b3adddb9e6854baf47e116ed60383f22"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/menu-en-390-dark.png",
+      "sha256": "632f46beee7cee819eebab35a992da8167ad940f1a21c2476914c9b12a4b206d"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/render-check.mjs",
+      "sha256": "58ffd4031deea7d1ade2182e74ae2ccc14befb19fc17e6191f3c41df61271891"
+    },
+    {
+      "path": "docs/review/watercolor-2026-09-27/render-observations.json",
+      "sha256": "b9b8193c9eca08159eb90f9a0d18097e191e697732c4c6095e034e27e4c33eb0"
+    },
+    {
+      "path": "logo.jpg",
+      "sha256": "b9c05f678f815ae0e695d1fea62d772dc0b7fe5c9537e6fa6430a434e12c17f0"
+    },
+    {
+      "path": "package.json",
+      "sha256": "457cd84ef629e3a8dfa7328df1bf4b6cd70bbe4dcb8835b7dd20b3bc7635b684"
+    },
+    {
+      "path": "playwright.config.ts",
+      "sha256": "0b8e82efc65940593e861ee22d867318e82036617eabdd9704e7b31015171211"
+    },
+    {
+      "path": "public/.assetsignore",
+      "sha256": "24936f52d53ec14b114e9c4494f0ac06a642df12b0ade2a8a673525acdab11d9"
+    },
+    {
+      "path": "scripts/prepare-assets.ts",
+      "sha256": "b4b23076c6404ad0f45e5b93070e51b09d672222c71e23a3df525da1dba15262"
+    },
+    {
+      "path": "scripts/verify-content.ts",
+      "sha256": "02d09ccf6ddcb09149b7d5dbe7405d28fc50f454c275fb234f2b2f4f0bf1ed5e"
+    },
+    {
+      "path": "src/assets/decor/bird.jpg",
+      "sha256": "abff50bb566f0f7ebdfcfd5a7f1f87849308bab3539d0c352f2a29fc435cc4ba"
+    },
+    {
+      "path": "src/assets/decor/cat.jpg",
+      "sha256": "509f37228d73773ed3f0652110410127479c817ba9eaa7a1cd7f6e8bdddc5d83"
+    },
+    {
+      "path": "src/assets/decor/fox.jpg",
+      "sha256": "c38e44752f94b49aebf55713749d6491f2d0b526928c300ba94660d6d1c81cfe"
+    },
+    {
+      "path": "src/assets/decor/goat.jpg",
+      "sha256": "bdcdf36f699f090fe327820080fe5237a319d84557d1cbaf9c46d5a9d91dd91c"
+    },
+    {
+      "path": "src/assets/decor/meerkat.jpg",
+      "sha256": "b32d6719bd84a9bb83a733c5a0da10db4c89407c0990088cf2f7f30dcebda873"
+    },
+    {
+      "path": "src/assets/decor/pomeranian.jpg",
+      "sha256": "b40dc85e3860f1b1bdb8e81f8f2928a77aeb30981580f3cf306a9d446d2082c0"
+    },
+    {
+      "path": "src/assets/decor/rabbit.jpg",
+      "sha256": "e3d3f3d6fa634559faa580c80e3feda30ae2675f550f18318faf680cfd7c26a9"
+    },
+    {
+      "path": "src/assets/food-menu/page-04.jpg",
+      "sha256": "8900431a0c68adaa94378ac453738f02654ee25ac4f2a5623014c56cc9c83641"
+    },
+    {
+      "path": "src/assets/food-menu/page-05.jpg",
+      "sha256": "ec1b46ed6a979ad59c4e12282d422d1de9045dae716ea3083b5dac81786c5bc9"
+    },
+    {
+      "path": "src/assets/food-menu/page-06.jpg",
+      "sha256": "c15837d5ddda881dac83f9093807ea1be84d9378a1a170099923771615b8873a"
+    },
+    {
+      "path": "src/assets/food-menu/page-07.jpg",
+      "sha256": "9db46f0ea1764af5867ae2ca5e90a2528c512180bdf2b6d43f76bbc77fe54cf6"
+    },
+    {
+      "path": "src/assets/food-menu/page-08.jpg",
+      "sha256": "fc8f653d8e918c5835371e67fd55751fea9108dfddf5b380cdbbb3056556e4f5"
+    },
+    {
+      "path": "src/assets/food-menu/page-09.jpg",
+      "sha256": "81ecf0c195d22b8c12b1e0e76160aa5f407c329974cb44a660c447015a4c8b7b"
+    },
+    {
+      "path": "src/assets/food-menu/page-10.jpg",
+      "sha256": "d2ba7abd8f4499bd549c39183e39cf19ad57ee62a9f267c8308fa40b914f652e"
+    },
+    {
+      "path": "src/assets/food-menu/page-11.jpg",
+      "sha256": "21b22e57f5157c3bdcec68b691f4f04e1e990126b18510eaf5946156d44554da"
+    },
+    {
+      "path": "src/assets/food-menu/page-12.jpg",
+      "sha256": "097bf58afe976ebe36004a0c58dbe3cd8ecfdb2d8f75d595e34c4b32f453ea06"
+    },
+    {
+      "path": "src/assets/food-menu/page-13.jpg",
+      "sha256": "00f013c0587b1e199e9d141674db046e86a7c2792af408018ee2bc23a8da77a9"
+    },
+    {
+      "path": "src/assets/food-menu/page-14.jpg",
+      "sha256": "aa7bc4b1302cf2bec95bd54f2ac17e15d4acf0fc0988b06ab94ddaf3c16452f9"
+    },
+    {
+      "path": "src/assets/food-menu/page-15.jpg",
+      "sha256": "73fd4dd06e95dd0bc4d8cb983f9e5fb4719311eb22432035df3813214a045779"
+    },
+    {
+      "path": "src/assets/food-menu/page-16.jpg",
+      "sha256": "4c2cc51ddf0e8ed93fbd88383eda9795a7a76f972c4616b3df54e6af5200b715"
+    },
+    {
+      "path": "src/assets/food-menu/page-17.jpg",
+      "sha256": "140b0048c93d32c7d54d62b7b2e35c9accc03bf7ed87bdaa1fff4b1f6f4a795b"
+    },
+    {
+      "path": "src/assets/food-menu/page-18.jpg",
+      "sha256": "bd5bcb998fb7dbec1fcd97404de2fb8f1fd735085f7c793423a01cc02d74cce1"
+    },
+    {
+      "path": "src/assets/food-menu/page-19.jpg",
+      "sha256": "b576e87ad4fdad5ad7acdef5b34055bef2f12093888bf04c53d8a50ca20c0651"
+    },
+    {
+      "path": "src/assets/food-menu/page-20.jpg",
+      "sha256": "3e5211c24f07a96b9001a41e2019f0d2e831e469d8c702052f9422458854d769"
+    },
+    {
+      "path": "src/assets/food-menu/page-21.jpg",
+      "sha256": "f477fdc95eab4cec861a20d346471fa074d972c419370af14961bbf47dac90ad"
+    },
+    {
+      "path": "src/assets/food-menu/page-22.jpg",
+      "sha256": "3db5b2776ac68bb42c311df6a4cecd90d01da41f02efdad35145f76589f1c989"
+    },
+    {
+      "path": "src/assets/food-menu/page-23.jpg",
+      "sha256": "f786a56a20ab3b3aba873521b97f05acbc7d37533ba24034013800fbb344f5d6"
+    },
+    {
+      "path": "src/assets/menu/mood-dessert.jpg",
+      "sha256": "113792c1e477373c3969d9c3c1fc1511f973e2de5cefc6d116bcfb48c3112c89"
+    },
+    {
+      "path": "src/assets/menu/mood-drink.jpg",
+      "sha256": "fab5bf80ceec35132a7c0c7a1cee89db92495a27edbddc695b1da0cc9df45d1f"
+    },
+    {
+      "path": "src/assets/menu/mood-food.jpg",
+      "sha256": "398028bb1b8a195ea201b7eb615153a95240fafac3c4ac15c4c0f69917cee532"
+    },
+    {
+      "path": "src/assets/menu/washi.jpg",
+      "sha256": "723c117a3c1cc07faf389184853550729ba17f04960739280708b3e9dc5395f4"
+    },
+    {
+      "path": "src/assets/site/cafe-garden-seating.png",
+      "sha256": "87c888aa42a2d50a242161e76c94166660aa06e9d6d626c8cc0dafa3fe39324c"
+    },
+    {
+      "path": "src/assets/site/cafe-interior-gallery.png",
+      "sha256": "ee92df5bc06fa26a454aa17ad1ac16b062ac7667d8843449eaa6b47c44b804b8"
+    },
+    {
+      "path": "src/assets/site/cat-portrait.png",
+      "sha256": "a3d17f95596e88d93a0220eca2475c3a6d6df683f2da12e196a55da0795fcabe"
+    },
+    {
+      "path": "src/assets/site/cats-and-dog.png",
+      "sha256": "cbde23578f80e79ab6095e63065f894b661df8188c2ecc39f4dc3f93f121b819"
+    },
+    {
+      "path": "src/assets/site/croissant.png",
+      "sha256": "689eb0dc8c2f30d7161efc161015bbd444f29f045ae9574673b96bbbdcbd00ce"
+    },
+    {
+      "path": "src/assets/site/drinks.png",
+      "sha256": "a81d28a86a79bc9379f08300bd021efa3f6215d31f3991536be28b1c61aa9944"
+    },
+    {
+      "path": "src/assets/site/ducks-pond.png",
+      "sha256": "bcf3e47652881e8104eb747560aaf456f275ce971ecd7e63d43fab5e7958d103"
+    },
+    {
+      "path": "src/assets/site/entrance-promo-banner.png",
+      "sha256": "a54aa3e35ce458774e665e68c8b6ddfe927bbd58cb6ec5041c8a4f087d17b6de"
+    },
+    {
+      "path": "src/assets/site/pond-promo-graphic.png",
+      "sha256": "64b7819fe48c299570be06625769302779086b819060e99cf2a47baa9b651a96"
+    },
+    {
+      "path": "src/assets/watercolor/brush-soft.jpg",
+      "sha256": "cae0a5b4823a33042054f8eab860ebf3624ff806c08fb6d2eab010e40107834d"
+    },
+    {
+      "path": "src/assets/watercolor/brush-soft.webp",
+      "sha256": "07d864095f506c7546d9f8e8e685e5e0785981a9bdf5436d1171e6d7fba9beaa"
+    },
+    {
+      "path": "src/assets/watercolor/brush-upright.jpg",
+      "sha256": "13c31db2ba8002bf56ab904d3cc4b3d396082700e72a2f7b4926a1b76a1cf54b"
+    },
+    {
+      "path": "src/assets/watercolor/brush-upright.webp",
+      "sha256": "9ed225ab6536810ce0b02735e52445c28e5cbf5ee4e053d2848115e0fc2b9afb"
+    },
+    {
+      "path": "src/assets/watercolor/brush-wide.jpg",
+      "sha256": "4b98f35ea86c2317e94264b15d04fec2b420402ff4934fb46d6033f162981609"
+    },
+    {
+      "path": "src/assets/watercolor/brush-wide.webp",
+      "sha256": "a2378f9a9a63599934b72ce98ef94711ff924a4a1473997e249d9f7a54a233fe"
+    },
+    {
+      "path": "src/assets/watercolor/canvas-paper.png",
+      "sha256": "5de7da90c24507c51e9179ec53c73662cb6c65e3118c31a4066eabdf643ea8c8"
+    },
+    {
+      "path": "src/assets/watercolor/canvas-paper.webp",
+      "sha256": "469a637b59ecbb9c8b38aef4b9abc1f3e04b4ce1abbda630ae3349977d5879a2"
+    },
+    {
+      "path": "src/assets/watercolor/ducks.png",
+      "sha256": "203e63a3c76650693cc99e575bc6fbbd696a34889c5d4bb2532dc70ee458d0c7"
+    },
+    {
+      "path": "src/assets/watercolor/meerkats.png",
+      "sha256": "ac01376d5f35b028ff5fe97c06a0b312516d908590bcdf6da183cfd8d913cb2d"
+    },
+    {
+      "path": "src/assets/watercolor/nine-tailed-fox.png",
+      "sha256": "c89660cf4b94836a71d8e68b1e82e3b53548191b55fbf2f27490e220d9ed2318"
+    },
+    {
+      "path": "src/assets/watercolor/shop-sign-hero.png",
+      "sha256": "363bce0e85242cc15484d0cc156580ac88758de23374dc6743c96a3375b1eeb7"
+    },
+    {
+      "path": "src/assets/watercolor/shop-sign-source.png",
+      "sha256": "2eb86a7608fc247481e5a97e728084465bd9a6c879a4c26311db6e963b221b41"
+    },
+    {
+      "path": "src/assets/watercolor/wishing-corner.png",
+      "sha256": "bd0e166cd60116e3bafd5746df4d5d25b8cfece1f4a7527d67a03a56389c7e66"
+    },
+    {
+      "path": "src/components/content/ContentUnavailable.astro",
+      "sha256": "266c6d23574cb5e19c969dd31fcdcc37c3045bd83f04b71b78859bcd8234bd4d"
+    },
+    {
+      "path": "src/components/content/Picture.astro",
+      "sha256": "992c22758602cb15be309e60cb706799cf0a828398c51533d5cf8e35d2fc4a53"
+    },
+    {
+      "path": "src/components/pages/ActivitiesPage.astro",
+      "sha256": "c97272567380335c255ddc8c333350a53e33d23e423c513921f70b8e6381cbf7"
+    },
+    {
+      "path": "src/components/pages/AnimalsPage.astro",
+      "sha256": "4a3e506fd688f598d99d4bd9216b7aa8ea5599140a84cbe3ae4d4a63990af71b"
+    },
+    {
+      "path": "src/components/pages/HomePage.astro",
+      "sha256": "74c1f7cafbafadc7bef328f7bc6c7bafc026a1521cabadb2c581512b596234ad"
+    },
+    {
+      "path": "src/components/pages/MenuPage.astro",
+      "sha256": "495d858dedc135fe097ace069706c8e508516208e1d6881acbc654e4a5c013d5"
+    },
+    {
+      "path": "src/components/pages/VisitPage.astro",
+      "sha256": "790860a3883d015d5c79b98ba714b4ad1b6ca74fbe4986d5b6d2ed302026db74"
+    },
+    {
+      "path": "src/components/seo/SeoHead.astro",
+      "sha256": "c90e07bff618ba61362ed90f14180fc53bd4b2e62efd92edbd72e410f702de53"
+    },
+    {
+      "path": "src/components/site/AnimalDoodle.astro",
+      "sha256": "b5d7dd4dedfa296dcc6834dc887c2b0bc8f3019bba186784525d6c70d318adac"
+    },
+    {
+      "path": "src/components/site/Footer.astro",
+      "sha256": "7a70b922fedc71467984da9eae1279b7431fc5d11f4bbcf7b11c15287dc5286d"
+    },
+    {
+      "path": "src/components/site/FoxSeal.astro",
+      "sha256": "e2d72a025c358eed961f82ef0c60a5ea668baeaccca1a5729e815be8289db186"
+    },
+    {
+      "path": "src/components/site/Header.astro",
+      "sha256": "0af81a77820d2afeea4463dfed339db01e829a9d8beefe639b2d282fd8a193ab"
+    },
+    {
+      "path": "src/components/site/WatercolorAnimal.astro",
+      "sha256": "328b017ba850707de60b722a1f10cc612db289b55d233d20bd12307f1b3bcf9c"
+    },
+    {
+      "path": "src/components/site/WishingCorner.astro",
+      "sha256": "5eacbb0ee33b015cf75da09c5ac7f0140ad9187ac162a4dabaed47d1a6a5f2c9"
+    },
+    {
+      "path": "src/layouts/SiteLayout.astro",
+      "sha256": "f94eb1ec61e312e34b3333bd899e438723d935b9be2c64e3ded3238824d5eda8"
+    },
+    {
+      "path": "src/lib/business/contact.ts",
+      "sha256": "105a82246f6d5c1d57c4d7ea7d4fe426f5f79cb3916bd20e26cc47bbc8335558"
+    },
+    {
+      "path": "src/lib/business/evidence.ts",
+      "sha256": "8560c812120f178106c070e7b10417202f818a25c87bcc6708956bd00cb4902c"
+    },
+    {
+      "path": "src/lib/business/format-hours.ts",
+      "sha256": "c160ee22569022ed1df67d80e81b92c711a01282d9e02f796ecb54a1911256d5"
+    },
+    {
+      "path": "src/lib/business/links.ts",
+      "sha256": "08131a3bad406e57a822c50db1358b3492dbf8dc9dfbef1d46e3249ad5f9fac2"
+    },
+    {
+      "path": "src/lib/content/activities-catalog.ts",
+      "sha256": "19e7eef4e51b68a183d3c73a978d0a6e221c769d694dc0edc52544d9f7465448"
+    },
+    {
+      "path": "src/lib/content/cms-gateway.ts",
+      "sha256": "43076e20708622f44b4a59c90a4ce109157c1a12a546d1e91111007f5366afa0"
+    },
+    {
+      "path": "src/lib/content/create-gateway.ts",
+      "sha256": "bec1151ce19f46626b0b7c9f030a943a30227c4932c57b63cdb3145e1da2b3b4"
+    },
+    {
+      "path": "src/lib/content/decor.ts",
+      "sha256": "666d555dc391a5eb7e0d2bd090789e4c4fc64b64fce7856e7e153a94131d8b80"
+    },
+    {
+      "path": "src/lib/content/errors.ts",
+      "sha256": "aef0cb61beefc1a832cd5215895c021b8d026b72c5b500f75d01a61e2926cb68"
+    },
+    {
+      "path": "src/lib/content/fetch-with-timeout.ts",
+      "sha256": "3fada9acf938302f723329c6017ab7fd9f3cdd673b4252fc58d70a048fc6ad5d"
+    },
+    {
+      "path": "src/lib/content/fixture-data.ts",
+      "sha256": "de80578ba00f8be53733f088bc1ce02094159b122e1893297a3e51881add4ff1"
+    },
+    {
+      "path": "src/lib/content/fixture-gateway.ts",
+      "sha256": "282d98bfb1cf5972f91de214b3882c40673dc66a51b2d9ef524e1e556575a816"
+    },
+    {
+      "path": "src/lib/content/load-page.ts",
+      "sha256": "9518f679e45c642d05ef4167e5adb2224375cf49a7699811b3a61681bbca7228"
+    },
+    {
+      "path": "src/lib/content/local-images.ts",
+      "sha256": "ed136d863a0cb0f3eb18bf92dd41d030ff44e0df940f7288296897fd066eb72e"
+    },
+    {
+      "path": "src/lib/content/markdown.ts",
+      "sha256": "7d1dbdbda750bb992d1683a19357b4e7c23118529ed0cfb0975f13849349518a"
+    },
+    {
+      "path": "src/lib/content/menu-catalog.ts",
+      "sha256": "9757d6d173dcf130440d11a29f763723e896279049bc8a1240ff92942ad01808"
+    },
+    {
+      "path": "src/lib/content/posts.ts",
+      "sha256": "b3c2798ff995313964893ae7c2b60b02db978600149e331efd9d21d7e02ea479"
+    },
+    {
+      "path": "src/lib/content/runtime-config.ts",
+      "sha256": "3f013fe78c7dc4b01376acaf954037f997f11f3a8ff142d5b180c16c144fdf47"
+    },
+    {
+      "path": "src/lib/i18n/activities.ts",
+      "sha256": "43936b22e5c267c70f2dcf54eef87029373c4d35559460c7f214dee1c1ef7c21"
+    },
+    {
+      "path": "src/lib/i18n/locale.ts",
+      "sha256": "17d97745bc04e5a2397905ae19b69f2bb2b7fa56eb25d76437b5a45b77a4cf15"
+    },
+    {
+      "path": "src/lib/i18n/menu.ts",
+      "sha256": "3233711804b1f570672e9a17196463578fc0e458f73ceac0f85374fb18f98999"
+    },
+    {
+      "path": "src/lib/i18n/venue.ts",
+      "sha256": "06523a694b84d44db175f0819fe23f3cbb452588372f1b91e01ecf073f4d024b"
+    },
+    {
+      "path": "src/lib/seo/metadata.ts",
+      "sha256": "a31b1a925cc013c8ca6bb2adf1c07c67a090219c21ea937a4de07212c128c795"
+    },
+    {
+      "path": "src/middleware.ts",
+      "sha256": "9f52d8b23b82c4ae7888f75ab04c79110896c692c32317b409ec66924b034b5e"
+    },
+    {
+      "path": "src/pages/404.astro",
+      "sha256": "ee58bfcfef37ff4e3f1cc4b88aa249d8fcea56a9042cf30705069d034ade69be"
+    },
+    {
+      "path": "src/pages/activities.astro",
+      "sha256": "8d00eaa8e3b28cf30f85233a45f482c4366645cb00b3a047dbd749513fab66e3"
+    },
+    {
+      "path": "src/pages/animals.astro",
+      "sha256": "69ba80c32b7277bb5e63a45a0f09d38dc38c20573dc74c8ac442c1cd3d560e2d"
+    },
+    {
+      "path": "src/pages/en/activities.astro",
+      "sha256": "3dc7b63a85e5da793d5af0ebb040fa12950826075052ad9c2553d72c36bf96b7"
+    },
+    {
+      "path": "src/pages/en/animals.astro",
+      "sha256": "c5944eaceb9347188b42f48cef9fbc193b20bb58ffd04c2f71a9c1a0ade90bba"
+    },
+    {
+      "path": "src/pages/en/index.astro",
+      "sha256": "5c659a74ed0c5412a607beb75c0fabcc944ef14b41ec1ab225d8b2025bbe59d6"
+    },
+    {
+      "path": "src/pages/en/menu.astro",
+      "sha256": "ddd978007525b2a18603382f1ed798db0704b3ecda619c3b47e3e97a41d09b77"
+    },
+    {
+      "path": "src/pages/en/visit.astro",
+      "sha256": "94b80797ac51667742ad9790a8ad2e5b561575d92e78c733b7225d57c8ad1383"
+    },
+    {
+      "path": "src/pages/font-preview.astro",
+      "sha256": "e0da2d9c71841654933d47bf542c386a3f77adc2a7ae44f638719bcb0538fef3"
+    },
+    {
+      "path": "src/pages/index.astro",
+      "sha256": "31fe4186691651f4fc25219ce1e595f36e6257fcde258e9dd4b749039fefc8f8"
+    },
+    {
+      "path": "src/pages/menu.astro",
+      "sha256": "d6ef41cc2c345155283624ec9a0415010a264658e81a6b0b50a72d33d3b3eff7"
+    },
+    {
+      "path": "src/pages/news/[slug].astro",
+      "sha256": "cc07d59e4878e354d74aeca9ee1e46d8933d1ce81af83aa0ccfa9061c6cdc91c"
+    },
+    {
+      "path": "src/pages/news/index.astro",
+      "sha256": "3395c2e8334f2faa3818b2c32d8bd83bf1cafcad354d4f6fcde9291e89f0f829"
+    },
+    {
+      "path": "src/pages/robots.txt.ts",
+      "sha256": "1d8ecfc415305f328409539030d3416e165e48579775550f2dc9640729cdec9b"
+    },
+    {
+      "path": "src/pages/sitemap.xml.ts",
+      "sha256": "b6fa0cbd6f61dfa12829695ebc45e1d927f0cc1bc24c16f985715a21c6e9ece6"
+    },
+    {
+      "path": "src/pages/visit.astro",
+      "sha256": "e7cd73999efaec6faf1761a8487ad214484f9b93144eaac3a91bbaa6d0a33fd7"
+    },
+    {
+      "path": "src/styles/activities.css",
+      "sha256": "246d968dfb223a8f9acc372f066bba9c54bd2ea2e4f2ea225c1f013dbe6f28e0"
+    },
+    {
+      "path": "src/styles/cafe-home.css",
+      "sha256": "4bd2057dbc93099435537b0bcf6a764899bf8ceb94244eb05d3e2b1a74bf1230"
+    },
+    {
+      "path": "src/styles/font-preview.css",
+      "sha256": "5d94d28d8b7aa0a5c65ddbb170279952344f0dc2c891ece07cda11a66ca3a031"
+    },
+    {
+      "path": "src/styles/garden.css",
+      "sha256": "11de4ad8c4f14a85bab46957983f7ff88450ed71de07b97ba3c08b55f0e80410"
+    },
+    {
+      "path": "src/styles/global.css",
+      "sha256": "53a7af03bc6546df981c4968b2315bfae7ead6871a94edde35d7084862b4d8cb"
+    },
+    {
+      "path": "src/styles/menu-catalog.css",
+      "sha256": "351185f060fbdef89667243bb23a9a6a1827100ffd3f76e22d2c346ba80ae6a0"
+    },
+    {
+      "path": "src/styles/tokens.css",
+      "sha256": "5a2be6584eb184ba3dad8a0e720066a1cfe304e2766a21d600e40c1344c7430a"
+    },
+    {
+      "path": "src/styles/watercolor.css",
+      "sha256": "7edfaded64b41cc2e1c083a836f1a62c7a91dc4c861c9f5d3ad5d8b890f908c9"
+    },
+    {
+      "path": "tests/e2e/locale.spec.ts",
+      "sha256": "05da50cebd0f2692b0c314d35607e359c3f52e660150770abc50b08a42787fab"
+    },
+    {
+      "path": "tests/e2e/menu.spec.ts",
+      "sha256": "2bfeb0a5420a61a28e9dffd5772652f07edc5602ac2e8173131a7cbb365590cb"
+    },
+    {
+      "path": "tests/e2e/navigation.spec.ts",
+      "sha256": "0f975d0227f9d037a492f01d0717dfbac95af31917e42648736e5102810ea871"
+    },
+    {
+      "path": "tests/e2e/seo.spec.ts",
+      "sha256": "9a335a7768edfa5ceb279cbbd1687b4d96e423f279037966a183df4d2bc5e1a5"
+    },
+    {
+      "path": "tests/e2e/theme.spec.ts",
+      "sha256": "84f59451dc2f495ce580914def488fff38eada794ff8f2ca8a14a43078b9f68b"
+    },
+    {
+      "path": "tests/e2e/visit.spec.ts",
+      "sha256": "d07b8fd6ab5de71479fee8cf277944c3f29a9c8d68f711de34b58f2e951c2fb8"
+    },
+    {
+      "path": "tests/e2e/watercolor.spec.ts",
+      "sha256": "1cb7948f63e5cd7f0c2b5e112160003b167e1c0fe2c91f51cc0a9f7ee767b07a"
+    },
+    {
+      "path": "tests/unit/business.test.ts",
+      "sha256": "01f89c8b733623a34606ce37b5e09bf95a21060cd414fdcc9d908618fdc7e802"
+    },
+    {
+      "path": "tests/unit/content-gateway.test.ts",
+      "sha256": "42a1ef18bcc90956926e6a6d0f97dbe0c1a0c188f05c516dbdbc938675b1bd40"
+    },
+    {
+      "path": "tests/unit/locale.test.ts",
+      "sha256": "0ec6c3579b57e8b2b0b38d6bbe7082332aae2e195472b6f31472053dafcd331e"
+    },
+    {
+      "path": "tests/unit/menu.test.ts",
+      "sha256": "e491e8491348e4bc61d8afbfcb81fa48f4d24c737656f777e87d4cbb0225be2f"
+    },
+    {
+      "path": "tests/unit/seo.test.ts",
+      "sha256": "1e2cc6e3a37f0eb6995be5be66ab0ef254ab6c4e56db4a633f0df7463b230a18"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "5a1b06489f46f4966e1dce2768b971d2004763cba05ce41a9adee5d09e45c5ba"
+    },
+    {
+      "path": "wrangler.jsonc",
+      "sha256": "bd38210d464ba6512f2d8b83a58526c814e66f51f885ffb0d8eab8a4e20cf59a"
+    }
+  ]
+}

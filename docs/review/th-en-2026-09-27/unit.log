@@ -1,0 +1,39 @@
+$ bun test tests/unit
+bun test v1.3.14 (0d9b296a)
+
+tests\unit\business.test.ts:
+(pass) tiered admission is not converted into a universal free admission price [0.08ms]
+(pass) the user selected both phones without inferring coordinates from Maps access [0.22ms]
+(pass) checked dates alone do not mark claims verified [0.54ms]
+
+tests\unit\content-gateway.test.ts:
+(pass) production cannot silently use fixtures [0.98ms]
+(pass) CMS mode requires an explicit origin [0.04ms]
+(pass) timeout is not treated as an empty list [3.89ms]
+(pass) production hides demo posts [0.14ms]
+
+tests\unit\locale.test.ts:
+(pass) all 47 English dishes retain source prices, every variant and provenance [0.65ms]
+(pass) English activities preserve all pass, food and promotional amounts [0.27ms]
+(pass) locale equivalents preserve hashes and exclude untranslated news from alternates [0.21ms]
+(pass) known venue translations preserve hours/contact/map and unknown Thai updates stay explicit [0.24ms]
+(pass) English business metadata shares Thai identity on the configured origin [0.20ms]
+
+tests\unit\menu.test.ts:
+(pass) all 47 distinct food codes in the supplied 24-page menu retain their prices [0.93ms]
+(pass) rice protein choices and sandwich add-ons keep distinct prices and portions [0.18ms]
+(pass) passes and animal food preserve package prices without treating all access as free [0.03ms]
+
+tests\unit\seo.test.ts:
+(pass) business hours use Google-supported day names and omit closed days [0.09ms]
+(pass) unverified or incomplete hours are not advertised as structured opening hours [0.12ms]
+(pass) placeholder domains do not become public site URLs [0.04ms]
+(pass) sitemap uses the configured domain and produces XML-safe URLs [0.11ms]
+(pass) business links share one identity without inventing ratings or prices [0.06ms]
+(pass) map remains available before the domain is set without advertising an external menu [0.02ms]
+(pass) both user-selected public phone numbers survive a missing or different CMS primary [0.24ms]
+
+ 22 pass
+ 0 fail
+ 246 expect() calls
+Ran 22 tests across 5 files. [71.00ms]

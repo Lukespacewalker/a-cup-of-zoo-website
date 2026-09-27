@@ -1,0 +1,88 @@
+{
+  "pages": [
+    {
+      "route": "/",
+      "browserLanguage": "en-US",
+      "htmlLanguage": "th",
+      "heading": "จิบอะไรดี… มีเพื่อนรออยู่",
+      "languageLinks": [],
+      "navigation": [
+        "หน้าแรก",
+        "สัตว์",
+        "กิจกรรม",
+        "เมนู",
+        "ข่าว",
+        "พาครอบครัวมา"
+      ]
+    },
+    {
+      "route": "/animals/",
+      "browserLanguage": "en-US",
+      "htmlLanguage": "th",
+      "heading": "มีใครอยู่ที่นี่บ้าง",
+      "languageLinks": [],
+      "navigation": [
+        "หน้าแรก",
+        "สัตว์",
+        "กิจกรรม",
+        "เมนู",
+        "ข่าว",
+        "พาครอบครัวมา"
+      ]
+    },
+    {
+      "route": "/menu/",
+      "browserLanguage": "en-US",
+      "htmlLanguage": "th",
+      "heading": "มื้ออร่อยที่ A Cup of Zoo",
+      "languageLinks": [],
+      "navigation": [
+        "หน้าแรก",
+        "สัตว์",
+        "กิจกรรม",
+        "เมนู",
+        "ข่าว",
+        "พาครอบครัวมา"
+      ]
+    },
+    {
+      "route": "/activities/",
+      "browserLanguage": "en-US",
+      "htmlLanguage": "th",
+      "heading": "หนึ่งวันกับเพื่อนสัตว์และสวนสวย",
+      "languageLinks": [],
+      "navigation": [
+        "หน้าแรก",
+        "สัตว์",
+        "กิจกรรม",
+        "เมนู",
+        "ข่าว",
+        "พาครอบครัวมา"
+      ]
+    },
+    {
+      "route": "/visit/",
+      "browserLanguage": "en-US",
+      "htmlLanguage": "th",
+      "heading": "แวะมาหาเราที่ร้าน",
+      "languageLinks": [],
+      "navigation": [
+        "หน้าแรก",
+        "สัตว์",
+        "กิจกรรม",
+        "เมนู",
+        "ข่าว",
+        "พาครอบครัวมา"
+      ]
+    }
+  ],
+  "interactions": [
+    "home → menu",
+    "menu category jump",
+    "additional food image opens",
+    "home → visit → passes and child conditions"
+  ],
+  "menuItems": 47,
+  "renderedPricesMatchSchema": true,
+  "englishReadiness": "Main customer paths remain Thai with browser locale en-US; no English version or language selector was found in source/DOM."
+}

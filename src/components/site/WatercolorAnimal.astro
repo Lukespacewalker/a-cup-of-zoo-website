@@ -1,0 +1,11 @@
+---
+import { Image } from "astro:assets";
+import fox from "../../assets/watercolor/nine-tailed-fox.png";
+import meerkats from "../../assets/watercolor/meerkats.png";
+import ducks from "../../assets/watercolor/ducks.png";
+
+interface Props { animal: "fox" | "meerkats" | "ducks"; class?: string; }
+const { animal, class: className } = Astro.props;
+const artwork = { fox, meerkats, ducks };
+---
+<Image src={artwork[animal]} class:list={["watercolor-animal", className]} alt="" aria-hidden="true" widths={[160, 320, 480]} sizes="(max-width: 560px) 140px, 240px" loading="lazy" />

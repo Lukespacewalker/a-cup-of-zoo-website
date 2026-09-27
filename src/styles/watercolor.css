@@ -1,0 +1,104 @@
+/* A continuous sheet of paper; imagery is decorative, information stays crisp. */
+body {
+  background-image: linear-gradient(color-mix(in srgb, var(--milk) 60%, transparent), color-mix(in srgb, var(--milk) 60%, transparent)), url("../assets/watercolor/canvas-paper.webp");
+  background-size: auto, 760px;
+  background-blend-mode: normal, multiply;
+}
+.watercolor-animal { display: block; height: auto; object-fit: contain; pointer-events: none; }
+/* Mali's Thai and Latin glyphs give both languages the same gentle hand. */
+main h1, main h2 { font-family: var(--heading); font-weight: 500; text-wrap: balance; }
+html[lang="en"] main h1 .handwritten,
+html[lang="en"] main h2 .handwritten { font-family: inherit; font-style: normal; }
+.fox-seal.watercolor-seal { height: auto; overflow: visible; mix-blend-mode: normal; filter: none; transform: none; }
+.paper-photo { border-radius: 0 !important; }
+
+/* The supplied brushes are dark on white: subtract luminance from opaque alpha.
+   A browser without composite/luminance support keeps the complete photograph. */
+@supports (mask-composite: subtract) and (mask-mode: luminance) {
+  .paper-photo {
+    --brush: url("../assets/watercolor/brush-wide.webp");
+    --brush-size: 114% 146%;
+    /* Feather the last 2% to remove faint JPEG-white seams at the outer box. */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent), linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent), linear-gradient(#000, #000), var(--brush);
+    mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent), linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent), linear-gradient(#000, #000), var(--brush);
+    mask-mode: alpha, alpha, alpha, luminance;
+    -webkit-mask-composite: source-in, source-in, source-out;
+    mask-composite: intersect, intersect, subtract;
+    -webkit-mask-size: 100% 100%, 100% 100%, 100% 100%, var(--brush-size);
+    mask-size: 100% 100%, 100% 100%, 100% 100%, var(--brush-size);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+  .paper-photo--portrait { --brush: url("../assets/watercolor/brush-upright.webp"); --brush-size: 128% 119%; }
+  .paper-photo--soft { --brush: url("../assets/watercolor/brush-soft.webp"); --brush-size: 112% 163%; }
+}
+.cafe-cover.watercolor-cover { padding-top: clamp(1.7rem, 3.5vw, 3rem); }
+.watercolor-cover .cover-title { max-width: 60rem; margin-inline: auto; }
+.watercolor-cover .cafe-address { font-size: .72rem; letter-spacing: .11em; }
+.watercolor-cover .cover-title h1 { font-size: clamp(2rem, 4.3vw, 3.8rem); line-height: 1.45; }
+.watercolor-cover .cover-lede { margin-top: .7rem; }
+.watercolor-cover .cover-actions { margin-top: 1.2rem; }
+.hero-art {
+  width: 100vw;
+  margin: 1.2rem calc(50% - 50vw) 0;
+  padding-inline: clamp(.5rem, 2vw, 2rem);
+}
+.hero-art img { width: min(100%, 1360px); height: auto; margin-inline: auto; }
+.watercolor-cover .cover-bottom { margin-top: 0; padding-block: 1.4rem; }
+.watercolor-cover .cover-bottom > p { font-size: .8rem; }
+.friends-story .fox-greeting { margin-top: 1.5rem; }
+.fox-greeting .watercolor-animal { width: 13rem; }
+.garden-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.garden-section-heading h2 { min-width: 0; }
+.garden-ducks { width: 7rem; flex-shrink: 0; }
+.garden-heading > .watercolor-animal { width: clamp(7rem, 15vw, 12rem); flex-shrink: 0; }
+.garden-story { background: transparent; border-block: 1px solid var(--line); border-radius: 0; padding-inline: 0; }
+.garden-aside img { aspect-ratio: 1.35; }
+.garden-main img { aspect-ratio: 1; }
+.letter-heading .letter-fox { width: 7rem; height: auto; }
+.wishing-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  margin-block: clamp(3rem, 7vw, 6rem);
+  scroll-margin-top: 1.5rem;
+}
+.wishing-photo { min-width: 0; margin: 0; }
+.wishing-photo img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.wishing-photo figcaption { text-align: center; color: var(--muted-text); font-size: .85rem; margin-top: .65rem; }
+.wishing-copy { min-width: 0; }
+.wishing-copy h2 { font-size: clamp(1.7rem, 2.6vw, 2.5rem); line-height: 1.5; margin: 0 0 1rem; }
+.wishing-copy > p:not(.chapter-label) { color: var(--muted-text); max-width: 34rem; }
+.wishing-copy .cafe-link { margin-top: .7rem; }
+.wishing-mascot { width: clamp(6rem, 10vw, 9rem); margin-bottom: 1.4rem; }
+.wishing-story--detail { padding-top: 2rem; border-top: 1px solid var(--line); }
+html[lang="en"] .watercolor-cover h1 { line-height: 1.4; }
+@media (max-width: 860px) {
+  .friends-story .fox-greeting { display: flex; }
+  .fox-greeting .watercolor-animal { width: 9rem; }
+}
+@media (max-width: 700px) {
+  .wishing-story { grid-template-columns: 1fr; gap: 1.4rem; }
+  .wishing-copy { position: relative; }
+  .wishing-mascot { width: 5.5rem; margin: 0 0 1rem; }
+  .wishing-copy .chapter-label { margin-top: .5rem; font-size: .8rem; }
+  .wishing-copy h2 { font-size: clamp(1.5rem, 5.6vw, 2rem); }
+  .wishing-copy > p:not(.chapter-label) { clear: both; }
+}
+@media (max-width: 560px) {
+  .watercolor-cover .cover-title h1 { font-size: clamp(1.8rem, 7.5vw, 2.4rem); }
+  .watercolor-cover .cover-lede { font-size: .92rem; }
+  .watercolor-cover .cafe-address { font-size: .65rem; letter-spacing: .055em; }
+  .hero-art { padding-inline: 0; margin-top: 1.2rem; }
+  .hero-art img { width: 100%; }
+  .watercolor-cover .cover-bottom { grid-template-columns: 1fr; gap: .5rem; padding-block: 1rem; }
+  .watercolor-cover .cover-bottom > p { display: none; }
+  .garden-heading > .watercolor-animal { width: 5.5rem; }
+  .garden-story { padding: 2rem 0; }
+  .garden-ducks { width: 4.5rem; }
+  .letter-heading .letter-fox { width: 5rem; }
+  .wishing-photo figcaption { font-size: .75rem; }
+}

@@ -1,0 +1,17 @@
+08:44:42 [@astrojs/cloudflare] Enabling image processing with Cloudflare Images for production with the "IMAGES" Images binding.
+08:44:42 [types] Generated 57ms
+08:44:42 [build] output: "server"
+08:44:42 [build] mode: "server"
+08:44:42 [build] directory: H:\repos\Lukespacewalker\a-cup-of-zoo-website\dist\
+08:44:42 [build] adapter: @astrojs/cloudflare
+08:44:42 [build] Collecting build info...
+08:44:42 [build] ✓ Completed in 92ms.
+08:44:42 [build] Building server entrypoints...
+08:44:42 [vite] ✓ built in 171ms
+08:44:42 [vite] ✓ built in 209ms
+08:44:42 [vite] ✓ built in 15ms
+08:44:42 [build] Rearranging server assets...
+08:44:43 [build] ✓ Completed in 694ms.
+08:44:43 [@astrojs/cloudflare] Injected immutable Cache-Control for /_astro/* into _headers.
+08:44:43 [build] Server built in 798ms
+08:44:43 [build] Complete!

@@ -3,30 +3,36 @@ import type { PublicVenueDto } from "@lukespace-cms/client";
 import { getImage } from "astro:assets";
 import socialPhoto from "../../assets/site/cats-and-dog.png";
 import { cafeJsonLd, configuredSite, pageTitle } from "../../lib/seo/metadata";
+import { languageAlternates, translator, type Locale } from "../../lib/i18n/locale";
 
 interface Props {
   title: string;
   description: string;
   environment: "local" | "staging" | "production";
   venue?: PublicVenueDto | null;
+  locale?: Locale;
 }
-const { title, description, environment, venue = null } = Astro.props;
+const { title, description, environment, venue = null, locale = "th" } = Astro.props;
+const t = translator(locale);
 const site = environment === "production" ? configuredSite(Astro.site) : null;
 const canonical = site ? new URL(Astro.url.pathname, site).href : null;
 const shareUrl = canonical ?? new URL(Astro.url.pathname, Astro.url.origin).href;
 const socialImage = await getImage({ src: socialPhoto, width: 1080, format: "jpeg", quality: 85 });
 const imageUrl = new URL(socialImage.src, site ?? Astro.url.origin).href;
-const imageAlt = "แมวและสุนัขของร้าน A Cup of Zoo คาเฟ่สัตว์ คลอง 6 ปทุมธานี";
+const imageAlt = t("แมวและสุนัขของร้าน A Cup of Zoo คาเฟ่สัตว์ คลอง 6 ปทุมธานี", "Cats and a dog at A Cup of Zoo animal café, Khlong 6, Pathum Thani");
 const fullTitle = pageTitle(title);
-const jsonLd = venue ? cafeJsonLd(venue, site, imageUrl) : null;
+const jsonLd = venue ? cafeJsonLd(venue, site, imageUrl, locale) : null;
+const alternates = environment === "production" && !site ? [] : languageAlternates(Astro.url.pathname, site ?? Astro.url.origin);
 ---
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 {environment !== "production" && <meta name="robots" content="noindex, nofollow" />}
 {canonical && <link rel="canonical" href={canonical} />}
+{alternates.map(alternate => <link rel="alternate" hreflang={alternate.locale} href={alternate.url} />)}
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="A Cup of Zoo" />
-<meta property="og:locale" content="th_TH" />
+<meta property="og:locale" content={locale === "en" ? "en_US" : "th_TH"} />
+{alternates.length > 0 && <meta property="og:locale:alternate" content={locale === "en" ? "th_TH" : "en_US"} />}
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={shareUrl} />

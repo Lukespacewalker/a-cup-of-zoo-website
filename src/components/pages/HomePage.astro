@@ -1,0 +1,88 @@
+---
+import "../../styles/cafe-home.css";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import Picture from "../content/Picture.astro";
+import ContentUnavailable from "../content/ContentUnavailable.astro";
+import { Image } from "astro:assets";
+import heroArtwork from "../../assets/watercolor/shop-sign-hero.png";
+import WatercolorAnimal from "../site/WatercolorAnimal.astro";
+import WishingCorner from "../site/WishingCorner.astro";
+import { loadPage, isDemoPost, thaiTranslation } from "../../lib/content/load-page";
+import { allowedExternalUrl } from "../../lib/business/links";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+import { localizedVenue } from "../../lib/i18n/venue";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = translator(locale);
+const href = (path: string) => localePath(path, locale);
+
+const page = await loadPage();
+const venue = localizedVenue(page.venue, locale);
+const content = venue?.content;
+const media = venue?.media ?? [];
+const maps = allowedExternalUrl(content?.mapsUrl ?? null, "maps");
+const news = locale === "th" ? page.posts.slice(0, 2) : [];
+---
+<SiteLayout locale={locale} title={t("คาเฟ่สัตว์ คลอง 6 ปทุมธานี", "Animal café in Khlong 6, Pathum Thani")} description={t("A Cup of Zoo คาเฟ่สัตว์และฟาร์ม คลอง 6 ปทุมธานี แวะจิบเครื่องดื่ม ทานขนม เดินเล่นในสวน และทำความรู้จักเพื่อนสัตว์ พร้อมข้อมูลเมนูและการเดินทาง", "Visit A Cup of Zoo animal café and farm in Khlong 6, Pathum Thani. Enjoy a drink, food and a stroll through the garden. Explore our menu, animal passes and directions.")} page={page} includeJsonLd>
+  <section class="cafe-cover watercolor-cover" aria-labelledby="home-title">
+    <div class="cover-title">
+      <p class="cafe-address">A CUP OF ZOO <span aria-hidden="true">·</span>{t(" คาเฟ่และฟาร์ม คลอง 6", " Café & farm · Khlong 6")}</p>
+      <h1 id="home-title">{t("จิบอะไรดี… ", "A little sip… ")}<span>{t("มีเพื่อนรออยู่", "a friendly hello")}</span></h1>
+      <p class="cover-lede">{t("วันสบาย ๆ ในสวน กับกาแฟ ขนม และเพื่อนขนฟู", "Slow days in the garden, with coffee, treats and furry friends.")}</p>
+      <div class="actions cover-actions"><a class="button" href={href("/menu/")}>{t("ดูเมนูอาหาร ", "Food menu ")}<span aria-hidden="true">↗</span></a><a class="button secondary" href={href("/visit/")}>{t("วางแผนมาเที่ยว ", "Plan your visit ")}<span aria-hidden="true">↗</span></a></div>
+    </div>
+    <figure class="hero-art">
+      <Image src={heroArtwork} alt={t("ภาพสีน้ำป้าย A Cup of Zoo Cafe & Farm ท่ามกลางกิ่งไม้และดอกไม้", "Watercolor artwork of the A Cup of Zoo Cafe & Farm sign, with flowering branches and greenery")} widths={[480, 800, 1200, 1536]} sizes="100vw" loading="eager" fetchpriority="high" />
+    </figure>
+    <div class="cover-bottom">
+      <p>{t("วันสบาย ๆ ในสวน", "A slow day in the garden")}<br /><span>{t("กับกาแฟ ขนม และเพื่อนขนฟู", "Coffee, treats and furry friends")}</span></p>
+      <a class="wander-link" href="#friends">{t("เดินเล่นด้วยกัน ", "Take a stroll with us ")}<span aria-hidden="true">↓</span></a>
+      <a class="cafe-link cover-visit" href={href("/visit/")}>{t("แวะมาที่คลอง 6 ", "Visit us in Khlong 6 ")}<span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+  {page.venueProblem && <ContentUnavailable detail={page.venueProblem === "missing" ? t("ยังไม่ได้เผยแพร่ข้อมูลร้าน", "Café information has not been published yet.") : undefined} />}
+
+  <section class="friends-story" id="friends" aria-labelledby="friends-title">
+    <div class="friends-copy">
+      <p class="chapter-label">{t("ทำความรู้จักกันก่อน", "A few friendly introductions")}</p>
+      <h2 id="friends-title">{t("วันนี้…", "Today… ")}<br />{t("จะทักใครก่อนดี", "who will you say hello to")}<span class="ink-dot">?</span></h2>
+      <p>{t("จากมุมของเจ้าเหมียวไปจนถึงริมบ่อ", "From the cats’ corner to the pond, ")}<br />{t("มีเพื่อนให้ค่อย ๆ ทำความรู้จัก", "there are friends to get to know ")}<br />{t("ระหว่างเดินเล่นในร้าน", "as you explore the café.")}</p>
+      <a class="cafe-link" href={href("/animals/")}>{t("รู้จักเพื่อนสัตว์ทั้งหมด ", "Meet our animal friends ")}<span aria-hidden="true">↗</span></a>
+      <div class="fox-greeting" aria-hidden="true"><WatercolorAnimal animal="meerkats" /><span>{t("ค่อย ๆ เข้ามาทักกันนะ", "Come over and say hello")}</span></div>
+    </div>
+    <figure class="friend-portrait">
+      <a href={href("/animals/")} aria-label={t("พบเจ้าเหมียวและเพื่อนสัตว์", "Meet the cats and other animal friends")}><Picture class="paper-photo paper-photo--portrait" mediaId="cat-portrait" media={media} alt={t("แมวสีส้มของร้านนั่งอยู่บนเก้าอี้", "An orange cat sitting on a chair at the café")} /></a>
+      <figcaption><span class="handwritten">{t("เจ้าเหมียว", "Our feline friend")}</span><span>{t("มุมเล็ก ๆ ของเพื่อนขนฟู", "A little corner for furry friends")}</span></figcaption>
+    </figure>
+    <figure class="pond-portrait">
+      <a href={href("/animals/")} aria-label={t("พบเพื่อนริมบ่อและสัตว์อื่น ๆ", "Meet the pond companions and other animals")}><Picture class="paper-photo paper-photo--soft" mediaId="ducks-pond" media={media} alt={t("กลุ่มเป็ดกำลังว่ายในบ่อน้ำสีเขียวของร้าน", "Ducks swimming in the café’s green pond")} /></a>
+      <figcaption><span class="handwritten">{t("แก๊งริมบ่อ", "The pond companions")}</span><span>{t("เดินต่ออีกนิด ก็เจอกันแล้ว", "A few steps further, and here we are")}</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="cafe-table" aria-labelledby="table-title">
+    <figure class="table-photo"><Picture class="paper-photo" mediaId="croissant" media={media} alt={t("ขนมอบพร้อมจิ้งจอกตกแต่งจากร้าน", "A pastry with fox decorations from the café")} /><figcaption>{t("ความอร่อยอีกมุมของ A Cup of Zoo", "A little treat from A Cup of Zoo")}</figcaption></figure>
+    <div class="table-copy">
+      <p class="chapter-label">{t("พักตรงนี้อีกหน่อย", "Stay a little longer")}</p>
+      <h2 id="table-title">{t("มีของอร่อย", "Something tasty")}<br /><span class="handwritten">{t("รออยู่ที่โต๊ะ", "waiting at your table")}</span></h2>
+      <p>{t("สั่งเครื่องดื่มที่ชอบ แบ่งขนมกันสักชิ้น", "Order a favourite drink and share a treat,")}<br />{t("แล้วปล่อยให้วันนี้ผ่านไปช้า ๆ", "then let the afternoon drift by.")}</p>
+      <a class="cafe-link" href={href("/menu/")}>{t("เปิดดูเมนูของร้าน ", "Explore the food menu ")}<span aria-hidden="true">↗</span></a>
+    </div>
+    <span class="table-note handwritten" aria-hidden="true">a little treat,<br />a little happiness.</span>
+  </section>
+
+  <WishingCorner locale={locale} compact />
+
+  <section class="garden-story" aria-labelledby="garden-title">
+    <div class="garden-heading"><div><p class="chapter-label">{t("ที่ของวันไม่เร่งรีบ", "A place to take your time")}</p><h2 id="garden-title">{t("นั่งเล่น เดินเล่น", "Sit, wander, unwind")}<br /><span class="handwritten">{t("แล้วค่อยกลับก็ได้", "stay a little longer")}</span></h2></div><WatercolorAnimal animal="meerkats" /></div>
+    <figure class="garden-main"><Picture class="paper-photo paper-photo--portrait" mediaId="cafe-interior-gallery" media={media} alt={t("มุมนั่งในร้านที่ตกแต่งด้วยภาพสัตว์และของสะสม", "Indoor café seating decorated with animal artwork and collections")} /><figcaption>{t("ภาพวาด ของสะสม และมุมนั่งในร้าน", "Artwork, collections and cosy café corners")}</figcaption></figure>
+    <div class="garden-aside"><figure><Picture class="paper-photo paper-photo--soft" mediaId="cafe-garden-seating" media={media} alt={t("โต๊ะริมหน้าต่างที่มองออกไปเห็นสวนสีเขียว", "A table by the window overlooking the green garden")} /><figcaption class="handwritten">{t("เก็บมุมนี้ไว้ในวันพักผ่อน", "Save this corner for a slow day")}</figcaption></figure><p>{t("เลือกมุมที่ชอบในคาเฟ่", "Choose a favourite spot in the café,")}<br />{t("หรือออกไปเดินเล่นในสวน", "or wander out into the garden.")}<br />{t("อยู่ด้วยกันให้เต็มอิ่มอีกนิด", "Make a little more time together.")}</p><a class="cafe-link" href={href("/activities/")}>{t("พาเดินดูรอบร้าน ", "Explore the café and garden ")}<span aria-hidden="true">↗</span></a></div>
+  </section>
+
+  {content && <section class="visit-letter" aria-labelledby="visit-title">
+    <div class="letter-heading"><p class="chapter-label">{t("จากหน้าจอ…มาเจอกันที่ร้าน", "From your screen to our café")}</p><h2 id="visit-title">{t("แล้วแวะมานะ", "See you soon")}<span class="ink-dot">.</span></h2><p>A Cup of Zoo<br />{content.locationLabel}</p><WatercolorAnimal animal="fox" class="letter-fox" /></div>
+    <div class="letter-details"><div><h3>{t("เวลาเจอกัน", "Opening hours")}</h3><p class="letter-hours">10:00 — 19:00</p><p>{t("ปิดวันอังคาร ยกเว้นวันหยุดนักขัตฤกษ์", "Closed Tuesdays, except public holidays.")}<br />{t("ตรวจสอบประกาศร้านก่อนเดินทาง", "Check café announcements before travelling.")}</p></div><div><h3>{t("เดินทางมาหาเรา", "Find your way here")}</h3><p>{content.addressLine}</p></div><div class="letter-actions">{maps && <a class="button" href={maps}>{t("เปิดแผนที่มาร้าน ", "Open the café map ")}<span aria-hidden="true">↗</span></a>}<a class="cafe-link" href={href("/visit/")}>{t("ข้อมูลก่อนมาเที่ยว ", "Before your visit ")}<span aria-hidden="true">↗</span></a></div></div>
+  </section>}
+
+  {locale === "th" && (news.length > 0 || page.postsProblem) && <section class="cafe-news" aria-labelledby="news-title"><div class="news-heading"><h2 id="news-title">{t("จดหมายจากร้าน", "News from the café")}</h2><a class="cafe-link" href="/news/">{t("อ่านทั้งหมด ", "Read all news ")}<span aria-hidden="true">↗</span></a></div>{page.postsProblem && <ContentUnavailable />}<div>{news.map((post) => { const translation = thaiTranslation(post); return <article class="cafe-news-item"><h3><a href={`/news/${translation.slug}/`}>{translation.title}</a></h3>{isDemoPost(post) && <span class="badge">{t("ตัวอย่างระบบ", "System example")}</span>}<p>{translation.excerpt.replace("[[demo]]", "").trim()}</p></article>; })}</div></section>}
+</SiteLayout>

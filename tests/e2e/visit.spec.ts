@@ -41,9 +41,9 @@ test("theme control responds to keyboard activation and persists after navigatio
 test("photo journal supports visible keyboard focus and reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await page.getByRole("link", { name: "เดินเล่นในสวนและมุมคาเฟ่", exact: true }).focus();
+  await page.getByRole("link", { name: "พบเจ้าเหมียวและเพื่อนสัตว์", exact: true }).focus();
   await page.keyboard.press("Tab");
-  const friends = page.getByRole("link", { name: "รู้จักเพื่อนสัตว์ที่ A Cup of Zoo", exact: true });
+  const friends = page.getByRole("link", { name: "พบเพื่อนริมบ่อและสัตว์อื่น ๆ", exact: true });
   await expect(friends).toBeFocused();
   expect(await friends.evaluate((link) => link.matches(":focus-visible") && getComputedStyle(link).outlineStyle !== "none")).toBe(true);
   expect(await friends.evaluate((link) => getComputedStyle(link).transitionDuration)).toBe("0s");

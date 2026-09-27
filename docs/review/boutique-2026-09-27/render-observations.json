@@ -1,0 +1,218 @@
+[
+  {
+    "route": "home",
+    "theme": "light",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "animals",
+    "theme": "light",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "activities",
+    "theme": "light",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "menu",
+    "theme": "light",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "visit",
+    "theme": "light",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "news",
+    "theme": "light",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "home",
+    "theme": "dark",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "animals",
+    "theme": "dark",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "activities",
+    "theme": "dark",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "menu",
+    "theme": "dark",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "visit",
+    "theme": "dark",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "news",
+    "theme": "dark",
+    "width": 390,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "home",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "animals",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "activities",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "menu",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "visit",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "news",
+    "theme": "light",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(245, 241, 232)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "home",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "animals",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "activities",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "menu",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "visit",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  },
+  {
+    "route": "news",
+    "theme": "dark",
+    "width": 1440,
+    "overflow": false,
+    "brokenImages": [],
+    "background": "rgb(41, 42, 35)",
+    "heading": "\"Noto Sans Thai Looped\", sans-serif"
+  }
+]

@@ -1,0 +1,35 @@
+
+Running 1 test using 1 worker
+
+(node:91496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\e2e\locale.spec.ts:3:1 › English unknown routes return localized404 with an English home link (5.2s)
+
+
+  1) tests\e2e\locale.spec.ts:3:1 › English unknown routes return localized404 with an English home link 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Page not found' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Page not found' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Page not found' })
+
+
+       6 |     expect(response?.status()).toBe(404);
+       7 |     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    >  8 |     await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
+         |                                                                         ^
+       9 |     const text = await page.locator('main, title, meta[content], [aria-label], [alt]').evaluateAll(elements => elements.map(element => element.getAttribute('content') ?? element.getAttribute('aria-label') ?? element.getAttribute('alt') ?? element.textContent).join(' '));
+      10 |     expect(text).not.toMatch(/[\u0E00-\u0E7F]/);
+      11 |     await expect(page.locator('main').getByRole('link', { name: 'Back to home' })).toHaveAttribute('href', '/en/');
+        at H:\repos\Lukespacewalker\a-cup-of-zoo-website\tests\e2e\locale.spec.ts:8:73
+
+    Error Context: test-results\locale-English-unknown-rou-0c976-4-with-an-English-home-link\error-context.md
+
+  1 failed
+    tests\e2e\locale.spec.ts:3:1 › English unknown routes return localized404 with an English home link 

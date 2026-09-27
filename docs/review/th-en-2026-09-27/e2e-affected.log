@@ -1,0 +1,16 @@
+
+Running 7 tests using 2 workers
+
+(node:81828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 tests\e2e\menu.spec.ts:3:1 › all food and prices are server rendered without an external flipbook (1.2s)
+  ok 3 tests\e2e\menu.spec.ts:30:1 › activities explain separate admission, benefits, children and all feeding choices (271ms)
+  ok 1 tests\e2e\locale.spec.ts:3:1 › English primary paths render complete English content and matching metadata (1.6s)
+  ok 5 tests\e2e\locale.spec.ts:37:1 › untranslated news explicitly returns to English home without false alternates (483ms)
+  ok 6 tests\e2e\locale.spec.ts:47:1 › English menu and child planning work without JavaScript and match Thai numeric content (1.4s)
+  ok 4 tests\e2e\menu.spec.ts:49:1 › menu and activities fit narrow phones and desktop with working category navigation (2.2s)
+  ok 7 tests\e2e\locale.spec.ts:73:1 › switching locale retains matching page and category hash on mobile (993ms)
+
+  7 passed (5.2s)

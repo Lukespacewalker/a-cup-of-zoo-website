@@ -2,6 +2,7 @@ import type { PublicVenueDto } from "@lukespace-cms/client";
 import { hoursAreStructured } from "../business/format-hours";
 import { allowedExternalUrl } from "../business/links";
 import { shopPhones } from "../business/contact";
+import { localePath, type Locale } from "../i18n/locale";
 
 const weekDays = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -22,7 +23,7 @@ export function pageTitle(title: string) {
   return title === "A Cup of Zoo" ? title : `${title} · A Cup of Zoo`;
 }
 
-export function cafeJsonLd(venue: PublicVenueDto, site: URL | null = null, image?: string) {
+export function cafeJsonLd(venue: PublicVenueDto, site: URL | null = null, image?: string, locale: Locale = "th") {
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "CafeOrCoffeeShop",
@@ -42,8 +43,8 @@ export function cafeJsonLd(venue: PublicVenueDto, site: URL | null = null, image
   if (maps) data.hasMap = maps;
   if (site) {
     data["@id"] = new URL("/#cafe", site).href;
-    data.url = new URL("/", site).href;
-    data.menu = new URL("/menu/", site).href;
+    data.url = new URL(localePath("/", locale), site).href;
+    data.menu = new URL(localePath("/menu/", locale), site).href;
   }
   if (image) data.image = image;
   if (hoursAreStructured(venue.content.hoursVerification)) {

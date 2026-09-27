@@ -1,0 +1,50 @@
+[
+  {
+    "width": 320,
+    "theme": "light",
+    "overflow": false,
+    "text": "Page not found\n\nBack to home",
+    "switchLabel": "Thai home",
+    "switchHref": "/"
+  },
+  {
+    "width": 320,
+    "theme": "dark",
+    "overflow": false,
+    "text": "Page not found\n\nBack to home",
+    "switchLabel": "Thai home",
+    "switchHref": "/"
+  },
+  {
+    "width": 390,
+    "theme": "light",
+    "overflow": false,
+    "text": "Page not found\n\nBack to home",
+    "switchLabel": "Thai home",
+    "switchHref": "/"
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "overflow": false,
+    "text": "Page not found\n\nBack to home",
+    "switchLabel": "Thai home",
+    "switchHref": "/"
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "overflow": false,
+    "text": "Page not found\n\nBack to home",
+    "switchLabel": "Thai home",
+    "switchHref": "/"
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "overflow": false,
+    "text": "Page not found\n\nBack to home",
+    "switchLabel": "Thai home",
+    "switchHref": "/"
+  }
+]
