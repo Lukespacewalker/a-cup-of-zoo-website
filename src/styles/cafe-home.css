@@ -1,73 +1,295 @@
-/* Boutique cafe: real photographs, quiet typography, a few friendly details. */
-.cafe-cover { padding-top: clamp(2rem, 4vw, 3.5rem); }
-.cover-title { position: relative; text-align: center; padding-inline: 3rem; }
-.cafe-address { margin: 0 0 1rem; font-size: .8rem; letter-spacing: .08em; color: var(--leaf); }
-.cafe-address span { padding: 0 .45rem; }
-.cover-title h1 { font-size: clamp(2rem, 3.8vw, 3.5rem); margin: 0; line-height: 1.5; }
-.cover-title h1 > span { display: inline-block; color: var(--fox-ink); }
-.cover-lede { margin: .8rem auto 0; color: var(--muted-text); }
-.cover-actions { justify-content: center; margin-top: 1.5rem; }
-.cover-crest {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto 0.75rem;
-}
-.cover-crest img {
-  width: min(100%, 340px);
-  height: auto;
-  filter: drop-shadow(0 4px 12px rgba(78, 59, 50, 0.08));
-  transition: transform 0.4s ease;
-}
-.cover-crest img:hover {
-  transform: scale(1.03);
-}
-
-.hero-showcase {
-  width: 100%;
-  max-width: 1180px;
-  margin: 2.5rem auto 0;
-  padding-inline: 0;
-}
-
-.hero-video-wrapper {
+/* ==========================================================================
+   Cinematic Luxury Hero (Inspired by Qissa & World-Class Boutique Retreats)
+   ========================================================================== */
+/* On homepage, elevate header to float over the cinematic hero (Qissa style) */
+.site-header {
   position: relative;
-  aspect-ratio: 16 / 9;
-  border-radius: clamp(18px, 2.5vw, 28px);
-  overflow: hidden;
-  background: #1a1412;
-  border: 1px solid var(--gold-border);
-  box-shadow: 0 20px 48px -10px rgba(78, 59, 50, 0.18), 0 0 0 1px var(--gold-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 30;
+  background: rgba(20, 14, 11, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 190, 133, 0.28);
+  border-radius: 9999px;
+  color: #fffaf4;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.hero-video {
+.site-header .wordmark img {
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
+
+.site-header .desktop-nav a {
+  color: #fffaf4;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.site-header .desktop-nav a:hover {
+  color: var(--gold);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.site-header .language-switch {
+  color: #fffaf4;
+  border-color: rgba(226, 190, 133, 0.35);
+}
+
+.site-header .theme-button {
+  color: #fffaf4;
+}
+
+.site-header .menu-button {
+  color: #fffaf4;
+  border-color: rgba(226, 190, 133, 0.35);
+}
+
+.cafe-hero-cinematic {
+  position: relative;
+  /* Full-bleed breakout from .shell */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  /* Pull hero up behind floating header */
+  margin-top: calc(-1 * (var(--header) + 0.8rem));
+  padding-top: calc(var(--header) + 3rem);
+  min-height: clamp(660px, 94vh, 1000px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: clamp(1.2rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 4vh, 3.2rem);
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #120c09;
+}
+
+/* Background video container */
+.cinematic-bg-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cinematic-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  object-position: center 40%;
+  filter: brightness(0.95) contrast(1.06);
+  transform: scale(1.02); /* Avoid edge fringing */
 }
 
-.hero-video-badge {
+/* Atmospheric vignette and multi-layer illumination */
+.cinematic-overlay {
   position: absolute;
-  top: clamp(0.85rem, 2vw, 1.4rem);
-  left: clamp(0.85rem, 2vw, 1.4rem);
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 45%, rgba(18, 12, 9, 0.38) 0%, rgba(14, 9, 7, 0.72) 68%, rgba(8, 5, 4, 0.94) 100%),
+    linear-gradient(180deg, rgba(12, 8, 6, 0.72) 0%, rgba(12, 8, 6, 0.15) 35%, rgba(12, 8, 6, 0.6) 72%, rgba(14, 9, 7, 0.92) 93%, var(--milk) 100%);
+}
+
+.cinematic-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 80px 100px rgba(0, 0, 0, 0.6), inset 80px 0 100px rgba(0, 0, 0, 0.4), inset -80px 0 100px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+/* Centered cinematic content */
+.cinematic-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 920px;
+  margin: auto auto;
+  padding: 1rem 0.5rem;
+}
+
+/* Floating heraldic watercolor crest */
+.cinematic-crest {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto clamp(0.5rem, 1.5vh, 1.2rem);
+}
+
+.cinematic-crest img {
+  width: min(90vw, 360px);
+  height: auto;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.55));
+  transition: transform 0.45s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.cinematic-crest img:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* Gold eyebrow tracking */
+.cinematic-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.45rem 1rem;
+  justify-content: center;
+  gap: 0.9rem;
+  margin: 0 0 clamp(0.6rem, 1.5vh, 1.1rem);
+  font-size: clamp(0.76rem, 1.1vw, 0.88rem);
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.eyebrow-line {
+  display: inline-block;
+  width: clamp(24px, 4vw, 44px);
+  height: 1px;
+}
+
+.eyebrow-line-left {
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.eyebrow-line-right {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.eyebrow-dot {
+  opacity: 0.7;
+  padding: 0 0.25rem;
+}
+
+/* Grand title */
+.cinematic-title {
+  font-family: var(--heading);
+  font-size: clamp(2.3rem, 5.2vw, 4.2rem);
+  line-height: 1.25;
+  margin: 0 0 clamp(0.6rem, 1.6vh, 1.1rem);
+  color: #fffaf4;
+  font-weight: 700;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.75);
+}
+
+.gold-gradient-text {
+  display: inline-block;
+  background: linear-gradient(135deg, #fff5e3 0%, #f6d8a7 35%, #e0b467 70%, #b88536 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.55));
+}
+
+/* Lede copy */
+.cinematic-lede {
+  max-width: 640px;
+  margin: 0 auto clamp(1.4rem, 2.8vh, 2.2rem);
+  font-size: clamp(1.02rem, 1.7vw, 1.22rem);
+  line-height: 1.7;
+  color: rgba(255, 250, 244, 0.94);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+}
+
+/* Luxury CTA buttons (Qissa archetype) */
+.cinematic-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.cinematic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  padding: 0.85rem 2rem;
   border-radius: 9999px;
-  background: var(--card-sheet);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  text-decoration: none;
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.28s cubic-bezier(0.2, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.cinematic-btn .btn-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  font-size: 1.15rem;
+}
+
+.cinematic-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Primary gold radiant button */
+.cinematic-btn-primary {
+  background: linear-gradient(135deg, #dfb46f 0%, #c19045 50%, #9f702b 100%);
+  color: #1a1208;
+  border: 1px solid rgba(255, 243, 210, 0.6);
+  box-shadow: 0 10px 32px rgba(193, 144, 69, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.cinematic-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 42px rgba(193, 144, 69, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  color: #0d0803;
+}
+
+/* Frosted glass with gold hairline rim */
+.cinematic-btn-glass {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #fffaf4;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.3);
+}
+
+.cinematic-btn-glass:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: var(--gold);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+}
+
+/* Bottom luxury status and navigation bar */
+.cinematic-bottom-bar {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1240px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: clamp(1rem, 2vh, 2rem);
+}
+
+/* Live boutique status badge */
+.cinematic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1.15rem;
+  border-radius: 9999px;
+  background: rgba(24, 16, 12, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--gold-border);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   font-size: 0.82rem;
   font-weight: 500;
-  color: var(--cocoa-deep);
+  color: #fffaf4;
   letter-spacing: 0.02em;
-  z-index: 2;
   pointer-events: none;
 }
 
@@ -75,112 +297,161 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #2e7d32;
-  box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.6);
+  background: #34c759;
+  box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7);
   animation: hero-pulse 2s infinite;
 }
 
 @keyframes hero-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.6); }
-  70% { box-shadow: 0 0 0 8px rgba(46, 125, 50, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(52, 199, 89, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }
 }
 
-.hero-video-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: clamp(1rem, 2.5vw, 1.8rem);
-  background: linear-gradient(180deg, transparent 0%, rgba(20, 14, 12, 0.72) 100%);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1rem;
-  z-index: 2;
-}
-
-.hero-video-caption {
+/* Qissa-style vertical pulsing scroll indicator */
+.cinematic-scroll {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  color: #fffaf4;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
-}
-
-.hero-video-caption .caption-tag {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  align-items: center;
+  gap: 0.35rem;
   color: #f3d7a8;
+  text-decoration: none;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   font-weight: 600;
+  transition: all 0.25s ease;
 }
 
-.hero-video-caption .caption-text {
-  font-size: clamp(0.85rem, 1.3vw, 1.05rem);
-  font-weight: 500;
+.cinematic-scroll:hover {
+  color: #ffffff;
 }
 
-.hero-video-control {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+.cinematic-scroll:hover .scroll-indicator {
+  transform: translateY(4px);
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: transform 0.25s ease;
+}
+
+.scroll-stem {
+  width: 1px;
+  height: 18px;
+  background: linear-gradient(180deg, #f3d7a8 0%, rgba(243, 215, 168, 0.2) 100%);
+  animation: scroll-line-glow 2s infinite ease-in-out;
+}
+
+.scroll-chevron {
+  animation: scroll-bounce 2s infinite ease-in-out;
+  color: #f3d7a8;
+}
+
+@keyframes scroll-line-glow {
+  0%, 100% { opacity: 0.4; height: 14px; }
+  50% { opacity: 1; height: 22px; }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+/* Controls */
+.cinematic-controls {
+  display: flex;
+  align-items: center;
+}
+
+.cinematic-video-control {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: var(--card-sheet);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(24, 16, 12, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--gold-border);
-  color: var(--cocoa-deep);
+  color: #fffaf4;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-.hero-video-control:hover {
+.cinematic-video-control:hover {
   transform: scale(1.08);
   border-color: var(--gold);
+  background: rgba(45, 30, 22, 0.85);
+  color: #ffffff;
 }
 
-@media (max-width: 560px) {
-  .cover-crest img {
-    width: 220px;
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 768px) {
+  .cafe-hero-cinematic {
+    min-height: clamp(580px, 86vh, 780px);
+    padding-top: calc(var(--header) + 1.8rem);
+    padding-inline: 1.2rem;
+    padding-bottom: 1.8rem;
   }
-  .hero-showcase {
-    margin-top: 1.6rem;
+  .cinematic-crest img {
+    width: min(85vw, 260px);
   }
-  .hero-video-wrapper {
-    border-radius: 16px;
-    aspect-ratio: 16 / 10;
+  .cinematic-lede {
+    font-size: 1rem;
+    margin-bottom: 1.6rem;
   }
-  .hero-video-badge {
-    padding: 0.35rem 0.75rem;
-    font-size: 0.75rem;
-    top: 0.65rem;
-    left: 0.65rem;
+  .cinematic-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
   }
-  .hero-video-overlay {
-    padding: 0.85rem 1rem;
+  .cinematic-btn {
+    width: 100%;
+    max-width: 340px;
   }
-  .hero-video-caption .caption-text {
-    font-size: 0.8rem;
+  .cinematic-bottom-bar {
+    justify-content: center;
+    position: relative;
   }
-  .hero-video-control {
-    width: 34px;
-    height: 34px;
+  .cinematic-badge {
+    display: none; /* Keep bottom bar clean and focused on mobile */
+  }
+  .cinematic-controls {
+    position: absolute;
+    right: 0;
   }
 }
 
+@media (max-width: 480px) {
+  .cafe-hero-cinematic {
+    min-height: clamp(540px, 84vh, 700px);
+    padding-top: 1.5rem;
+  }
+  .cinematic-title {
+    font-size: 2.1rem;
+  }
+  .cinematic-scroll .scroll-caption {
+    font-size: 0.7rem;
+  }
+}
+
+/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .hero-video {
+  .cinematic-video {
     display: none;
   }
-  .hero-video-wrapper {
-    background: url('/videos/hero-animal-poster.webp') center/cover no-repeat;
+  .cinematic-bg-media {
+    background: url('/videos/hero-animal-poster.webp') center 40% / cover no-repeat;
   }
-  .pulse-dot {
+  .pulse-dot,
+  .scroll-stem,
+  .scroll-chevron {
     animation: none;
   }
 }
