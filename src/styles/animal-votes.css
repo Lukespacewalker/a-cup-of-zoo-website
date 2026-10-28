@@ -9,15 +9,8 @@
 .vote-portrait img { width:100%; height:100%; object-fit:cover; }
 .vote-score { margin:.4rem 0; font-size:.85rem; color:var(--muted-text); }
 .vote-score strong { color:var(--ink); font-size:1.5rem; font-weight:500; }
-.vote-rank { margin:.2rem 0; font-size:.8rem; color:var(--muted-text); }
 .vote-more { display:flex; width:fit-content; margin:1.5rem auto 0; align-items:center; justify-content:center; text-align:center; gap:.6rem; }
 .votes-unavailable,.votes-empty { padding:1rem; text-align:center; background:var(--garden-field); border-radius:2px; line-height:1.7; }
-.vote-jars { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); max-width:760px; margin:auto; gap:1rem; align-items:end; }
-.vote-card { min-width:0; text-align:center; padding:.5rem .4rem 1rem; border-bottom:34px solid var(--garden-field); border-radius:18px 18px 6px 6px; }
-.vote-card h3 { margin:.4rem 0; font-size:1.15rem; font-weight:500; overflow-wrap:anywhere; }
-.vote-card:nth-child(1) { order:2; border-bottom-width:62px; }
-.vote-card:nth-child(2) { order:1; border-bottom-width:42px; }
-.vote-card:nth-child(3) { order:3; border-bottom-width:24px; }
 .animals-intro { max-width:850px; margin:1.5rem auto 1rem; text-align:center; }
 .animals-intro h1 { font-size:clamp(1.8rem,3vw,2.6rem); font-weight:500; line-height:1.4; margin:.5rem 0; text-wrap:balance; }
 .animals-intro p { color:var(--muted-text); line-height:1.8; margin:.6rem 0; }
@@ -55,7 +48,6 @@
 .vote-button:disabled,.vote-button[aria-disabled=true],.jar-toggle:disabled { opacity:.5; cursor:default; }
 .animal-directory :is(button,input,a):focus-visible { outline:3px solid var(--fox); outline-offset:3px; }
 .vote-notice { min-height:3.4em; margin:.6rem 0 .25rem; font-size:.78rem; line-height:1.5; color:var(--muted-text); }
-.vote-caption { font-size:.85rem; color:var(--muted-text); text-align:center; margin:2rem 0 .5rem; line-height:1.8; }
 .vote-jar { position:absolute; bottom:6px; left:calc(50% - 88px); width:160px; height:224px; border:2px solid color-mix(in srgb,var(--leaf) 54%,transparent); border-radius:32px 32px 38px 38px; background:linear-gradient(100deg,#ffffff0a,#ffffff65 25%,#ffffff08 70%,#ffffff35); box-shadow:inset 4px 0 0 #ffffff35,inset -4px -4px 0 #ffffff25,0 5px 0 color-mix(in srgb,var(--line) 35%,transparent); }
 .vote-jar::before { content:""; position:absolute; top:26px; left:11px; width:6px; height:62px; border-radius:8px; background:#ffffff70; z-index:2; }
 .vote-jar-rim { position:absolute; top:-9px; left:14px; right:14px; height:14px; border:3px double color-mix(in srgb,var(--leaf) 60%,transparent); border-radius:50%; background:color-mix(in srgb,var(--paper) 45%,transparent); }
@@ -81,7 +73,6 @@
   .animal-cards { grid-template-columns:1fr; gap:1.2rem; }.animal-card { max-width:420px; width:100%; margin-inline:auto; }.animal-visual { height:250px; }
   .animal-search { margin:1rem 0; }.animal-search input,.animal-search button { font-size:.85rem; }
   .animal-votes { padding:1.2rem .75rem; }.votes-heading { gap:.8rem; align-items:start; }.votes-heading h2 { font-size:1.45rem; }.votes-heading p { font-size:.85rem; }
-  .vote-jars { gap:.3rem; }.vote-card h3 { font-size:.9rem; }.vote-card .vote-portrait { width:64px; height:64px; }.vote-rank { font-size:.7rem; }.vote-card .vote-score { font-size:.7rem; }
 }
 @media(prefers-reduced-motion:reduce) { .directory-photo,.animal-jar-scene { transition:none; }.vote-just-sent .vote-droplet { animation:none; } }
 

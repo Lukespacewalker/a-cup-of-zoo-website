@@ -6,23 +6,6 @@
 .menu-books p { font-size: .9rem; }
 .free-zone { padding: 1.4rem; margin: 1.5rem 0; border-left: 3px solid var(--leaf); background: var(--paper); }
 .free-zone h3 { margin-top: 0; }
-.map-crop { aspect-ratio: 1131 / 1340; overflow: hidden; background: #fcf9e5; }
-.map-crop img { display: block; width: 100%; height: auto; max-width: none; }
-.map-preview { width: min(100%, 800px); margin: 1.5rem auto; }
-.map-detail { margin-block: 1rem 2rem; }
-.map-detail summary { cursor: pointer; padding: 1rem; border: 1px solid var(--line); font-weight: 600; }
-.map-detail > p { font-size: .9rem; }
-.map-scroll { max-height: 65vh; overflow: auto; overscroll-behavior: contain; border: 1px solid var(--line); }
-.map-full { width: 1131px; }
-.resident-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
-.resident-list li { min-width: 0; }
-.resident-list img { width: 100%; height: auto; }
-.resident-list h3 { margin: .8rem 0 .2rem; }
-.resident-list p { margin: 0; font-size: .9rem; color: var(--muted-text); }
-.resident-list .resident-featured { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 400px) 1fr; gap: 1rem 3rem; align-items: center; max-width: 950px; margin: 2rem auto 0; }
-.resident-featured img { grid-row: span 2; }
-.resident-featured h3 { align-self: end; font-size: 1.8rem; }
-.resident-featured p { align-self: start; font-size: 1rem; }
 .event-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
 .event-gallery figure { margin: 0; min-width: 0; }
 .event-gallery img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
@@ -30,16 +13,6 @@
 .campaign-gallery img { aspect-ratio: auto; object-fit: contain; }
 .owner-contact { margin-block: 2rem; padding: 2rem 0; border-top: 1px solid var(--line); }
 .owner-contact a { white-space: nowrap; }
-.owner-links { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-.owner-links article { min-width: 0; }
-.hero-detail { max-width: 55rem; margin-block: 1.5rem 0; color: var(--muted-text); font-size: .9rem; }
-.desktop-nav .club-link, .mobile-panel .club-link { background: var(--garden-field); color: var(--cocoa-deep); border: 1px solid var(--leaf); border-radius: 2px; font-weight: 500; white-space: nowrap; }
-.desktop-nav .club-link { margin-left: .45rem; padding-inline: .8rem; }
-.desktop-nav .club-link[aria-current="page"], .mobile-panel .club-link[aria-current="page"] { color: var(--cocoa-deep); }
-.desktop-nav .club-link:hover, .mobile-panel .club-link:hover { background: var(--button); color: var(--on-button); }
-.mobile-panel .club-link { justify-content: space-between; gap: 1rem; margin-bottom: .5rem; }
-.club-link__note { font-size: .8rem; }
-.mobile-panel { max-height: calc(100dvh - 7rem); overflow-y: auto; }
 .club-invitation { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-block: 0 3.5rem; padding: 2.5rem 3rem; background: #414f3e; color: #fffaf0; }
 .club-invitation__name { font-size: clamp(2rem, 3vw, 2.8rem); margin: 0 0 .25rem; line-height: 1.25; }
 .club-invitation h2 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); margin: .6rem 0; color: inherit; }
@@ -102,13 +75,11 @@
 .partner-list span { display: block; margin-top: .7rem; font-size: .85rem; }
 @media (max-width: 1000px) { .tier-list { grid-template-columns: repeat(3, 1fr); } .partner-list { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 1050px) {
-  .desktop-nav { display: none; }
-  .menu-button { display: inline-flex; align-items: center; justify-content: center; }
   .club-invitation { gap: 2rem; padding: 2rem; }
 }
 @media (max-width: 700px) {
   .owner-section { padding-block: 2rem; }
-  .resident-list, .club-rewards { grid-template-columns: repeat(2, 1fr); }
+  .club-rewards { grid-template-columns: repeat(2, 1fr); }
   .tier-list { grid-template-columns: 1fr; gap: 1.4rem; }
   .tier-heading { flex-direction: row; justify-content: space-between; padding: .6rem 1rem 0; text-align: left; }
   .tier-heading__copy { order: -1; }
@@ -117,8 +88,6 @@
   .tier-spend > span { display: inline; margin-right: .2rem; }
   .tier-benefits { padding: .6rem; }
   .tier-benefit { padding: .8rem; }
-  .resident-list .resident-featured { display: block; }
-  .owner-links { grid-template-columns: 1fr; gap: 1.5rem; }
   .event-gallery { grid-template-columns: 1fr; }
   .club-facts { grid-template-columns: 1fr; gap: .5rem; }
   .club-invitation { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.6rem; margin-bottom: 2.5rem; }
@@ -129,6 +98,4 @@
   .club-intro h1 { margin-bottom: 1rem; }
   .club-welcome { padding: 1.2rem 1.4rem; }
   .partner-list { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  .mobile-panel { max-height: calc(100dvh - 7rem); overflow-y: auto; }
 }
-@media (max-width: 360px) { .tier-list { grid-template-columns: 1fr; } }

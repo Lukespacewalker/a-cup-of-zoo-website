@@ -1,20 +1,20 @@
 :root {
-  --page: min(1280px, calc(100% - 3rem));
-  --milk: #f3eee6;
-  --paper: #f7f3ec;
+  --page: min(1200px, calc(100% - 4rem));
+  --milk: #f5f1e8;
+  --paper: #fffaf0;
   --peach: #c4a484;
-  --blush: #e7d7c8;
-  --butter: #efe2c4;
-  --sage: #8a9a84;
-  --cocoa: #4e3b32;
-  --cocoa-deep: #2c2825;
+  --blush: #eae1d2;
+  --butter: #ebdcb7;
+  --sage: #59634b;
+  --cocoa: #544637;
+  --cocoa-deep: #40382c;
   --berry: #c96b63;
-  --ink: #4e322c;
-  --line: rgba(106, 61, 50, 0.16);
-  --shadow: 0 18px 40px rgba(106, 61, 50, 0.12);
-  --button: #4e3b32;
-  --on-button: #fffaf4;
-  --band: #3f322c;
+  --ink: #544b3d;
+  --line: #d5cbbb;
+  --shadow: 0 8px 18px #3d291714;
+  --button: #586149;
+  --on-button: #fffaf0;
+  --band: #49463c;
   --on-band: #fff6ec;
   --header: 5rem;
   --sticky: calc(4.75rem + env(safe-area-inset-bottom));
@@ -23,70 +23,97 @@
   --gold: #c29d62;
   --gold-deep: #9d7b42;
   --gold-light: rgba(194, 157, 98, 0.14);
-  --gold-border: rgba(194, 157, 98, 0.35);
-  --card-sheet: rgba(255, 252, 247, 0.85);
+  --gold-border: var(--line);
+  --card-sheet: rgba(255, 252, 247, 0.88);
   --card-border: rgba(210, 195, 178, 0.5);
-  --card-shadow: 0 12px 32px -4px rgba(78, 59, 50, 0.07), 0 4px 12px rgba(78, 59, 50, 0.03);
-  --card-shadow-hover: 0 20px 42px -6px rgba(78, 59, 50, 0.13), 0 6px 16px rgba(78, 59, 50, 0.05);
+  --card-shadow: none;
+  --card-shadow-hover: none;
   color-scheme: light;
+  --leaf: #59634b;
+  --fox: #a15434;
+  --sun: #dbb967;
+  --garden-field: #e6e7d8;
+  --accent-text: #79583c;
+  --fox-ink: #a15434;
+  --muted-text: #726754;
+  --button-hover: #414b34;
+  --on-button-hover: #fffaf0;
 }
 
-@media (min-width: 1600px) {
-  :root { --page: min(1520px, calc(100% - 5rem)); }
-}
-
-[data-theme="dark"] {
-  --milk: #241815;
-  --paper: #2e201c;
+html[data-theme="dark"] {
+  --milk: #292a23;
+  --paper: #35372d;
   --peach: #e3a888;
-  --blush: #5c3b34;
-  --butter: #3d3224;
-  --sage: #6e8a68;
-  --cocoa: #f3d7c8;
-  --cocoa-deep: #fff1e6;
-  --ink: #f6e7dc;
-  --line: rgba(243, 215, 200, 0.2);
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-  --button: #f3b18f;
-  --on-button: #2a1814;
+  --blush: #454639;
+  --butter: #574c32;
+  --sage: #bdcba7;
+  --cocoa: #e9ddc8;
+  --cocoa-deep: #f2e9d6;
+  --ink: #e0d6c2;
+  --line: #5b5b4b;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --button: #cad2b3;
+  --on-button: #292a23;
   --band: #3a2420;
   --on-band: #fff6ec;
   --gold: #e2be85;
   --gold-deep: #f3d7a8;
   --gold-light: rgba(226, 190, 133, 0.18);
   --gold-border: rgba(226, 190, 133, 0.35);
-  --card-sheet: rgba(46, 32, 28, 0.85);
+  --card-sheet: rgba(46, 32, 28, 0.88);
   --card-border: rgba(243, 215, 200, 0.18);
   --card-shadow: 0 14px 34px -4px rgba(0, 0, 0, 0.4);
   --card-shadow-hover: 0 22px 44px -6px rgba(0, 0, 0, 0.55);
   color-scheme: dark;
+  --leaf: #bdcba7;
+  --fox: #e3aa86;
+  --sun: #e2be85;
+  --garden-field: #34382e;
+  --accent-text: #ddbf95;
+  --fox-ink: #e3aa86;
+  --muted-text: #c3b9a5;
+  --button-hover: #e0e7cd;
+  --on-button-hover: #292a23;
 }
 
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] {
-    --milk: #241815;
-    --paper: #2e201c;
+    --milk: #292a23;
+    --paper: #35372d;
     --peach: #e3a888;
-    --blush: #5c3b34;
-    --butter: #3d3224;
-    --sage: #6e8a68;
-    --cocoa: #f3d7c8;
-    --cocoa-deep: #fff1e6;
-    --ink: #f6e7dc;
-    --line: rgba(243, 215, 200, 0.2);
-    --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-    --button: #f3b18f;
-    --on-button: #2a1814;
+    --blush: #454639;
+    --butter: #574c32;
+    --sage: #bdcba7;
+    --cocoa: #e9ddc8;
+    --cocoa-deep: #f2e9d6;
+    --ink: #e0d6c2;
+    --line: #5b5b4b;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --button: #cad2b3;
+    --on-button: #292a23;
     --band: #3a2420;
     --on-band: #fff6ec;
     --gold: #e2be85;
     --gold-deep: #f3d7a8;
     --gold-light: rgba(226, 190, 133, 0.18);
     --gold-border: rgba(226, 190, 133, 0.35);
-    --card-sheet: rgba(46, 32, 28, 0.85);
+    --card-sheet: rgba(46, 32, 28, 0.88);
     --card-border: rgba(243, 215, 200, 0.18);
     --card-shadow: 0 14px 34px -4px rgba(0, 0, 0, 0.4);
     --card-shadow-hover: 0 22px 44px -6px rgba(0, 0, 0, 0.55);
     color-scheme: dark;
+    --leaf: #bdcba7;
+    --fox: #e3aa86;
+    --sun: #e2be85;
+    --garden-field: #34382e;
+    --accent-text: #ddbf95;
+    --fox-ink: #e3aa86;
+    --muted-text: #c3b9a5;
+    --button-hover: #e0e7cd;
+    --on-button-hover: #292a23;
   }
+}
+
+@media (max-width: 860px) {
+  :root { --page: min(680px, calc(100% - 2.5rem)); }
 }
