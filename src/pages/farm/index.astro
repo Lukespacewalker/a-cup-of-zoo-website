@@ -1,0 +1,6 @@
+---
+import FarmPage from "../../components/pages/FarmPage.astro";
+import { loadFarmIndex } from "../../lib/content/load-farm";
+const result=await loadFarmIndex("th");Astro.response.status=result.status;
+---
+<FarmPage locale="th" result={result} />

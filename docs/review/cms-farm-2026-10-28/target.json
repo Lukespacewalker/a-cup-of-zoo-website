@@ -1,0 +1,195 @@
+{
+  "heads": {
+    "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo": "2a0d7a6bfefb898d8de327c086aa9dfdd5cad1d5",
+    "H:/repos/Lukespacewalker/a-cup-of-zoo-website": "1fc2599a9fa32ad6ab02760a93e425934adb6919"
+  },
+  "files": [
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "packages/contracts/src/project.ts",
+      "sha256": "83ee9630950619b982b2726b4f36463e7dfccf9068f2e011cedeb57ff3466950"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "packages/db/src/schema.ts",
+      "sha256": "22dcb9dbcbd4a650235fd0668b8ea39f75b78fe239da06af8e5e48a8ad873c51"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/migrations/0013_product_publication_snapshots.sql",
+      "sha256": "531b93a106bf628dd22f9d4fcb456ff79d4be52f7103900d37f039bd055faf08"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/src/features/products/publication-snapshots.ts",
+      "sha256": "8734f4272fd683772011da46ce71eed39207b50df95597198f1961cd2b18b1c8"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/src/features/products/infrastructure/d1-product-repository.ts",
+      "sha256": "87b05d60f51e72dd89b61028a13a4ee84e7e1e9a81a0ab83c643232a6aa5e9ed"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/src/local/bun-repositories.ts",
+      "sha256": "d32661c6ecd86853a4c9c5db1d64250d9c084ed00c812ab82b25b4a063f515c8"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/src/local/create-local-cms-runtime.ts",
+      "sha256": "c97ff4ae73d99b5b41b54d803bc0d7b9b9fb07e84b7c492a7be1bd20d411a64f"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/src/runtime/create-cloudflare-cms-dependencies.ts",
+      "sha256": "b3cab5c3b124dcd06a8c2e61a317be7b5e82824739c4912e9002995db60d7a32"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/src/features/public/transport/http-public-routes.ts",
+      "sha256": "57731b1749d992eb23c8834afde6b8229c2c97222d699ff12dc098486bd58563"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/src/mcp/create-cms-server.ts",
+      "sha256": "48079eebb547fa18e9335bac3e664c31c004f8d02c12d6ab7da053b96061119e"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/tests/product-publication.test.ts",
+      "sha256": "5a3b7b7cd2f84ce618cf610e72ba49942adb5b382e4d0fad1382b55fce4e695c"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/tests/support/bun-d1.ts",
+      "sha256": "316074448c6ca0461688c235747289759d28cace7956ced1a510907040d5b60a"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/api/tests/mcp-client-compatibility.test.ts",
+      "sha256": "fc330f31c1f7abdaa8d89053e3b2d0aa6a853b95f47d2fd543614f7ce6381bcc"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/admin/src/features/products/ui/ProductEditorPage.tsx",
+      "sha256": "2114a64f43b69c4939c277f26403a60e603f57d983cfa4db64e657da3efcac72"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/admin/src/features/products/ui/ListingImages.tsx",
+      "sha256": "003416c63a03e39abe79562891c8eeee73f585e8b60f058d1bc937ea425bd927"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/admin/src/features/products/ui/ProductListPage.tsx",
+      "sha256": "c41f549404b2eaafc90f2d4053b152a280a8688d7ece45858ef7bd959b1d8da5"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/admin/src/features/products/ui/listings.css",
+      "sha256": "b9f98cf75e76aa51859e3a44e850d642d451c5b293288d591b774f4d637ff3be"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/admin/src/app/AdminShell.tsx",
+      "sha256": "f6984e0ecd3ad1a137025607a37cd6ba4af8584ba8acb94a20b562c40da808e2"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/admin/src/app/admin-modules.ts",
+      "sha256": "3483e665111e3ec2008cfd1ab787b89e502d791ae77fad2a9439126fbdf5a79d"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "apps/admin/src/features/dashboard/ui/DashboardPage.tsx",
+      "sha256": "6af6e4a4f02a7431e5e590709eb26db1878654bc32dd9c922c21f6f00ebf9f42"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "docs/acupofzoo-mac-mcp.md",
+      "sha256": "46387a488fee17c667193b7be2261a48f79744e64a3ffbeaddf898c735becdcb"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/CMS-Platform-acupofzoo",
+      "path": "docs/mcp.md",
+      "sha256": "78771fc97e82a257bc41a78be6a18652f08155a035320b85ca22e48686a4466b"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/lib/content/listings.ts",
+      "sha256": "ca1e946daceaf81897d5d12310a64d8631d0bc636f391a7960c885244144c83f"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/lib/content/load-farm.ts",
+      "sha256": "19dfc219650cb9c17f67ce15b6568b7eac9646f725eb3f1b3bb92b21e1d8958b"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/components/pages/FarmPage.astro",
+      "sha256": "953ddedbdb63ebedf174c69472d1a3b65092d999fc2250be70e3b289cc2b23c5"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/components/pages/FarmListingPage.astro",
+      "sha256": "06b227dc3fe34477481c3b9b774eec1e08dacc8166bf341936947552271adb05"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/pages/farm/index.astro",
+      "sha256": "00127930828eee317a6cb744862b4cc634a23b0ad725c6dab9a1a6b980c39025"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/pages/farm/[slug].astro",
+      "sha256": "ef291c0ead7d466c16156d6dc3d2e8b51737c01c5d1d25e50f0b37f424298a69"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/pages/en/farm/index.astro",
+      "sha256": "d59bb8cd867b249eb9fbe8d891761c4ff1fc0d58f0136584674ef5cedfdf574e"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/pages/en/farm/[slug].astro",
+      "sha256": "b1598d7defe59acf0d6140c6ac0e81cd77724b4ed7c8422654a34800312e5529"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/styles/farm.css",
+      "sha256": "c5cba34b7b17667fc8cd5346717fdf548cedf632459b1cd8ce7f498c45028151"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/lib/i18n/locale.ts",
+      "sha256": "ff2caf72fe0939494caffe5bed9e9a5c6bdc06acff6ce7b0a7ed695d0dce2339"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/components/site/Header.astro",
+      "sha256": "a91241fa49eec61de502b5b9f2de95ff58a49b7e5ec8fd414af8fd0a04b32902"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/components/site/Footer.astro",
+      "sha256": "c75ea31cc306f31e911728868cea616a4c750f4669a05250bbdfba06dec53c76"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "src/pages/sitemap.xml.ts",
+      "sha256": "01180e10577e141e7af26b91ebeba1ca720d0e36f872309430843f7e3f3ce1be"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "tests/unit/listings.test.ts",
+      "sha256": "66871310385e565531746e7f45ee78baf4ed62c8062313119e981d4b0d4e2645"
+    },
+    {
+      "root": "H:/repos/Lukespacewalker/a-cup-of-zoo-website",
+      "path": "wrangler.jsonc",
+      "sha256": "e5ad0bac159fea23515a4e2a0b5c51e3666797f6e57fb28a4d502e3f8c3e5233"
+    }
+  ],
+  "createdAt": "2026-10-28T06:47:38.621Z",
+  "before": "C:/Users/Sutti/.codex/artifacts/acupofzoo-cms-launch-2026-10-28/before"
+}

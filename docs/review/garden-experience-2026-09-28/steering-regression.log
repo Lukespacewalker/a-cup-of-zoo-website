@@ -1,0 +1,25 @@
+
+Running 9 tests using 3 workers
+
+
+(node:111396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:136944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:108076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/9] tests\e2e\experience-navigation.spec.ts:3:1 › home experiences preserve locale and mobile shortcuts do not duplicate the hero
+[2/9] tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages
+[3/9] tests\e2e\visit.spec.ts:3:1 › visit CTA keeps the supplied Maps destination
+[4/9] tests\e2e\visit.spec.ts:12:1 › mobile layout has no horizontal overflow
+[5/9] tests\e2e\visit.spec.ts:18:1 › mobile menu opens and Escape closes it
+[6/9] tests\e2e\visit.spec.ts:27:1 › theme control responds to keyboard activation and persists after navigation
+[7/9] tests\e2e\theme.spec.ts:24:1 › color control persists and auto follows the system preference
+[8/9] tests\e2e\visit.spec.ts:41:1 › photo journal supports visible keyboard focus and reduced motion
+[9/9] tests\e2e\theme.spec.ts:41:1 › all primary pages fit supported widths in light, dark and automatic themes
+  9 passed (14.6s)

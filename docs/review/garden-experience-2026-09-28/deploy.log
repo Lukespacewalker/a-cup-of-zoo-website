@@ -1,0 +1,162 @@
+$ bun run build && wrangler deploy
+$ bun run prepare:assets && astro build
+$ bun run scripts/prepare-assets.ts
+Prepared 9 site images
+11:16:11 [@astrojs/cloudflare] Enabling image processing with Cloudflare Images for production with the "IMAGES" Images binding.
+11:16:11 [types] Generated 84ms
+11:16:11 [build] output: "server"
+11:16:11 [build] mode: "server"
+11:16:11 [build] directory: H:\repos\Lukespacewalker\a-cup-of-zoo-website\dist\
+11:16:11 [build] adapter: @astrojs/cloudflare
+11:16:11 [build] Collecting build info...
+11:16:11 [build] ✓ Completed in 147ms.
+11:16:11 [build] Building server entrypoints...
+11:16:12 [vite] ✓ built in 722ms
+11:16:12 [vite] ✓ built in 729ms
+11:16:12 [vite] ✓ built in 42ms
+11:16:12 [build] Rearranging server assets...
+11:16:13 [build] ✓ Completed in 2.01s.
+11:16:13 [@astrojs/cloudflare] Injected immutable Cache-Control for /_astro/* into _headers.
+11:16:13 [build] Server built in 2.18s
+11:16:13 [build] Complete!
+
+ ⛅️ wrangler 4.139.0 (update available 4.142.0)
+───────────────────────────────────────────────
+Using redirected Wrangler configuration.
+ - Configuration being used: "dist\server\wrangler.json"
+ - Original user's configuration: "wrangler.jsonc"
+ - Deploy configuration file: ".wrangler\deploy\config.json"
+Attaching additional modules:
+┌───────────────────────────────────────────────────────────┬──────┬────────────┐
+│ Name                                                      │ Type │ Size       │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/404_BDAM5p4F.mjs                                   │ esm  │ 1.92 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/ActivitiesPage_x4d2qjf3.mjs                        │ esm  │ 19.93 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/activities_BWsJJyel.mjs                            │ esm  │ 1.00 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/activities_BXOBoEwh.mjs                            │ esm  │ 1.01 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/AnimalsPage_DMmyDVTb.mjs                           │ esm  │ 10.97 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/animals_CuOZHsPl.mjs                               │ esm  │ 0.98 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/animals_CwHogbjg.mjs                               │ esm  │ 0.96 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/ArrowIcon_DE6e1DDp.mjs                             │ esm  │ 1.76 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/assets_DPsGhN9b.mjs                                │ esm  │ 55.70 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/cat-portrait_ZBC1szTx.mjs                          │ esm  │ 4.47 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/compiler_D-Mnzfwu.mjs                              │ esm  │ 1.19 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/ContentUnavailable_CnUs3lw9.mjs                    │ esm  │ 1.21 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/entrypoints_BQgBTIMN.mjs                           │ esm  │ 245.41 KiB │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/experience-images_CTkJ4b2H.mjs                     │ esm  │ 2.53 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/font-preview_DXx2Qm70.mjs                          │ esm  │ 5.47 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/FoxSeal_S1eeeduR.mjs                               │ esm  │ 0.86 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/HomePage_C_d6gKML.mjs                              │ esm  │ 20.11 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/image-binding-transform_zkursQZo.mjs               │ esm  │ 4.16 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/image-service-workerd_BkNbNG8d.mjs                 │ esm  │ 0.43 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/image-transform-endpoint_BsjWIyIH.mjs              │ esm  │ 1.28 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/index_CEje1kaf.mjs                                 │ esm  │ 0.94 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/index_CWJkiePg.mjs                                 │ esm  │ 2.44 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/index_DcAiqONq.mjs                                 │ esm  │ 0.91 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/load-page_DeyDeYJ7.mjs                             │ esm  │ 22.28 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/MenuPage_BE-pU_Fm.mjs                              │ esm  │ 36.73 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/menu_CnEwCGE9.mjs                                  │ esm  │ 0.94 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/menu_DtNjVr4G.mjs                                  │ esm  │ 0.93 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/metadata_CMSrfDD3.mjs                              │ esm  │ 4.40 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/noop-entrypoint_BYLrzUxc.mjs                       │ esm  │ 0.15 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/OpeningHours_ChZS5g37.mjs                          │ esm  │ 1.32 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/path_BTDo3kb4.mjs                                  │ esm  │ 2.01 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/posts_BUJTlj6L.mjs                                 │ esm  │ 0.75 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/robots_Bs60CucL.mjs                                │ esm  │ 0.85 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/rolldown-runtime_D7vh-g_o.mjs                      │ esm  │ 0.41 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/runtime-config_C6VzJLZE.mjs                        │ esm  │ 166.32 KiB │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/runtime_Cizvp9JM.mjs                               │ esm  │ 290.11 KiB │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/sequence_CVU_BARX.mjs                              │ esm  │ 43.90 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/sitemap_CsEZIDdn.mjs                               │ esm  │ 1.57 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/static-image-collection_m3ABQpb4.mjs               │ esm  │ 2.44 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/VisitPage_CXM9y5Sm.mjs                             │ esm  │ 6.20 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/visit_B-DZmOpF.mjs                                 │ esm  │ 0.96 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/visit_Btt2oijp.mjs                                 │ esm  │ 0.94 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/WatercolorAnimal_BWYdlAKr.mjs                      │ esm  │ 2.34 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/_astro_assets_CuLKJdk2.mjs                         │ esm  │ 21.69 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/_slug__Zxyyfeq2.mjs                                │ esm  │ 3.17 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/_virtual_astro_server-island-manifest_q0HM18kM.mjs │ esm  │ 0.27 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ chunks/_virtual_astro_session-driver_DIk1nzQP.mjs         │ esm  │ 0.22 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ virtual_astro_middleware.mjs                              │ esm  │ 0.75 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼────────────┤
+│ Total (48 modules)                                        │      │ 997.30 KiB │
+└───────────────────────────────────────────────────────────┴──────┴────────────┘
+🌀 Building list of assets...
+✨ Read 102 files from the assets directory H:\repos\Lukespacewalker\a-cup-of-zoo-website\dist\client
+🌀 Starting asset upload...
+🌀 Found 10 new or modified static assets to upload. Proceeding with upload...
++ /_astro/HomePage.B0KPGDCc.css
++ /_astro/05-rabbit-source.Cbe9Pcrx.png
++ /_astro/01-goat-feeding-source.CgNg044q.png
++ /_astro/07-activities-source.JsTuAfXF.png
++ /_astro/load-page.DK8O3O0C.css
++ /_astro/03-japanese-garden-source.DGW3Eg9L.png
++ /_astro/04-koi-pond-source.CTfuTG7g.png
++ /_astro/08-zone-houses-source.B2rg-Fu9.png
++ /_astro/02-cafe-table-source.35lUDe2-.png
++ /_astro/06-child-and-cat-source.B0wyezle.png
+Uploaded 4 of 10 assets
+Uploaded 7 of 10 assets
+Uploaded 10 of 10 assets
+✨ Success! Uploaded 10 files (88 already uploaded) (5.11 sec)
+
+Total Upload: 1002.47 KiB / gzip: 232.33 KiB
+Worker Startup Time: 29 ms
+Your Worker has access to the following bindings:
+Binding                           Resource                  
+env.IMAGES                        Images                    
+env.ASSETS                        Assets                    
+env.SITE_ENV ("staging")          Environment Variable      
+env.CONTENT_MODE ("fixture")      Environment Variable      
+
+Uploaded a-cup-of-zoo-preview (14.58 sec)
+Deployed a-cup-of-zoo-preview triggers (2.35 sec)
+  https://a-cup-of-zoo-preview.suttisak-lukesp.workers.dev
+Current Version ID: bd29a273-3d7c-4fac-884e-0528121e0e6d

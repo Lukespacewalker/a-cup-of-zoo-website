@@ -1,0 +1,21 @@
+---
+import type { PublicVenueDto } from "@lukespace-cms/client";
+import Picture from "../content/Picture.astro";
+import { translator, type Locale } from "../../lib/i18n/locale";
+interface Props { locale: Locale; venue: PublicVenueDto | null; }
+const { locale, venue } = Astro.props;
+const t = translator(locale);
+const animals = venue?.content.animals.filter(animal => animal.visible).sort((a, b) => a.sortOrder - b.sortOrder) ?? [];
+const title = (animal: typeof animals[number]) => locale === "en" && animal.titleEn ? animal.titleEn : animal.title;
+const description = (animal: typeof animals[number]) => locale === "en" && animal.descriptionEn ? animal.descriptionEn : animal.description;
+const language = (text: string) => /[\u0e00-\u0e7f]/.test(text) ? "th" : "en";
+---
+{animals.length > 0 && <section class="owner-section" id="animal-family" aria-labelledby="family-title">
+  <p class="chapter-label">Animal family</p>
+  <h2 id="family-title">{t("เรียกชื่อ แล้วค่อย ๆ รู้จักกัน", "A name for every new friend")}</h2>
+  <p>{t("ทำความรู้จักเพื่อนสัตว์ของเรา ก่อนแวะไปทักทายตามคำแนะนำของพนักงาน", "Meet our animal family before saying hello with guidance from the café team.")}</p>
+  <ul class="resident-list">{animals.map(animal => <li data-resident={animal.id} class:list={{"resident-featured":animal.featured}}>
+    <Picture mediaId={animal.mediaAssetId} media={venue?.media ?? []} alt={title(animal)} />
+    <h3 lang={language(title(animal))}>{title(animal)}</h3><p lang={language(description(animal))}>{description(animal)}</p>
+  </li>)}</ul>
+</section>}

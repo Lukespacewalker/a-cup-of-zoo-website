@@ -1,5 +1,5 @@
 export type Locale = "th" | "en";
-export const bilingualPaths = ["/", "/animals/", "/activities/", "/menu/", "/visit/"];
+export const bilingualPaths = ["/", "/animals/", "/activities/", "/menu/", "/visit/", "/events/", "/club/", "/farm/"];
 export const localeFromPath = (path: string): Locale => path.startsWith("/en/") ? "en" : "th";
 export const translator = (locale: Locale) => (th: string, en: string) => locale === "en" ? en : th;
 

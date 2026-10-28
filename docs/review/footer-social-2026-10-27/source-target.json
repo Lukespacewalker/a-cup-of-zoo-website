@@ -1,0 +1,82 @@
+{
+  "root": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website",
+  "head": "1fc2599a9fa32ad6ab02760a93e425934adb6919",
+  "files": [
+    {
+      "path": "astro.config.mjs",
+      "sha256": "05d5becc2529e35e8024b2df3322210363a1d6fe4b67b76c6ed1a70fdb33f2af"
+    },
+    {
+      "path": "src/components/pages/HomePage.astro",
+      "sha256": "0ec5113ac108717c20c646e876c63319f7970107aa266d336d90055937af8371"
+    },
+    {
+      "path": "src/components/seo/SeoHead.astro",
+      "sha256": "9ef8227e5f0b6c950756a9babe19b8a651cd9b5d2ab0882b5631f7efea7d11e4"
+    },
+    {
+      "path": "src/components/site/ContactIcon.astro",
+      "sha256": "b6d4e221614fa8d04712d2fa511af6c714a901c2a51154e88ae451d41aa66dbd"
+    },
+    {
+      "path": "src/components/site/Footer.astro",
+      "sha256": "e26842236e915304ffffa7981cf13f08b574b3955617361b1f89d95eb94f4a90"
+    },
+    {
+      "path": "src/components/site/SocialLinks.astro",
+      "sha256": "7f603e60bca56a8f34d74ba2f05b01612b7e3309050ce2d2b504122bc5158aab"
+    },
+    {
+      "path": "src/layouts/SiteLayout.astro",
+      "sha256": "867501407039747fe4b2ab407c02a5e7a77ad0fd35a0ccb8a678b9f2d8339b03"
+    },
+    {
+      "path": "src/lib/business/social.ts",
+      "sha256": "1e1d03545de0279ec8ca29e31423b131476264217865cab4c997e0351ecd2ba3"
+    },
+    {
+      "path": "src/lib/content/runtime-config.ts",
+      "sha256": "8eb50584da99f167cc867ad422b53204338aa8572ea74883d41118f2237da0c3"
+    },
+    {
+      "path": "src/lib/seo/indexing.ts",
+      "sha256": "4904373eb8ad26f11af9c8a92cadd745873992fe44e449180596904addb425cf"
+    },
+    {
+      "path": "src/lib/seo/metadata.ts",
+      "sha256": "a3f9b43cb8861b28b727b9add61fab6d897189871930cc3b4958123e3e7e489e"
+    },
+    {
+      "path": "src/middleware.ts",
+      "sha256": "8e4e5ec1044108ca67334f1de0f2941e50c2c002439a9297e972d843c78c3d9a"
+    },
+    {
+      "path": "src/pages/robots.txt.ts",
+      "sha256": "548c1794445671e396b5cacfeb35b49fd209d21c2c4da0fc069cf5e301cdf0a4"
+    },
+    {
+      "path": "src/pages/sitemap.xml.ts",
+      "sha256": "ea22cb257858a2f754582d8fe23e46558464c4429c6fd5e0c50ce648bfbe5a2b"
+    },
+    {
+      "path": "src/styles/contact-social.css",
+      "sha256": "b2a61ee97082735a273310b7ae631825b74261f2cac3d4522e3877b34508b1c0"
+    },
+    {
+      "path": "tests/e2e/contact-social.spec.ts",
+      "sha256": "6824bd9190bf8fb797219882fec16872d57900ad54ccfe491a0b33bf6f1573c4"
+    },
+    {
+      "path": "tests/unit/indexing.test.ts",
+      "sha256": "976d9ad42cdef0bf5732ea54318744f00d672a57cf8ce361a5a3dea676072ee0"
+    },
+    {
+      "path": "tests/unit/seo.test.ts",
+      "sha256": "adb38dc89f294bbc021a8a87c2bccddbe94ceff947064892166b3cba1f72eddb"
+    },
+    {
+      "path": "wrangler.jsonc",
+      "sha256": "7f5a7e806ecce7a36e7ad3aa1f0fad276c24f6dff43b89a40979d0bfd9ebccdc"
+    }
+  ]
+}

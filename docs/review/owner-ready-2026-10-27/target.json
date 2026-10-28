@@ -1,0 +1,373 @@
+{
+  "websiteRoot": "H:\\repos\\Lukespacewalker\\a-cup-of-zoo-website",
+  "cmsRoot": "H:\\repos\\Lukespacewalker\\CMS-Platform-acupofzoo",
+  "websiteHead": "1fc2599a9fa32ad6ab02760a93e425934adb6919",
+  "cmsHead": "2a0d7a6bfefb898d8de327c086aa9dfdd5cad1d5",
+  "files": [
+    {
+      "repo": "website",
+      "path": "src\\layouts\\SiteLayout.astro",
+      "sha256": "e7c07035969f21ba3948162ee8260d3a8d8ab9a0d2ff908d379f5e23d858a6de"
+    },
+    {
+      "repo": "website",
+      "path": "src\\pages\\club.astro",
+      "sha256": "c1c7678e233d27fe74436f99484e5a98878ff1128141ce6ed099b8fa07896188"
+    },
+    {
+      "repo": "website",
+      "path": "src\\pages\\events.astro",
+      "sha256": "8eeec04fe783a4be0b8bda8f731f1ca8c71e7454ca02e1e95013dbd874c00158"
+    },
+    {
+      "repo": "website",
+      "path": "src\\styles\\owner-content.css",
+      "sha256": "f4b8ed1ce36d85fab534c6fde8602dfd282c66f39c0afa1d3ae14a7b2d87530c"
+    },
+    {
+      "repo": "website",
+      "path": "src\\pages\\en\\club.astro",
+      "sha256": "e1b3fcdd03a678491a3b1ce1baeea29f52c3d48e325ff094904baaefa252f172"
+    },
+    {
+      "repo": "website",
+      "path": "src\\pages\\en\\events.astro",
+      "sha256": "9126e8bbc6ca1b473fd6b15e9cadbd93bec787cbb2fbb7262a67fa7590042ac4"
+    },
+    {
+      "repo": "website",
+      "path": "src\\lib\\business\\contact.ts",
+      "sha256": "2aa55da0920a4676bec5943ae6916dd173dd30fad6eb4e066df0cbca5ef37828"
+    },
+    {
+      "repo": "website",
+      "path": "src\\lib\\content\\animal-roster.ts",
+      "sha256": "51fa12520c57aa3ca538e7cb9a41145d672e61d441c00554a217c1e260bebb0a"
+    },
+    {
+      "repo": "website",
+      "path": "src\\lib\\content\\fixture-data.ts",
+      "sha256": "cf412e0590e1d7b8742d7bd7bb1dfe60708de26ca129dff6b6c8620b1fda9d3a"
+    },
+    {
+      "repo": "website",
+      "path": "src\\lib\\content\\local-images.ts",
+      "sha256": "bf5f29b5c8f2bd3a15d5875b7b0c68b04c74250dd8aa7fe04b6e4cd1e337e63a"
+    },
+    {
+      "repo": "website",
+      "path": "src\\lib\\content\\owner-brief.ts",
+      "sha256": "adf3e9600df4974d3fc8eaadd9a655b3de817f2ba070c025b33c84fa663471f2"
+    },
+    {
+      "repo": "website",
+      "path": "src\\lib\\i18n\\locale.ts",
+      "sha256": "92ad3ca5affb9c0696c75e834d5fdb2c19f061787bed27ad24bb5287368c298e"
+    },
+    {
+      "repo": "website",
+      "path": "src\\lib\\i18n\\venue.ts",
+      "sha256": "9bff36409afb2bc013f1530dab055aa7c46db2020e24a12fe21ee68453c5f17b"
+    },
+    {
+      "repo": "website",
+      "path": "src\\lib\\seo\\metadata.ts",
+      "sha256": "bd83e23c5b17673de967a055fcf0df34e17cb423ab8a9123dc1002a95572b894"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\pages\\ActivitiesPage.astro",
+      "sha256": "44d087b6078ed3c9cc1c1f3838ea906afb966338ccc7c55fa20307281dc5377f"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\pages\\AnimalsPage.astro",
+      "sha256": "c762d4a313cb70243aa4eae551af152aea12a1f652b6f64e87e340a566616d70"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\pages\\ClubPage.astro",
+      "sha256": "a50846fb4b5baebbc35d59843dc2c8f00625a9e5f05033555fbe568affd8abfa"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\pages\\EventsPage.astro",
+      "sha256": "4c37d8114a617cbb7319a98b5d3bd41d882e58984046605701ac1f2938651330"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\pages\\HomePage.astro",
+      "sha256": "a6f75c9230154090e43a40ac366c87234dea0b0f2c4488742a3654df2c55e7ec"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\pages\\MenuPage.astro",
+      "sha256": "1721d217039c74073cb201063479cd4aa5cd5e944f2ee9f6945a090b145128de"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\pages\\VisitPage.astro",
+      "sha256": "13d6288177ac287d4e34f31c6eb0172f4609e5b1a674564d6c9e3b5d98111f08"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\site\\AnimalFamily.astro",
+      "sha256": "d81d291c923da91197c18f68c6d46df13d37e21969f17471d2a3e3ce6801265f"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\site\\Footer.astro",
+      "sha256": "9321c3b4412b4a72db5978f13ed3532dd984701f6519b0e0406eca3d51dcc480"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\site\\Header.astro",
+      "sha256": "a7f3694dab4653ccab5f4a9cb78ee10dc8680de167c24aa29331fd832cd09975"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\site\\OpeningHours.astro",
+      "sha256": "5989720ed43d98fc5d5e4842bb084085e0eb4848c3cf4d36e09acd1f102b3d2f"
+    },
+    {
+      "repo": "website",
+      "path": "src\\components\\site\\ShopMap.astro",
+      "sha256": "1e508030a2ee94e3a3d2f4686b0fc53b727a73765d6a65f3b707cb84d017b8df"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-05.png",
+      "sha256": "92a6336b9748f1141dc8721fa9778e47a11e65e1052edbd5a483dc8b2fc90832"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-07.png",
+      "sha256": "f50daad9025b47fabbdffeddec8d7424667a47365ad2cd3fd5a1184d130da7d6"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-08.png",
+      "sha256": "8d47adf651430dba8d5d8a1ca77d052b19776a85bfbdf0f63a824f2547c2ffe4"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-09.png",
+      "sha256": "194213a217b0d734705df8ef8f729d28fa446dc48adeabb656626362847a235e"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-10.png",
+      "sha256": "280892b45d145f1d9e5ff69a41e3d781d186fc4afe96b1c4b5f9362ae3052237"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-11.png",
+      "sha256": "3ee4f92920a6b605d011a0810914619c91d7361e63968a314d3f83282faebdbd"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-12.png",
+      "sha256": "e839072d58b970b8711b6d5aec56c5462754663de74cd98981c5b9861f308055"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-16.png",
+      "sha256": "7188cf70f04eb0f928f77dac47ea411580ecbd72211728b22d5c817c339ec309"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-17.png",
+      "sha256": "f74e2b03aaefb6101f601cc273b738aa5af82a317f332c693d236f9477b9daf2"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-18.png",
+      "sha256": "3c959123bed9b49387b8f2490686a5f81aaba449a85e222bdd61c27fc5ee5f78"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-20.png",
+      "sha256": "3e954a3b4119ecd7d321e0b8c960a3e43e74d7f378848ed35fe7e516738da862"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-22.png",
+      "sha256": "19dd5152c2c849cd1c4a6a0e170fad8c0eaba6fd7ff8f3ca4fe440b21f294a32"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-23.png",
+      "sha256": "9d93299f77c5b7633559cddf6b10ec69c18a42e24ee0048914cbd799abdb1941"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-24.png",
+      "sha256": "caeb35c47bb501b740d13b860ca4bfe3f81c22e5c42fdc82cbe895fb5f506212"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-26.png",
+      "sha256": "4f3c33deb14f28c9b6bb9d5f7fd01650aed6c5a31cf27bd20197bfb8bd65a266"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-27.png",
+      "sha256": "0c6b2c264e7280ac424f53e215020f28d65c221cd0d44406039a033f5c5274d4"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-29.png",
+      "sha256": "b7bb7ef54517601dcf634a4e3073c1e4e6f5813409c8c0a71890f5c7cdeaccd2"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-30.png",
+      "sha256": "788e6e3c021fda3e9ea47987cee4bd3fc0ef4fe6913c2e9c806b961abb7fd5cf"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-31.png",
+      "sha256": "a166bc61855636ccad0afcd76f8d270ca3fe5d35ee546a0cdd91f0ed5f10d06e"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-32.png",
+      "sha256": "6c93647e792496e8e68aee46242dddb933e012326e66a8f86a5ed6e9589b87f3"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-33.png",
+      "sha256": "770336b168ab49cbbc2409049ed3e6394c99701cbdc432a6da9f4e7f55b4b545"
+    },
+    {
+      "repo": "website",
+      "path": "src\\assets\\owner-brief\\asset-34.png",
+      "sha256": "03cd4bf1b7ad5bdb3772a40141949c2de2a517267f0f1070a1e0f3ef3f405f91"
+    },
+    {
+      "repo": "website",
+      "path": "tests\\e2e\\menu.spec.ts",
+      "sha256": "8a69f675a6b763c7194e63ebcb7ba6f8b0d9aa6b2a2ded2cb12ae9cf1d75ed7d"
+    },
+    {
+      "repo": "website",
+      "path": "tests\\e2e\\owner-content.spec.ts",
+      "sha256": "677f63870298ff372c99ed8d6057e3931ef3605f6abf833419cfd1d13dae8ee8"
+    },
+    {
+      "repo": "website",
+      "path": "tests\\unit\\seo.test.ts",
+      "sha256": "ce92b67102fb15e0adf7193c8579663399099425e5c2daa8c52837392ae98a5d"
+    },
+    {
+      "repo": "website",
+      "path": "scripts/verify-cms-editing.ts",
+      "sha256": "e29feb243bdb8d28eee23d3d69fde6e0dda2b7e07610bb33f841ad1bf119ab69"
+    },
+    {
+      "repo": "website",
+      "path": "docs/owner-ready-changes-2026-10-27.md",
+      "sha256": "f2b2debf5bbf3c1a908c9fe25ab8b234eac46bde2da5158a8769fdac98ee162b"
+    },
+    {
+      "repo": "website",
+      "path": "docs/superpowers/plans/2026-10-27-owner-ready-content.md",
+      "sha256": "76166c2fd45f41384f46cdea52c4d74dc8f4593f96827c9f1677cfd231f177d5"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/src/mcp/create-cms-server.ts",
+      "sha256": "e5bb6d17a6712c61544f8427e6166b26dd967df91175f6f6154e828ad7cc484c"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/src/mcp/register-venue-tools.ts",
+      "sha256": "1850f7501b57f941e8e9abe907de62fd797f45b92d53911a1aff6da286930f61"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/tests/venue-mcp.test.ts",
+      "sha256": "8d1f703ec66e96fc77a0aaad70c5d7c502b08ed999b7febe742da4ef93ee84a0"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/tests/d1-venue-repository.test.ts",
+      "sha256": "c4b75fe11546fe7c896a9221fa943d984e1b95382d67bb712d73d3c4f760c68d"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/src/features/venue-content/infrastructure/d1-venue-repository.ts",
+      "sha256": "73826d01ac70d3a06976d2668cfb3cea206f7c75a084356d7725a092d6e70560"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/admin/vite.config.ts",
+      "sha256": "7c37779f33aeef5401d39ba5ef0953f6fffc6d2dbd4e5ade43388d7ad1973ee6"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/admin/src/features/venue-content/ui/VenueSettingsPage.tsx",
+      "sha256": "41980d27ee2907a7be1836f259a75d699c621f2e13389a26d20525040e244e04"
+    },
+    {
+      "repo": "cms",
+      "path": "packages/contracts/src/venue-content.ts",
+      "sha256": "cfa2171015febb79d8d3ff603ab8aa45eaad6416bb53fa35fc838999f9a9c6b6"
+    },
+    {
+      "repo": "cms",
+      "path": "packages/client/src/generated/venue-content.ts",
+      "sha256": "51e29adb792005e159a1918f006a4851e80a6cc6122eb2cfe6091970b83f3a45"
+    },
+    {
+      "repo": "cms",
+      "path": "packages/client/src/generated/revision.ts",
+      "sha256": "42d03175ff1071a37dd6546e86d6fbe2af4728c6c0526002097703f9c683db06"
+    },
+    {
+      "repo": "cms",
+      "path": "packages/client/public-contracts.revision.json",
+      "sha256": "cdd9a464ac39bc1d055f14cb421b8c06064e4051ca7cd6846c7ae92a169c3d9e"
+    },
+    {
+      "repo": "cms",
+      "path": "docs/mcp.md",
+      "sha256": "db9d038656594cf8ba2de0233a463e9d2a367418c97dca108d506557b2fb9d29"
+    },
+    {
+      "repo": "cms",
+      "path": "packages/cms-application/src/features/media/media-repository.ts",
+      "sha256": "7b1903155af131a3c37e56945b1e525b75284e06a9532c4253cc24d8719b9d1b"
+    },
+    {
+      "repo": "cms",
+      "path": "packages/cms-application/src/features/venue-content/venue-use-cases.ts",
+      "sha256": "14a82783ea704cf47ca434574b5b06ccc37c76340728796bb51a06e8a510498b"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/src/features/media/infrastructure/d1-media-repository.ts",
+      "sha256": "c946727786b19b6b9e15b757dd3f66678979c99287e9c79701817d603647149f"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/src/local/bun-repositories.ts",
+      "sha256": "7947e2ab1d7327642b571f01288c29179ae9cb6503851ff6b71749a51a38e846"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/src/features/posts/infrastructure/d1-post-repository.ts",
+      "sha256": "4067cb30a66e672b970cf128ff61ebdaf45895a74abb8f9c18a318a29893745d"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/tests/d1-post-repository.test.ts",
+      "sha256": "977fea9a64618c889430c2fbbb65e2708d00f0d7ddd83d7cdf371c27105a2a71"
+    },
+    {
+      "repo": "cms",
+      "path": "apps/api/tests/venue-media.test.ts",
+      "sha256": "ec05e519b35aad36164c2df59f4b1a3e269e2694770defb960ef14814bad9577"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
-import logo from "../../../logo.jpg";
+import ShopLogo from "./ShopLogo.astro";
+import ArrowIcon from "./ArrowIcon.astro";
 import { localeFromPath, localePath, basePath, bilingualPaths, translator } from "../../lib/i18n/locale";
 const locale = localeFromPath(Astro.url.pathname);
 const t = translator(locale);
@@ -9,6 +10,7 @@ const links = [
   [href("/animals/"), t("สัตว์", "Animals")],
   [href("/activities/"), t("กิจกรรม", "Activities")],
   [href("/menu/"), t("เมนู", "Menu")],
+  [href("/farm/"), t("สัตว์หาบ้าน", "Farm")],
   ["/news/", t("ข่าว", "News (Thai)")],
 ];
 const currentPath = Astro.url.pathname;
@@ -17,11 +19,13 @@ const counterpart = bilingualPaths.includes(basePath(currentPath));
 const switchHref = localePath(counterpart ? currentPath : "/", locale === "th" ? "en" : "th");
 ---
 <header class="site-header">
-  <a class="wordmark" href={href("/")}><img src={logo.src} alt="A Cup of Zoo Cafe & Farm" /></a>
+  <a class="wordmark" href={href("/")}><ShopLogo id="header-logo" /></a>
   <nav class="desktop-nav" aria-label={t("หลัก", "Main navigation")}>
     {links.map(([href, label]) => <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>{label}</a>)}
-    <a class="visit-link" href={href("/visit/")}>{t("พาครอบครัวมา", "Plan your visit")}</a>
+    <a class="club-link" href={href("/club/")} aria-current={isCurrent(href("/club/")) ? "page" : undefined}>Zoo Clubs</a>
+    <a class="visit-link" href={href("/visit/")}>{t("วางแผนมาเที่ยว", "Plan your visit")} <ArrowIcon /></a>
   </nav>
+  <div class="header-tools">
   <a class="language-switch" data-equivalent={counterpart ? "true" : "false"} href={switchHref} lang="en" aria-label={locale === "en" ? counterpart ? "Thai" : "Thai home" : counterpart ? "English" : "English home"}>{locale === "en" ? counterpart ? "TH" : "TH · Home" : counterpart ? "EN" : "EN · Home"}</a>
   <button class="theme-button" type="button" aria-label={t("โหมดสีตามเครื่อง", "System colour theme")}>
     <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18V3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>
@@ -29,9 +33,12 @@ const switchHref = localePath(counterpart ? currentPath : "/", locale === "th" ?
     <svg class="icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.5 3.2a8.2 8.2 0 1 0 5.3 12.6A7 7 0 0 1 15.5 3.2z"/></svg>
   </button>
   <button class="menu-button" type="button" aria-label={t("เมนู", "Open navigation")} aria-expanded="false" aria-controls="mobile-nav">{t("เมนู", "Menu")}</button>
+  </div>
 </header>
 <nav id="mobile-nav" class="mobile-panel" aria-label={t("มือถือ", "Mobile navigation")} hidden>
+  <a class="club-link" href={href("/club/")} aria-current={isCurrent(href("/club/")) ? "page" : undefined}><span>Zoo Clubs</span><span class="club-link__note">{t("สมัครฟรี", "Join free")}</span></a>
   {links.map(([href, label]) => <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>{label}</a>)}
+  <a href={href("/events/")} aria-current={isCurrent(href("/events/")) ? "page" : undefined}>{t("ทัวร์กลุ่มและร่วมงาน", "Groups & collaborations")}</a>
   <a href={href("/visit/")} aria-current={isCurrent(href("/visit/")) ? "page" : undefined}>{t("มาเที่ยว", "Plan your visit")}</a>
 </nav>
 <script>

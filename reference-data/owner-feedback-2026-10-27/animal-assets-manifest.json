@@ -1,0 +1,265 @@
+{
+  "source": "https://www.canva.com/design/DAHYz2902Do/uNqLI2aFUF5ZNF389Mwscg/view#4",
+  "retrievedAt": "2026-10-28",
+  "sourceSheet": {
+    "width": 1599,
+    "sha256": "A3A14C1A973A3E795CCD60C3A09DB2C96E735890B5DFFFC5BB9A691D880E7839",
+    "height": 601,
+    "file": "assets/animal-cards-source-2026-10-28.png"
+  },
+  "method": "Original source figures extracted without synthesis or upscaling; full source sheets retained",
+  "identityDecision": "Owner confirmed 2026-10-28: MINE cards 20/21 are one animal; YIN-YANG cards 22/25 are one animal. Each receives one shared score.",
+  "items": [
+    {
+      "id": "nama",
+      "file": "src/assets/animal-roster/nama.png",
+      "sha256": "F50DAAD9025B47FABBDFFEDDEC8D7424667A47365AD2CD3FD5A1184D130DA7D6",
+      "sourceImage": "asset-07.png",
+      "crop": null
+    },
+    {
+      "id": "daifuku",
+      "file": "src/assets/animal-roster/daifuku.png",
+      "sha256": "8D47ADF651430DBA8D5D8A1CA77D052B19776A85BFBDF0F63A824F2547C2FFE4",
+      "sourceImage": "asset-08.png",
+      "crop": null
+    },
+    {
+      "id": "dorayaki",
+      "file": "src/assets/animal-roster/dorayaki.png",
+      "sha256": "194213A217B0D734705DF8EF8F729D28FA446DC48ADEABB656626362847A235E",
+      "sourceImage": "asset-09.png",
+      "crop": null
+    },
+    {
+      "id": "mochi",
+      "file": "src/assets/animal-roster/mochi.png",
+      "sha256": "280892B45D145F1D9E5FF69A41E3D781D186FC4AFE96B1C4B5F9362AE3052237",
+      "sourceImage": "asset-10.png",
+      "crop": null
+    },
+    {
+      "id": "senbei",
+      "file": "src/assets/animal-roster/senbei.png",
+      "sha256": "3EE4F92920A6B605D011A0810914619C91D7361E63968A314D3F83282FAEBDBD",
+      "sourceImage": "asset-11.png",
+      "crop": null
+    },
+    {
+      "id": "mee-tang",
+      "file": "src/assets/animal-roster/mee-tang.png",
+      "sha256": "FA5C6AC769F67BA201EC1EA4B537554DF65019F6A4EE7F6511145E2A02CF2DB5",
+      "sourceImage": "asset-12.png",
+      "crop": {
+        "left": 30,
+        "top": 132,
+        "width": 238,
+        "height": 270
+      }
+    },
+    {
+      "id": "mee-thong",
+      "file": "src/assets/animal-roster/mee-thong.png",
+      "sha256": "981AF0EC2BA4E07A775BEBA38250E7A5415078654BFA17BC406EDE47B0769F63",
+      "sourceImage": "asset-12.png",
+      "crop": {
+        "left": 285,
+        "top": 132,
+        "width": 270,
+        "height": 270
+      }
+    },
+    {
+      "id": "mee-chok",
+      "file": "src/assets/animal-roster/mee-chok.png",
+      "sha256": "8D50652D2F713D73F5195E8395735203C0F866BC7EB9D6518F10D8C758DC779C",
+      "sourceImage": "asset-12.png",
+      "crop": {
+        "left": 20,
+        "top": 482,
+        "width": 260,
+        "height": 220
+      }
+    },
+    {
+      "id": "mee-heng",
+      "file": "src/assets/animal-roster/mee-heng.png",
+      "sha256": "D4C6158F5E89F2B36E3EC52046C5D6DB0C984BCDF3B905406F3497B0568BFC32",
+      "sourceImage": "asset-12.png",
+      "crop": {
+        "left": 303,
+        "top": 480,
+        "width": 230,
+        "height": 230
+      }
+    },
+    {
+      "id": "kai-jew",
+      "file": "src/assets/animal-roster/kai-jew.png",
+      "sha256": "A9DEB5A44EAA94A523A6E088AC66620374947D699B2A05A182EF5AA149628F69",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 8,
+        "top": 70,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "kai-down",
+      "file": "src/assets/animal-roster/kai-down.png",
+      "sha256": "E4C89484B27B0FF5E85204749BD0C5CA6708CCE68BA8331DE939E2B95A188F86",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 208,
+        "top": 70,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "candy",
+      "file": "src/assets/animal-roster/candy.png",
+      "sha256": "047E5F9C962B0ACCDE90D3973F135BF30E86B690FCD28000883B6F4B7694BE5B",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 408,
+        "top": 70,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "mine",
+      "file": "src/assets/animal-roster/mine.png",
+      "sha256": "06826644AE721829AB22E3FA8F221D4A95D3ED6A44ECCCDA1422E298657C4190",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 609,
+        "top": 70,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "yin-yang",
+      "file": "src/assets/animal-roster/yin-yang.png",
+      "sha256": "D641143B92189503F20EADD2B34EAC4D7F3AE88FDB929C696CF122108CB6C72D",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 1009,
+        "top": 70,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "moo-krob",
+      "file": "src/assets/animal-roster/moo-krob.png",
+      "sha256": "003655F2D3D386B3C55C1F866687508F67CDA0E3D220DCEFE5B11D1BD6BE70FF",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 1209,
+        "top": 70,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "khai-yiao-ma",
+      "file": "src/assets/animal-roster/khai-yiao-ma.png",
+      "sha256": "D4F651287176E1DC86193B169541B937159677408CC1F3C7A03AB1647D3FC89A",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 1409,
+        "top": 70,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "nam-lieap",
+      "file": "src/assets/animal-roster/nam-lieap.png",
+      "sha256": "A493BDA56DFA3D689ADA4CD9AE7E1E92A3A04904AA23DBABFBA18247D29DDA1D",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 208,
+        "top": 376,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "khao-chao",
+      "file": "src/assets/animal-roster/khao-chao.png",
+      "sha256": "0917AC6DF75495672CF4DF1141D15FBDEB405EB6663FA4508045A80BE2705C5A",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 408,
+        "top": 376,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "look-chin",
+      "file": "src/assets/animal-roster/look-chin.png",
+      "sha256": "239A90AF7459702AB4C8D7A4F2ECA54362F281FEABEC63A5D2EE732793221BDE",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 609,
+        "top": 376,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "sai-krok",
+      "file": "src/assets/animal-roster/sai-krok.png",
+      "sha256": "2F86C6F1398762E7A628632E3E53708F8486355EC5570A29D2440438299C7485",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 809,
+        "top": 376,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "tart",
+      "file": "src/assets/animal-roster/tart.png",
+      "sha256": "1AA89742DC6CBDC577F5D035FB57C2FA695FDB0071C9A031622F0918E598B102",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 1009,
+        "top": 376,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "sum-lee",
+      "file": "src/assets/animal-roster/sum-lee.png",
+      "sha256": "0539C2096EFB77B7CD1F941330EDE05276E9454E1987BB8EA26CDE12CF5F52DA",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 1209,
+        "top": 376,
+        "width": 175,
+        "height": 175
+      }
+    },
+    {
+      "id": "veres",
+      "file": "src/assets/animal-roster/veres.png",
+      "sha256": "BE263168BA8DC7872516083535A6BD957D429D437FA7DB9F69921C4ADD15D9F7",
+      "sourceImage": "animal-cards-source-2026-10-28.png",
+      "crop": {
+        "left": 1409,
+        "top": 376,
+        "width": 175,
+        "height": 175
+      }
+    }
+  ]
+}

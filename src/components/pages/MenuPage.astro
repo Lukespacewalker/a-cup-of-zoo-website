@@ -3,7 +3,9 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import "../../styles/menu-catalog.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import { menuBooks } from "../../lib/content/owner-brief";
 import FoxSeal from "../site/FoxSeal.astro";
+import ArrowIcon from "../site/ArrowIcon.astro";
 import { loadPage } from "../../lib/content/load-page";
 import { localizedMenu, localizedExtras } from "../../lib/i18n/menu";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
@@ -36,6 +38,7 @@ const menuSchema = {
     <h1>{t("มื้ออร่อยที่ A Cup of Zoo", "At our table")}</h1>
     <p>{t("เลือกจานที่ชอบ แล้วนั่งใช้เวลาด้วยกัน มีทั้งจานทานเล่น มื้ออิ่ม และเมนูจากพืช", "Choose something to share or a meal of your own. Explore small plates, filling dishes and plant-based choices.")}</p>
     <p class="catalog-note">{t("ราคาต่อจานเป็นบาท · รายการและราคาตามเมนูร้านที่ตรวจเมื่อ 26 กันยายน 2569", "Prices per dish in THB · Menu and prices checked against the shop menu on 26 September 2026")}</p>
+    <div class="menu-books"><div class="actions"><a class="button secondary" href={menuBooks.food}>{t("เปิดเล่มเมนูอาหาร", "Open the food menu book")}</a><a class="button" href={menuBooks.drinks}>{t("เปิดเล่มเครื่องดื่มและขนม", "Open the drinks & treats menu")}</a></div><p>{t("เปิดอ่านเล่มเมนูของร้านบน Heyzine หรือเลื่อนเลือกอาหารพร้อมราคาด้านล่าง", "Read the café’s menu books on Heyzine, or browse the food dishes and prices below.")}</p></div>
     <nav class="menu-jump" aria-label={t("หมวดเมนู", "Menu categories")}>
       {menuCatalog.map((section) => <a href={`#${section.id}`}>{section.title}</a>)}
     </nav>
@@ -50,10 +53,9 @@ const menuSchema = {
       <div class="food-section__body">
         <div class="food-section__photos">
           <Image src={photo(section.imagePages[0])} alt={section.imageAlt} widths={[320, 560]} sizes="(max-width: 700px) 90vw, 30vw" format="webp" loading={index === 0 ? "eager" : "lazy"} />
-          {section.imagePages.length > 1 && <details class="food-gallery">
-            <summary>{t("ดูภาพเพิ่มเติม · ", "More photos · ")}{section.title}</summary>
+          {section.imagePages.length > 1 && <div class="food-gallery">
             {section.imagePages.slice(1).map((number) => <Image src={photo(number)} alt={t(`ภาพเมนู${section.title}จากร้าน`, `${section.title} from the café's menu`)} width={560} format="webp" loading="lazy" />)}
-          </details>}
+          </div>}
         </div>
         <div>
           <ul class="food-list">
@@ -68,12 +70,12 @@ const menuSchema = {
           </div>}
         </div>
       </div>
-      <a class="catalog-back" href="#menu-top">{t("กลับไปเลือกหมวด ↑", "Back to menu categories ↑")}</a>
+      <a class="catalog-back" href="#menu-top">{t("กลับไปเลือกหมวด", "Back to menu categories")} <ArrowIcon direction="up" /></a>
     </section>)}
   </div>
   <aside class="catalog-end">
     <h2>{t("เครื่องดื่มและขนม", "Drinks & treats")}</h2>
-    <p>{t("สอบถามรายการเครื่องดื่มและขนมที่พร้อมเสิร์ฟกับพนักงานที่ร้าน", "Ask the café team about drinks and treats available on the day of your visit.")}</p>
+    <p>{t("เปิดเล่มเครื่องดื่มและขนมได้จากปุ่มด้านบน และสอบถามพนักงานเรื่องรายการที่พร้อมเสิร์ฟในวันที่มาเที่ยว", "Open the drinks and treats menu using the link above, and ask the café team which items are available on your visit.")}</p>
     <div class="actions"><a class="button" href={href("/activities/")}>{t("ดูแพ็กเกจและกิจกรรม", "Passes & activities")}</a><a class="button secondary" href={href("/visit/")}>{t("วางแผนมาเที่ยว", "Plan your visit")}</a></div>
   </aside>
   <script type="application/ld+json" set:html={JSON.stringify(menuSchema).replace(/</g, "\\u003c")} />

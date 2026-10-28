@@ -1,0 +1,34 @@
+[
+  {
+    "path": "src/components/pages/ClubPage.astro",
+    "sha256": "7562413403C0B0D4D0DAC07F9AC1819C3DF5C71303E5BAA64B1878E076937B06"
+  },
+  {
+    "path": "src/styles/owner-content.css",
+    "sha256": "6102D34064EABFAAAB56EE089D809A8865FDA422D85F34A039266BD265739A1B"
+  },
+  {
+    "path": "src/assets/club/friend.png",
+    "sha256": "9D10C00AC0903BFF96464727FFAEDD903DEB2EB254812F25F0498F0253AC7629"
+  },
+  {
+    "path": "src/assets/club/buddy.png",
+    "sha256": "D5B2277FEA28A9B2B693F05B3ECBE63C9CB20DB2C71E31859586FE373FA513DF"
+  },
+  {
+    "path": "src/assets/club/besties.png",
+    "sha256": "F95CADCA3854BBBAA20E54FE7A2AE498822457F4ABBCCCA202C20B6985B5CFE3"
+  },
+  {
+    "path": "src/assets/club/soulmate.png",
+    "sha256": "41B07FEEF1DB3925D2B0BF6DD1D1B9E8C700AE6ACCCC1212C0F8838CA91FF66E"
+  },
+  {
+    "path": "src/assets/club/family.png",
+    "sha256": "0B817A5BECC2657CEBBC2EDB90708129A673B609387F6A8C3576F0A2F9DB17FA"
+  },
+  {
+    "path": "src/assets/club/PROMPTS.md",
+    "sha256": "4450464E3A8D567F47ADC6091FBCCCA9218653EA7F6DA514B7B86E3EE0969092"
+  }
+]

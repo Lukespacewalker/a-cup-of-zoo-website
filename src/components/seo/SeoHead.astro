@@ -4,6 +4,8 @@ import { getImage } from "astro:assets";
 import socialPhoto from "../../assets/site/cats-and-dog.png";
 import { cafeJsonLd, configuredSite, pageTitle } from "../../lib/seo/metadata";
 import { languageAlternates, translator, type Locale } from "../../lib/i18n/locale";
+import { canIndex } from "../../lib/seo/indexing";
+import { runtimeConfig } from "../../lib/content/runtime-config";
 
 interface Props {
   title: string;
@@ -14,7 +16,8 @@ interface Props {
 }
 const { title, description, environment, venue = null, locale = "th" } = Astro.props;
 const t = translator(locale);
-const site = environment === "production" ? configuredSite(Astro.site) : null;
+const indexable = canIndex(Astro.url, Astro.site, runtimeConfig().searchIndexing, Astro.response.status);
+const site = indexable ? configuredSite(Astro.site) : null;
 const canonical = site ? new URL(Astro.url.pathname, site).href : null;
 const shareUrl = canonical ?? new URL(Astro.url.pathname, Astro.url.origin).href;
 const socialImage = await getImage({ src: socialPhoto, width: 1080, format: "jpeg", quality: 85 });
@@ -26,7 +29,7 @@ const alternates = environment === "production" && !site ? [] : languageAlternat
 ---
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
-{environment !== "production" && <meta name="robots" content="noindex, nofollow" />}
+{!indexable && <meta name="robots" content="noindex, nofollow" />}
 {canonical && <link rel="canonical" href={canonical} />}
 {alternates.map(alternate => <link rel="alternate" hreflang={alternate.locale} href={alternate.url} />)}
 <meta property="og:type" content="website" />

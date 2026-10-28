@@ -1,6 +1,7 @@
 import type { PostDto, PublicVenueDto } from "@lukespace-cms/client";
 import { admissionSummary } from "./activities-catalog";
 import { shopPhones } from "../business/contact";
+import { animalRoster } from "./animal-roster";
 
 export const mapsUrl = "https://www.google.com/maps/place/A+cup+of+zoo+caf%C3%A9/@14.0624359,100.7214907,18.8z/data=!4m6!3m5!1s0x311d832435d52fff:0xbc56f5d0ec0344ad!8m2!3d14.0625625!4d100.7213125!16s%2Fg%2F11smr215py";
 
@@ -30,6 +31,7 @@ export const fixtureVenue: PublicVenueDto = {
     locationLabel: "คลอง 6 ปทุมธานี",
     addressLine: "27/8 ม.3 ถ.เลียบคลองแอล 5-6 ซอย สุทธิพันธ์ 11 ต.คลองหก อ.คลองหลวง ปทุมธานี 12120",
     phoneE164: shopPhones[0].e164,
+    additionalPhoneE164s: [shopPhones[1].e164],
     mapsUrl,
     facebookUrl: "https://www.facebook.com/Acupofzoocafe/",
     timezone: "Asia/Bangkok",
@@ -38,11 +40,7 @@ export const fixtureVenue: PublicVenueDto = {
     holidayNote: "หากวันอังคารตรงกับวันหยุดนักขัตฤกษ์ ร้านเปิดตามปกติ แนะนำให้เช็กประกาศบนเพจร้านก่อนเดินทาง",
     hoursVerification: "source_verified",
     admissionText: admissionSummary,
-    animals: [
-      { id: "cat-portrait", title: "แมว", description: "แมวของร้านจากภาพที่ได้รับมา ยังไม่ได้ตั้งชื่อหรือระบุสายพันธุ์", mediaAssetId: "cat-portrait", featured: true, visible: true, sortOrder: 0 },
-      { id: "cats-and-dog", title: "แมวและสุนัข", description: "แมวและสุนัขอยู่ด้วยกันในภาพจากร้าน ไม่ได้ระบุชื่อรายตัวหรือสายพันธุ์", mediaAssetId: "cats-and-dog", featured: false, visible: true, sortOrder: 1 },
-      { id: "ducks-pond", title: "เป็ด", description: "เป็ดในบ่อน้ำของร้าน", mediaAssetId: "ducks-pond", featured: true, visible: true, sortOrder: 2 },
-    ],
+    animals: animalRoster,
     activities: [
       { id: "cafe-garden-seating", title: "มุมนั่งในสวน", description: "พักผ่อนท่ามกลางต้นไม้ แล้วเดินต่อไปชมสวนญี่ปุ่นและมุมต่าง ๆ ของร้าน", mediaAssetId: "cafe-garden-seating", featured: true, visible: true, sortOrder: 0 },
       { id: "cafe-interior-gallery", title: "มุมนั่งในร้าน", description: "บรรยากาศมุมนั่งภายในคาเฟ่", mediaAssetId: "cafe-interior-gallery", featured: false, visible: true, sortOrder: 1 },
@@ -56,7 +54,7 @@ export const fixtureVenue: PublicVenueDto = {
       { id: "hours", question: "วันอังคารเปิดไหม", answer: "ปกติร้านปิดวันอังคาร แต่หากตรงกับวันหยุดนักขัตฤกษ์จะเปิดตามปกติ แนะนำให้เช็กประกาศบนเพจร้านก่อนเดินทาง" },
       { id: "admission", question: "ค่าเข้าชมเท่าไร", answer: admissionSummary },
       { id: "children", question: "เด็กมีค่าเข้าไหม", answer: "เด็กสูงต่ำกว่า 100 ซม. เข้าฟรี และต้องมีผู้ใหญ่เข้าร่วมกิจกรรมด้วยอย่างน้อย 1 คน เด็กที่เข้า Indoor ต้องซื้อถุงเท้าใหม่ 49 บาท" },
-      { id: "phone", question: "โทรหาร้านได้ที่เบอร์ไหน", answer: `ติดต่อได้ทั้ง ${shopPhones.map((phone) => phone.display).join(" และ ")}` },
+      { id: "phone", question: "โทรหาร้านได้ที่เบอร์ไหน", answer: "เลือกโทรจากปุ่มติดต่อด้านบนได้เลย" },
       { id: "parking", question: "มีที่จอดรถไหม", answer: "มีที่จอดรถตามข้อมูลที่ได้รับ แต่ยังไม่มีข้อมูลยืนยันเรื่องจำนวนที่จอดและค่าบริการ" },
     ],
   },

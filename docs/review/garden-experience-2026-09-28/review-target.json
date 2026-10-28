@@ -1,0 +1,89 @@
+{
+  "base": "1fc2599a9fa32ad6ab02760a93e425934adb6919",
+  "files": [
+    {
+      "path": "src/components/pages/ActivitiesPage.astro",
+      "sha256": "DBF0B36B7D781193A618943D7E46714CDACC61E19DCF7F4634045E9F337C18F2"
+    },
+    {
+      "path": "src/components/pages/AnimalsPage.astro",
+      "sha256": "84FD85F8FB37BE3093B693230D340B32B8330B3F36C98F5A96ABFD3CE60DDED9"
+    },
+    {
+      "path": "src/components/pages/HomePage.astro",
+      "sha256": "BDC60B457FE6C326E7E8927B3A93E44EC162ADAC2F379FCC3BFB5C18A91B7FE7"
+    },
+    {
+      "path": "src/components/pages/VisitPage.astro",
+      "sha256": "7363BC396E495847B052F50755BAA4712687697CD125FDC734B819F980064AEE"
+    },
+    {
+      "path": "src/components/site/BrochurePhoto.astro",
+      "sha256": "DF3E05ECDD14879398680AD72FFA81992B4621071E428AE282ACDF4AF2229C92"
+    },
+    {
+      "path": "src/components/site/Footer.astro",
+      "sha256": "EC780613E9E3465C1EA48054AFCEB25EEBCD0C147FF7388D032EB3808EE80F0A"
+    },
+    {
+      "path": "src/components/site/Header.astro",
+      "sha256": "D97746F866B03B68C25C66065A784E9110D0E6B9F78870D2DCA4A8EE5642CA55"
+    },
+    {
+      "path": "src/components/site/HeroVideo.astro",
+      "sha256": "099831AC5FD2C8CB17C80F018DC14C755C2979F969E3B77BF6FAC2C2229251B3"
+    },
+    {
+      "path": "src/components/site/OpeningHours.astro",
+      "sha256": "72A3CD6888462180DE499E4B2B47EFBD380EAA334A2F7E1A7D8A8EB8DB2BAFB9"
+    },
+    {
+      "path": "src/layouts/SiteLayout.astro",
+      "sha256": "4CF0FE86924DF48927BE093C07B59A0563F93CEF5B39C8AA8EA0BEF4B3C51B49"
+    },
+    {
+      "path": "src/lib/content/brochure-images.ts",
+      "sha256": "44A0E85BF3B9D30411AF6E2283155C258DF5FD26B43D90010F7F34D1AF1BC990"
+    },
+    {
+      "path": "src/lib/content/experience-images.ts",
+      "sha256": "4C60CD10E8A2FC82C08FDD67B40C53949A95F7865B99C8A233622A17FFB86A87"
+    },
+    {
+      "path": "src/styles/cafe-home.css",
+      "sha256": "78DD01D94CDD6B74A092ADC7F8A534556F324BC9C233CF2C95EB59367816D9A5"
+    },
+    {
+      "path": "src/styles/experience.css",
+      "sha256": "A714DA38A8C515EC12C626E91D86B73471727F8A98BAB5862A9E7E8ED8B5B751"
+    },
+    {
+      "path": "src/styles/garden.css",
+      "sha256": "0E15C4DB2B56B408CDE3B5C302EFB66C1D0687D84B4729E421ED14667441FF0A"
+    },
+    {
+      "path": "src/styles/watercolor.css",
+      "sha256": "3B1F6EA38A1295AA214E9320F46F0E3179881F2C11E6E215DA89162DBDD41A54"
+    },
+    {
+      "path": "tests/e2e/experience-navigation.spec.ts",
+      "sha256": "E6A3808EF47FE2CF544DACA7992D57A1467E6CA1C86C0F15E4E10C57D25A38F5"
+    },
+    {
+      "path": "tests/e2e/hero.spec.ts",
+      "sha256": "62095FBE0D083FEFF3C1779FC2A1AF32A9195A64B76E57E86EC2FBE95282ED57"
+    },
+    {
+      "path": "tests/e2e/locale.spec.ts",
+      "sha256": "75487593258324B56ADB5A2C4D6DBF43119FA8975BCCF1DD315128FBC986A85D"
+    },
+    {
+      "path": "tests/e2e/theme.spec.ts",
+      "sha256": "D168A2575B3657578D1207F33342ECE3451129D146B6C2C9695FAF6DD8194DFB"
+    },
+    {
+      "path": "tests/e2e/visit.spec.ts",
+      "sha256": "000BDEB0F5C0DD39BB98FD791854ECBDA5A1E1443BCEC0897EB422F6EFA4F252"
+    }
+  ]
+}

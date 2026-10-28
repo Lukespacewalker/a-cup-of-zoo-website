@@ -1,0 +1,456 @@
+{
+  "viewportChecks": [
+    {
+      "addedTextContrast": 5.23,
+      "badgeContrast": 5.23,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 5,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 5,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "auto",
+      "width": 1440
+    },
+    {
+      "addedTextContrast": 5.23,
+      "badgeContrast": 5.23,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "auto",
+      "width": 390
+    },
+    {
+      "addedTextContrast": 5.23,
+      "badgeContrast": 5.23,
+      "cards": 5,
+      "columns": 3,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "light",
+      "width": 768
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 3,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "dark",
+      "width": 768
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 3,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "auto",
+      "width": 768
+    },
+    {
+      "addedTextContrast": 5.23,
+      "badgeContrast": 5.23,
+      "cards": 5,
+      "columns": 5,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 5,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 5,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/club/",
+      "theme": "auto",
+      "width": 1440
+    },
+    {
+      "addedTextContrast": 5.23,
+      "badgeContrast": 5.23,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "auto",
+      "width": 320
+    },
+    {
+      "addedTextContrast": 5.23,
+      "badgeContrast": 5.23,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 1,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "auto",
+      "width": 390
+    },
+    {
+      "addedTextContrast": 5.23,
+      "badgeContrast": 5.23,
+      "cards": 5,
+      "columns": 3,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "light",
+      "width": 768
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 3,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "dark",
+      "width": 768
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 3,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "auto",
+      "width": 768
+    },
+    {
+      "addedTextContrast": 5.23,
+      "badgeContrast": 5.23,
+      "cards": 5,
+      "columns": 5,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 5,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "addedTextContrast": 5.55,
+      "badgeContrast": 5.55,
+      "cards": 5,
+      "columns": 5,
+      "highlightCounts": [
+        0,
+        2,
+        3,
+        3,
+        2
+      ],
+      "imagesReady": true,
+      "overflow": false,
+      "route": "/en/club/",
+      "theme": "auto",
+      "width": 1440
+    }
+  ],
+  "rechecked320": [
+    {
+      "columns": 1,
+      "overflow": false,
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "columns": 1,
+      "overflow": false,
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "columns": 1,
+      "overflow": false,
+      "theme": "auto",
+      "width": 320
+    }
+  ]
+}

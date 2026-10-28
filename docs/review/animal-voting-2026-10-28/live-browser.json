@@ -1,0 +1,289 @@
+{
+  "repeat": {
+    "logs": [],
+    "ok": true,
+    "value": {
+      "after": {
+        "page": 196,
+        "value": {
+          "balls": 45,
+          "count": "2",
+          "notice": "+1 หัวใจ · โหวตอีกได้เลย",
+          "total": "2"
+        }
+      },
+      "before": {
+        "page": 196,
+        "value": {
+          "cards": 23,
+          "images": 23,
+          "nama": "0",
+          "ready": "true",
+          "total": "0"
+        }
+      },
+      "first": {
+        "matched": true
+      },
+      "second": {
+        "matched": true
+      }
+    }
+  },
+  "www": {
+    "logs": [],
+    "ok": true,
+    "value": {
+      "page": 206,
+      "value": {
+        "images": 23,
+        "loaded": 23,
+        "nama": "2",
+        "names": [
+          "Nama",
+          "Daifuku",
+          "Dorayaki",
+          "Mochi",
+          "Senbei",
+          "Mee Tang",
+          "Mee Thong",
+          "Mee Chok",
+          "Mee Heng",
+          "Kai-Jew",
+          "Kai-Down",
+          "Candy",
+          "Mine",
+          "Yin-Yang",
+          "Moo-Krob",
+          "Khai Yiao Ma",
+          "Nam Lieap",
+          "Khao Chao",
+          "Look Chin",
+          "Sai-Krok",
+          "Tart",
+          "Sum-Lee",
+          "Veres"
+        ],
+        "paths": [
+          {
+            "canonical": "https://acupofzoo.com/",
+            "path": "/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/animals/",
+            "path": "/animals/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/activities/",
+            "path": "/activities/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/menu/",
+            "path": "/menu/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/visit/",
+            "path": "/visit/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/events/",
+            "path": "/events/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/club/",
+            "path": "/club/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/vote/",
+            "path": "/vote/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/en/",
+            "path": "/en/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/en/animals/",
+            "path": "/en/animals/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/en/activities/",
+            "path": "/en/activities/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/en/menu/",
+            "path": "/en/menu/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/en/visit/",
+            "path": "/en/visit/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/en/events/",
+            "path": "/en/events/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/en/club/",
+            "path": "/en/club/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/en/vote/",
+            "path": "/en/vote/",
+            "robots": null,
+            "status": 200
+          },
+          {
+            "canonical": "https://acupofzoo.com/news/",
+            "path": "/news/",
+            "robots": null,
+            "status": 200
+          }
+        ],
+        "robots": "User-agent: *\nAllow: /\nSitemap: https://acupofzoo.com/sitemap.xml\n"
+      }
+    }
+  },
+  "mobile": {
+    "logs": [],
+    "ok": true,
+    "value": {
+      "checks": [
+        {
+          "page": 196,
+          "value": {
+            "buttons": 23,
+            "cards": 23,
+            "ready": "true",
+            "scroll": 390,
+            "total": "2",
+            "width": 390
+          }
+        },
+        {
+          "page": 196,
+          "value": {
+            "buttons": 23,
+            "cards": 23,
+            "ready": "true",
+            "scroll": 320,
+            "total": "2",
+            "width": 320
+          }
+        }
+      ],
+      "home": {
+        "page": 196,
+        "value": {
+          "cards": 3,
+          "pins": 19,
+          "ready": "true",
+          "scroll": 320,
+          "total": "2",
+          "width": 320
+        }
+      },
+      "navigated": {
+        "page": 196,
+        "value": {
+          "fullJars": 0,
+          "url": "https://acupofzoo.com/vote/"
+        }
+      }
+    }
+  },
+  "settled": {
+    "logs": [],
+    "ok": true,
+    "value": {
+      "english320": {
+        "page": 205,
+        "value": {
+          "buttons": 23,
+          "cards": 23,
+          "scroll": 320,
+          "width": 320
+        }
+      },
+      "th": {
+        "page": 196,
+        "value": {
+          "cards": 23,
+          "fullJars": 23,
+          "scroll": 320,
+          "total": "2",
+          "url": "https://acupofzoo.com/vote/",
+          "width": 320
+        }
+      }
+    }
+  },
+  "preflight": {
+    "logs": [],
+    "ok": true,
+    "value": {
+      "page": 203,
+      "value": {
+        "cards": 23,
+        "images": 23,
+        "loaded": 23,
+        "names": [
+          "นามะ",
+          "ไดฟุกุ",
+          "โดรายากิ",
+          "โมจิ",
+          "เซมเบ้",
+          "มีตังค์",
+          "มีทอง",
+          "มีโชค",
+          "มีเฮง",
+          "ไข่เจียว",
+          "ไข่ดาว",
+          "แคนดี้",
+          "มายด์",
+          "หยินหยาง",
+          "หมูกรอบ",
+          "ไข่เยี่ยวม้า",
+          "หนำเลี๊ยบ",
+          "ข้าวเจ้า",
+          "ลูกชิ้น",
+          "ไส้กรอก",
+          "ทาร์ต",
+          "สำลี",
+          "เวเรส"
+        ],
+        "overflow": false,
+        "ready": "true",
+        "total": "0"
+      }
+    }
+  }
+}

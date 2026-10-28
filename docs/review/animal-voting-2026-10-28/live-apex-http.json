@@ -1,0 +1,260 @@
+{
+  "paths": [
+    {
+      "canonical": "https://acupofzoo.com/",
+      "cards": 3,
+      "path": "/",
+      "pins": 19,
+      "ready": "true",
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/animals/",
+      "cards": 0,
+      "path": "/animals/",
+      "pins": 0,
+      "residents": 23,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/activities/",
+      "cards": 0,
+      "path": "/activities/",
+      "pins": 19,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/menu/",
+      "cards": 0,
+      "path": "/menu/",
+      "pins": 0,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/visit/",
+      "cards": 0,
+      "path": "/visit/",
+      "pins": 0,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/events/",
+      "cards": 0,
+      "path": "/events/",
+      "pins": 0,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/club/",
+      "cards": 0,
+      "path": "/club/",
+      "pins": 0,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/vote/",
+      "cards": 23,
+      "path": "/vote/",
+      "pins": 0,
+      "ready": "true",
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/en/",
+      "cards": 3,
+      "path": "/en/",
+      "pins": 19,
+      "ready": "true",
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/en/animals/",
+      "cards": 0,
+      "path": "/en/animals/",
+      "pins": 0,
+      "residents": 23,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/en/activities/",
+      "cards": 0,
+      "path": "/en/activities/",
+      "pins": 19,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/en/menu/",
+      "cards": 0,
+      "path": "/en/menu/",
+      "pins": 0,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/en/visit/",
+      "cards": 0,
+      "path": "/en/visit/",
+      "pins": 0,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/en/events/",
+      "cards": 0,
+      "path": "/en/events/",
+      "pins": 0,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/en/club/",
+      "cards": 0,
+      "path": "/en/club/",
+      "pins": 0,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/en/vote/",
+      "cards": 23,
+      "path": "/en/vote/",
+      "pins": 0,
+      "ready": "true",
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    },
+    {
+      "canonical": "https://acupofzoo.com/news/",
+      "cards": 0,
+      "path": "/news/",
+      "pins": 0,
+      "residents": 0,
+      "robots": null,
+      "status": 200
+    }
+  ],
+  "persisted": "2",
+  "robots": "User-agent: *\nAllow: /\nSitemap: https://acupofzoo.com/sitemap.xml\n",
+  "votes": {
+    "items": [
+      {
+        "animalId": "nama",
+        "count": 2
+      },
+      {
+        "animalId": "daifuku",
+        "count": 0
+      },
+      {
+        "animalId": "dorayaki",
+        "count": 0
+      },
+      {
+        "animalId": "mochi",
+        "count": 0
+      },
+      {
+        "animalId": "senbei",
+        "count": 0
+      },
+      {
+        "animalId": "mee-tang",
+        "count": 0
+      },
+      {
+        "animalId": "mee-thong",
+        "count": 0
+      },
+      {
+        "animalId": "mee-chok",
+        "count": 0
+      },
+      {
+        "animalId": "mee-heng",
+        "count": 0
+      },
+      {
+        "animalId": "kai-jew",
+        "count": 0
+      },
+      {
+        "animalId": "kai-down",
+        "count": 0
+      },
+      {
+        "animalId": "candy",
+        "count": 0
+      },
+      {
+        "animalId": "mine",
+        "count": 0
+      },
+      {
+        "animalId": "yin-yang",
+        "count": 0
+      },
+      {
+        "animalId": "moo-krob",
+        "count": 0
+      },
+      {
+        "animalId": "khai-yiao-ma",
+        "count": 0
+      },
+      {
+        "animalId": "nam-lieap",
+        "count": 0
+      },
+      {
+        "animalId": "khao-chao",
+        "count": 0
+      },
+      {
+        "animalId": "look-chin",
+        "count": 0
+      },
+      {
+        "animalId": "sai-krok",
+        "count": 0
+      },
+      {
+        "animalId": "tart",
+        "count": 0
+      },
+      {
+        "animalId": "sum-lee",
+        "count": 0
+      },
+      {
+        "animalId": "veres",
+        "count": 0
+      }
+    ],
+    "total": 2
+  }
+}

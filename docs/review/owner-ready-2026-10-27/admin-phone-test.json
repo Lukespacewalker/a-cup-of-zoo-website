@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "mode": "built Admin UI with intercepted disposable API responses",
+  "checks": [
+    "TH and EN routes",
+    "typing comma-separated phone numbers",
+    "save payload preserves roster",
+    "409 conflict feedback"
+  ],
+  "testedAt": "2026-10-27T06:29:40.585Z"
+}

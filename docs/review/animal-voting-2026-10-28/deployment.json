@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-28",
+  "worker": "a-cup-of-zoo-preview",
+  "version": "4b18293c-4c0b-486a-860e-dfec07ca78c7",
+  "previousVersion": "59c5411c-36fd-40f7-a466-c6b6ea73e163",
+  "cmsApiVersion": "4c90769c-0c87-4188-b1da-db93305893df",
+  "cmsAdminVersion": "77bcc1d3-244b-4793-ae5a-df6436950a45",
+  "domains": ["https://acupofzoo.com", "https://www.acupofzoo.com"],
+  "cmsBaseUrl": "https://acupofzoo-cms-api.a-cup-of-zoo-website.workers.dev",
+  "contentMode": "cms",
+  "bundleFiles": 214,
+  "bundleHashesUnchanged": true,
+  "visibleAnimals": 23,
+  "animalImagesLoaded": 23,
+  "mapPins": 19,
+  "clubTierImages": 5,
+  "integrationAssertions": 43,
+  "livePageResponses": 34,
+  "liveAcceptanceVotes": {"animalId": "nama", "before": 0, "after": 2},
+  "verdict": "PASS"
+}

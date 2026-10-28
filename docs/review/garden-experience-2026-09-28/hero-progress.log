@@ -1,0 +1,14 @@
+
+Running 5 tests using 2 workers
+
+(node:138140) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:110476) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\hero.spec.ts:3:1 › home header receives clicks above the media on desktop and mobile (1.9s)
+  ok 3 tests\e2e\hero.spec.ts:20:1 › video plays, pauses and respects changes to reduced motion (1.3s)
+  ok 4 tests\e2e\hero.spec.ts:46:1 › blocked autoplay preserves a usable play action and media failure preserves the poster (590ms)
+  ok 2 tests\e2e\experience-navigation.spec.ts:3:1 › home experiences preserve locale and mobile shortcuts do not duplicate the hero (5.4s)
+  ok 5 tests\e2e\hero.spec.ts:62:1 › home remains usable without JavaScript and does not autoplay an uncontrollable loop (3.1s)
+
+  5 passed (7.7s)

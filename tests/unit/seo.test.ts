@@ -1,6 +1,7 @@
 import { expect, test } from "bun:test";
 import { cafeJsonLd, configuredSite, sitemapXml } from "../../src/lib/seo/metadata";
 import { fixtureVenue } from "../../src/lib/content/fixture-data";
+import { venuePhones } from "../../src/lib/business/contact";
 
 test("business hours use Google-supported day names and omit closed days", () => {
   const data = cafeJsonLd(fixtureVenue);
@@ -45,7 +46,7 @@ test("business links share one identity without inventing ratings or prices", ()
     url: "https://cafe.example/",
     menu: "https://cafe.example/menu/",
     image: "https://cafe.example/shop.jpg",
-    sameAs: ["https://www.facebook.com/Acupofzoocafe/"],
+    sameAs: ["https://www.facebook.com/Acupofzoocafe/", "https://www.instagram.com/acupofzoo/", "https://www.tiktok.com/@acupofzoo"],
   });
   expect(data).not.toHaveProperty("aggregateRating");
   expect(data).not.toHaveProperty("priceRange");
@@ -59,10 +60,23 @@ test("map remains available before the domain is set without advertising an exte
   expect(data).not.toHaveProperty("url");
 });
 
-test("both user-selected public phone numbers survive a missing or different CMS primary", () => {
-  for (const phone of [null, "+66922791890", "+66921234567"]) {
-    const venue = structuredClone(fixtureVenue);
-    venue.content.phoneE164 = phone;
-    expect(cafeJsonLd(venue).telephone).toEqual(["+66989838037", "+66922791890"]);
-  }
+test("CMS contact edits update structured data while fixture keeps the two confirmed contacts", () => {
+  expect(cafeJsonLd(fixtureVenue).telephone).toEqual(["+66989838037", "+66922791890"]);
+  const venue = structuredClone(fixtureVenue);
+  venue.content.phoneE164 = "+66921234567";
+  venue.content.additionalPhoneE164s = [];
+  expect(cafeJsonLd(venue).telephone).toEqual(["+66921234567"]);
+  venue.content.phoneE164 = null;
+  expect(cafeJsonLd(venue)).not.toHaveProperty("telephone");
+});
+
+test("unavailable CMS content does not restore obsolete fixture phones", () => {
+  expect(venuePhones(null)).toEqual([]);
+  expect(venuePhones(undefined)).toEqual([]);
+  expect(venuePhones(fixtureVenue.content)).toHaveLength(2);
+});
+
+test("clearing the primary phone in a legacy venue is respected", () => {
+  expect(venuePhones({ phoneE164: null }).map(phone => phone.e164)).toEqual(["+66922791890"]);
+  expect(venuePhones({ phoneE164: null, additionalPhoneE164s: [] })).toEqual([]);
 });

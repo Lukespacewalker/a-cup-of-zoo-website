@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from "../components/site/ArrowIcon.astro";
 import "@fontsource/itim/400.css";
 import "@fontsource/noto-sans-thai-looped/400.css";
 import "@fontsource/mali/500.css";
@@ -38,7 +39,7 @@ const options = [
           <header class="option-header">
             <span class="option-letter">{option.label}</span>
             <div><h2 id={`title-${option.id}`}>{option.name}</h2><p>{option.note}</p></div>
-            <a href={`/?font-preview=${option.id}`} target="_blank" rel="noopener">เปิดเว็บเต็ม ↗</a>
+            <a href={`/?font-preview=${option.id}`} target="_blank" rel="noopener">เปิดเว็บเต็ม <ArrowIcon /></a>
           </header>
           <div class="specimen">
             <p class="sample-caption">Mali 500 · หัวข้อ</p>

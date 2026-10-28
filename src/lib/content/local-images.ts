@@ -7,8 +7,11 @@ import drinks from "../../assets/site/drinks.png";
 import ducks from "../../assets/site/ducks-pond.png";
 import entrance from "../../assets/site/entrance-promo-banner.png";
 import pond from "../../assets/site/pond-promo-graphic.png";
+import type { ImageMetadata } from "astro";
+const animalImages = import.meta.glob<{ default: ImageMetadata }>("../../assets/animal-roster/*.png", { eager: true });
 
 export const localImages = {
+  ...Object.fromEntries(Object.entries(animalImages).map(([path, image]) => [`owner-${path.split("/").at(-1)!.replace(".png", "")}`, image.default])),
   "cafe-garden-seating": garden,
   "cafe-interior-gallery": interior,
   "cat-portrait": cat,

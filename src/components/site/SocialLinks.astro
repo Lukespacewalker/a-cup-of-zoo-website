@@ -1,0 +1,14 @@
+---
+import ContactIcon from "./ContactIcon.astro";
+import ArrowIcon from "./ArrowIcon.astro";
+import { socialProfiles } from "../../lib/business/social";
+interface Props { facebookUrl?: string | null; }
+const profiles = socialProfiles(Astro.props.facebookUrl);
+---
+<ul class="social-links">
+  {profiles.map(profile => <li><a class="social-link" href={profile.url}>
+    <ContactIcon name={profile.id} />
+    <span><span class="social-name">{profile.name}</span><span class="social-handle">{profile.handle}</span></span>
+    <ArrowIcon />
+  </a></li>)}
+</ul>

@@ -1,0 +1,45 @@
+
+Running 17 tests using 1 worker
+
+(node:104660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\e2e\experience-navigation.spec.ts:3:1 › home experiences preserve locale and mobile shortcuts do not duplicate the hero (5.7s)
+  ok  2 tests\e2e\hero.spec.ts:3:1 › home header receives clicks above the media on desktop and mobile (896ms)
+  ok  3 tests\e2e\hero.spec.ts:20:1 › video plays, pauses and respects changes to reduced motion (1.4s)
+  ok  4 tests\e2e\hero.spec.ts:46:1 › blocked autoplay preserves a usable play action and media failure preserves the poster (580ms)
+  ok  5 tests\e2e\hero.spec.ts:62:1 › home remains usable without JavaScript and does not autoplay an uncontrollable loop (701ms)
+  ok  6 tests\e2e\hero.spec.ts:74:1 › a failed video request returns to the poster without a misleading pause button (314ms)
+  ok  7 tests\e2e\locale.spec.ts:3:1 › English unknown routes return localized404 with an English home link (744ms)
+  ok  8 tests\e2e\locale.spec.ts:18:1 › English primary paths render complete English content and matching metadata (3.1s)
+  ok  9 tests\e2e\locale.spec.ts:52:1 › untranslated news explicitly returns to English home without false alternates (686ms)
+  ok 10 tests\e2e\locale.spec.ts:62:1 › English menu and child planning work without JavaScript and match Thai numeric content (3.1s)
+  ok 11 tests\e2e\locale.spec.ts:88:1 › switching locale retains matching page and category hash on mobile (2.2s)
+  ok 12 tests\e2e\owner-content.spec.ts:3:1 › owner content is bilingual, discoverable, and fits phones (6.4s)
+  ok 13 tests\e2e\owner-content.spec.ts:29:1 › map can be opened with a keyboard without JavaScript (930ms)
+  ok 14 tests\e2e\owner-content.spec.ts:53:1 › menu books use the exact owner links and never embed the viewer (227ms)
+  ok 15 tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages (1.9s)
+  ok 16 tests\e2e\theme.spec.ts:24:1 › color control persists and auto follows the system preference (943ms)
+  x  17 tests\e2e\theme.spec.ts:41:1 › all primary pages fit supported widths in light, dark and automatic themes (8.2s)
+
+
+  1) tests\e2e\theme.spec.ts:41:1 › all primary pages fit supported widths in light, dark and automatic themes 
+
+    Error: page.goto: net::ERR_ABORTED at http://127.0.0.1:4321/
+    Call log:
+      - navigating to "http://127.0.0.1:4321/", waiting until "load"
+
+
+      47 |       await page.setViewportSize({ width, height: 900 });
+      48 |       for (const path of ["/", "/animals/", "/activities/", "/menu/", "/visit/", "/news/"]) {
+    > 49 |         await page.goto(path);
+         |                    ^
+      50 |         await page.evaluate(() => document.fonts.ready);
+      51 |         expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), `${path} ${theme} ${width}`).toBe(true);
+      52 |       }
+        at H:\repos\Lukespacewalker\a-cup-of-zoo-website\tests\e2e\theme.spec.ts:49:20
+
+    Error Context: C:\Users\Sutti\AppData\Local\Temp\acup-hero-club-20261027\test-results-port4321\theme-all-primary-pages-fi-ffefa-t-dark-and-automatic-themes\error-context.md
+
+  1 failed
+    tests\e2e\theme.spec.ts:41:1 › all primary pages fit supported widths in light, dark and automatic themes 
+  16 passed (38.8s)

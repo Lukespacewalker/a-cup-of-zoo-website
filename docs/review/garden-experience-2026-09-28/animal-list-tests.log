@@ -1,0 +1,18 @@
+
+Running 6 tests using 2 workers
+
+
+(node:130480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:130160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/6] tests\e2e\locale.spec.ts:3:1 › English unknown routes return localized404 with an English home link
+[2/6] tests\e2e\experience-navigation.spec.ts:3:1 › home experiences preserve locale and mobile shortcuts do not duplicate the hero
+[3/6] tests\e2e\locale.spec.ts:18:1 › English primary paths render complete English content and matching metadata
+[4/6] tests\e2e\locale.spec.ts:52:1 › untranslated news explicitly returns to English home without false alternates
+[5/6] tests\e2e\locale.spec.ts:62:1 › English menu and child planning work without JavaScript and match Thai numeric content
+[6/6] tests\e2e\locale.spec.ts:88:1 › switching locale retains matching page and category hash on mobile
+  6 passed (11.1s)

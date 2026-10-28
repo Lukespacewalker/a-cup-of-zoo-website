@@ -8,12 +8,16 @@ import "../styles/global.css";
 import "../styles/garden.css";
 import "../styles/font-preview.css";
 import "../styles/watercolor.css";
+import "../styles/experience.css";
+import "../styles/owner-content.css";
+import "../styles/contact-social.css";
 import SeoHead from "../components/seo/SeoHead.astro";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
 import type { PageData } from "../lib/content/load-page";
 import { localeFromPath, translator, type Locale } from "../lib/i18n/locale";
 import { localizedVenue } from "../lib/i18n/venue";
+import { venuePhones } from "../lib/business/contact";
 
 interface Props {
   title: string;
@@ -24,6 +28,9 @@ interface Props {
 }
 const { title, description, page, includeJsonLd = false, locale = localeFromPath(Astro.url.pathname) } = Astro.props;
 const t = translator(locale);
+const translatedContact = localizedVenue(page.venue, locale)?.content;
+const footerAddress = translatedContact?.addressLine ?? page.venue?.content.addressLine ?? null;
+const footerAddressLang = translatedContact?.addressLine ? locale : "th";
 const requestedFont = Astro.url.searchParams.get("font-preview");
 const previewFont = page.environment === "local" && (requestedFont === "itim" || requestedFont === "looped") ? requestedFont : undefined;
 ---
@@ -47,7 +54,7 @@ const previewFont = page.environment === "local" && (requestedFont === "itim" ||
         <slot />
       </div>
     </main>
-    <Footer mapsUrl={page.venue?.content.mapsUrl ?? null} />
+    <Footer phones={venuePhones(page.venue?.content)} mapsUrl={page.venue?.content.mapsUrl ?? null} addressLine={footerAddress} addressLang={footerAddressLang} facebookUrl={page.venue?.content.facebookUrl ?? null} />
     {previewFont && <script is:inline define:vars={{ previewFont }}>
       // Keep the selected local comparison when visiting another page.
       for (const link of document.querySelectorAll("a[href]")) {

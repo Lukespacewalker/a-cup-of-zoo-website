@@ -1,0 +1,49 @@
+{
+  "head": "1fc2599a9fa32ad6ab02760a93e425934adb6919",
+  "files": [
+    {
+      "path": "package.json",
+      "sha256": "811e7ce43e671c0239ff070f89c45fa2ebbe4d59d8f19a44a72d9b0d68815593"
+    },
+    {
+      "path": "bun.lock",
+      "sha256": "6b5a33d9757c6db0b2d0c166a5e457dd74593b1200fba5205538b599846c1725"
+    },
+    {
+      "path": "src/components/site/AnimalPodium.astro",
+      "sha256": "0f09e42977db12a6e597e189139bee036bfa447c41f02e9ce52a6fd50afbe932"
+    },
+    {
+      "path": "src/components/site/AnimalDirectory.astro",
+      "sha256": "e4ddfcce0df50dea56c8dde2aa29c6faaad5a729ab106f2576dee9e9a395e596"
+    },
+    {
+      "path": "src/components/site/AnimalVotes.astro",
+      "sha256": "53358cd4905ce254e51897ead55a1a42f707417c356bbcc65ae0c4e28990c8df"
+    },
+    {
+      "path": "src/lib/voting/directory.ts",
+      "sha256": "384d50a0309a6fe417426aee1129d67c889e378b39e6d6e6b3d5ad37e3ba5f49"
+    },
+    {
+      "path": "src/lib/voting/podium.ts",
+      "sha256": "9d3a4bed8cfd9a53cce018ced842e96e9f97fce058f802e5ffcc9b1bb58a8c4a"
+    },
+    {
+      "path": "src/lib/voting/podium-scene.ts",
+      "sha256": "f0cd007358de1da98b13235b52142c6a9d6c37207b5870a535e2a8263658a7d9"
+    },
+    {
+      "path": "src/styles/animal-votes.css",
+      "sha256": "93e5bb5b5daf601b4669a89a3fd2e2b38952b7d29ff28a4217cfbd2ba9cdb84e"
+    },
+    {
+      "path": "src/styles/animal-podium.css",
+      "sha256": "d5805bd24f08bd867fe4a7c82cb4d5754081b727a5343423307806fe07dd977a"
+    },
+    {
+      "path": "tests/e2e/unified-animals.spec.ts",
+      "sha256": "f0ae824e8a34b742761b217aa1e92647275e68d7888b589f74dba3ef02bee9a3"
+    }
+  ]
+}

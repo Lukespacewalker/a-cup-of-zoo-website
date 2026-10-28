@@ -1,0 +1,598 @@
+{
+  "version": "063e6f63-2955-484d-aedd-094ba6194851",
+  "previousVersion": "b79c0298-a47e-40dc-a645-1daa665b7469",
+  "date": "2026-10-27",
+  "timezone": "Asia/Bangkok",
+  "worker": "a-cup-of-zoo-preview",
+  "accountId": "033dbd2d33d8bb93fcc2930c22752d8a",
+  "mode": {
+    "SITE_ENV": "staging",
+    "CONTENT_MODE": "fixture",
+    "indexing": "noindex"
+  },
+  "reviewedCodeHashesMatched": 70,
+  "preflight": {
+    "astroErrors": 0,
+    "astroWarnings": 0,
+    "unitTestsPassed": 24,
+    "build": "pass",
+    "dryRun": "pass"
+  },
+  "routes": [
+    {
+      "origin": "https://www.acupofzoo.com",
+      "checks": [
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/",
+          "status": 200
+        },
+        {
+          "animals": 6,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/animals/",
+          "status": 200
+        },
+        {
+          "animals": 6,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/animals/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/activities/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/activities/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 2,
+          "h1": true,
+          "lang": "th",
+          "menu": 47,
+          "noindex": true,
+          "path": "/menu/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 2,
+          "h1": true,
+          "lang": "en",
+          "menu": 47,
+          "noindex": true,
+          "path": "/en/menu/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/visit/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/visit/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/events/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/events/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/club/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/club/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/news/",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "checks": [
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/",
+          "status": 200
+        },
+        {
+          "animals": 6,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/animals/",
+          "status": 200
+        },
+        {
+          "animals": 6,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/animals/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/activities/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/activities/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 2,
+          "h1": true,
+          "lang": "th",
+          "menu": 47,
+          "noindex": true,
+          "path": "/menu/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 2,
+          "h1": true,
+          "lang": "en",
+          "menu": 47,
+          "noindex": true,
+          "path": "/en/menu/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/visit/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/visit/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/events/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/events/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/club/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/club/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/news/",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "origin": "https://a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev",
+      "checks": [
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/",
+          "status": 200
+        },
+        {
+          "animals": 6,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/animals/",
+          "status": 200
+        },
+        {
+          "animals": 6,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/animals/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/activities/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/activities/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 2,
+          "h1": true,
+          "lang": "th",
+          "menu": 47,
+          "noindex": true,
+          "path": "/menu/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 2,
+          "h1": true,
+          "lang": "en",
+          "menu": 47,
+          "noindex": true,
+          "path": "/en/menu/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/visit/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/visit/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/events/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/events/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/club/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "en",
+          "menu": 0,
+          "noindex": true,
+          "path": "/en/club/",
+          "status": 200
+        },
+        {
+          "animals": 0,
+          "books": 0,
+          "h1": true,
+          "lang": "th",
+          "menu": 0,
+          "noindex": true,
+          "path": "/news/",
+          "status": 200
+        }
+      ]
+    }
+  ],
+  "club": {
+    "englishMetrics": {
+      "page": 36,
+      "value": {
+        "images": [
+          {
+            "alt": "",
+            "loaded": true
+          },
+          {
+            "alt": "",
+            "loaded": true
+          },
+          {
+            "alt": "",
+            "loaded": true
+          },
+          {
+            "alt": "",
+            "loaded": true
+          },
+          {
+            "alt": "",
+            "loaded": true
+          },
+          {
+            "alt": "",
+            "loaded": true
+          }
+        ],
+        "overflow": false,
+        "partners": 6,
+        "rewards": 7,
+        "tiers": 5,
+        "url": "https://acupofzoo.com/en/club/"
+      }
+    },
+    "page": 36,
+    "ready": {
+      "matched": true
+    },
+    "thai": {
+      "page": 36,
+      "value": {
+        "lang": "th",
+        "path": "/club/",
+        "tiers": 5
+      }
+    }
+  },
+  "mobile": {
+    "page": 35,
+    "results": [
+      {
+        "page": 35,
+        "value": {
+          "animals": 0,
+          "broken": [],
+          "images": 9,
+          "overflow": false,
+          "path": "/events/",
+          "width": 390
+        }
+      },
+      {
+        "page": 35,
+        "value": {
+          "animals": 6,
+          "broken": [],
+          "images": 10,
+          "overflow": false,
+          "path": "/animals/",
+          "width": 390
+        }
+      }
+    ]
+  },
+  "map": {
+    "closed": {
+      "page": 35,
+      "value": true
+    },
+    "open": {
+      "page": 35,
+      "value": {
+        "canScroll": true,
+        "keyboardFocusable": true,
+        "mapLoaded": true,
+        "open": true,
+        "overflow": false
+      }
+    },
+    "page": 35
+  },
+  "metadata": {
+    "page": 36,
+    "value": {
+      "books": [
+        "https://heyzine.com/flip-book/72a5470ad6.html",
+        "https://heyzine.com/flip-book/587e5387cd.html"
+      ],
+      "missingPageStatus": 404,
+      "phones": [
+        "tel:+66989838037",
+        "tel:+66922791890"
+      ],
+      "robots": "User-agent: *\nDisallow: /\n",
+      "sitemap": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"></urlset>"
+    }
+  }
+}

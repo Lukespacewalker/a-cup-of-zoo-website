@@ -1,0 +1,277 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-28T03:05:11.800Z",
+  "checks": [
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": true
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/animals/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/activities/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": true
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/menu/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/visit/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/events/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/club/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/en/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": true
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/en/animals/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/en/activities/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": true
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/en/menu/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/en/visit/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/en/events/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/en/club/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://acupofzoo.com",
+      "path": "/news/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": true
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/animals/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/activities/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": true
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/menu/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/visit/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/events/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/club/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/en/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": true
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/en/animals/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/en/activities/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": true
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/en/menu/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/en/visit/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/en/events/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/en/club/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    },
+    {
+      "origin": "https://www.acupofzoo.com",
+      "path": "/news/",
+      "status": 200,
+      "canonical": true,
+      "indexable": true,
+      "headerTools": true,
+      "map": false
+    }
+  ],
+  "previewBlocked": true
+}

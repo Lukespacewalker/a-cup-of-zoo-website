@@ -1,0 +1,92 @@
+[WebServer] $ bun run prepare:assets && astro dev --host 127.0.0.1 --port 4321
+[WebServer] $ bun run scripts/prepare-assets.ts
+[WebServer] (node:102752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 5 tests using 2 workers
+
+(node:129268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:135680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 tests\e2e\hero.spec.ts:3:1 › home header receives clicks above the media on desktop and mobile (3.7s)
+(node:76708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 tests\e2e\hero.spec.ts:20:1 › video plays, pauses and respects changes to reduced motion (5.4s)
+Testing stopped early after 2 maximum allowed failures.
+  x  1 tests\e2e\experience-navigation.spec.ts:3:1 › home experiences preserve locale and mobile shortcuts do not duplicate the hero (9.6s)
+
+
+  1) tests\e2e\hero.spec.ts:3:1 › home header receives clicks above the media on desktop and mobile 
+
+    TimeoutError: locator.click: Timeout 3000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'เมนู', exact: true })
+        - locator resolved to <button type="button" aria-label="เมนู" class="menu-button" aria-expanded="false" aria-controls="mobile-nav">เมนู</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="cinematic-content">…</div> from <main id="content">…</main> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="cinematic-content">…</div> from <main id="content">…</main> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        5 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="cinematic-content">…</div> from <main id="content">…</main> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+
+
+       7 |     if (width === 390) {
+       8 |       const toggle = page.getByRole("button", { name: "เมนู", exact: true });
+    >  9 |       await toggle.click({ timeout: 3000 });
+         |                    ^
+      10 |       await expect(toggle).toHaveAttribute("aria-expanded", "true");
+      11 |       await page.keyboard.press("Escape");
+      12 |       await expect(toggle).toBeFocused();
+        at H:\repos\Lukespacewalker\a-cup-of-zoo-website\tests\e2e\hero.spec.ts:9:20
+
+    Error Context: test-results\hero-home-header-receives--5fb2c-media-on-desktop-and-mobile\error-context.md
+
+  2) tests\e2e\hero.spec.ts:20:1 › video plays, pauses and respects changes to reduced motion ──────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Play video', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'Play video', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Play video', exact: true })
+
+
+      23 |   const video = page.locator("[data-hero-video]");
+      24 |   const control = page.getByRole("button", { name: "Play video", exact: true });
+    > 25 |   await expect(control).toBeVisible();
+         |                         ^
+      26 |   expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true);
+      27 |   await control.click();
+      28 |   await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime)).toBeGreaterThan(.1);
+        at H:\repos\Lukespacewalker\a-cup-of-zoo-website\tests\e2e\hero.spec.ts:25:25
+
+    Error Context: test-results\hero-video-plays-pauses-an-f368b-s-changes-to-reduced-motion\error-context.md
+
+  2 failed
+    tests\e2e\hero.spec.ts:3:1 › home header receives clicks above the media on desktop and mobile ─
+    tests\e2e\hero.spec.ts:20:1 › video plays, pauses and respects changes to reduced motion ───────
+  1 interrupted
+    tests\e2e\experience-navigation.spec.ts:3:1 › home experiences preserve locale and mobile shortcuts do not duplicate the hero 
+  2 did not run
+  1 error was not a part of any test, see above for details

@@ -1,0 +1,3 @@
+responseMode: 'json' drops mid-call notifications. subscriptions/listen streams are always served over SSE regardless; other notifications emitted before a result are dropped.
+PASS: 43 assertions, real disposable CMS → MCP → Astro/workerd → voting endpoint
+Disposable SQLite remains locked until process exit.

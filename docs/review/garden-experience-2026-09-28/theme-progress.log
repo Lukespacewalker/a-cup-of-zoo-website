@@ -1,0 +1,11 @@
+
+Running 3 tests using 1 worker
+
+
+(node:137440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/3] tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages
+[2/3] tests\e2e\theme.spec.ts:24:1 › color control persists and auto follows the system preference
+[3/3] tests\e2e\theme.spec.ts:41:1 › all primary pages fit supported widths in light, dark and automatic themes
+  3 passed (13.6s)

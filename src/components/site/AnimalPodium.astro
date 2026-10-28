@@ -1,0 +1,32 @@
+---
+import type { PublicVenueDto } from "@lukespace-cms/client";
+import Picture from "../content/Picture.astro";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+import { rankAnimals } from "../../lib/voting/model";
+import "../../styles/animal-podium.css";
+interface Props { locale: Locale; venue: PublicVenueDto | null; counts: Map<string, number>; ready: boolean; }
+const { locale, venue, counts, ready } = Astro.props;
+const t = translator(locale);
+const animals = rankAnimals((venue?.content.animals ?? []).filter(a => a.visible && (!ready || counts.has(a.id))).map(a => ({ ...a, count: counts.get(a.id) ?? 0 }))).slice(0, 3);
+const format = (n: number) => n.toLocaleString(locale === "th" ? "th-TH" : "en-GB");
+const level = (rank: number | null) => rank === 1 ? 1 : rank === 2 ? .37 : 0;
+---
+{animals.length > 0 && <div class="animal-podium" data-animal-podium data-locale={locale} aria-label={t("เพื่อนสัตว์ที่ได้รับหัวใจมากที่สุด", "Animal friends with the most love")}>
+  <div class="podium-stage" data-podium-stage>
+    <div class="podium-scene" data-podium-scene aria-hidden="true"></div>
+    <div class="podium-fallback" aria-hidden="true">{animals.map((animal, slot) => <i class={`podium-block podium-block--${slot}`} style={`--podium-level:${level(animal.rank)}`} />)}</div>
+    {animals.map((animal, slot) => {
+      const name = locale === "en" && animal.titleEn ? animal.titleEn : animal.title;
+      return <a class={`podium-place podium-place--${slot}`} style={`--podium-level:${level(animal.rank)}`} data-podium-place data-rank={animal.rank ?? 0} data-animal-id={animal.id} href={localePath(`/animals/#animal-${animal.id}`, locale)}>
+        <span class="podium-portrait" aria-hidden="true"><Picture mediaId={animal.mediaAssetId} media={venue?.media ?? []} alt={name} />{!animal.mediaAssetId && <span>◇</span>}</span>
+        <span class="podium-name" data-podium-name>{name}</span>
+        <span class="podium-score"><strong data-podium-score>{ready ? format(animal.count) : "—"}</strong> <span data-podium-unit>{t("คะแนน", animal.count === 1 ? "vote" : "votes")}</span></span>
+        <span class="podium-rank" data-podium-rank>{ready && animal.rank ? t(`อันดับ ${animal.rank}`, `Rank ${animal.rank}`) : t("รอหัวใจ", "Waiting for love")}</span>
+      </a>;
+    })}
+  </div>
+</div>}
+<script>
+  import { initPodiums } from "../../lib/voting/podium";
+  initPodiums();
+</script>

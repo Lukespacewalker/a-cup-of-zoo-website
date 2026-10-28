@@ -1,0 +1,15 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+interface Props { source: ImageMetadata; crop: [number, number, number, number]; alt: string; }
+const { source, crop: [x, y, width, height], alt } = Astro.props;
+// Frame only the photograph inside the supplied brochure; preserve original bytes.
+const aspect = source.width * width / (source.height * height);
+---
+<span class="brochure-photo" style={`aspect-ratio:${aspect}`}>
+  <Image src={source} width={source.width} format="webp" loading="lazy" alt={alt} style={`width:${100 / width}%;left:${-x / width * 100}%;top:${-y / height * 100}%`} />
+</span>
+<style>
+  .brochure-photo { display: block; position: relative; overflow: hidden; min-width: 0; }
+  .brochure-photo img { position: absolute; max-width: none; height: auto; }
+</style>

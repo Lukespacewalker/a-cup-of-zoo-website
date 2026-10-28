@@ -1,0 +1,16 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import AnimalVotes from "../site/AnimalVotes.astro";
+import WatercolorAnimal from "../site/WatercolorAnimal.astro";
+import { loadPage } from "../../lib/content/load-page";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = translator(locale);
+const page = await loadPage();
+---
+<SiteLayout locale={locale} title={t("โหวตให้สัตว์ตัวโปรด", "Vote for your favourite animal")} description={t("หยอดใจให้เพื่อนสัตว์ที่ A Cup of Zoo ดูคะแนนสะสมในโหลน่ารัก ๆ และโหวตซ้ำให้ตัวโปรดได้", "Send a little love to the animal family at A Cup of Zoo. See their score jars and vote again for your favourite.")} page={page}>
+  <header class="vote-page-intro"><p class="chapter-label">THE ANIMAL FAN CLUB</p><h1>{t("หยอดใจให้เพื่อนตัวโปรด", "A little love for your favourite")}</h1><p>{t("ใครทำให้ยิ้มได้วันนี้? เลือกน้องที่ชอบ แล้วหยอดใจลงโหลได้เลย ไม่ต้องสมัครสมาชิก และกดโหวตซ้ำได้", "Who made you smile today? Pick a friend and drop a little love into their jar. No account needed, and repeat votes are welcome.")}</p><WatercolorAnimal animal="meerkats" /></header>
+  <AnimalVotes locale={locale} venue={page.venue} />
+  <div class="actions"><a class="cafe-link" href={localePath("/animals/", locale)}>{t("ทำความรู้จักเพื่อนสัตว์ให้มากขึ้น", "Get to know the animal family")}</a></div>
+</SiteLayout>

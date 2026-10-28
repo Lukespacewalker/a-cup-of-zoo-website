@@ -1,0 +1,31 @@
+{
+  "source": "https://www.canva.com/design/DAHYz2902Do/uNqLI2aFUF5ZNF389Mwscg/view#4",
+  "checkedAt": "2026-10-28",
+  "pendingDuplicateNames": [],
+  "identityDecision": "Owner confirmed 2026-10-28: MINE cards 20/21 are one animal; YIN-YANG cards 22/25 are one animal. Each receives one shared score.",
+  "animals": [
+    { "id": "nama", "title": "นามะ", "titleEn": "Nama", "description": "มาร์เบิลฟอกซ์", "descriptionEn": "Marble fox", "sourceImage": "asset-07.png" },
+    { "id": "daifuku", "title": "ไดฟุกุ", "titleEn": "Daifuku", "description": "มาร์เบิลฟอกซ์", "descriptionEn": "Marble fox", "sourceImage": "asset-08.png" },
+    { "id": "dorayaki", "title": "โดรายากิ", "titleEn": "Dorayaki", "description": "เรดฟอกซ์", "descriptionEn": "Red fox", "sourceImage": "asset-09.png" },
+    { "id": "mochi", "title": "โมจิ", "titleEn": "Mochi", "description": "อาร์กติกฟอกซ์", "descriptionEn": "Arctic fox", "sourceImage": "asset-10.png" },
+    { "id": "senbei", "title": "เซมเบ้", "titleEn": "Senbei", "description": "เรดฟอกซ์", "descriptionEn": "Red fox", "sourceImage": "asset-11.png" },
+    { "id": "mee-tang", "title": "มีตังค์", "titleEn": "Mee Tang", "description": "เมียร์แคต · ขี้เล่นและช่างสงสัย", "descriptionEn": "Meerkat · Playful and curious", "sourceImage": "asset-12.png", "crop": { "left": 30, "top": 132, "width": 238, "height": 270 } },
+    { "id": "mee-thong", "title": "มีทอง", "titleEn": "Mee Thong", "description": "เมียร์แคต · อ่อนโยน", "descriptionEn": "Meerkat · Sweet and gentle", "sourceImage": "asset-12.png", "crop": { "left": 285, "top": 132, "width": 270, "height": 270 } },
+    { "id": "mee-chok", "title": "มีโชค", "titleEn": "Mee Chok", "description": "เมียร์แคต · สดใสและตื่นตัว", "descriptionEn": "Meerkat · Bright and alert", "sourceImage": "asset-12.png", "crop": { "left": 20, "top": 482, "width": 260, "height": 220 } },
+    { "id": "mee-heng", "title": "มีเฮง", "titleEn": "Mee Heng", "description": "เมียร์แคต · กล้าและซุกซน", "descriptionEn": "Meerkat · Bold, cheeky and lucky", "sourceImage": "asset-12.png", "crop": { "left": 303, "top": 480, "width": 230, "height": 230 } },
+    { "id": "kai-jew", "title": "ไข่เจียว", "titleEn": "Kai-Jew", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 17, "crop": { "left": 8, "top": 70, "width": 175, "height": 175 } },
+    { "id": "kai-down", "title": "ไข่ดาว", "titleEn": "Kai-Down", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 18, "crop": { "left": 208, "top": 70, "width": 175, "height": 175 } },
+    { "id": "candy", "title": "แคนดี้", "titleEn": "Candy", "description": "บอร์เดอร์ คอลลี่", "descriptionEn": "Border Collie", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 19, "crop": { "left": 408, "top": 70, "width": 175, "height": 175 } },
+    { "id": "mine", "title": "มายด์", "titleEn": "Mine", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 20, "alternateSourceCard": 21, "crop": { "left": 609, "top": 70, "width": 175, "height": 175 } },
+    { "id": "yin-yang", "title": "หยินหยาง", "titleEn": "Yin-Yang", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 22, "alternateSourceCard": 25, "crop": { "left": 1009, "top": 70, "width": 175, "height": 175 } },
+    { "id": "moo-krob", "title": "หมูกรอบ", "titleEn": "Moo-Krob", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 23, "crop": { "left": 1209, "top": 70, "width": 175, "height": 175 } },
+    { "id": "khai-yiao-ma", "title": "ไข่เยี่ยวม้า", "titleEn": "Khai Yiao Ma", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 24, "crop": { "left": 1409, "top": 70, "width": 175, "height": 175 } },
+    { "id": "nam-lieap", "title": "หนำเลี๊ยบ", "titleEn": "Nam Lieap", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 26, "crop": { "left": 208, "top": 376, "width": 175, "height": 175 } },
+    { "id": "khao-chao", "title": "ข้าวเจ้า", "titleEn": "Khao Chao", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 27, "crop": { "left": 408, "top": 376, "width": 175, "height": 175 } },
+    { "id": "look-chin", "title": "ลูกชิ้น", "titleEn": "Look Chin", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 28, "crop": { "left": 609, "top": 376, "width": 175, "height": 175 } },
+    { "id": "sai-krok", "title": "ไส้กรอก", "titleEn": "Sai-Krok", "description": "เช็ตแลนด์ ชีพด็อก", "descriptionEn": "Shetland Sheepdog", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 29, "crop": { "left": 809, "top": 376, "width": 175, "height": 175 } },
+    { "id": "tart", "title": "ทาร์ต", "titleEn": "Tart", "description": "เมนคูน", "descriptionEn": "Maine Coon", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 30, "crop": { "left": 1009, "top": 376, "width": 175, "height": 175 } },
+    { "id": "sum-lee", "title": "สำลี", "titleEn": "Sum-Lee", "description": "เปอร์เซีย", "descriptionEn": "Persian", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 31, "crop": { "left": 1209, "top": 376, "width": 175, "height": 175 } },
+    { "id": "veres", "title": "เวเรส", "titleEn": "Veres", "description": "เปอร์เซีย", "descriptionEn": "Persian", "sourceImage": "animal-cards-source-2026-10-28.png", "sourceCard": 32, "crop": { "left": 1409, "top": 376, "width": 175, "height": 175 } }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "verdict": "PASS",
+  "version": "d99b1af6-25b6-45b3-8dfd-fd189c5afb30",
+  "previousVersion": "6a9de7ed-da00-422b-863c-f867f3221ac9",
+  "sourceFiles": 11,
+  "bundleFiles": 223,
+  "browserScenarios": 15,
+  "additionalContrastRegression": 1,
+  "unitTests": 34,
+  "unitAssertions": 340,
+  "compiledIntegrationAssertions": 43,
+  "liveChecks": 96,
+  "livePages": 34,
+  "animalImagesLoaded": 23,
+  "totalBefore": 70,
+  "totalAfter": 71,
+  "acceptanceVote": {
+    "balls": 13,
+    "after": 63,
+    "animalId": "nama",
+    "fullJars": 1,
+    "before": 62
+  },
+  "otherScoresUnchanged": true,
+  "cmsUnchanged": true
+}

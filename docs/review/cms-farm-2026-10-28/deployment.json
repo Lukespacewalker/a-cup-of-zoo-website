@@ -1,0 +1,25 @@
+{
+  "verdict": "PASS",
+  "date": "2026-10-28",
+  "apiVersion": "25a71fbf-2872-45e9-bee7-654aa3b79669",
+  "adminVersion": "f1f3ab53-2762-459c-a181-e3acd85d5a75",
+  "websiteVersion": "83f8c452-54e2-40a0-955f-bfc498045cfe",
+  "previousWebsiteVersion": "4b18293c-4c0b-486a-860e-dfec07ca78c7",
+  "migration": "0013_product_publication_snapshots.sql",
+  "apiChecks": 71,
+  "siteChecks": 20,
+  "mcpTools": 17,
+  "mcpModes": [
+    "legacy",
+    "auto"
+  ],
+  "venueVersion": 2,
+  "animals": 23,
+  "venueImages": 28,
+  "voteTotalBefore": 2,
+  "voteTotalAfter": 2,
+  "publishedListings": 0,
+  "testArticle": "archived after production display test",
+  "physicalMacBookConnection": "pending on owner machine",
+  "artifacts": "C:\\Users\\Sutti\\.codex\\artifacts\\acupofzoo-cms-launch-2026-10-28"
+}

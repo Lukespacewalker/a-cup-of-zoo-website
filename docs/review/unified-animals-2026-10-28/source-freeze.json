@@ -1,0 +1,57 @@
+{
+  "head": "1fc2599a9fa32ad6ab02760a93e425934adb6919",
+  "files": [
+    {
+      "path": "src/lib/voting/model.ts",
+      "sha256": "92c1bfb14770a6a72c5a49b36c0eb6de997d3e63614a741d71ed57eddb6491d7"
+    },
+    {
+      "path": "src/lib/voting/directory.ts",
+      "sha256": "e4ef68189a1abb54f95345477bc6e46fa128d577d3be1cec175d0bc5c14d5e7f"
+    },
+    {
+      "path": "src/components/site/AnimalDirectory.astro",
+      "sha256": "979d11f5cd1a09052a74d212dd68866770cc3d47d55a4ae001e3506358612b10"
+    },
+    {
+      "path": "src/components/site/AnimalVotes.astro",
+      "sha256": "fbb85eb4c853d207e645c214758111ce587e89afb1fc6c70ef292ac00a3b46a4"
+    },
+    {
+      "path": "src/styles/animal-votes.css",
+      "sha256": "e64a7792a2d6ff5e4b02d8e06f3676b8c3a98c3ebd1a8030576f0a35aeab4b5b"
+    },
+    {
+      "path": "src/components/pages/AnimalsPage.astro",
+      "sha256": "3fc8451cc7b2ed2514e5b816714c610966913c99d8dc9aa56caa3ec831102472"
+    },
+    {
+      "path": "src/pages/vote.astro",
+      "sha256": "66c5d66928631d5e11abd045eea2feba896eb6d9869875bdc6f8aab915c2cbd4"
+    },
+    {
+      "path": "src/pages/en/vote.astro",
+      "sha256": "68efd5854ec7ae23527909b9ff502701d876678c02f2b033c667c3ce8646dc71"
+    },
+    {
+      "path": "src/lib/i18n/locale.ts",
+      "sha256": "dfc9afaa0b221a02c8ad811b2d848c1615319c902f283eadb69a725676788150"
+    },
+    {
+      "path": "tests/unit/voting.test.ts",
+      "sha256": "a8be39efd912e57526a80023ec90dcc138f457531c5b723a8c9c42d4b9b73996"
+    },
+    {
+      "path": "tests/e2e/unified-animals.spec.ts",
+      "sha256": "109f65dc20ea5ef26eabd6c2e1460e40156ffb6e260d944eca246d746ddd0b4a"
+    },
+    {
+      "path": "tests/playwright.animals.config.ts",
+      "sha256": "5f14331c6ad5bd485445b613f199fb7ec9333fc32b41d505eff81bcb0e93aaa9"
+    },
+    {
+      "path": "scripts/verify-animal-voting.ts",
+      "sha256": "c8d5116f2fdc54a869aed0d6598f33c4ab823a093fd44b22c72d58b58bd67092"
+    }
+  ]
+}

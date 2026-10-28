@@ -1,6 +1,5 @@
 import type { PublicVenueDto } from "@lukespace-cms/client";
 import { fixtureVenue } from "../content/fixture-data";
-import { shopPhones } from "../business/contact";
 import { englishAdmission } from "./activities";
 import type { Locale } from "./locale";
 
@@ -16,7 +15,7 @@ const faqText = [
   ["Are you open on Tuesdays?", "Normally closed on Tuesdays. When Tuesday falls on a public holiday, the café opens as usual. Check the café's announcements before travelling."],
   ["How much is admission?", englishAdmission],
   ["Do children need a ticket?", "Children under 100 cm tall enter free and must be accompanied by at least 1 adult taking part in the activity. Children entering Indoor zones must buy new socks for 49 THB."],
-  ["How can I call the café?", `Call either ${shopPhones.map(phone => phone.display).join(" or ")}.`],
+  ["How can I call the café?", "Use the call buttons above to contact the café."],
   ["Is parking available?", "The information provided lists parking, but the number of spaces and any parking charges have not been confirmed."],
 ];
 source.faqs.forEach((faq, index) => { translations[faq.question] = faqText[index][0]; translations[faq.answer] = faqText[index][1]; });

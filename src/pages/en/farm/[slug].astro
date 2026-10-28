@@ -1,0 +1,6 @@
+---
+import FarmListingPage from "../../../components/pages/FarmListingPage.astro";
+import { loadFarmListing } from "../../../lib/content/load-farm";
+const result=await loadFarmListing("en",Astro.params.slug??"");Astro.response.status=result.status;
+---
+<FarmListingPage locale="en" result={result} />

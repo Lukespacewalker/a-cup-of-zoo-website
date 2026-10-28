@@ -1,0 +1,36 @@
+
+Running 16 tests using 4 workers
+
+
+(node:66136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:52980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:93724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:56696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/16] tests\e2e\hero.spec.ts:3:1 › home header receives clicks above the media on desktop and mobile
+[2/16] tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages
+[3/16] tests\e2e\menu.spec.ts:3:1 › all food and prices are server rendered without an external flipbook
+[4/16] tests\e2e\locale.spec.ts:3:1 › English unknown routes return localized404 with an English home link
+[5/16] tests\e2e\locale.spec.ts:18:1 › English primary paths render complete English content and matching metadata
+[6/16] tests\e2e\menu.spec.ts:31:1 › activities explain separate admission, benefits, children and all feeding choices
+[7/16] tests\e2e\hero.spec.ts:20:1 › video plays, pauses and respects changes to reduced motion
+[8/16] tests\e2e\theme.spec.ts:24:1 › color control persists and auto follows the system preference
+[9/16] tests\e2e\menu.spec.ts:50:1 › menu and activities fit narrow phones and desktop with working category navigation
+[10/16] tests\e2e\hero.spec.ts:46:1 › blocked autoplay preserves a usable play action and media failure preserves the poster
+[11/16] tests\e2e\hero.spec.ts:62:1 › home remains usable without JavaScript and does not autoplay an uncontrollable loop
+[12/16] tests\e2e\hero.spec.ts:74:1 › a failed video request returns to the poster without a misleading pause button
+[13/16] tests\e2e\theme.spec.ts:41:1 › all primary pages fit supported widths in light, dark and automatic themes
+[14/16] tests\e2e\locale.spec.ts:52:1 › untranslated news explicitly returns to English home without false alternates
+[15/16] tests\e2e\locale.spec.ts:62:1 › English menu and child planning work without JavaScript and match Thai numeric content
+[16/16] tests\e2e\locale.spec.ts:88:1 › switching locale retains matching page and category hash on mobile
+  16 passed (21.5s)

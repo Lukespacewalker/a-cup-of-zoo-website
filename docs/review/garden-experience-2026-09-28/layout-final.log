@@ -1,0 +1,89 @@
+[
+  {
+    "name": "home-en-desktop",
+    "width": 1440,
+    "height": 1000,
+    "path": "/en/",
+    "theme": "light",
+    "overflow": false
+  },
+  {
+    "name": "home-en-mobile",
+    "width": 390,
+    "height": 844,
+    "path": "/en/",
+    "theme": "light",
+    "overflow": false
+  },
+  {
+    "name": "home-wide",
+    "width": 1920,
+    "height": 1080,
+    "path": "/",
+    "theme": "light",
+    "overflow": false
+  },
+  {
+    "name": "home-dark",
+    "width": 1440,
+    "height": 1000,
+    "path": "/",
+    "theme": "dark",
+    "overflow": false
+  },
+  {
+    "name": "home-small",
+    "width": 320,
+    "height": 900,
+    "path": "/",
+    "theme": "light",
+    "overflow": false
+  },
+  {
+    "name": "home-tablet-en",
+    "width": 768,
+    "height": 1000,
+    "path": "/en/",
+    "theme": "light",
+    "overflow": false
+  },
+  {
+    "name": "home-zoom-reflow",
+    "width": 720,
+    "height": 500,
+    "path": "/en/",
+    "theme": "light",
+    "overflow": false
+  },
+  {
+    "selector": ".cat-story h2",
+    "color": "rgb(255, 248, 232)",
+    "bg": "rgb(52, 60, 49)",
+    "contrast": 10.804229908462899
+  },
+  {
+    "selector": ".cat-story-copy>p",
+    "color": "rgb(213, 216, 201)",
+    "bg": "rgb(52, 60, 49)",
+    "contrast": 7.891833796165571
+  },
+  {
+    "selector": ".cat-story .cafe-link",
+    "color": "rgb(245, 239, 223)",
+    "bg": "rgb(52, 60, 49)",
+    "contrast": 9.960567184869015
+  },
+  {
+    "selector": ".cat-story-small figcaption",
+    "color": "rgb(213, 216, 201)",
+    "bg": "rgb(52, 60, 49)",
+    "contrast": 7.891833796165571
+  },
+  {
+    "hover": {
+      "color": "rgb(237, 193, 161)",
+      "bg": "rgb(52, 60, 49)"
+    },
+    "contrast": 6.938251812173148
+  }
+]

@@ -1,0 +1,22 @@
+$ bun run scripts/verify-content.ts
+{
+  "invalid": [],
+  "ready": [
+    "locationLabel",
+    "addressLine",
+    "mapsListedPhoneE164",
+    "phoneE164",
+    "facebookUrl",
+    "mapsUrl",
+    "regularHours",
+    "holidayNote",
+    "menuCatalog",
+    "activityPackages",
+    "activityPrices",
+    "admissionText"
+  ],
+  "needsConfirmation": [
+    "displayName",
+    "parkingNote"
+  ]
+}

@@ -1,0 +1,480 @@
+{
+  "version": "8556b10b-60bf-4578-9093-efc3477eae35",
+  "previousVersion": "063e6f63-2955-484d-aedd-094ba6194851",
+  "date": "2026-10-27",
+  "worker": "a-cup-of-zoo-preview",
+  "bundleManifestSha256": "f2dc49706f1270faff8db65e7538f707656eb41896daf8b16d4bc73f7b82ab11",
+  "sourceManifest": "source-target.json",
+  "mode": {
+    "SITE_ENV": "staging",
+    "CONTENT_MODE": "fixture",
+    "SEARCH_INDEXING": "enabled"
+  },
+  "checks": {
+    "astro": {
+      "errors": 0,
+      "warnings": 0,
+      "files": 77
+    },
+    "unitTestsPassed": 26,
+    "browserTestsOriginalPassed": 33,
+    "localePortAdjustedRerunPassed": 1,
+    "build": "pass",
+    "dryRun": "pass",
+    "independentReview": "PASS; source and indexing/SEO tests independently verified; visual evidence by Root"
+  },
+  "origins": [
+    {
+      "page": 51,
+      "value": {
+        "checks": [
+          {
+            "alternates": [
+              {
+                "href": "https://acupofzoo.com/",
+                "lang": "th"
+              },
+              {
+                "href": "https://acupofzoo.com/en/",
+                "lang": "en"
+              }
+            ],
+            "canonical": "https://acupofzoo.com/",
+            "noindexHeader": null,
+            "path": "/",
+            "robotsMeta": null,
+            "status": 200
+          },
+          {
+            "alternates": [
+              {
+                "href": "https://acupofzoo.com/",
+                "lang": "th"
+              },
+              {
+                "href": "https://acupofzoo.com/en/",
+                "lang": "en"
+              }
+            ],
+            "canonical": "https://acupofzoo.com/en/",
+            "noindexHeader": null,
+            "path": "/en/",
+            "robotsMeta": null,
+            "status": 200
+          },
+          {
+            "alternates": [],
+            "body": "User-agent: *\nAllow: /\nSitemap: https://acupofzoo.com/sitemap.xml\n",
+            "canonical": null,
+            "noindexHeader": null,
+            "path": "/robots.txt",
+            "robotsMeta": null,
+            "status": 200
+          },
+          {
+            "alternates": [],
+            "canonical": null,
+            "noindexHeader": null,
+            "path": "/sitemap.xml",
+            "robotsMeta": null,
+            "sitemap": [
+              "https://acupofzoo.com/",
+              "https://acupofzoo.com/animals/",
+              "https://acupofzoo.com/activities/",
+              "https://acupofzoo.com/menu/",
+              "https://acupofzoo.com/visit/",
+              "https://acupofzoo.com/events/",
+              "https://acupofzoo.com/club/",
+              "https://acupofzoo.com/en/",
+              "https://acupofzoo.com/en/animals/",
+              "https://acupofzoo.com/en/activities/",
+              "https://acupofzoo.com/en/menu/",
+              "https://acupofzoo.com/en/visit/",
+              "https://acupofzoo.com/en/events/",
+              "https://acupofzoo.com/en/club/",
+              "https://acupofzoo.com/news/"
+            ],
+            "status": 200
+          },
+          {
+            "alternates": [],
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/not-a-real-page/",
+            "robotsMeta": "noindex, nofollow",
+            "status": 404
+          },
+          {
+            "alternates": [],
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/font-preview/",
+            "robotsMeta": null,
+            "status": 404
+          }
+        ],
+        "footer": {
+          "address": "27/8 ม.3 ถ.เลียบคลองแอล 5-6 ซอย สุทธิพันธ์ 11 ต.คลองหก อ.คลองหลวง ปทุมธานี 12120",
+          "phones": [
+            "tel:+66989838037",
+            "tel:+66922791890"
+          ],
+          "social": [
+            {
+              "href": "https://www.facebook.com/Acupofzoocafe/",
+              "text": "Facebook\nA Cup of Zoo"
+            },
+            {
+              "href": "https://www.instagram.com/acupofzoo/",
+              "text": "Instagram\n@acupofzoo"
+            },
+            {
+              "href": "https://www.tiktok.com/@acupofzoo",
+              "text": "TikTok\n@acupofzoo"
+            }
+          ]
+        },
+        "homeFollow": "เจอกันได้ทุกวัน\n\nเป็นเพื่อนกันต่อ\n\nแวะดูความซนของน้อง ๆ ภาพจากสวน และข่าวจากร้าน แม้วันที่ยังไม่ได้แวะมา\n\nFacebook\nA Cup of Zoo\nInstagram\n@acupofzoo\nTikTok\n@acupofzoo",
+        "origin": "https://acupofzoo.com"
+      }
+    },
+    {
+      "page": 50,
+      "value": {
+        "checks": [
+          {
+            "alternates": [
+              {
+                "href": "https://acupofzoo.com/",
+                "lang": "th"
+              },
+              {
+                "href": "https://acupofzoo.com/en/",
+                "lang": "en"
+              }
+            ],
+            "canonical": "https://acupofzoo.com/",
+            "noindexHeader": null,
+            "path": "/",
+            "robotsMeta": null,
+            "status": 200
+          },
+          {
+            "alternates": [
+              {
+                "href": "https://acupofzoo.com/",
+                "lang": "th"
+              },
+              {
+                "href": "https://acupofzoo.com/en/",
+                "lang": "en"
+              }
+            ],
+            "canonical": "https://acupofzoo.com/en/",
+            "noindexHeader": null,
+            "path": "/en/",
+            "robotsMeta": null,
+            "status": 200
+          },
+          {
+            "alternates": [],
+            "body": "User-agent: *\nAllow: /\nSitemap: https://acupofzoo.com/sitemap.xml\n",
+            "canonical": null,
+            "noindexHeader": null,
+            "path": "/robots.txt",
+            "robotsMeta": null,
+            "status": 200
+          },
+          {
+            "alternates": [],
+            "canonical": null,
+            "noindexHeader": null,
+            "path": "/sitemap.xml",
+            "robotsMeta": null,
+            "sitemap": [
+              "https://acupofzoo.com/",
+              "https://acupofzoo.com/animals/",
+              "https://acupofzoo.com/activities/",
+              "https://acupofzoo.com/menu/",
+              "https://acupofzoo.com/visit/",
+              "https://acupofzoo.com/events/",
+              "https://acupofzoo.com/club/",
+              "https://acupofzoo.com/en/",
+              "https://acupofzoo.com/en/animals/",
+              "https://acupofzoo.com/en/activities/",
+              "https://acupofzoo.com/en/menu/",
+              "https://acupofzoo.com/en/visit/",
+              "https://acupofzoo.com/en/events/",
+              "https://acupofzoo.com/en/club/",
+              "https://acupofzoo.com/news/"
+            ],
+            "status": 200
+          },
+          {
+            "alternates": [],
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/not-a-real-page/",
+            "robotsMeta": "noindex, nofollow",
+            "status": 404
+          },
+          {
+            "alternates": [],
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/font-preview/",
+            "robotsMeta": null,
+            "status": 404
+          }
+        ],
+        "footer": {
+          "address": "27/8 ม.3 ถ.เลียบคลองแอล 5-6 ซอย สุทธิพันธ์ 11 ต.คลองหก อ.คลองหลวง ปทุมธานี 12120",
+          "phones": [
+            "tel:+66989838037",
+            "tel:+66922791890"
+          ],
+          "social": [
+            {
+              "href": "https://www.facebook.com/Acupofzoocafe/",
+              "text": "Facebook\nA Cup of Zoo"
+            },
+            {
+              "href": "https://www.instagram.com/acupofzoo/",
+              "text": "Instagram\n@acupofzoo"
+            },
+            {
+              "href": "https://www.tiktok.com/@acupofzoo",
+              "text": "TikTok\n@acupofzoo"
+            }
+          ]
+        },
+        "homeFollow": "เจอกันได้ทุกวัน\n\nเป็นเพื่อนกันต่อ\n\nแวะดูความซนของน้อง ๆ ภาพจากสวน และข่าวจากร้าน แม้วันที่ยังไม่ได้แวะมา\n\nFacebook\nA Cup of Zoo\nInstagram\n@acupofzoo\nTikTok\n@acupofzoo",
+        "origin": "https://www.acupofzoo.com"
+      }
+    },
+    {
+      "page": 49,
+      "value": {
+        "checks": [
+          {
+            "alternates": [
+              {
+                "href": "https://a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev/",
+                "lang": "th"
+              },
+              {
+                "href": "https://a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev/en/",
+                "lang": "en"
+              }
+            ],
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/",
+            "robotsMeta": "noindex, nofollow",
+            "status": 200
+          },
+          {
+            "alternates": [
+              {
+                "href": "https://a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev/",
+                "lang": "th"
+              },
+              {
+                "href": "https://a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev/en/",
+                "lang": "en"
+              }
+            ],
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/en/",
+            "robotsMeta": "noindex, nofollow",
+            "status": 200
+          },
+          {
+            "alternates": [],
+            "body": "User-agent: *\nDisallow: /\n",
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/robots.txt",
+            "robotsMeta": null,
+            "status": 200
+          },
+          {
+            "alternates": [],
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/sitemap.xml",
+            "robotsMeta": null,
+            "sitemap": [],
+            "status": 200
+          },
+          {
+            "alternates": [],
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/not-a-real-page/",
+            "robotsMeta": "noindex, nofollow",
+            "status": 404
+          },
+          {
+            "alternates": [],
+            "canonical": null,
+            "noindexHeader": "noindex, nofollow",
+            "path": "/font-preview/",
+            "robotsMeta": null,
+            "status": 404
+          }
+        ],
+        "footer": {
+          "address": "27/8 ม.3 ถ.เลียบคลองแอล 5-6 ซอย สุทธิพันธ์ 11 ต.คลองหก อ.คลองหลวง ปทุมธานี 12120",
+          "phones": [
+            "tel:+66989838037",
+            "tel:+66922791890"
+          ],
+          "social": [
+            {
+              "href": "https://www.facebook.com/Acupofzoocafe/",
+              "text": "Facebook\nA Cup of Zoo"
+            },
+            {
+              "href": "https://www.instagram.com/acupofzoo/",
+              "text": "Instagram\n@acupofzoo"
+            },
+            {
+              "href": "https://www.tiktok.com/@acupofzoo",
+              "text": "TikTok\n@acupofzoo"
+            }
+          ]
+        },
+        "homeFollow": "เจอกันได้ทุกวัน\n\nเป็นเพื่อนกันต่อ\n\nแวะดูความซนของน้อง ๆ ภาพจากสวน และข่าวจากร้าน แม้วันที่ยังไม่ได้แวะมา\n\nFacebook\nA Cup of Zoo\nInstagram\n@acupofzoo\nTikTok\n@acupofzoo",
+        "origin": "https://a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev"
+      }
+    }
+  ],
+  "publicRoutes": {
+    "page": 51,
+    "value": [
+      {
+        "canonical": "https://acupofzoo.com/",
+        "noindex": false,
+        "path": "/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/animals/",
+        "noindex": false,
+        "path": "/animals/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/activities/",
+        "noindex": false,
+        "path": "/activities/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/menu/",
+        "noindex": false,
+        "path": "/menu/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/visit/",
+        "noindex": false,
+        "path": "/visit/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/events/",
+        "noindex": false,
+        "path": "/events/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/club/",
+        "noindex": false,
+        "path": "/club/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/en/",
+        "noindex": false,
+        "path": "/en/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/en/animals/",
+        "noindex": false,
+        "path": "/en/animals/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/en/activities/",
+        "noindex": false,
+        "path": "/en/activities/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/en/menu/",
+        "noindex": false,
+        "path": "/en/menu/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/en/visit/",
+        "noindex": false,
+        "path": "/en/visit/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/en/events/",
+        "noindex": false,
+        "path": "/en/events/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/en/club/",
+        "noindex": false,
+        "path": "/en/club/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      },
+      {
+        "canonical": "https://acupofzoo.com/news/",
+        "noindex": false,
+        "path": "/news/",
+        "phones": 2,
+        "social": 3,
+        "status": 200
+      }
+    ]
+  },
+  "excluded": "Concurrent interactive shop map edits made after the immutable 15:55 build; preserved in shared source and not deployed."
+}

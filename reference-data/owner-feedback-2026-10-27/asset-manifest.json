@@ -1,0 +1,578 @@
+{
+  "source": "https://canva.link/w28jcu2fj17qetw",
+  "retrievedAt": "2026-10-27",
+  "items": [
+    {
+      "file": "slides/slide-01.png",
+      "slide": 1,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 37559,
+      "sha256": "8d1f2f7c555762e1537eaf58faa281a972bfe5e33b8b47231e3d34ed8b6311eb"
+    },
+    {
+      "file": "slides/slide-02.png",
+      "slide": 2,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 15708,
+      "sha256": "a64583e515aa2aede6296c86aaa803c8fce9408375bed921beb76fda153e00cd"
+    },
+    {
+      "file": "slides/slide-03.png",
+      "slide": 3,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 76109,
+      "sha256": "61dc3ad834b265bf36e083f45a44abe53e36b1e97ebe1d1295c8943ad196df25"
+    },
+    {
+      "file": "slides/slide-04.png",
+      "slide": 4,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 44742,
+      "sha256": "d90f5f6edbb85b4edf4b924d5e2115f7df55bd272138a569286572b2d33ffb34"
+    },
+    {
+      "file": "slides/slide-05.png",
+      "slide": 5,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 6950,
+      "sha256": "d351f4f93eeb5ed1c5049f379153cfa7f6bedd7beb9b4c2568a425565162ceff"
+    },
+    {
+      "file": "slides/slide-06.png",
+      "slide": 6,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 99772,
+      "sha256": "711295391282f89e88ea71c8c22e834584a5e31b3ba07b1035068668a25a465b"
+    },
+    {
+      "file": "slides/slide-07.png",
+      "slide": 7,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 60730,
+      "sha256": "a95524c44a9f3ae48217c02569b7c27052d10ee4e4c6c95c73727cf77b22226f"
+    },
+    {
+      "file": "slides/slide-08.png",
+      "slide": 8,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 52406,
+      "sha256": "311933602e21283c62d88747392643d39a0946bdff293b5f18dacea785633d44"
+    },
+    {
+      "file": "slides/slide-09.png",
+      "slide": 9,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 33095,
+      "sha256": "e72869727ef9f1d54d4d74fcc872c5812bde70244781e53b8835dd2a1d7c3eb1"
+    },
+    {
+      "file": "slides/slide-10.png",
+      "slide": 10,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 10271,
+      "sha256": "d0c6862b0d3a76252dff39201cc59e5433e309a865c4274a9244dffea74bec1c"
+    },
+    {
+      "file": "slides/slide-11.png",
+      "slide": 11,
+      "kind": "Canva grid thumbnail",
+      "width": 596,
+      "height": 335,
+      "bytes": 32745,
+      "sha256": "a51c67e48f95d578b6b222b6012bf1cb44e5b9811c7b1e65a6997a910ca172ea"
+    },
+    {
+      "file": "assets/asset-01.png",
+      "observedOnSlides": [
+        2
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 2398,
+      "height": 1214,
+      "bytes": 2401508,
+      "sha256": "fb98c35b3bf74a8790eddf12517df3b0852435e9374f5214dbc50cd8c31558f8"
+    },
+    {
+      "file": "assets/asset-02.png",
+      "observedOnSlides": [
+        2,
+        3,
+        4
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 1599,
+      "height": 511,
+      "bytes": 559806,
+      "sha256": "245f125aaf0c858293d745c7d51f032f55e2696197a55c6346e83af89ac9f084"
+    },
+    {
+      "file": "assets/asset-03.png",
+      "observedOnSlides": [
+        2,
+        3,
+        4
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 846,
+      "height": 1198,
+      "bytes": 1429362,
+      "sha256": "72edf601707eadbbce82a689bb73e9590db28f18608e9c11e12b7ac5a798ef99"
+    },
+    {
+      "file": "assets/asset-04.png",
+      "observedOnSlides": [
+        2,
+        3,
+        4
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 862,
+      "height": 1190,
+      "bytes": 965726,
+      "sha256": "f2f348d6d52ec1d529e83f6a84063d5ab12c6214549134ce74ed1dcf21835a1b"
+    },
+    {
+      "file": "assets/asset-05.png",
+      "observedOnSlides": [
+        2,
+        3,
+        4
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 1131,
+      "height": 1600,
+      "bytes": 2952179,
+      "sha256": "92a6336b9748f1141dc8721fa9778e47a11e65e1052edbd5a483dc8b2fc90832"
+    },
+    {
+      "file": "assets/asset-06.png",
+      "observedOnSlides": [
+        3,
+        4,
+        5
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 736,
+      "height": 1059,
+      "bytes": 448595,
+      "sha256": "1b0f35808e3da8da7e1e54ecd97be57c1038af0c032525669605a390c7c1ff5b"
+    },
+    {
+      "file": "assets/asset-07.png",
+      "observedOnSlides": [
+        3,
+        4,
+        5
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 640,
+      "height": 800,
+      "bytes": 795163,
+      "sha256": "f50daad9025b47fabbdffeddec8d7424667a47365ad2cd3fd5a1184d130da7d6"
+    },
+    {
+      "file": "assets/asset-08.png",
+      "observedOnSlides": [
+        3,
+        4,
+        5
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 640,
+      "height": 800,
+      "bytes": 825640,
+      "sha256": "8d47adf651430dba8d5d8a1ca77d052b19776a85bfbdf0f63a824f2547c2ffe4"
+    },
+    {
+      "file": "assets/asset-09.png",
+      "observedOnSlides": [
+        3,
+        4,
+        5
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 640,
+      "height": 800,
+      "bytes": 805799,
+      "sha256": "194213a217b0d734705df8ef8f729d28fa446dc48adeabb656626362847a235e"
+    },
+    {
+      "file": "assets/asset-10.png",
+      "observedOnSlides": [
+        3,
+        4,
+        5
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 640,
+      "height": 800,
+      "bytes": 779502,
+      "sha256": "280892b45d145f1d9e5ff69a41e3d781d186fc4afe96b1c4b5f9362ae3052237"
+    },
+    {
+      "file": "assets/asset-11.png",
+      "observedOnSlides": [
+        3,
+        4,
+        5
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 729,
+      "height": 799,
+      "bytes": 844615,
+      "sha256": "3ee4f92920a6b605d011a0810914619c91d7361e63968a314d3f83282faebdbd"
+    },
+    {
+      "file": "assets/asset-12.png",
+      "observedOnSlides": [
+        3,
+        4,
+        5
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 579,
+      "height": 800,
+      "bytes": 484386,
+      "sha256": "e839072d58b970b8711b6d5aec56c5462754663de74cd98981c5b9861f308055"
+    },
+    {
+      "file": "assets/asset-13.png",
+      "observedOnSlides": [
+        3,
+        4,
+        5
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 798,
+      "height": 300,
+      "bytes": 277491,
+      "sha256": "eb4c5396851932a910165e4963561b423d73aaca399c681ffc8f3b624aecdc72"
+    },
+    {
+      "file": "assets/asset-14.png",
+      "observedOnSlides": [
+        3,
+        4,
+        5
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 799,
+      "height": 466,
+      "bytes": 310556,
+      "sha256": "a7687cd2521cd8f2ba7cb473780c2da5f9027d1ccb89bea4992a1dff2c53067f"
+    },
+    {
+      "file": "assets/asset-15.png",
+      "observedOnSlides": [
+        5,
+        6,
+        7
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 1171813,
+      "sha256": "4c796cedc49a2776f7ec00fb9808936d1c305f6100bc0aa09ff9509a3ca27833"
+    },
+    {
+      "file": "assets/asset-16.png",
+      "observedOnSlides": [
+        5,
+        6,
+        7
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 1247342,
+      "sha256": "7188cf70f04eb0f928f77dac47ea411580ecbd72211728b22d5c817c339ec309"
+    },
+    {
+      "file": "assets/asset-17.png",
+      "observedOnSlides": [
+        5,
+        6,
+        7
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 1327243,
+      "sha256": "f74e2b03aaefb6101f601cc273b738aa5af82a317f332c693d236f9477b9daf2"
+    },
+    {
+      "file": "assets/asset-18.png",
+      "observedOnSlides": [
+        5,
+        6,
+        7
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 1410161,
+      "sha256": "3c959123bed9b49387b8f2490686a5f81aaba449a85e222bdd61c27fc5ee5f78"
+    },
+    {
+      "file": "assets/asset-19.png",
+      "observedOnSlides": [
+        5,
+        6,
+        7
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 600,
+      "bytes": 835439,
+      "sha256": "59a623eb8c834179f7300a1877aed17c25536825e798b3b0528bdbfeadbe4749"
+    },
+    {
+      "file": "assets/asset-20.png",
+      "observedOnSlides": [
+        5,
+        6,
+        7
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 600,
+      "bytes": 676652,
+      "sha256": "3e954a3b4119ecd7d321e0b8c960a3e43e74d7f378848ed35fe7e516738da862"
+    },
+    {
+      "file": "assets/asset-21.png",
+      "observedOnSlides": [
+        5,
+        6,
+        7
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 1200,
+      "height": 1600,
+      "bytes": 1520921,
+      "sha256": "803c3e695a0ca26e9810fc2f53335aa3669e29f7356d0065a7ef124eabd41433"
+    },
+    {
+      "file": "assets/asset-22.png",
+      "observedOnSlides": [
+        6,
+        7,
+        8
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 850986,
+      "sha256": "19dd5152c2c849cd1c4a6a0e170fad8c0eaba6fd7ff8f3ca4fe440b21f294a32"
+    },
+    {
+      "file": "assets/asset-23.png",
+      "observedOnSlides": [
+        6,
+        7,
+        8
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 813412,
+      "sha256": "9d93299f77c5b7633559cddf6b10ec69c18a42e24ee0048914cbd799abdb1941"
+    },
+    {
+      "file": "assets/asset-24.png",
+      "observedOnSlides": [
+        6,
+        7,
+        8
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 1417681,
+      "sha256": "caeb35c47bb501b740d13b860ca4bfe3f81c22e5c42fdc82cbe895fb5f506212"
+    },
+    {
+      "file": "assets/asset-25.png",
+      "observedOnSlides": [
+        6,
+        7,
+        8
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 905441,
+      "sha256": "6490671549c16655fd2767a1c2ce1abb444da2e0a75a433bd95fd202fa9cb2b0"
+    },
+    {
+      "file": "assets/asset-26.png",
+      "observedOnSlides": [
+        7,
+        8,
+        9
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 834,
+      "height": 1186,
+      "bytes": 1459935,
+      "sha256": "4f3c33deb14f28c9b6bb9d5f7fd01650aed6c5a31cf27bd20197bfb8bd65a266"
+    },
+    {
+      "file": "assets/asset-27.png",
+      "observedOnSlides": [
+        7,
+        8,
+        9
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 832,
+      "height": 1178,
+      "bytes": 1322656,
+      "sha256": "0c6b2c264e7280ac424f53e215020f28d65c221cd0d44406039a033f5c5274d4"
+    },
+    {
+      "file": "assets/asset-28.png",
+      "observedOnSlides": [
+        8,
+        9,
+        10
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 1279,
+      "height": 1599,
+      "bytes": 2223566,
+      "sha256": "2a62f17ade213e1d52a486401f9153a5ab95bed20259f798626a1ef1cae121b0"
+    },
+    {
+      "file": "assets/asset-29.png",
+      "observedOnSlides": [
+        9,
+        10,
+        11
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 248109,
+      "sha256": "b7bb7ef54517601dcf634a4e3073c1e4e6f5813409c8c0a71890f5c7cdeaccd2"
+    },
+    {
+      "file": "assets/asset-30.png",
+      "observedOnSlides": [
+        9,
+        10,
+        11
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 131747,
+      "sha256": "788e6e3c021fda3e9ea47987cee4bd3fc0ef4fe6913c2e9c806b961abb7fd5cf"
+    },
+    {
+      "file": "assets/asset-31.png",
+      "observedOnSlides": [
+        9,
+        10,
+        11
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 800,
+      "height": 800,
+      "bytes": 73188,
+      "sha256": "a166bc61855636ccad0afcd76f8d270ca3fe5d35ee546a0cdd91f0ed5f10d06e"
+    },
+    {
+      "file": "assets/asset-32.png",
+      "observedOnSlides": [
+        9,
+        10,
+        11
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 447,
+      "height": 447,
+      "bytes": 54920,
+      "sha256": "6c93647e792496e8e68aee46242dddb933e012326e66a8f86a5ed6e9589b87f3"
+    },
+    {
+      "file": "assets/asset-33.png",
+      "observedOnSlides": [
+        9,
+        10,
+        11
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 276,
+      "height": 362,
+      "bytes": 74216,
+      "sha256": "770336b168ab49cbbc2409049ed3e6394c99701cbdc432a6da9f4e7f55b4b545"
+    },
+    {
+      "file": "assets/asset-34.png",
+      "observedOnSlides": [
+        9,
+        10,
+        11
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 417,
+      "height": 417,
+      "bytes": 76266,
+      "sha256": "03cd4bf1b7ad5bdb3772a40141949c2de2a517267f0f1070a1e0f3ef3f405f91"
+    },
+    {
+      "file": "assets/asset-35.png",
+      "observedOnSlides": [
+        10,
+        11
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 1052,
+      "height": 1494,
+      "bytes": 635818,
+      "sha256": "7cd67971d83dbd0459b388e39400902fb1ad1e64d4d84daff3610ff990d77c79"
+    },
+    {
+      "file": "assets/asset-36.png",
+      "observedOnSlides": [
+        10,
+        11
+      ],
+      "kind": "Image from viewer DOM; may include adjacent slides",
+      "width": 748,
+      "height": 1600,
+      "bytes": 523105,
+      "sha256": "49cdd4ae16126acd88403a2a4099a17bfec60f188245421b6d112021b0a2a6be"
+    },
+    {
+      "file": "drinks-menu-source.pdf",
+      "kind": "PDF loaded by linked drinks viewer",
+      "source": "https://heyzine.com/flip-book/587e5387cd.html",
+      "pdfSource": "https://cdnm.heyzine.com/files/uploaded/v3/587e5387cda902236d0c68564289e34c3fa913dd.pdf",
+      "pages": 27,
+      "bytes": 4915402,
+      "sha256": "51b1c16e41b4943b4529da506d7005bd1e69faa25533ab6dabcc3330108e466c"
+    }
+  ]
+}

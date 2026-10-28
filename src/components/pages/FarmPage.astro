@@ -1,0 +1,23 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { loadPage } from "../../lib/content/load-page";
+import { listingImage, listingPath, listingPrice } from "../../lib/content/listings";
+import type { loadFarmIndex } from "../../lib/content/load-farm";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+import "../../styles/farm.css";
+interface Props { locale: Locale; result: Awaited<ReturnType<typeof loadFarmIndex>>; }
+const {locale,result}=Astro.props;
+const t=translator(locale);
+const page=await loadPage();
+const {listings}=result;const unavailable=result.status===503;
+---
+<SiteLayout page={page} locale={locale} title={t("สัตว์หาบ้านจากฟาร์ม", "Animal listings from our farm")} description={t("ดูรูป รายละเอียด และราคาสัตว์จาก A Cup of Zoo แล้วติดต่อร้านเพื่อสอบถามข้อมูลและนัดรับ", "Browse photos, descriptions and prices from A Cup of Zoo. Contact the café for details and to arrange collection.")}>
+  <header class="farm-intro"><p class="eyebrow">A CUP OF ZOO · FARM</p><h1>{t("เพื่อนตัวใหม่\nกำลังรอคุณอยู่", "Meet your\nnext little friend")}</h1><p>{t("รู้จักน้องผ่านรูปและรายละเอียด แล้วคุยกับทีมงานเรื่องการดูแลและการนัดรับ", "Get to know each animal through photos and details, then talk to our team about care and collection.")}</p></header>
+  {unavailable ? <section class="farm-empty" role="status"><h2>{t("ยังโหลดประกาศไม่ได้", "Listings are temporarily unavailable")}</h2><p>{t("ลองใหม่อีกครั้ง หรือติดต่อร้านเพื่อสอบถาม", "Try again, or contact the café for details.")}</p><a class="button secondary" href={localePath("/farm/",locale)}>{t("ลองใหม่", "Try again")}</a></section> : listings.length===0 ? <section class="farm-empty"><span class="farm-empty__mark" aria-hidden="true">♡</span><h2>{t("ยังไม่มีประกาศในตอนนี้", "No listings just yet")}</h2><p>{t("หากสนใจเพื่อนตัวใหม่ ทักมาสอบถามทีมงานได้เลย", "If you are looking for a new companion, our team is happy to help.")}</p><a class="button" href="https://line.me/R/ti/p/%40acupofzoo">{t("สอบถามทาง LINE", "Ask us on LINE")} ↗</a></section> : <section class="farm-grid" aria-label={t("ประกาศสัตว์หาบ้าน", "Animal listings")}>
+    {listings.map(listing=>{const text=listing.translations.find(v=>v.locale===locale);if(!text)return null;const photo=listing.assets.find(a=>a.role==="cover")??listing.assets[0];const src=photo&&listingImage(photo.url);return <article class="farm-card">
+      <a class="farm-card__photo" href={listingPath(locale,text.slug)} aria-label={text.title}>{src?<img src={src} alt={locale==="th"?photo.altTh:photo.altEn} width={photo.width??800} height={photo.height??800} loading="lazy" />:<span>{t("รอภาพจากร้าน", "Photo coming soon")}</span>}</a>
+      <div class="farm-card__text"><p class="farm-price">{listingPrice(listing.priceMinor,locale)}</p><h2><a href={listingPath(locale,text.slug)}>{text.title}</a></h2><p class="farm-card__description">{text.description}</p><a class="farm-detail-link" href={listingPath(locale,text.slug)}>{t("รู้จักน้องให้มากขึ้น", "Meet this little friend")} <span aria-hidden="true">↗</span></a></div>
+    </article>;})}
+  </section>}
+  <aside class="farm-note"><h2>{t("คุยกันก่อนพากลับบ้าน", "Let's talk before collection")}</h2><p>{t("สอบถามข้อมูลล่าสุด ราคา และการดูแลกับทีมงานก่อนนัดรับ ติดต่อและตกลงกับร้านโดยตรง", "Ask our team about current availability, price and care before arranging collection. Enquiries and arrangements are made directly with the café.")}</p><a href={localePath("/visit/",locale)}>{t("ดูข้อมูลติดต่อและการเดินทาง", "Contact details & directions")} →</a></aside>
+</SiteLayout>

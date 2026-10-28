@@ -1,0 +1,42 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "route": "/animals/",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "route": "/menu/",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "route": "/activities/",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "route": "/visit/",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "route": "/en/",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "route": "/en/animals/",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  },
+  {
+    "route": "/en/menu/",
+    "status": 200,
+    "noindex": "noindex, nofollow"
+  }
+]

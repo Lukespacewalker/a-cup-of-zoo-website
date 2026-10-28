@@ -1,22 +1,53 @@
 ---
-import logo from "../../../logo.jpg";
+import ShopLogo from "./ShopLogo.astro";
+import ContactIcon from "./ContactIcon.astro";
+import SocialLinks from "./SocialLinks.astro";
 import { allowedExternalUrl } from "../../lib/business/links";
-import { shopPhones } from "../../lib/business/contact";
+import type { venuePhones } from "../../lib/business/contact";
 import { localeFromPath, localePath, translator } from "../../lib/i18n/locale";
 const locale = localeFromPath(Astro.url.pathname);
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
-interface Props { mapsUrl: string | null; }
-const { mapsUrl } = Astro.props;
+interface Props { mapsUrl: string | null; phones: ReturnType<typeof venuePhones>; addressLine: string | null; addressLang: string; facebookUrl: string | null; }
+const { mapsUrl, phones, addressLine, addressLang, facebookUrl } = Astro.props;
 const maps = allowedExternalUrl(mapsUrl, "maps");
 ---
 <footer class="footer shell">
-  <a class="footer-logo-wrap" href={href("/")}><img class="footer-logo" src={logo.src} alt="A Cup of Zoo Cafe & Farm" /></a>
-  <p>{t("คาเฟ่สัตว์สำหรับครอบครัว ที่คลอง 6 ปทุมธานี", "A family animal café in Khlong 6, Pathum Thani")}</p>
-  <p>{shopPhones.map((phone, index) => <>{index > 0 && " · "}<a href={`tel:${phone.e164}`}>{phone.display}</a></>)}</p>
-  {maps && <a href={maps}>{t("ดูเส้นทาง", "Directions")}</a>}
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo-wrap" href={href("/")}><ShopLogo id="footer-logo" /></a>
+      <p>{t("กาแฟหนึ่งแก้ว เพื่อนใหม่อีกหลายตัว", "A little sip. A few new friends.")}</p>
+      <p class="footer-location">{t("คาเฟ่สัตว์และสวน · คลอง 6 ปทุมธานี", "Animal café & garden · Khlong 6, Pathum Thani")}</p>
+    </div>
+    <section class="footer-contact" aria-labelledby="footer-contact-title">
+      <h2 id="footer-contact-title">{t("แวะมาหาเรา", "Visit & contact")}</h2>
+      {addressLine && <address><ContactIcon name="pin" /><span lang={addressLang}>{addressLine}</span></address>}
+      {maps && <a class="footer-directions" href={maps}>{t("เปิดแผนที่มาร้าน", "Get directions")} <span aria-hidden="true">↗</span></a>}
+      <ul class="footer-phones">{phones.map(phone => <li><a href={`tel:${phone.e164}`}><ContactIcon name="phone" /><span>{phone.display}</span></a></li>)}</ul>
+    </section>
+    <section class="footer-social" aria-labelledby="footer-social-title">
+      <h2 id="footer-social-title">{t("เป็นเพื่อนกันต่อ", "Stay in touch")}</h2>
+      <SocialLinks facebookUrl={facebookUrl} />
+    </section>
+  </div>
   <nav class="footer-nav" aria-label={t("ท้ายหน้า", "Footer navigation")}>
-    <a href={href("/animals/")}>{t("สัตว์", "Animals")}</a> · <a href={href("/activities/")}>{t("กิจกรรม", "Activities")}</a> · <a href={href("/menu/")}>{t("เมนู", "Menu")}</a> · <a href="/news/">{t("ข่าว", "News (Thai)")}</a> · <a href={href("/visit/")}>{t("มาเที่ยว", "Plan your visit")}</a>
+    <a href={href("/farm/")}>{t("สัตว์หาบ้าน", "Animal listings")}</a>
+    <a href={href("/events/")}>{t("ทัวร์กลุ่มและร่วมงาน", "Groups & collaborations")}</a><a href={href("/club/")}>Zoo Clubs</a><a href={href("/animals/")}>{t("สัตว์", "Animals")}</a><a href={href("/activities/")}>{t("กิจกรรม", "Activities")}</a><a href={href("/menu/")}>{t("เมนู", "Menu")}</a><a href="/news/">{t("ข่าว", "News (Thai)")}</a><a href={href("/visit/")}>{t("มาเที่ยว", "Plan your visit")}</a>
   </nav>
 </footer>
 <nav class="sticky-cta" aria-label={t("ทางลัดมาเที่ยว", "Visit shortcuts")}><a class="button secondary" href={href("/menu/")}>{t("ดูเมนูอาหาร", "Food menu")}</a><a class="visit-link" href={href("/visit/")}>{t("วางแผนมาเที่ยว", "Plan your visit")}</a></nav>
+<script>
+  const heroActions = document.querySelector("[data-hero-actions]");
+  const shortcuts = document.querySelector<HTMLElement>(".sticky-cta");
+  if (heroActions && shortcuts && "IntersectionObserver" in window) {
+    let heroVisible = false;
+    const sync = () => { shortcuts.hidden = heroVisible && !shortcuts.contains(document.activeElement); };
+    const observer = new IntersectionObserver(([entry]) => {
+      // Do not hide a focused link while the visitor uses the keyboard.
+      heroVisible = entry.isIntersecting;
+      sync();
+    }, { threshold: 0 });
+    observer.observe(heroActions);
+    shortcuts.addEventListener("focusout", () => queueMicrotask(sync));
+  }
+</script>

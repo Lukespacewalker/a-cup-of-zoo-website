@@ -2,7 +2,7 @@ import { defineConfig, envField } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
-  site: "https://acupofzoo.invalid",
+  site: "https://acupofzoo.com",
   output: "server",
   adapter: cloudflare(),
   session: false,
@@ -14,6 +14,7 @@ export default defineConfig({
       SITE_ENV: envField.string({ context: "server", access: "secret", default: "local" }),
       CONTENT_MODE: envField.string({ context: "server", access: "secret", default: "fixture" }),
       CMS_BASE_URL: envField.string({ context: "server", access: "secret", optional: true }),
+      SEARCH_INDEXING: envField.string({ context: "server", access: "secret", default: "disabled" }),
     },
   },
 });

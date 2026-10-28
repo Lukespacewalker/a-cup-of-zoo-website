@@ -1,15 +1,31 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "a-cup-of-zoo-preview",
+  "account_id": "033dbd2d33d8bb93fcc2930c22752d8a",
   "compatibility_date": "2026-09-25",
   "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "acupofzoo.com",
+      "zone_id": "bef4990b1099569a63569b728944bb81",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.acupofzoo.com",
+      "zone_id": "bef4990b1099569a63569b728944bb81",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "binding": "ASSETS",
     "directory": "./dist"
   },
   "vars": {
-    "SITE_ENV": "staging",
-    "CONTENT_MODE": "fixture"
+    "SITE_ENV": "production",
+    "CONTENT_MODE": "cms",
+    "CMS_BASE_URL": "https://acupofzoo-cms-api.a-cup-of-zoo-website.workers.dev",
+    "SEARCH_INDEXING": "enabled"
   },
   "observability": {
     "enabled": true

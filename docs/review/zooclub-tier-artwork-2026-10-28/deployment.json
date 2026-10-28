@@ -1,0 +1,34 @@
+{
+  "publishedVersion": "4b18293c-4c0b-486a-860e-dfec07ca78c7",
+  "deploymentCreatedAt": "2026-10-28T06:02:38.678Z",
+  "previousVersion": "59c5411c-36fd-40f7-a466-c6b6ea73e163",
+  "coordinatorThread": "01a18106-83f1-70c2-9c29-eb5350912063",
+  "publisherThread": "01a17c98-963b-7512-81b9-29ce92c6d7ee",
+  "cmsThread": "01a17b93-05df-7f00-b3f8-d10bb739a5db",
+  "clubLiveVerdict": "PASS",
+  "artifactDirectory": "C:/Users/Sutti/.codex/artifacts/acupofzoo-voting-release-2026-10-28/dist-production",
+  "deploymentLog": "C:/Users/Sutti/.codex/artifacts/acupofzoo-voting-release-2026-10-28/deploy-production.log",
+  "liveChecks": "live-checks.json",
+  "nativeInteractions": [
+    {
+      "name": "live-th-desktop",
+      "saved": "auto",
+      "theme": "auto",
+      "url": "https://acupofzoo.com/club/"
+    },
+    {
+      "name": "live-en-mobile",
+      "overflow": false,
+      "saved": "light",
+      "theme": "light",
+      "url": "https://acupofzoo.com/en/club/"
+    },
+    {
+      "name": "live-en-mobile-dark",
+      "overflow": false,
+      "saved": "dark",
+      "theme": "dark",
+      "url": "https://acupofzoo.com/en/club/"
+    }
+  ]
+}

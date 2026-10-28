@@ -1,0 +1,69 @@
+
+Running 29 tests using 9 workers
+
+
+(node:131432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:113548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+(node:130556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:90628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/29] tests\e2e\experience-navigation.spec.ts:3:1 › home experiences preserve locale and mobile shortcuts do not duplicate the hero
+(node:135468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/29] tests\e2e\menu.spec.ts:3:1 › all food and prices are server rendered without an external flipbook
+[3/29] tests\e2e\hero.spec.ts:3:1 › home header receives clicks above the media on desktop and mobile
+(node:102308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:133832) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[4/29] tests\e2e\locale.spec.ts:3:1 › English unknown routes return localized404 with an English home link
+[5/29] tests\e2e\seo.spec.ts:3:1 › prototype stays noindex
+(node:75152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+(node:68712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[6/29] tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages
+[7/29] tests\e2e\visit.spec.ts:3:1 › visit CTA keeps the supplied Maps destination
+[8/29] tests\e2e\watercolor.spec.ts:3:1 › wishing corner is discoverable and keeps its section when switching languages
+[9/29] tests\e2e\navigation.spec.ts:5:1 › main routes render server HTML
+[10/29] tests\e2e\seo.spec.ts:10:1 › preview keeps crawlers out and its sitemap empty
+[11/29] tests\e2e\visit.spec.ts:12:1 › mobile layout has no horizontal overflow
+[12/29] tests\e2e\locale.spec.ts:18:1 › English primary paths render complete English content and matching metadata
+[13/29] tests\e2e\seo.spec.ts:18:1 › public pages have distinct metadata and usable social images
+[14/29] tests\e2e\visit.spec.ts:18:1 › mobile menu opens and Escape closes it
+[15/29] tests\e2e\menu.spec.ts:30:1 › activities explain separate admission, benefits, children and all feeding choices
+[16/29] tests\e2e\hero.spec.ts:20:1 › video plays, pauses and respects changes to reduced motion
+[17/29] tests\e2e\menu.spec.ts:49:1 › menu and activities fit narrow phones and desktop with working category navigation
+[18/29] tests\e2e\theme.spec.ts:24:1 › color control persists and auto follows the system preference
+[19/29] tests\e2e\visit.spec.ts:27:1 › theme control responds to keyboard activation and persists after navigation
+[20/29] tests\e2e\hero.spec.ts:46:1 › blocked autoplay preserves a usable play action and media failure preserves the poster
+[21/29] tests\e2e\theme.spec.ts:41:1 › all primary pages fit supported widths in light, dark and automatic themes
+[22/29] tests\e2e\visit.spec.ts:41:1 › photo journal supports visible keyboard focus and reduced motion
+[23/29] tests\e2e\hero.spec.ts:62:1 › home remains usable without JavaScript and does not autoplay an uncontrollable loop
+[24/29] tests\e2e\locale.spec.ts:52:1 › untranslated news explicitly returns to English home without false alternates
+[25/29] tests\e2e\locale.spec.ts:62:1 › English menu and child planning work without JavaScript and match Thai numeric content
+[26/29] tests\e2e\seo.spec.ts:47:1 › unknown route is a real 404
+[27/29] tests\e2e\seo.spec.ts:52:1 › unverified review score is not invented
+[28/29] tests\e2e\seo.spec.ts:60:1 › news empty state is not an error
+[29/29] tests\e2e\locale.spec.ts:88:1 › switching locale retains matching page and category hash on mobile
+  29 passed (20.5s)

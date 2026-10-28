@@ -1,12 +1,13 @@
 import type { PublicVenueDto } from "@lukespace-cms/client";
 import { hoursAreStructured } from "../business/format-hours";
 import { allowedExternalUrl } from "../business/links";
-import { shopPhones } from "../business/contact";
+import { venuePhones } from "../business/contact";
+import { socialProfiles } from "../business/social";
 import { localePath, type Locale } from "../i18n/locale";
 
 const weekDays = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-// The preview keeps its placeholder until the shop's domain is confirmed.
+// Ignore placeholders; callers separately decide whether this request is public.
 export function configuredSite(site: URL | undefined) {
   return site && !site.hostname.endsWith(".invalid") ? new URL("/", site) : null;
 }
@@ -36,9 +37,9 @@ export function cafeJsonLd(venue: PublicVenueDto, site: URL | null = null, image
       addressCountry: "TH",
     };
   }
-  data.telephone = shopPhones.map((phone) => phone.e164);
-  const facebook = allowedExternalUrl(venue.content.facebookUrl, "facebook");
-  if (facebook) data.sameAs = [facebook];
+  const phones = venuePhones(venue.content).map(phone => phone.e164);
+  if (phones.length) data.telephone = phones;
+  data.sameAs = socialProfiles(venue.content.facebookUrl).map(profile => profile.url);
   const maps = allowedExternalUrl(venue.content.mapsUrl, "maps");
   if (maps) data.hasMap = maps;
   if (site) {

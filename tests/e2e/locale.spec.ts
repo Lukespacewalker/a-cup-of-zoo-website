@@ -77,8 +77,8 @@ test("English menu and child planning work without JavaScript and match Thai num
   await page.goto('/en/menu/');
   await page.getByRole('navigation', { name: 'Menu categories' }).getByRole('link', { name: 'Plant-based dishes' }).click();
   await expect(page.getByRole('heading', { name: 'Plant-based dishes', exact: true })).toBeInViewport();
-  await page.locator('#plant-based summary').click();
-  await expect(page.locator('#plant-based details')).toHaveAttribute('open', '');
+  await expect(page.locator('#plant-based .food-section__photos img')).toHaveCount(2);
+  await expect(page.locator('#plant-based .food-gallery')).toBeVisible();
   await page.getByRole('navigation', { name: 'Visit shortcuts' }).getByRole('link', { name: 'Plan your visit' }).click();
   await page.getByRole('link', { name: 'Pass benefits and child admission' }).click();
   await expect(page.locator('.activity-terms')).toContainText('Every child must be accompanied by at least 1 adult');
@@ -91,13 +91,12 @@ test("switching locale retains matching page and category hash on mobile", async
   await page.getByRole('link', { name: 'English', exact: true }).click();
   await expect(page).toHaveURL(/\/en\/menu\/#plant-based$/);
   await page.getByRole('heading', { name: 'Plant-based dishes', exact: true }).scrollIntoViewIfNeeded();
-  const gallery = page.locator('#plant-based details');
-  await gallery.locator('summary').click();
-  await expect(gallery).toHaveAttribute('open', '');
+  const gallery = page.locator('#plant-based .food-gallery');
+  await expect(gallery).toBeVisible();
   await page.getByRole('link', { name: 'Thai', exact: true }).click();
   await expect(page).toHaveURL(/\/menu\/#plant-based$/);
   await page.goto('/en/');
-  await page.locator('.cover-actions').getByRole('link', { name: 'Food menu' }).click();
+  await page.locator('.experience-paths a[href="/en/menu/"]').click();
   await expect(page).toHaveURL(/\/en\/menu\/$/);
   await page.getByRole('button', { name: 'Open navigation' }).click();
   await page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Plan your visit' }).click();

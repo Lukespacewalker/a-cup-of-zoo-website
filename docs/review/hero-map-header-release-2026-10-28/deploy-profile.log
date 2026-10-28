@@ -1,0 +1,150 @@
+
+ ⛅️ wrangler 4.139.0 (update available 4.154.0)
+───────────────────────────────────────────────
+Active profile: nawaratthinsook
+Attaching additional modules:
+┌───────────────────────────────────────────────────────────┬──────┬─────────────┐
+│ Name                                                      │ Type │ Size        │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/404_DKzonEfR.mjs                                   │ esm  │ 1.91 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/ActivitiesPage_Cb0X0Opi.mjs                        │ esm  │ 15.61 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/activities_BwAopzaR.mjs                            │ esm  │ 1.00 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/activities_hdthBAXj.mjs                            │ esm  │ 1.01 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/AnimalsPage_BJnMVbCR.mjs                           │ esm  │ 12.69 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/animals_CTVuqU3l.mjs                               │ esm  │ 0.98 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/animals_gv82W6BR.mjs                               │ esm  │ 0.96 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/ArrowIcon_ND9FR4KI.mjs                             │ esm  │ 1.75 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/assets_DPsGhN9b.mjs                                │ esm  │ 55.70 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/cat-portrait_BiGfLt6k.mjs                          │ esm  │ 2.97 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/ClubPage_BXhcmCVj.mjs                              │ esm  │ 7.92 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/club_CWE7-2B3.mjs                                  │ esm  │ 0.94 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/club_DUBYkYtC.mjs                                  │ esm  │ 0.93 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/compiler_D-Mnzfwu.mjs                              │ esm  │ 1.19 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/ContentUnavailable_BXvWT10O.mjs                    │ esm  │ 1.20 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/entrypoints_BeU5CBXc.mjs                           │ esm  │ 279.37 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/EventsPage_PQy5sXG5.mjs                            │ esm  │ 7.76 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/events_CiK0ITUO.mjs                                │ esm  │ 0.97 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/events_M_fF-_6b.mjs                                │ esm  │ 0.95 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/font-preview_M4Z-WWj2.mjs                          │ esm  │ 5.47 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/FoxSeal_BTvfMKOk.mjs                               │ esm  │ 0.86 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/HomePage_CSzcXsYw.mjs                              │ esm  │ 23.13 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/image-binding-transform_B6-NsxhN.mjs               │ esm  │ 4.16 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/image-service-workerd_BkNbNG8d.mjs                 │ esm  │ 0.43 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/image-transform-endpoint_CQaJbqNy.mjs              │ esm  │ 1.28 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/indexing_J0zzMqHh.mjs                              │ esm  │ 5.53 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_8w1lHFIP.mjs                                 │ esm  │ 2.44 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_C-bcdNTa.mjs                                 │ esm  │ 0.91 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_C6qDOFew.mjs                                 │ esm  │ 0.94 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/load-page_Dnnp3AxG.mjs                             │ esm  │ 27.04 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/MenuPage_BpJ5bYgz.mjs                              │ esm  │ 37.62 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/menu_D2N2HFZ2.mjs                                  │ esm  │ 0.94 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/menu_YIv326e7.mjs                                  │ esm  │ 0.93 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/noop-entrypoint_BYLrzUxc.mjs                       │ esm  │ 0.15 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/OpeningHours_74piNd93.mjs                          │ esm  │ 1.73 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/owner-brief_CzySJx1T.mjs                           │ esm  │ 15.04 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/PageHero_DO3XNkLC.mjs                              │ esm  │ 1.87 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/path_BTDo3kb4.mjs                                  │ esm  │ 2.01 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/Picture_BgYf2vtn.mjs                               │ esm  │ 5.49 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/posts_BUJTlj6L.mjs                                 │ esm  │ 0.75 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/robots_iXulKr1z.mjs                                │ esm  │ 0.88 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/rolldown-runtime_D7vh-g_o.mjs                      │ esm  │ 0.41 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/runtime-config_BD66J_ZR.mjs                        │ esm  │ 168.12 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/runtime_Cizvp9JM.mjs                               │ esm  │ 290.11 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/sequence_CVU_BARX.mjs                              │ esm  │ 43.90 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/sitemap_B_4R5Y8_.mjs                               │ esm  │ 1.62 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/static-image-collection_CL3I3Y2A.mjs               │ esm  │ 2.44 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/VisitPage_BwFj6q69.mjs                             │ esm  │ 6.31 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/visit_BosOdS-4.mjs                                 │ esm  │ 0.96 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/visit_Bzao2LMq.mjs                                 │ esm  │ 0.94 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/WatercolorAnimal_WCK0PTV3.mjs                      │ esm  │ 2.34 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/WishingCorner_Dm6aBj6n.mjs                         │ esm  │ 24.36 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_astro_assets_1bFFkQ_Y.mjs                         │ esm  │ 21.68 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_slug__Coo_Q-UV.mjs                                │ esm  │ 3.17 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_virtual_astro_server-island-manifest_q0HM18kM.mjs │ esm  │ 0.27 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_virtual_astro_session-driver_DIk1nzQP.mjs         │ esm  │ 0.22 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ virtual_astro_middleware.mjs                              │ esm  │ 0.87 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ Total (57 modules)                                        │      │ 1103.14 KiB │
+└───────────────────────────────────────────────────────────┴──────┴─────────────┘
+🌀 Building list of assets...
+✨ Read 125 files from the assets directory C:\Users\Sutti\.codex\artifacts\acupofzoo-release-2026-10-28\dist\client
+🌀 Starting asset upload...
+🌀 Found 2 new or modified static assets to upload. Proceeding with upload...
++ /_astro/WishingCorner.DiqevzMj.css
++ /_astro/load-page.BjU8Hp8I.css
+Uploaded 1 of 2 assets
+Uploaded 2 of 2 assets
+✨ Success! Uploaded 2 files (119 already uploaded) (1.69 sec)
+
+Total Upload: 1108.31 KiB / gzip: 250.79 KiB
+Worker Startup Time: 18 ms
+Your Worker has access to the following bindings:
+Binding                              Resource                  
+env.IMAGES                           Images                    
+env.ASSETS                           Assets                    
+env.SITE_ENV ("staging")             Environment Variable      
+env.CONTENT_MODE ("fixture")         Environment Variable      
+env.SEARCH_INDEXING ("enabled")      Environment Variable      
+
+Uploaded a-cup-of-zoo-preview (12.18 sec)
+Deployed a-cup-of-zoo-preview triggers (4.70 sec)
+  https://a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev
+  acupofzoo.com (custom domain - zone id: bef4990b1099569a63569b728944bb81)
+  www.acupofzoo.com (custom domain - zone id: bef4990b1099569a63569b728944bb81)
+Current Version ID: a80dc0e8-2a24-46f0-bedd-a86f192ab053

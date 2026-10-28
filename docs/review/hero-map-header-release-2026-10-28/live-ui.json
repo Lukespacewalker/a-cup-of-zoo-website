@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "path": "/",
+      "width": 1440,
+      "headerRight": 1320,
+      "toolsRight": 1320,
+      "overflow": false,
+      "mapWidth": 1440,
+      "theme": "dark",
+      "mapSelectCloseZoom": true,
+      "mobileClubNavigation": false
+    },
+    {
+      "path": "/en/",
+      "width": 320,
+      "headerRight": 300,
+      "toolsRight": 300,
+      "overflow": false,
+      "mapWidth": 320,
+      "theme": "dark",
+      "mapSelectCloseZoom": true,
+      "mobileClubNavigation": true
+    },
+    {
+      "path": "/en/activities/",
+      "width": 390,
+      "headerRight": 370,
+      "toolsRight": 370,
+      "overflow": false,
+      "mapWidth": 390,
+      "theme": "dark",
+      "mapSelectCloseZoom": true,
+      "mobileClubNavigation": false
+    }
+  ]
+}

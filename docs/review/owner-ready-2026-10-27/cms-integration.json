@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "uploaded image renders",
+    "CMS animal roster replaces fixture",
+    "draft removal private",
+    "publish removes animal",
+    "publish adds animal",
+    "phone edits and removals in page/footer",
+    "regular hours",
+    "special hours",
+    "article draft private",
+    "published article edit",
+    "CMS outage does not restore obsolete phones"
+  ],
+  "testedAt": "2026-10-27T06:44:04.871Z"
+}

@@ -1,0 +1,123 @@
+{
+  "applied": false,
+  "version": 33,
+  "published": false,
+  "result": [
+    {
+      "sourceId": "nama",
+      "cmsId": "c55bdded-b079-46e9-9ec4-1b0fd3404012",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "daifuku",
+      "cmsId": "8691453c-699e-43be-a0bd-0b4b0c091c9b",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "dorayaki",
+      "cmsId": "a6d76037-826d-4296-ad25-0e606fc2f013",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "mochi",
+      "cmsId": "f3a7a588-7b2b-4a6e-9bf7-5f3e05825912",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "senbei",
+      "cmsId": "12c4706d-0285-4389-9767-4003a8e3fed0",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "mee-tang",
+      "cmsId": "c902c643-ed6a-45b2-b165-98247f8c4511",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "mee-thong",
+      "cmsId": "8d0a920d-48a0-426c-8396-f98cc7c589fe",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "mee-chok",
+      "cmsId": "a1fbea0a-a7dd-4cc6-a4d6-ddad4057fa60",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "mee-heng",
+      "cmsId": "de735254-a561-4903-809b-0bfe7bfe0ce6",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "kai-jew",
+      "cmsId": "af57f4db-3391-4738-baba-dabafb4b0671",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "kai-down",
+      "cmsId": "2fe2c272-2e7a-4440-ba5f-16225a557cc6",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "candy",
+      "cmsId": "773d4bd6-e991-4aff-bfcf-78bc2a12322f",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "mine",
+      "cmsId": "f34a3d5c-18b4-43e9-a595-1e302872cfa1",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "yin-yang",
+      "cmsId": "31b565a7-ff4b-45f4-8ff1-276c73447755",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "moo-krob",
+      "cmsId": "92b53f6a-bdd9-4a12-88c0-ffefaef5018c",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "khai-yiao-ma",
+      "cmsId": "55ad7ceb-53c5-42e1-baee-3cc2772be12d",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "nam-lieap",
+      "cmsId": "99cdd33a-8dbe-4c69-81db-d25467b0b810",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "khao-chao",
+      "cmsId": "c288d918-6674-406b-acff-da826b3b5f07",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "look-chin",
+      "cmsId": "f1922cc2-85d1-4e75-a159-3644772b1d66",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "sai-krok",
+      "cmsId": "4d9ab52d-d291-4855-8e9b-639db3b64172",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "tart",
+      "cmsId": "67bb8cfd-5c47-4afc-99ab-9e7cf580d89d",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "sum-lee",
+      "cmsId": "50ac8a37-a3fc-4380-9664-8450454d8842",
+      "action": "preserved"
+    },
+    {
+      "sourceId": "veres",
+      "cmsId": "6461b397-6014-421e-b435-f7f5b7da3c6b",
+      "action": "preserved"
+    }
+  ],
+  "pendingDuplicateNames": []
+}

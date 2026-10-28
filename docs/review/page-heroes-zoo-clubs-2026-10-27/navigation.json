@@ -1,0 +1,24 @@
+[
+  {
+    "prefix": "",
+    "width": 1440,
+    "homeKeyboardCTA": "pass",
+    "signupDestination": "pass"
+  },
+  {
+    "prefix": "",
+    "width": 1440,
+    "navigationKeyboardCTA": "pass"
+  },
+  {
+    "prefix": "/en",
+    "width": 320,
+    "homeKeyboardCTA": "pass",
+    "signupDestination": "pass"
+  },
+  {
+    "prefix": "/en",
+    "width": 320,
+    "navigationKeyboardCTA": "pass"
+  }
+]

@@ -1,0 +1,86 @@
+[WebServer] $ bun run prepare:assets && astro dev --host 127.0.0.1 --port 4321
+[WebServer] $ bun run scripts/prepare-assets.ts
+[WebServer] (node:135792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 24 tests using 2 workers
+
+(node:133548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:71368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 tests\e2e\locale.spec.ts:3:1 › English unknown routes return localized404 with an English home link (960ms)
+  ok  1 tests\e2e\menu.spec.ts:3:1 › all food and prices are server rendered without an external flipbook (1.7s)
+  ok  4 tests\e2e\menu.spec.ts:30:1 › activities explain separate admission, benefits, children and all feeding choices (527ms)
+  ok  5 tests\e2e\menu.spec.ts:49:1 › menu and activities fit narrow phones and desktop with working category navigation (3.0s)
+  ok  6 tests\e2e\navigation.spec.ts:5:1 › main routes render server HTML (420ms)
+  ok  7 tests\e2e\seo.spec.ts:3:1 › prototype stays noindex (326ms)
+  ok  8 tests\e2e\seo.spec.ts:10:1 › preview keeps crawlers out and its sitemap empty (284ms)
+  ok  3 tests\e2e\locale.spec.ts:18:1 › English primary paths render complete English content and matching metadata (5.6s)
+  ok 10 tests\e2e\locale.spec.ts:52:1 › untranslated news explicitly returns to English home without false alternates (660ms)
+  ok  9 tests\e2e\seo.spec.ts:18:1 › public pages have distinct metadata and usable social images (2.2s)
+  ok 12 tests\e2e\seo.spec.ts:47:1 › unknown route is a real 404 (47ms)
+  ok 13 tests\e2e\seo.spec.ts:52:1 › unverified review score is not invented (701ms)
+  ok 14 tests\e2e\seo.spec.ts:60:1 › news empty state is not an error (180ms)
+  ok 11 tests\e2e\locale.spec.ts:62:1 › English menu and child planning work without JavaScript and match Thai numeric content (2.3s)
+  x  15 tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages (5.4s)
+(node:107192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  16 tests\e2e\locale.spec.ts:88:1 › switching locale retains matching page and category hash on mobile (30.0s)
+Testing stopped early after 2 maximum allowed failures.
+  x  17 tests\e2e\theme.spec.ts:23:1 › color control persists and auto follows the system preference (24.3s)
+
+
+  1) tests\e2e\locale.spec.ts:88:1 › switching locale retains matching page and category hash on mobile 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('.cover-actions').getByRole('link', { name: 'Food menu' })
+
+
+       98 |   await expect(page).toHaveURL(/\/menu\/#plant-based$/);
+       99 |   await page.goto('/en/');
+    > 100 |   await page.locator('.cover-actions').getByRole('link', { name: 'Food menu' }).click();
+          |                                                                                 ^
+      101 |   await expect(page).toHaveURL(/\/en\/menu\/$/);
+      102 |   await page.getByRole('button', { name: 'Open navigation' }).click();
+      103 |   await page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Plan your visit' }).click();
+        at H:\repos\Lukespacewalker\a-cup-of-zoo-website\tests\e2e\locale.spec.ts:100:81
+
+    Error Context: test-results\locale-switching-locale-re-886ee-and-category-hash-on-mobile\error-context.md
+
+  2) tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages 
+
+    Error: expect(locator).toBeInViewport() failed
+
+    Locator: locator('.cover-actions').getByRole('link', { name: 'ดูเมนูอาหาร' })
+    Expected: in viewport
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeInViewport" locator('.cover-actions').getByRole('link', { name: 'ดูเมนูอาหาร' }) with timeout 5000ms
+      - waiting for locator('.cover-actions').getByRole('link', { name: 'ดูเมนูอาหาร' })
+
+
+       5 |   await page.goto("/");
+       6 |   const actions = page.locator(".cover-actions");
+    >  7 |   await expect(actions.getByRole("link", { name: "ดูเมนูอาหาร" })).toBeInViewport();
+         |                                                                    ^
+       8 |   await expect(actions.getByRole("link", { name: "วางแผนมาเที่ยว" })).toBeInViewport();
+       9 |   await actions.getByRole("link", { name: "ดูเมนูอาหาร" }).click();
+      10 |   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
+        at H:\repos\Lukespacewalker\a-cup-of-zoo-website\tests\e2e\theme.spec.ts:7:68
+
+    Error Context: test-results\theme-home-actions-and-mob-3f9fd-ch-the-menu-and-visit-pages\error-context.md
+
+  2 failed
+    tests\e2e\locale.spec.ts:88:1 › switching locale retains matching page and category hash on mobile 
+    tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages 
+  1 interrupted
+    tests\e2e\theme.spec.ts:23:1 › color control persists and auto follows the system preference ───
+  7 did not run
+  14 passed (46.2s)
+  1 error was not a part of any test, see above for details

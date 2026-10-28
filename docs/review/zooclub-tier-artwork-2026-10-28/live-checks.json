@@ -1,0 +1,445 @@
+{
+  "checks": [
+    {
+      "content": {
+        "canonical": "https://acupofzoo.com/club/",
+        "signup": "https://line.me/R/ti/p/%40acupofzoo",
+        "status": 200,
+        "terms": "ก่อนใช้สิทธิระดับคิดจากยอดใช้จ่ายสะสม 1 ปี ส่วนลดใช้กับอาหารและเครื่องดื่มเท่านั้นพาเพื่อนฟรีเฉพาะวันธรรมดา รายชื่อเพื่อนต้องไม่ซ้ำกัน เพื่อนต้องสมัครสมาชิกใหม่ และใช้สิทธิ์เข้าโซนเดียวกับสมาชิกHBD Cake เมื่อใช้จ่ายครบ 500 บาทในเดือนเกิด จำกัด 1 สิทธิ์คูปองรายปีให้ทุกปีที่ยังอยู่ในระดับนั้น เงื่อนไขเป็นไปตามที่ร้านกำหนดและอาจเปลี่ยนแปลงได้ สอบถามทีมร้านก่อนใช้สิทธิ",
+        "tiers": [
+          {
+            "added": [],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Ffriend.B2C8KC7N.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Friend",
+            "newRows": 0
+          },
+          {
+            "added": [
+              "1 ครั้ง",
+              "อาหารสัตว์"
+            ],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Fbuddy.O70wEtgW.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Buddy",
+            "newRows": 2
+          },
+          {
+            "added": [
+              "5%",
+              "ตะกร้าอาหารสัตว์",
+              "+ ของที่ระลึก"
+            ],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Fbesties.Ccyx_6tP.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Besties",
+            "newRows": 3
+          },
+          {
+            "added": [
+              "10%",
+              "เดือนละ 1 ครั้ง",
+              "เครื่องดื่ม 1 ฟรี 1"
+            ],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Fsoulmate.CjgbrJlw.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Soulmate",
+            "newRows": 3
+          },
+          {
+            "added": [
+              "15%",
+              "ของที่ระลึกปีใหม่"
+            ],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Ffamily.B2nDxLw-.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Family",
+            "newRows": 2
+          }
+        ],
+        "url": "https://acupofzoo.com/club/"
+      },
+      "states": [
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 320
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 320
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 390
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 390
+        },
+        {
+          "columns": 5,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 1440
+        },
+        {
+          "columns": 5,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 1440
+        }
+      ]
+    },
+    {
+      "content": {
+        "canonical": "https://acupofzoo.com/en/club/",
+        "signup": "https://line.me/R/ti/p/%40acupofzoo",
+        "status": 200,
+        "terms": "Before using your benefitsTiers are based on one year of accumulated spending. Discounts apply to food and drinks only.Free friend visits are on weekdays only. Each friend must be different, join as a new member and enter the same zone as the member.The HBD cake requires spending of 500 THB during your birthday month, limited to one redemption.Annual coupons are provided for each year you remain in that tier. Café terms apply and may change; check with the team before redeeming.",
+        "tiers": [
+          {
+            "added": [],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Ffriend.B2C8KC7N.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Friend",
+            "newRows": 0
+          },
+          {
+            "added": [
+              "Once",
+              "Animal food"
+            ],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Fbuddy.O70wEtgW.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Buddy",
+            "newRows": 2
+          },
+          {
+            "added": [
+              "5%",
+              "food basket",
+              "+ souvenir"
+            ],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Fbesties.Ccyx_6tP.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Besties",
+            "newRows": 3
+          },
+          {
+            "added": [
+              "10%",
+              "Once a month",
+              "buy-one-get-one drink"
+            ],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Fsoulmate.CjgbrJlw.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Soulmate",
+            "newRows": 3
+          },
+          {
+            "added": [
+              "15%",
+              "New Year souvenir"
+            ],
+            "image": "https://acupofzoo.com/_image/?href=%2F_astro%2Ffamily.B2nDxLw-.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Family",
+            "newRows": 2
+          }
+        ],
+        "url": "https://acupofzoo.com/en/club/"
+      },
+      "states": [
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 320
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 320
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 390
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 390
+        },
+        {
+          "columns": 5,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 1440
+        },
+        {
+          "columns": 5,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 1440
+        }
+      ]
+    },
+    {
+      "content": {
+        "canonical": "https://acupofzoo.com/club/",
+        "signup": "https://line.me/R/ti/p/%40acupofzoo",
+        "status": 200,
+        "terms": "ก่อนใช้สิทธิระดับคิดจากยอดใช้จ่ายสะสม 1 ปี ส่วนลดใช้กับอาหารและเครื่องดื่มเท่านั้นพาเพื่อนฟรีเฉพาะวันธรรมดา รายชื่อเพื่อนต้องไม่ซ้ำกัน เพื่อนต้องสมัครสมาชิกใหม่ และใช้สิทธิ์เข้าโซนเดียวกับสมาชิกHBD Cake เมื่อใช้จ่ายครบ 500 บาทในเดือนเกิด จำกัด 1 สิทธิ์คูปองรายปีให้ทุกปีที่ยังอยู่ในระดับนั้น เงื่อนไขเป็นไปตามที่ร้านกำหนดและอาจเปลี่ยนแปลงได้ สอบถามทีมร้านก่อนใช้สิทธิ",
+        "tiers": [
+          {
+            "added": [],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Ffriend.B2C8KC7N.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Friend",
+            "newRows": 0
+          },
+          {
+            "added": [
+              "1 ครั้ง",
+              "อาหารสัตว์"
+            ],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Fbuddy.O70wEtgW.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Buddy",
+            "newRows": 2
+          },
+          {
+            "added": [
+              "5%",
+              "ตะกร้าอาหารสัตว์",
+              "+ ของที่ระลึก"
+            ],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Fbesties.Ccyx_6tP.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Besties",
+            "newRows": 3
+          },
+          {
+            "added": [
+              "10%",
+              "เดือนละ 1 ครั้ง",
+              "เครื่องดื่ม 1 ฟรี 1"
+            ],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Fsoulmate.CjgbrJlw.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Soulmate",
+            "newRows": 3
+          },
+          {
+            "added": [
+              "15%",
+              "ของที่ระลึกปีใหม่"
+            ],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Ffamily.B2nDxLw-.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Family",
+            "newRows": 2
+          }
+        ],
+        "url": "https://www.acupofzoo.com/club/"
+      },
+      "states": [
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 320
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 320
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 390
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 390
+        },
+        {
+          "columns": 5,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 1440
+        },
+        {
+          "columns": 5,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 1440
+        }
+      ]
+    },
+    {
+      "content": {
+        "canonical": "https://acupofzoo.com/en/club/",
+        "signup": "https://line.me/R/ti/p/%40acupofzoo",
+        "status": 200,
+        "terms": "Before using your benefitsTiers are based on one year of accumulated spending. Discounts apply to food and drinks only.Free friend visits are on weekdays only. Each friend must be different, join as a new member and enter the same zone as the member.The HBD cake requires spending of 500 THB during your birthday month, limited to one redemption.Annual coupons are provided for each year you remain in that tier. Café terms apply and may change; check with the team before redeeming.",
+        "tiers": [
+          {
+            "added": [],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Ffriend.B2C8KC7N.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Friend",
+            "newRows": 0
+          },
+          {
+            "added": [
+              "Once",
+              "Animal food"
+            ],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Fbuddy.O70wEtgW.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Buddy",
+            "newRows": 2
+          },
+          {
+            "added": [
+              "5%",
+              "food basket",
+              "+ souvenir"
+            ],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Fbesties.Ccyx_6tP.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Besties",
+            "newRows": 3
+          },
+          {
+            "added": [
+              "10%",
+              "Once a month",
+              "buy-one-get-one drink"
+            ],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Fsoulmate.CjgbrJlw.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Soulmate",
+            "newRows": 3
+          },
+          {
+            "added": [
+              "15%",
+              "New Year souvenir"
+            ],
+            "image": "https://www.acupofzoo.com/_image/?href=%2F_astro%2Ffamily.B2nDxLw-.png&w=160&h=160&f=webp",
+            "imageLoaded": true,
+            "name": "Family",
+            "newRows": 2
+          }
+        ],
+        "url": "https://www.acupofzoo.com/en/club/"
+      },
+      "states": [
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 320
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 320
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 390
+        },
+        {
+          "columns": 1,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 390
+        },
+        {
+          "columns": 5,
+          "newBackground": "color(srgb 0.928392 0.915255 0.87)",
+          "newText": "rgb(89, 99, 75)",
+          "overflow": false,
+          "theme": "light",
+          "width": 1440
+        },
+        {
+          "columns": 5,
+          "newBackground": "color(srgb 0.26651 0.279529 0.229098)",
+          "newText": "rgb(189, 203, 167)",
+          "overflow": false,
+          "theme": "dark",
+          "width": 1440
+        }
+      ]
+    }
+  ],
+  "page": 200
+}

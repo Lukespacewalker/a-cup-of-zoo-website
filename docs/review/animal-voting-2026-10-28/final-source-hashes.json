@@ -1,0 +1,30 @@
+[
+  {
+    "file": "docs/cms-animal-voting.md",
+    "sha256": "658F88F2F73D60CBEF4123639A1BC9F0F08AE52CB93043894B4999AEB2ADB7DE"
+  },
+  {
+    "file": "docs/review/animal-voting-2026-10-28/README.md",
+    "sha256": "2F450B0D6F232D94BBA73E578C2738A243C5C500CEFE251B19961B151D2E7FCF"
+  },
+  {
+    "file": "src/components/site/AnimalVotes.astro",
+    "sha256": "1439C7F53B64ED1E395ED936A7DAE86AB464BAC68D5383CF5BD8838791D7D4E0"
+  },
+  {
+    "file": "src/styles/animal-votes.css",
+    "sha256": "522A4557566CA697C523B666C946E9D72CA05AB7CA96D792546F95643EF187EC"
+  },
+  {
+    "file": "src/lib/voting/gateway.ts",
+    "sha256": "C8CD98B21822BC6A4D9F44A54465C0CCE13B534F68FF3385735C4A244D61E448"
+  },
+  {
+    "file": "scripts/import-cms-animals.ts",
+    "sha256": "B3AA1495A85BFD06FE2B0A0818850235CD70F7F829663F0252144303DD06E506"
+  },
+  {
+    "file": "reference-data/owner-feedback-2026-10-27/animal-roster.json",
+    "sha256": "E23ABD1A365860E901430C6A09F6457329EEB3378FE043A54906C70138E66578"
+  }
+]

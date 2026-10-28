@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "evidence": [
+    {
+      "host": "acupofzoo.com",
+      "path": "/",
+      "status": 200,
+      "noindexHeader": null,
+      "metaNoindex": false
+    },
+    {
+      "host": "acupofzoo.com",
+      "path": "/en/",
+      "status": 200,
+      "noindexHeader": null,
+      "metaNoindex": false
+    },
+    {
+      "host": "acupofzoo.com",
+      "path": "/robots.txt",
+      "status": 200,
+      "noindexHeader": null,
+      "metaNoindex": false
+    },
+    {
+      "host": "acupofzoo.com",
+      "path": "/sitemap.xml",
+      "status": 200,
+      "noindexHeader": null,
+      "metaNoindex": false,
+      "sitemapCount": 15
+    },
+    {
+      "host": "acupofzoo.com",
+      "path": "/not-a-real-page/",
+      "status": 404,
+      "noindexHeader": "noindex, nofollow",
+      "metaNoindex": true
+    },
+    {
+      "host": "www.acupofzoo.com",
+      "path": "/",
+      "status": 200,
+      "noindexHeader": null,
+      "metaNoindex": false
+    },
+    {
+      "host": "www.acupofzoo.com",
+      "path": "/en/",
+      "status": 200,
+      "noindexHeader": null,
+      "metaNoindex": false
+    },
+    {
+      "host": "www.acupofzoo.com",
+      "path": "/robots.txt",
+      "status": 200,
+      "noindexHeader": null,
+      "metaNoindex": false
+    },
+    {
+      "host": "www.acupofzoo.com",
+      "path": "/sitemap.xml",
+      "status": 200,
+      "noindexHeader": null,
+      "metaNoindex": false,
+      "sitemapCount": 15
+    },
+    {
+      "host": "www.acupofzoo.com",
+      "path": "/not-a-real-page/",
+      "status": 404,
+      "noindexHeader": "noindex, nofollow",
+      "metaNoindex": true
+    },
+    {
+      "host": "a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev",
+      "path": "/",
+      "status": 200,
+      "noindexHeader": "noindex, nofollow",
+      "metaNoindex": true
+    },
+    {
+      "host": "a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev",
+      "path": "/en/",
+      "status": 200,
+      "noindexHeader": "noindex, nofollow",
+      "metaNoindex": true
+    },
+    {
+      "host": "a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev",
+      "path": "/robots.txt",
+      "status": 200,
+      "noindexHeader": "noindex, nofollow",
+      "metaNoindex": false
+    },
+    {
+      "host": "a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev",
+      "path": "/sitemap.xml",
+      "status": 200,
+      "noindexHeader": "noindex, nofollow",
+      "metaNoindex": false,
+      "sitemapCount": 0
+    },
+    {
+      "host": "a-cup-of-zoo-preview.a-cup-of-zoo-website.workers.dev",
+      "path": "/not-a-real-page/",
+      "status": 404,
+      "noindexHeader": "noindex, nofollow",
+      "metaNoindex": true
+    }
+  ]
+}

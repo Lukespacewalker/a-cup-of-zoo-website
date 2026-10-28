@@ -1,0 +1,10 @@
+09:55:55 [@astrojs/cloudflare] Enabling image processing with Cloudflare Images for production with the "IMAGES" Images binding.
+09:55:57 [vite] [optimizer] bundling dependencies...
+09:55:57 [vite] [optimizer] bundling dependencies...
+09:55:57 [types] Generated 2.56s
+09:55:57 [check] Getting diagnostics for Astro files in H:\repos\Lukespacewalker\a-cup-of-zoo-website...
+Result (80 files): 
+- 0 errors
+- 0 warnings
+- 0 hints
+

@@ -1,0 +1,123 @@
+{
+  "clubs": [
+    {
+      "route": "/club/",
+      "signup": "https://line.me/R/ti/p/%40acupofzoo",
+      "terms": true,
+      "tiers": [
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Ffriend.B2C8KC7N.png&w=160&h=160&f=webp",
+          "name": "Friend",
+          "newRows": 0
+        },
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Fbuddy.O70wEtgW.png&w=160&h=160&f=webp",
+          "name": "Buddy",
+          "newRows": 2
+        },
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Fbesties.Ccyx_6tP.png&w=160&h=160&f=webp",
+          "name": "Besties",
+          "newRows": 3
+        },
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Fsoulmate.CjgbrJlw.png&w=160&h=160&f=webp",
+          "name": "Soulmate",
+          "newRows": 3
+        },
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Ffamily.B2nDxLw-.png&w=160&h=160&f=webp",
+          "name": "Family",
+          "newRows": 2
+        }
+      ]
+    },
+    {
+      "route": "/en/club/",
+      "signup": "https://line.me/R/ti/p/%40acupofzoo",
+      "terms": true,
+      "tiers": [
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Ffriend.B2C8KC7N.png&w=160&h=160&f=webp",
+          "name": "Friend",
+          "newRows": 0
+        },
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Fbuddy.O70wEtgW.png&w=160&h=160&f=webp",
+          "name": "Buddy",
+          "newRows": 2
+        },
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Fbesties.Ccyx_6tP.png&w=160&h=160&f=webp",
+          "name": "Besties",
+          "newRows": 3
+        },
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Fsoulmate.CjgbrJlw.png&w=160&h=160&f=webp",
+          "name": "Soulmate",
+          "newRows": 3
+        },
+        {
+          "imageLoaded": true,
+          "imageURL": "http://127.0.0.1:4340/_image/?href=%2F_astro%2Ffamily.B2nDxLw-.png&w=160&h=160&f=webp",
+          "name": "Family",
+          "newRows": 2
+        }
+      ]
+    }
+  ],
+  "page": 199,
+  "routes": [
+    {
+      "animals": 0,
+      "mapPins": 19,
+      "path": "/",
+      "status": 200,
+      "voteCards": 3
+    },
+    {
+      "animals": 0,
+      "mapPins": 19,
+      "path": "/en/",
+      "status": 200,
+      "voteCards": 3
+    },
+    {
+      "animals": 23,
+      "mapPins": 0,
+      "path": "/animals/",
+      "status": 200,
+      "voteCards": 0
+    },
+    {
+      "animals": 23,
+      "mapPins": 0,
+      "path": "/en/animals/",
+      "status": 200,
+      "voteCards": 0
+    },
+    {
+      "animals": 0,
+      "mapPins": 0,
+      "path": "/vote/",
+      "status": 200,
+      "voteCards": 23
+    },
+    {
+      "animals": 0,
+      "mapPins": 0,
+      "path": "/en/vote/",
+      "status": 200,
+      "voteCards": 23
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+.owner-section { padding-block: 3rem; border-bottom: 1px solid var(--line); }
+.owner-section h2, .owner-section h3 { font-weight: 500; }
+.owner-section h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); margin: .6rem 0 1rem; }
+.owner-section > p { max-width: 48rem; color: var(--muted-text); }
+.menu-books { margin: 1.6rem 0; padding: 1.2rem 0; border-block: 1px solid var(--line); }
+.menu-books p { font-size: .9rem; }
+.free-zone { padding: 1.4rem; margin: 1.5rem 0; border-left: 3px solid var(--leaf); background: var(--paper); }
+.free-zone h3 { margin-top: 0; }
+.map-crop { aspect-ratio: 1131 / 1340; overflow: hidden; background: #fcf9e5; }
+.map-crop img { display: block; width: 100%; height: auto; max-width: none; }
+.map-preview { width: min(100%, 800px); margin: 1.5rem auto; }
+.map-detail { margin-block: 1rem 2rem; }
+.map-detail summary { cursor: pointer; padding: 1rem; border: 1px solid var(--line); font-weight: 600; }
+.map-detail > p { font-size: .9rem; }
+.map-scroll { max-height: 65vh; overflow: auto; overscroll-behavior: contain; border: 1px solid var(--line); }
+.map-full { width: 1131px; }
+.resident-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+.resident-list li { min-width: 0; }
+.resident-list img { width: 100%; height: auto; }
+.resident-list h3 { margin: .8rem 0 .2rem; }
+.resident-list p { margin: 0; font-size: .9rem; color: var(--muted-text); }
+.resident-list .resident-featured { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 400px) 1fr; gap: 1rem 3rem; align-items: center; max-width: 950px; margin: 2rem auto 0; }
+.resident-featured img { grid-row: span 2; }
+.resident-featured h3 { align-self: end; font-size: 1.8rem; }
+.resident-featured p { align-self: start; font-size: 1rem; }
+.event-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.event-gallery figure { margin: 0; min-width: 0; }
+.event-gallery img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.event-gallery figcaption { font-size: .85rem; color: var(--muted-text); padding-top: .6rem; }
+.campaign-gallery img { aspect-ratio: auto; object-fit: contain; }
+.owner-contact { margin-block: 2rem; padding: 2rem 0; border-top: 1px solid var(--line); }
+.owner-contact a { white-space: nowrap; }
+.owner-links { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.owner-links article { min-width: 0; }
+.hero-detail { max-width: 55rem; margin-block: 1.5rem 0; color: var(--muted-text); font-size: .9rem; }
+.desktop-nav .club-link, .mobile-panel .club-link { background: var(--garden-field); color: var(--cocoa-deep); border: 1px solid var(--leaf); border-radius: 2px; font-weight: 500; white-space: nowrap; }
+.desktop-nav .club-link { margin-left: .45rem; padding-inline: .8rem; }
+.desktop-nav .club-link[aria-current="page"], .mobile-panel .club-link[aria-current="page"] { color: var(--cocoa-deep); }
+.desktop-nav .club-link:hover, .mobile-panel .club-link:hover { background: var(--button); color: var(--on-button); }
+.mobile-panel .club-link { justify-content: space-between; gap: 1rem; margin-bottom: .5rem; }
+.club-link__note { font-size: .8rem; }
+.mobile-panel { max-height: calc(100dvh - 7rem); overflow-y: auto; }
+.club-invitation { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-block: 0 3.5rem; padding: 2.5rem 3rem; background: #414f3e; color: #fffaf0; }
+.club-invitation__name { font-size: clamp(2rem, 3vw, 2.8rem); margin: 0 0 .25rem; line-height: 1.25; }
+.club-invitation h2 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); margin: .6rem 0; color: inherit; }
+.club-invitation__copy > p:last-child { margin: .7rem 0 0; max-width: 29rem; font-size: .95rem; }
+.club-invitation__facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.4rem; }
+.club-invitation__facts p { margin: 0; font-size: .85rem; }
+.club-invitation__facts strong { display: block; margin-bottom: .35rem; font-size: 1.2rem; font-weight: 500; }
+.club-invitation .button { background: #fffaf0; color: #303a2d; }
+.club-invitation .button:hover { background: #e6e7d8; }
+.club-invitation .button:focus-visible { outline-color: #fffaf0; }
+.club-intro { width: 100vw; margin-inline: calc(50% - 50vw); background: var(--garden-field); }
+.club-intro__inner { width: var(--page); margin-inline: auto; display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; padding-block: 3rem; }
+.club-intro h1 { font-weight: 400; font-size: clamp(3rem, 5.5vw, 5rem); line-height: 1.1; margin: .7rem 0 1.2rem; }
+.club-intro__tagline { font-size: clamp(1.3rem, 2.1vw, 1.8rem); line-height: 1.5; margin: 0 0 1rem; color: var(--cocoa-deep); }
+.club-intro__copy > p { max-width: 35rem; }
+.club-intro .section-note { max-width: 30rem; margin-bottom: 0; }
+.club-welcome { padding: 1.5rem 2rem; background: var(--milk); border: 1px solid var(--line); }
+.club-welcome__heading { display: flex; gap: 1rem; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: .8rem; }
+.club-welcome__heading p { margin: 0; font-size: 1.1rem; color: var(--leaf); }
+.club-welcome__heading .watercolor-animal { width: 5rem; }
+.club-facts { display: grid; gap: .8rem; margin-top: 1rem; }
+.club-facts p { margin: 0; font-size: .9rem; }
+.club-facts strong { display: block; font-size: 1.45rem; font-weight: 500; }
+.tier-guide { font-size: .9rem; }
+.tier-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; list-style: none; padding: 0; margin-block: 1.8rem; }
+.tier-list > li { min-width: 0; border: 1px solid var(--line); border-top: 3px solid var(--leaf); background: color-mix(in srgb, var(--paper) 65%, transparent); }
+.tier-heading { display: flex; flex-direction: column; align-items: center; gap: .5rem; padding: 1.1rem .8rem 0; text-align: center; }
+.tier-artwork { display: block; width: 8.5rem; height: 7rem; object-fit: contain; }
+.tier-level { display: block; font-size: .75rem; letter-spacing: .08em; color: var(--muted-text); }
+.tier-list h3 { margin: .1rem 0 0; font-size: 1.5rem; line-height: 1.4; }
+.tier-spend { margin: .8rem .8rem 1rem; text-align: center; font-weight: 500; color: var(--cocoa-deep); }
+.tier-spend > span { display: block; font-size: .75rem; color: var(--muted-text); font-weight: 400; }
+.tier-benefits { margin: 0; padding: .4rem .6rem .6rem; border-top: 1px solid var(--line); }
+.tier-benefit { padding: .8rem .6rem; border-left: 2px solid transparent; }
+.tier-benefit + .tier-benefit { margin-top: .3rem; }
+.tier-benefits dt { display: flex; flex-wrap: wrap; gap: .35rem .5rem; align-items: center; font-size: .8rem; color: var(--muted-text); }
+.tier-benefits dd { margin: .4rem 0 0; font-size: .9rem; overflow-wrap: anywhere; }
+.tier-benefit--new { border-left-color: var(--leaf); background: color-mix(in srgb, var(--leaf) 11%, var(--paper)); }
+.tier-benefit--welcome { border-left-color: var(--gold-deep); background: color-mix(in srgb, var(--sun) 12%, var(--paper)); }
+.tier-benefit__tag { display: inline-block; font-size: .68rem; font-weight: 500; line-height: 1.5; padding: .12rem .4rem; color: var(--leaf); border: 1px solid color-mix(in srgb, var(--leaf) 40%, transparent); }
+.tier-benefit--welcome .tier-benefit__tag { color: var(--accent-text); border-color: var(--gold-border); }
+.tier-benefit__addition { color: var(--leaf); font-weight: 600; }
+.tier-coupon { display: block; }
+.tier-coupon + .tier-coupon { margin-top: .3rem; }
+@media (min-width: 701px) {
+  .tier-list { row-gap: 0; }
+  .tier-list > li { display: grid; grid-template-rows: subgrid; grid-row: span 6; margin-bottom: 1.4rem; }
+  .tier-spend { align-self: end; }
+  .tier-benefits { display: grid; grid-template-rows: subgrid; grid-row: span 4; row-gap: .3rem; }
+  .tier-benefit + .tier-benefit { margin-top: 0; }
+}
+.club-rewards { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.club-rewards li { border-top: 1px solid var(--line); padding-block: 1rem; }
+.club-rewards strong { display: block; font-size: 1.5rem; margin-bottom: .5rem; }
+.club-terms { max-width: 50rem; }
+.club-terms li { margin-block: .7rem; }
+.partner-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5rem; }
+.partner-list li { min-width: 0; text-align: center; }
+.partner-list img { width: 100%; height: 100px; object-fit: contain; background: #fff; padding: .75rem; }
+.partner-list span { display: block; margin-top: .7rem; font-size: .85rem; }
+@media (max-width: 1000px) { .tier-list { grid-template-columns: repeat(3, 1fr); } .partner-list { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 1050px) {
+  .desktop-nav { display: none; }
+  .menu-button { display: inline-flex; align-items: center; justify-content: center; }
+  .club-invitation { gap: 2rem; padding: 2rem; }
+}
+@media (max-width: 700px) {
+  .owner-section { padding-block: 2rem; }
+  .resident-list, .club-rewards { grid-template-columns: repeat(2, 1fr); }
+  .tier-list { grid-template-columns: 1fr; gap: 1.4rem; }
+  .tier-heading { flex-direction: row; justify-content: space-between; padding: .6rem 1rem 0; text-align: left; }
+  .tier-heading__copy { order: -1; }
+  .tier-artwork { width: 7.5rem; height: 6rem; }
+  .tier-spend { margin: -.2rem 1rem 1rem; text-align: left; }
+  .tier-spend > span { display: inline; margin-right: .2rem; }
+  .tier-benefits { padding: .6rem; }
+  .tier-benefit { padding: .8rem; }
+  .resident-list .resident-featured { display: block; }
+  .owner-links { grid-template-columns: 1fr; gap: 1.5rem; }
+  .event-gallery { grid-template-columns: 1fr; }
+  .club-facts { grid-template-columns: 1fr; gap: .5rem; }
+  .club-invitation { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.6rem; margin-bottom: 2.5rem; }
+  .club-invitation__facts { gap: 1rem; }
+  .club-invitation__facts strong { font-size: 1.05rem; }
+  .club-invitation .button { width: 100%; font-size: .9rem; text-align: left; }
+  .club-intro__inner { grid-template-columns: 1fr; gap: 1.6rem; padding-block: 2rem; }
+  .club-intro h1 { margin-bottom: 1rem; }
+  .club-welcome { padding: 1.2rem 1.4rem; }
+  .partner-list { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .mobile-panel { max-height: calc(100dvh - 7rem); overflow-y: auto; }
+}
+@media (max-width: 360px) { .tier-list { grid-template-columns: 1fr; } }

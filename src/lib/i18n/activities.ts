@@ -15,7 +15,7 @@ const experienceText = [
   ["Feed the koi", "bag", "Watch and feed koi at the pond."],
 ];
 const foodNames = ["Dog and cat food", "Goat and rabbit food", "Grass for goats and rabbits", "Fish and duck food", "Bird food", "Goat milk · 1 bottle", "Alligator gar food · 3 sticks"];
-const spots = ["Café and restaurant", "Indoor Pet Zone", "Kurama Garden", "Nine-tailed fox fortune sticks", "Alligator gar pond", "Little Farm Friends", "Japanese garden", "Four-direction lotus", "Koi pond", "Fox house", "Rabbit house", "As You Wish Garden", "Miniature goat house", "Red Japanese bridge", "Scenic rowing boat pier"];
+const spots = ["Café and restaurant", "Indoor Pet Zone", "Kurama Garden", "Nine-tailed fox fortune sticks", "Alligator gar pond", "Little Farm Friends", "Japanese garden", "Four-direction lotus", "Koi pond", "Fox house", "Rabbit house", "As You Wish Garden", "Miniature goat house", "Red Japanese bridge", "Scenic rowing boat pier", "Desert garden"];
 
 export function localizedActivities(locale: Locale) {
   if (locale === "th") return { admissionSummary, passes, animalZones, experiences, animalFood, gardenSpots };

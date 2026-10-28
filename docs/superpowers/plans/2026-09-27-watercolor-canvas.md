@@ -1,5 +1,7 @@
 # Watercolor paper café — implementation plan
 
+> Planning update — 28 September 2026: the next redesign follows [Garden & Animal Experience](2026-09-28-garden-animal-experience.md). Its video-first composition supersedes this plan's full-page sign-art hero direction for the next implementation. The user now permits reducing Mali usage and paper-texture intensity; the new plan uses Mali as an accent and subtler paper. Bilingual, theme and original-logo requirements remain. This completed plan remains historical evidence; the new plan has not yet been implemented.
+
 **Owner:** Root implements and integrates. The existing TH/EN chat finishes its current review before Root edits shared product files.
 
 **Goal:** Present A Cup of Zoo as a warm, cute and carefully composed boutique café for families and English-speaking visitors, using the user's shop-sign watercolor hero, quiet paper texture, real photographs with brush edges, and the shop's Nine-Tailed Fox mascot.

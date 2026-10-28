@@ -1,6 +1,6 @@
 /* A continuous sheet of paper; imagery is decorative, information stays crisp. */
 body {
-  --paper-tint: 60%;
+  --paper-tint: 94%;
   --paper-blend: multiply;
   background-image: linear-gradient(color-mix(in srgb, var(--milk) var(--paper-tint), transparent), color-mix(in srgb, var(--milk) var(--paper-tint), transparent)), url("../assets/watercolor/canvas-paper.webp");
   background-size: auto, 760px;
@@ -8,18 +8,18 @@ body {
 }
 /* Soft light reveals the fibres without putting a pale sheet over dark colours. */
 [data-theme="dark"] body {
-  --paper-tint: 35%;
+  --paper-tint: 90%;
   --paper-blend: soft-light;
 }
 @media (prefers-color-scheme: dark) {
   :root[data-theme="auto"] body {
-    --paper-tint: 35%;
+    --paper-tint: 90%;
     --paper-blend: soft-light;
   }
 }
 .watercolor-animal { display: block; height: auto; object-fit: contain; pointer-events: none; }
-/* Mali's Thai and Latin glyphs give both languages the same gentle hand. */
-main h1, main h2 { font-family: var(--heading); font-weight: 500; text-wrap: balance; }
+/* A calm primary voice; Mali remains a handwritten accent. */
+main h1, main h2 { font-family: var(--font); font-weight: 400; text-wrap: balance; }
 html[lang="en"] main h1 .handwritten,
 html[lang="en"] main h2 .handwritten { font-family: inherit; font-style: normal; }
 .fox-seal.watercolor-seal { height: auto; overflow: visible; mix-blend-mode: normal; filter: none; transform: none; }

@@ -1,0 +1,23 @@
+---
+import type { PublicVenueDto } from "@lukespace-cms/client";
+import AnimalPodium from "./AnimalPodium.astro";
+import ArrowIcon from "./ArrowIcon.astro";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+import { runtimeConfig } from "../../lib/content/runtime-config";
+import { loadVoteTotals } from "../../lib/voting/gateway";
+import "../../styles/animal-votes.css";
+interface Props { locale: Locale; venue: PublicVenueDto | null; compact?: boolean; }
+const { locale, venue } = Astro.props;
+const t = translator(locale);
+const votes = await loadVoteTotals(runtimeConfig());
+const ready = votes.state === "ready";
+const counts = new Map(votes.totals?.items.map(item => [item.animalId, item.count]) ?? []);
+const format = (value: number) => value.toLocaleString(locale === "th" ? "th-TH" : "en-GB");
+---
+<section class="animal-votes animal-votes--compact" data-vote-board data-ready={String(ready)} aria-labelledby="animal-votes-title">
+  <div class="votes-heading"><div><p class="chapter-label">A LITTLE LOVE GOES A LONG WAY</p><h2 id="animal-votes-title">{t("ใครอยู่ในใจวันนี้", "A soft spot for someone?")}</h2><p>{t("รู้จักเพื่อนสัตว์ แล้วหยอดใจให้ตัวโปรด", "Meet the animal family and send a little love.")}</p></div><span class="votes-total" aria-label={t("หัวใจทั้งหมด", "Hearts collected")}><svg class="total-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20S3 14.5 3 8.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 9 1.5C21 14.5 12 20 12 20Z" /></svg><strong>{ready ? format(votes.totals!.total) : "—"}</strong></span></div>
+  {!ready && <p class="votes-unavailable">{t("ตอนนี้โหลดคะแนนไม่ได้ แวะไปทำความรู้จักเพื่อนสัตว์ก่อนได้เลย", "Scores are unavailable. You can still meet the animal family.")}</p>}
+  <AnimalPodium locale={locale} venue={venue} counts={counts} ready={ready} />
+  <a class="cafe-link vote-more" href={localePath("/animals/#animal-family", locale)}>{t("ดูทุกตัว แล้วหยอดใจให้เพื่อน", "Meet every friend & cast a vote")} <ArrowIcon /></a>
+</section>
+

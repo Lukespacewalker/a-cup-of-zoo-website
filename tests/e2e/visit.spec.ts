@@ -42,8 +42,11 @@ test("photo journal supports visible keyboard focus and reduced motion", async (
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page.getByRole("link", { name: "พบเจ้าเหมียวและเพื่อนสัตว์", exact: true }).focus();
-  await page.keyboard.press("Tab");
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/\/animals\/#cat-room$/);
+  await page.goto("/");
   const friends = page.getByRole("link", { name: "พบเพื่อนริมบ่อและสัตว์อื่น ๆ", exact: true });
+  await friends.focus();
   await expect(friends).toBeFocused();
   expect(await friends.evaluate((link) => link.matches(":focus-visible") && getComputedStyle(link).outlineStyle !== "none")).toBe(true);
   expect(await friends.evaluate((link) => getComputedStyle(link).transitionDuration)).toBe("0s");

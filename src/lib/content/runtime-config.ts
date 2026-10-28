@@ -1,11 +1,12 @@
-import { CMS_BASE_URL, CONTENT_MODE, SITE_ENV } from "astro:env/server";
+import { CMS_BASE_URL, CONTENT_MODE, SITE_ENV, SEARCH_INDEXING } from "astro:env/server";
 import { createGateway, type ContentConfig, type ContentMode, type SiteEnvironment } from "./create-gateway";
 
-export function runtimeConfig(): ContentConfig {
+export function runtimeConfig(): ContentConfig & { searchIndexing: boolean } {
   return {
     environment: parseEnvironment(SITE_ENV),
     mode: parseMode(CONTENT_MODE),
     cmsBaseUrl: CMS_BASE_URL || undefined,
+    searchIndexing: SEARCH_INDEXING === "enabled",
   };
 }
 

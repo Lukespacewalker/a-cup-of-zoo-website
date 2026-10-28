@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-28",
+  "worker": "a-cup-of-zoo-preview",
+  "version": "59c5411c-36fd-40f7-a466-c6b6ea73e163",
+  "previousVersion": "a80dc0e8-2a24-46f0-bedd-a86f192ab053",
+  "profile": "nawaratthinsook",
+  "domains": [
+    "https://acupofzoo.com",
+    "https://www.acupofzoo.com"
+  ],
+  "bundleFiles": 182,
+  "numberedStops": 16,
+  "facilities": 3,
+  "pins": 19,
+  "browserPassed": 10,
+  "livePageResponses": 30,
+  "liveUI": "pass",
+  "bundleHashesUnchanged": true
+}

@@ -1,0 +1,95 @@
+[
+  {
+    "action": "theme click",
+    "result": {
+      "saved": "light",
+      "theme": "light"
+    }
+  },
+  {
+    "action": "theme click",
+    "result": {
+      "saved": "dark",
+      "theme": "dark"
+    }
+  },
+  {
+    "action": "theme click",
+    "result": {
+      "saved": "auto",
+      "theme": "auto"
+    }
+  },
+  {
+    "action": "reload",
+    "result": {
+      "saved": "auto",
+      "theme": "auto"
+    }
+  },
+  {
+    "action": "switch to English",
+    "result": {
+      "levels": [
+        "Friend",
+        "Buddy",
+        "Besties",
+        "Soulmate",
+        "Family"
+      ],
+      "newBenefits": [
+        {
+          "added": [],
+          "name": "Friend"
+        },
+        {
+          "added": [
+            "Once",
+            "Animal food"
+          ],
+          "name": "Buddy"
+        },
+        {
+          "added": [
+            "5%",
+            "food basket",
+            "+ souvenir"
+          ],
+          "name": "Besties"
+        },
+        {
+          "added": [
+            "10%",
+            "Once a month",
+            "buy-one-get-one drink"
+          ],
+          "name": "Soulmate"
+        },
+        {
+          "added": [
+            "15%",
+            "New Year souvenir"
+          ],
+          "name": "Family"
+        }
+      ],
+      "path": "/en/club/",
+      "signup": "https://line.me/R/ti/p/%40acupofzoo"
+    }
+  },
+  {
+    "action": "keyboard open membership terms",
+    "result": {
+      "hash": "#membership-terms",
+      "terms": "Before using your benefitsTiers are based on one year of accumulated spending. Discounts apply to food and drinks only.Free friend visits are on weekdays only. Each friend must be different, join as a new member and enter the same zone as the member.The HBD cake requires spending of 500 THB during your birthday month, limited to one redemption.Annual coupons are provided for each year you remain in that tier. Café terms apply and may change; check with the team before redeeming."
+    }
+  },
+  {
+    "action": "640 CSS px at 2x device scale",
+    "result": {
+      "columns": 1,
+      "overflow": false,
+      "width": 640
+    }
+  }
+]

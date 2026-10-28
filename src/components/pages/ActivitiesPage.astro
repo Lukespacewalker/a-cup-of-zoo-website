@@ -1,9 +1,13 @@
 ---
+import ShopMap from "../site/ShopMap.astro";
+import PageHero from "../site/PageHero.astro";
 import "../../styles/activities.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import FoxSeal from "../site/FoxSeal.astro";
+import { experienceImages as photos } from "../../lib/content/experience-images";
 import WishingCorner from "../site/WishingCorner.astro";
 import WatercolorAnimal from "../site/WatercolorAnimal.astro";
+import BrochurePhoto from "../site/BrochurePhoto.astro";
+import { activitySheet, zoneSheet, activityCrops, zoneCrops } from "../../lib/content/brochure-images";
 import Picture from "../content/Picture.astro";
 import ContentUnavailable from "../content/ContentUnavailable.astro";
 import { loadPage } from "../../lib/content/load-page";
@@ -19,19 +23,15 @@ const page = await loadPage();
 const items = localizedVenue(page.venue, locale)?.content.activities.filter((item) => item.visible).sort((a, b) => a.sortOrder - b.sortOrder) ?? [];
 ---
 <SiteLayout locale={locale} title={t("กิจกรรม โซนสัตว์ และราคาแพ็กเกจ คลอง 6", "Activities, animal zones & pass prices · Khlong 6")} description={t("ดูแพ็กเกจ One Zone 249 บาท และ All Zone 349 บาทที่ A Cup of Zoo คลอง 6 พร้อมโซนสัตว์ กิจกรรมให้อาหาร ป้อนนมแพะ สวนญี่ปุ่น และเงื่อนไขเด็ก", "Explore One Zone passes at 249 THB and All Zone passes at 349 THB at A Cup of Zoo, Khlong 6. Find animal zones, feeding activities, the Japanese garden and child admission terms.")} page={page}>
-  <header class="page-intro" id="activities-top">
-    <FoxSeal class="page-intro__fox" />
-    <p class="eyebrow">SPACE & MOMENTS</p>
-    <h1>{t("หนึ่งวันกับเพื่อนสัตว์และสวนสวย", "A day with animal friends and the garden")}</h1>
-    <p>{t("นั่งพักในคาเฟ่ เดินเล่นในสวนญี่ปุ่น หรือเลือกแพ็กเกจเข้าไปใกล้ชิดกับเพื่อนสัตว์", "Relax in the café, stroll through the Japanese garden, or choose a pass to spend time in the animal zones.")}</p>
+  <PageHero id="activities-top" label="SPACE & MOMENTS" title={t("หนึ่งวันกับเพื่อนสัตว์และสวนสวย", "A day with animal friends and the garden")} description={t("นั่งพักในคาเฟ่ เดินเล่นในสวนญี่ปุ่น หรือเลือกแพ็กเกจเข้าไปใกล้ชิดกับเพื่อนสัตว์", "Relax in the café, stroll through the Japanese garden, or choose a pass to spend time in the animal zones.")} image={photos.garden} alt={t("ศาลาและทางเดินไม้ในสวนญี่ปุ่นของร้าน", "The pavilion and wooden walkway in the café's Japanese garden")} position="center 54%" href="#passes" action={t("เลือกแพ็กเกจสำหรับวันของคุณ", "Find your pass")} />
     <nav class="menu-jump" aria-label={t("หมวดกิจกรรม", "Activity sections")}><a href="#passes">{t("แพ็กเกจและเงื่อนไข", "Passes & terms")}</a><a href="#animal-zones">{t("โซนสัตว์", "Animal zones")}</a><a href="#experiences">{t("กิจกรรมและราคา", "Activities & prices")}</a><a href="#wishing-corner">{t("มุมขอพร", "Wishing corner")}</a><a href="#garden">{t("เดินเล่นในสวน", "Around the garden")}</a></nav>
-  </header>
   {page.venueProblem && <ContentUnavailable />}
   <section class="activity-section" id="passes" aria-labelledby="passes-title">
     <p class="eyebrow">Choose your day</p>
     <h2 id="passes-title">{t("แพ็กเกจและการเข้าชม", "Passes & admission")}</h2>
     <p>{admissionSummary}</p>
     <p>{t("มาเฉพาะคาเฟ่ได้โดยไม่ต้องซื้อแพ็กเกจ แวะทานอาหาร ชมสวนญี่ปุ่น บ่อปลาคาร์ฟ พายเรือ ชมสัตว์ในคาเฟ่ และชมแพะกับกระต่ายจากพื้นที่ชมสัตว์ ส่วนการเข้าโซนสัตว์ใกล้ชิดให้เลือกแพ็กเกจด้านล่าง", "You can visit the café without buying an animal-zone pass: enjoy a meal, the Japanese garden and koi pond, rowing boats, animals in the café, and views of goats and rabbits from the viewing area. Choose a pass below to enter the animal zones for closer visits.")}</p>
+    <aside class="free-zone" id="free-zone"><h3>Free Zone Pass</h3><p>{t("โซนคาเฟ่ไม่มีค่าเข้า ขั้นต่ำ 1 ออร์เดอร์ต่อคน ส่วนโซนสัตว์ที่ต้องใช้แพ็กเกจเลือกได้ด้านล่าง", "The café has no admission fee, with a minimum of 1 order per person. For the animal zones, choose a pass below.")}</p><a href="#garden">{t("ดูแผนผังร้าน", "See the shop map")}</a></aside>
     <div class="pass-grid">{passes.map((pass) => <article class="zone-pass" id={pass.id}>
       <h3>{pass.name}</h3><p class="pass-price">{pass.price} <span>{t("บาท / คน", "THB / person")}</span></p>
       <p>{pass.description}</p><ul>{pass.benefits.map((benefit) => <li>{benefit}</li>)}</ul>
@@ -39,17 +39,19 @@ const items = localizedVenue(page.venue, locale)?.content.activities.filter((ite
     <div class="activity-terms">
       <h3>{t("พาเด็ก ๆ มาเที่ยว", "Visiting with children")}</h3>
       <ul><li>{t("เด็กสูงต่ำกว่า 100 ซม. เข้าฟรี", "Children under 100 cm tall enter free.")}</li><li>{t("เด็กทุกคนต้องมีผู้ใหญ่เข้าร่วมกิจกรรมด้วยอย่างน้อย 1 คน", "Every child must be accompanied by at least 1 adult taking part in the activity.")}</li><li>{t("เด็กที่เข้าโซน Indoor ต้องซื้อถุงเท้าใหม่ 49 บาท", "Children entering Indoor zones must buy new socks for 49 THB.")}</li></ul>
-      <p><strong>{t("น้องสัตว์โซน Outdoor เข้าบ้านเวลา 18:00 น.", "Outdoor animals return to their houses at 18:00.")}</strong>{t(" ส่วนคาเฟ่เปิดถึง 19:00 น.", " The café stays open until 19:00.")}</p>
+      <p><strong>{t("น้องสัตว์โซน Outdoor เข้าบ้านเวลา 18:00 น.", "Outdoor animals return to their houses at 18:00.")}</strong><a href={href("/visit/")}>{t(" ดูเวลาเปิดคาเฟ่", " See café opening hours")}</a></p>
       <p>{t("สัตว์อาจข่วนหรือกัดได้ กรุณาดูแลเด็กและทรัพย์สินตลอดเวลา และทำกิจกรรมตามคำแนะนำของพนักงาน", "Animals may scratch or bite. Supervise children and look after your belongings at all times, and follow staff instructions during activities.")}</p>
     </div>
   </section>
+  <ShopMap locale={locale} />
   <section class="activity-section" id="animal-zones" aria-labelledby="zones-title">
     <h2 id="zones-title">{t("พบเพื่อนสัตว์ทั้ง 6 โซน", "Meet friends in all 6 animal zones")}</h2>
-    <div class="zone-grid"><section><h3>Indoor</h3><ul>{animalZones.indoor.map((name) => <li>{name}</li>)}</ul></section><section><h3>Outdoor</h3><ul>{animalZones.outdoor.map((name) => <li>{name}</li>)}</ul></section></div>
+    <div class="zone-grid zone-photo-grid"><section><h3>Indoor</h3><ul>{animalZones.indoor.map((name, i) => <li><BrochurePhoto source={zoneSheet} crop={zoneCrops[i]} alt="" /><span>{name}</span></li>)}</ul></section><section><h3>Outdoor</h3><ul>{animalZones.outdoor.map((name, i) => <li><BrochurePhoto source={zoneSheet} crop={zoneCrops[i + 3]} alt="" /><span>{name}</span></li>)}</ul></section></div>
   </section>
   <section class="activity-section" id="experiences" aria-labelledby="experiences-title">
     <h2 id="experiences-title">{t("กิจกรรมที่ชวนทำด้วยกัน", "Things to do together")}</h2>
     <ul class="experience-list">{experiences.map((activity) => <li id={activity.id}>
+      <BrochurePhoto source={activitySheet} crop={activityCrops[activity.id]} alt={activity.name} />
       <div><h3>{activity.name}</h3><p>{activity.note}</p></div>
       <p class="experience-price">{activity.originalPrice && <span>{t("ปกติ ", "Regular price ")}<s>{activity.originalPrice}</s>{t(" บาท", " THB")}<br /></span>}<strong>{activity.price}{t(" บาท", " THB")}</strong> / {activity.unit}</p>
     </li>)}</ul>
@@ -58,9 +60,9 @@ const items = localizedVenue(page.venue, locale)?.content.activities.filter((ite
     <p class="activity-footnote">{t("ราคาและสิทธิประโยชน์ตามเมนูร้านที่ตรวจเมื่อ 26 กันยายน 2569 สอบถามพนักงานเรื่องโปรโมชันตะกร้าอาหารสัตว์และกิจกรรมที่พร้อมให้บริการในวันที่มาเที่ยว", "Prices and benefits follow the shop menu checked on 26 September 2026. Ask staff about the animal food basket promotion and activities available on the day of your visit.")}</p>
   </section>
   <WishingCorner locale={locale} />
-  <section class="activity-section" id="garden" aria-labelledby="garden-title">
+  <section class="activity-section" id="garden-spots" aria-labelledby="garden-title">
     <div class="garden-section-heading"><h2 id="garden-title">{t("เดินเล่นตามมุมต่าง ๆ ของร้าน", "Explore the café and garden")}</h2><WatercolorAnimal animal="ducks" class="garden-ducks" /></div>
-    <p>{t("เลือกแวะมุมที่ชอบจาก 15 จุดในแผนผังร้าน มีทั้งสวน มุมถ่ายรูป และพื้นที่สัตว์ที่เข้าตามแพ็กเกจ", "Choose your favourite stops from 15 places on the shop map, including gardens, photo spots and animal areas accessed with a pass.")}</p>
+    <p>{t("เลือกแวะมุมที่ชอบจาก 16 จุดในแผนผังร้าน มีทั้งสวน มุมถ่ายรูป และพื้นที่สัตว์ที่เข้าตามแพ็กเกจ", "Choose your favourite stops from 16 places on the shop map, including gardens, photo spots and animal areas accessed with a pass.")}</p>
     <ol class="garden-spots">{gardenSpots.map((spot) => <li>{spot}</li>)}</ol>
     <p>{t("ในแผนผังยังมีสวนทะเลทราย ห้องน้ำ และที่จอดรถ สำหรับกิจกรรมพายเรือสอบถามพนักงานก่อนใช้งาน", "The map also shows a desert garden, toilets and parking. Ask staff before using the rowing boats.")}</p>
     <div class="actions"><a class="button" href={href("/menu/")}>{t("เลือกเมนูอาหาร", "Choose your food")}</a><a class="button secondary" href={href("/visit/")}>{t("ดูเวลาเปิดและเส้นทาง", "Opening hours & directions")}</a></div>

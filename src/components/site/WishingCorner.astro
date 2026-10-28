@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from "./ArrowIcon.astro";
 import { Image } from "astro:assets";
 import WatercolorAnimal from "./WatercolorAnimal.astro";
 import wishingCorner from "../../assets/watercolor/wishing-corner.png";
@@ -18,6 +19,6 @@ const id = compact ? "wishes" : "wishing-corner";
     <p class="chapter-label">{t("อีกหนึ่งมุมของสวน", "A little corner of the garden")}</p>
     <h2 id={`${id}-title`}>{t("มุมขอพรกับ", "Make a wish with our ")}<br />{t("น้องจิ้งจอกเก้าหาง", "Nine-Tailed Fox")}</h2>
     <p>{t("ระหว่างเดินเล่น แวะทักน้องจิ้งจอกเก้าหางที่มุมขอพร แผ่นคำอธิษฐานที่แขวนอยู่รอบ ๆ เป็นความตั้งใจที่ผู้มาเยือนฝากไว้ในสวนของเรา", "Say hello to our Nine-Tailed Fox at the wishing corner. The wooden plaques hanging around the garden hold wishes left by visitors.")}</p>
-    {compact ? <a class="cafe-link" href={localePath("/activities/", locale) + "#wishing-corner"}>{t("แวะดูมุมขอพร", "Discover the wishing corner")}<span aria-hidden="true">↗</span></a> : <p>{t("ในร้านยังมีน้องจิ้งจอกเก้าหางท่าประนมมืออยู่คู่กับจุดเซียมซี ให้ค่อย ๆ แวะชมระหว่างเดินเล่น", "You can also find our Nine-Tailed Fox with its paws joined beside the fortune-stick corner as you explore the café.")}</p>}
+    {compact ? <a class="cafe-link" href={localePath("/activities/", locale) + "#wishing-corner"}>{t("แวะดูมุมขอพร", "Discover the wishing corner")}<ArrowIcon /></a> : <p>{t("ในร้านยังมีน้องจิ้งจอกเก้าหางท่าประนมมืออยู่คู่กับจุดเซียมซี ให้ค่อย ๆ แวะชมระหว่างเดินเล่น", "You can also find our Nine-Tailed Fox with its paws joined beside the fortune-stick corner as you explore the café.")}</p>}
   </div>
 </section>

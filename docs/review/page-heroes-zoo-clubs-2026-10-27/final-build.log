@@ -1,0 +1,17 @@
+16:26:03 [@astrojs/cloudflare] Enabling image processing with Cloudflare Images for production with the "IMAGES" Images binding.
+16:26:03 [types] Generated 54ms
+16:26:03 [build] output: "server"
+16:26:03 [build] mode: "server"
+16:26:03 [build] directory: C:\Users\Sutti\AppData\Local\Temp\acup-hero-club-20261027\dist\
+16:26:03 [build] adapter: @astrojs/cloudflare
+16:26:03 [build] Collecting build info...
+16:26:03 [build] ✓ Completed in 90ms.
+16:26:03 [build] Building server entrypoints...
+16:26:03 [vite] ✓ built in 189ms
+16:26:03 [vite] ✓ built in 386ms
+16:26:03 [vite] ✓ built in 21ms
+16:26:03 [build] Rearranging server assets...
+16:26:04 [build] ✓ Completed in 1.38s.
+16:26:04 [@astrojs/cloudflare] Injected immutable Cache-Control for /_astro/* into _headers.
+16:26:04 [build] Server built in 1.53s
+16:26:04 [build] Complete!

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("all food and prices are server rendered without an external flipbook", async ({ browser }) => {
+test("all food and prices are server rendered with optional menu-book links", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   const requests: string[] = [];
@@ -18,12 +18,14 @@ test("all food and prices are server rendered without an external flipbook", asy
   await page.getByRole("navigation", { name: "หมวดเมนู" }).getByRole("link", { name: "เมนูจากพืช" }).click();
   await expect(page).toHaveURL(/#plant-based$/);
   await expect(page.getByRole("heading", { name: "เมนูจากพืช", exact: true })).toBeInViewport();
-  const gallery = page.locator("#plant-based details");
-  await gallery.locator("summary").click();
-  await expect(gallery).toHaveAttribute("open", "");
+  const gallery = page.locator("#plant-based .food-gallery");
+  await expect(page.locator("#plant-based .food-section__photos img")).toHaveCount(2);
+  await expect(gallery).toBeVisible();
+  await expect(page.locator(".food-gallery summary")).toHaveCount(0);
   expect(await gallery.locator("img").evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
   expect(requests.some((url) => /heyzine/i.test(url))).toBe(false);
-  await expect(page.locator('iframe, a[href*="heyzine"]')).toHaveCount(0);
+  await expect(page.locator("iframe")).toHaveCount(0);
+  await expect(page.locator('a[href*="heyzine"]')).toHaveCount(2);
   await context.close();
 });
 

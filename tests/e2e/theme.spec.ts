@@ -3,10 +3,11 @@ import { expect, test } from "@playwright/test";
 test("home actions and mobile navigation reach the menu and visit pages", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  const actions = page.locator(".cover-actions");
-  await expect(actions.getByRole("link", { name: "ดูเมนูอาหาร" })).toBeInViewport();
+  const actions = page.locator("[data-hero-actions]");
+  await expect(actions.getByRole("link", { name: "สำรวจประสบการณ์" })).toBeInViewport();
   await expect(actions.getByRole("link", { name: "วางแผนมาเที่ยว" })).toBeInViewport();
-  await actions.getByRole("link", { name: "ดูเมนูอาหาร" }).click();
+  await actions.getByRole("link", { name: "สำรวจประสบการณ์" }).click();
+  await page.locator('.experience-paths a[href="/menu/"]').click();
   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
   const toggle = page.getByRole("button", { name: "เมนู", exact: true });
   await toggle.click();

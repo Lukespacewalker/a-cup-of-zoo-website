@@ -1,0 +1,29 @@
+
+Running 13 tests using 3 workers
+
+
+(node:38440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:133260) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+(node:103592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/13] tests\e2e\hero.spec.ts:3:1 › home header receives clicks above the media on desktop and mobile
+[2/13] tests\e2e\theme.spec.ts:3:1 › home actions and mobile navigation reach the menu and visit pages
+[3/13] tests\e2e\locale.spec.ts:3:1 › English unknown routes return localized404 with an English home link
+[4/13] tests\e2e\locale.spec.ts:18:1 › English primary paths render complete English content and matching metadata
+[5/13] tests\e2e\hero.spec.ts:20:1 › video plays, pauses and respects changes to reduced motion
+[6/13] tests\e2e\theme.spec.ts:24:1 › color control persists and auto follows the system preference
+[7/13] tests\e2e\hero.spec.ts:46:1 › blocked autoplay preserves a usable play action and media failure preserves the poster
+[8/13] tests\e2e\theme.spec.ts:41:1 › all primary pages fit supported widths in light, dark and automatic themes
+[9/13] tests\e2e\hero.spec.ts:62:1 › home remains usable without JavaScript and does not autoplay an uncontrollable loop
+[10/13] tests\e2e\locale.spec.ts:52:1 › untranslated news explicitly returns to English home without false alternates
+[11/13] tests\e2e\hero.spec.ts:74:1 › a failed video request returns to the poster without a misleading pause button
+[12/13] tests\e2e\locale.spec.ts:62:1 › English menu and child planning work without JavaScript and match Thai numeric content
+[13/13] tests\e2e\locale.spec.ts:88:1 › switching locale retains matching page and category hash on mobile
+  13 passed (20.6s)
