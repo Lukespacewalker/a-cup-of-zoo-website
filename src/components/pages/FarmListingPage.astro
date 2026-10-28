@@ -6,34 +6,79 @@ import type { loadFarmListing } from "../../lib/content/load-farm";
 import { venuePhones } from "../../lib/business/contact";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import "../../styles/farm.css";
-interface Props { locale: Locale; result: Awaited<ReturnType<typeof loadFarmListing>>; }
-const {locale,result}=Astro.props;
-const t=translator(locale);const page=await loadPage();
-const {listing}=result;const unavailable=result.status===503;
-const text=listing?.translations.find(v=>v.locale===locale);
-const alternate=listing?.translations.find(v=>v.locale!==locale);
-const photos=listing?.assets.filter(a=>listingImage(a.url)).sort((a,b)=>(a.role==="cover"?-1:b.role==="cover"?1:0)||a.sortOrder-b.sortOrder)??[];
-const phones=venuePhones(page.venue?.content);
+interface Props {
+  locale: Locale;
+  result: Awaited<ReturnType<typeof loadFarmListing>>;
+}
+const { locale, result } = Astro.props;
+const t = translator(locale);
+const page = await loadPage();
+const { listing } = result;
+const unavailable = result.status === 503;
+const text = listing?.translations.find(translation => translation.locale === locale);
+const alternate = listing?.translations.find(translation => translation.locale !== locale);
+const photos = listing?.assets
+  .filter(asset => listingImage(asset.url))
+  .sort((a, b) => (a.role === "cover" ? -1 : b.role === "cover" ? 1 : 0) || a.sortOrder - b.sortOrder) ?? [];
+const phones = venuePhones(page.venue?.content);
 ---
 <SiteLayout page={page} locale={locale} title={text?.title??t("ไม่พบประกาศ", "Listing unavailable")} description={text?.seoDescription||text?.description.slice(0,160)||t("ประกาศสัตว์จาก A Cup of Zoo", "Animal listings from A Cup of Zoo")}>
-  <nav class="farm-breadcrumb" aria-label={t("เส้นทางหน้า", "Breadcrumb")}><a href={localePath("/farm/",locale)}>← {t("ประกาศทั้งหมด", "All listings")}</a>{alternate&&<a href={listingPath(alternate.locale,alternate.slug)} lang={alternate.locale}>{alternate.locale==="en"?"Read in English":"อ่านภาษาไทย"}</a>}</nav>
-  {!listing||!text?<section class="farm-empty"><h1>{unavailable?t("ยังโหลดประกาศไม่ได้", "Unable to load this listing"):t("ไม่พบประกาศนี้", "This listing is no longer available")}</h1><p>{unavailable?t("กรุณาลองใหม่อีกครั้ง", "Please try again shortly."):t("ประกาศอาจถูกเก็บเข้าคลังแล้ว ดูประกาศอื่นหรือติดต่อร้านได้", "It may have been archived. Browse other listings or contact the café.")}</p><a class="button" href={localePath("/farm/",locale)}>{t("ดูประกาศทั้งหมด", "Browse listings")}</a></section>:<article class="farm-listing">
-    <div class="farm-gallery" data-listing-gallery>{photos.length?<>
-      <figure><img data-gallery-main src={listingImage(photos[0].url)!} alt={locale==="th"?photos[0].altTh:photos[0].altEn} width={photos[0].width??800} height={photos[0].height??800} /><figcaption data-gallery-caption>{locale==="th"?photos[0].altTh:photos[0].altEn}</figcaption></figure>
-      {photos.length>1&&<div class="farm-thumbnails" role="group" aria-label={t("เลือกภาพประกาศ", "Choose a listing photo")}>{photos.map((photo,i)=><button type="button" data-gallery-src={listingImage(photo.url)!} data-gallery-alt={locale==="th"?photo.altTh:photo.altEn} aria-pressed={i===0?"true":"false"} aria-label={t(`ดูภาพที่ ${i+1}: ${photo.altTh}`,`View photo ${i+1}: ${photo.altEn}`)}><img src={listingImage(photo.url)!} alt="" width="80" height="80" loading="lazy" /></button>)}</div>}
-    </>:<div class="farm-empty">{t("รอภาพจากร้าน", "Photos coming soon")}</div>}</div>
-    <div class="farm-listing__body"><p class="eyebrow">A CUP OF ZOO · FARM</p><h1>{text.title}</h1><p class="farm-price farm-price--large">{listingPrice(listing.priceMinor,locale)}</p><div class="farm-description">{text.description}</div>{text.details.length>0&&<ul>{text.details.map(detail=><li>{detail}</li>)}</ul>}
-      <div class="farm-enquiry"><h2>{t("สนใจน้องตัวนี้?", "Interested in this little one?")}</h2><p>{t("แจ้งชื่อประกาศกับทีมงาน เพื่อสอบถามข้อมูลและนัดรับ", "Share the listing title with our team to enquire and arrange collection.")}</p><a class="button" href="https://line.me/R/ti/p/%40acupofzoo">{t("ทัก LINE ร้าน", "Message us on LINE")} ↗</a>{phones.map(phone=><a class="farm-phone" href={`tel:${phone.e164}`}>{t("โทร", "Call")} {phone.display}</a>)}</div>
-    </div>
-  </article>}
+  <nav class="farm-breadcrumb" aria-label={t("เส้นทางหน้า", "Breadcrumb")}><a href={localePath("/farm/", locale)}>← {t("ประกาศทั้งหมด", "All listings")}</a>{alternate && <a href={listingPath(alternate.locale, alternate.slug)} lang={alternate.locale}>{alternate.locale === "en" ? "Read in English" : "อ่านภาษาไทย"}</a>}</nav>
+  {!listing || !text ? (
+    <section class="farm-empty">
+      <h1>{unavailable ? t("ยังโหลดประกาศไม่ได้", "Unable to load this listing") : t("ไม่พบประกาศนี้", "This listing is no longer available")}</h1>
+      <p>{unavailable ? t("กรุณาลองใหม่อีกครั้ง", "Please try again shortly.") : t("ประกาศอาจถูกเก็บเข้าคลังแล้ว ดูประกาศอื่นหรือติดต่อร้านได้", "It may have been archived. Browse other listings or contact the café.")}</p>
+      <a class="button" href={localePath("/farm/", locale)}>{t("ดูประกาศทั้งหมด", "Browse listings")}</a>
+    </section>
+  ) : (
+    <article class="farm-listing">
+      <div class="farm-gallery" data-listing-gallery>
+        {photos.length ? (
+          <>
+            <figure>
+              <img data-gallery-main src={listingImage(photos[0].url)!} alt={locale === "th" ? photos[0].altTh : photos[0].altEn} width={photos[0].width ?? 800} height={photos[0].height ?? 800} />
+              <figcaption data-gallery-caption>{locale === "th" ? photos[0].altTh : photos[0].altEn}</figcaption>
+            </figure>
+            {photos.length > 1 && (
+              <div class="farm-thumbnails" role="group" aria-label={t("เลือกภาพประกาศ", "Choose a listing photo")}>
+                {photos.map((photo, i) => (
+                  <button type="button" data-gallery-src={listingImage(photo.url)!} data-gallery-alt={locale === "th" ? photo.altTh : photo.altEn} aria-pressed={i === 0 ? "true" : "false"} aria-label={t(`ดูภาพที่ ${i + 1}: ${photo.altTh}`, `View photo ${i + 1}: ${photo.altEn}`)}><img src={listingImage(photo.url)!} alt="" width="80" height="80" loading="lazy" /></button>
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          <div class="farm-empty">{t("รอภาพจากร้าน", "Photos coming soon")}</div>
+        )}
+      </div>
+      <div class="farm-listing__body">
+        <p class="eyebrow">A CUP OF ZOO · FARM</p>
+        <h1>{text.title}</h1>
+        <p class="farm-price farm-price--large">{listingPrice(listing.priceMinor, locale)}</p>
+        <div class="farm-description">{text.description}</div>
+        {text.details.length > 0 && <ul>{text.details.map(detail => <li>{detail}</li>)}</ul>}
+        <div class="farm-enquiry">
+          <h2>{t("สนใจน้องตัวนี้?", "Interested in this little one?")}</h2>
+          <p>{t("แจ้งชื่อประกาศกับทีมงาน เพื่อสอบถามข้อมูลและนัดรับ", "Share the listing title with our team to enquire and arrange collection.")}</p>
+          <a class="button" href="https://line.me/R/ti/p/%40acupofzoo">{t("ทัก LINE ร้าน", "Message us on LINE")} ↗</a>{phones.map(phone => <a class="farm-phone" href={`tel:${phone.e164}`}>{t("โทร", "Call")} {phone.display}</a>)}
+        </div>
+      </div>
+    </article>
+  )}
 </SiteLayout>
 <script>
-  const gallery=document.querySelector('[data-listing-gallery]');
-  const main=gallery?.querySelector<HTMLImageElement>('[data-gallery-main]');
-  const caption=gallery?.querySelector('[data-gallery-caption]');
-  gallery?.querySelectorAll<HTMLButtonElement>('button[data-gallery-src]').forEach(button=>button.addEventListener('click',()=>{
-    if(!main)return;main.src=button.dataset.gallerySrc!;main.alt=button.dataset.galleryAlt??'';
-    if(caption)caption.textContent=main.alt;
-    gallery.querySelectorAll('button[aria-pressed]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-  }));
+  const gallery = document.querySelector('[data-listing-gallery]');
+  const main = gallery?.querySelector<HTMLImageElement>('[data-gallery-main]');
+  const caption = gallery?.querySelector('[data-gallery-caption]');
+  gallery?.querySelectorAll<HTMLButtonElement>('button[data-gallery-src]').forEach(button => {
+    button.addEventListener('click', () => {
+      if (!main) return;
+      main.src = button.dataset.gallerySrc!;
+      main.alt = button.dataset.galleryAlt ?? '';
+      if (caption) caption.textContent = main.alt;
+      gallery.querySelectorAll('button[aria-pressed]').forEach(item => {
+        item.setAttribute('aria-pressed', String(item === button));
+      });
+    });
+  });
 </script>

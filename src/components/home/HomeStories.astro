@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+import ArrowIcon from "../site/ArrowIcon.astro";
+import WatercolorAnimal from "../site/WatercolorAnimal.astro";
+import sign from "../../assets/watercolor/shop-sign-hero.png";
+import { experienceImages as photos } from "../../lib/content/experience-images";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = translator(locale);
+const href = (path: string) => localePath(path, locale);
+---
+  <section class="cat-story" id="friends" aria-labelledby="friends-title">
+    <figure class="cat-story-photo cat-crop"><a data-cat-room-link href={href("/animals/") + "#cat-room"} aria-label={t("พบเจ้าเหมียวและเพื่อนสัตว์", "Meet the cats and other animal friends")}><Image src={photos.cats} alt={t("ช่วงเวลาใกล้ชิดระหว่างเด็กกับแมวของร้าน", "A child sharing a quiet moment with a café cat")} widths={[480, 720, 960]} sizes="(max-width: 700px) 90vw, 48vw" loading="lazy" /></a><figcaption class="handwritten">{t("เพื่อนใหม่ อาจอยู่ใกล้กว่าที่คิด", "A little hello goes a long way.")}</figcaption></figure>
+    <div class="cat-story-copy"><p class="chapter-label">{t("ห้องเล่นกับแมว · Indoor", "The cat room · Indoor")}</p><h2 id="friends-title">{t("เผื่อเวลาไว้", "Make a little time")}<br />{t("ตกหลุมรักเจ้าเหมียว", "for a new friend.")}</h2><p>{t("นั่งอยู่ด้วยกัน มองความซนเล็ก ๆ แล้วค่อยทำความรู้จัก ที่ห้องเล่นกับแมวของเรา", "Take a seat, watch their little antics and get to know the cats at their own pace.")}</p><p class="story-detail">{t("ห้องเล่นกับแมวอยู่ในกลุ่มโซน Indoor เลือกเข้าด้วย One Zone Pass หรือ All Zone Pass", "The cat room is part of the Indoor group, accessible with an Indoor One Zone Pass or an All Zone Pass.")}</p><a class="cafe-link" href={href("/activities/") + "#passes"}>{t("ดูแพ็กเกจและเงื่อนไข", "Passes & visiting details")} <ArrowIcon /></a><figure class="cat-story-small"><a href={href("/animals/")} aria-label={t("พบเพื่อนริมบ่อและสัตว์อื่น ๆ", "Meet the pond companions and other animals")}><Image src={photos.rabbit} alt={t("กระต่ายก้มอยู่ริมบ่อ", "A rabbit beside the pond")} widths={[240, 400]} sizes="200px" loading="lazy" /></a><figcaption>{t("ยังมีเพื่อนอีกหลายตัวรอให้รู้จัก", "There are more friends to meet.")}</figcaption></figure></div>
+  </section>
+
+  <section class="cafe-table" aria-labelledby="table-title">
+    <div class="table-copy"><p class="chapter-label">{t("ที่โต๊ะของเรา", "At our table")}</p><h2 id="table-title">{t("เริ่มที่ของอร่อย", "Something delicious.")}<br />{t("อยู่ต่อเพราะบรรยากาศ", "Somewhere to stay.")}</h2><p>{t("เลือกอาหารที่ชอบ จิบเครื่องดื่มริมกระจก แล้วมองสีเขียวของสวนที่อยู่ใกล้แค่เอื้อม", "Choose a favourite dish, settle by the window and watch the garden outside.")}</p><a class="cafe-link" href={href("/menu/")}>{t("เปิดดูเมนูอาหาร", "Explore the food menu")} <ArrowIcon /></a><Image class="story-sign" src={sign} alt="" widths={[240, 400]} sizes="200px" loading="lazy" /></div>
+    <figure class="table-photo"><Image src={photos.table} alt={t("โต๊ะสำหรับนั่งทานอาหารริมหน้าต่างของร้าน", "A sunny window table at the café")} widths={[480, 720, 1080]} sizes="(max-width: 700px) 90vw, 50vw" loading="lazy" /><figcaption>{t("แสงอุ่น ๆ กับมุมที่มองเห็นสวน", "A little sunlight. A view of the garden.")}</figcaption></figure>
+  </section>
+
+  <section class="garden-story" aria-labelledby="garden-title">
+    <div class="garden-heading"><div><p class="chapter-label">{t("ออกไปเดินเล่นกัน", "Beyond the café")}</p><h2 id="garden-title">{t("ตามทางเดิน", "A path to follow.")}<br />{t("ไปหาความสุขเล็ก ๆ", "A moment to keep.")}</h2></div><WatercolorAnimal animal="ducks" /></div>
+    <figure class="garden-main"><Image src={photos.garden} alt={t("ศาลาและทางเดินกลางสวนญี่ปุ่นของร้าน", "The pavilion and walkway in the café's Japanese garden")} widths={[480, 800, 1080]} sizes="(max-width: 700px) 90vw, 65vw" loading="lazy" /><figcaption>{t("สวนญี่ปุ่น และทางเดินที่ชวนให้ค่อย ๆ มอง", "The Japanese garden, one step at a time.")}</figcaption></figure>
+    <div class="garden-aside"><figure><Image src={photos.pond} alt={t("เป็ดและปลาคาร์ฟริมระเบียงไม้", "A duck and koi beside the wooden deck")} widths={[360, 600]} sizes="(max-width: 700px) 90vw, 28vw" loading="lazy" /><figcaption class="handwritten">{t("ทักทายแก๊งริมบ่อ", "Hello from the pond.")}</figcaption></figure><p>{t("แวะดูปลาคาร์ฟ เดินผ่านสวน หรือเลือกกิจกรรมให้อาหารสัตว์ตามคำแนะนำของพนักงาน", "Watch the koi, wander through the garden or choose a feeding activity with guidance from the café team.")}</p><a class="cafe-link" href={href("/activities/") + "#experiences"}>{t("กิจกรรมที่ทำด้วยกันได้", "Things to do together")} <ArrowIcon /></a></div>
+  </section>

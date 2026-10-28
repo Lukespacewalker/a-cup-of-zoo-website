@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import ArrowIcon from "../site/ArrowIcon.astro";
+import WatercolorAnimal from "../site/WatercolorAnimal.astro";
+import { experienceImages as photos } from "../../lib/content/experience-images";
+import catPortrait from "../../assets/site/cat-portrait.png";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = translator(locale);
+const href = (path: string) => localePath(path, locale);
+const paths = [
+  { image: photos.table, path: "/menu/", label: "01 / CAFÉ", title: t("นั่งอร่อย มองสวน", "A table in the garden"), copy: t("อาหาร เครื่องดื่ม และมุมโปรดของคุณ", "Good food, drinks and a place to linger."), link: t("ดูเมนูอาหาร", "Food menu"), alt: t("โต๊ะริมกระจกที่มองออกไปเห็นสวน", "A café table overlooking the garden"), crop: "" },
+  { image: catPortrait, path: "/animals/", label: "02 / ANIMAL FRIENDS", title: t("ทำความรู้จักเพื่อนใหม่", "A few friendly faces"), copy: t("พบเพื่อนสัตว์ในกลุ่ม Indoor และ Outdoor", "Meet our Indoor and Outdoor animal friends."), link: t("พบเพื่อนสัตว์", "Meet the animals"), alt: t("แมวสีส้มนั่งอยู่บนเก้าอี้ในห้องเล่น", "An orange cat sitting on a chair in the playroom"), crop: "" },
+  { image: photos.garden, path: "/activities/", label: "03 / GARDEN & MOMENTS", title: t("เดินเล่นให้เต็มวัน", "Follow the garden path"), copy: t("สวนญี่ปุ่น ริมบ่อ และกิจกรรมเล็ก ๆ ร่วมกัน", "Garden paths, pond life and things to do together."), link: t("ดูสวนและกิจกรรม", "Explore the experiences"), alt: t("ทางเดินไม้ไปยังศาลาในสวนญี่ปุ่น", "A wooden walkway to a pavilion in the Japanese garden"), crop: "" },
+];
+---
+  <section class="home-introduction" id="experiences" aria-labelledby="experience-title">
+    <div class="introduction-heading"><p class="chapter-label">{t("หนึ่งวัน หลายความสุข", "A day, your way")}</p><h2 id="experience-title">{t("โต๊ะตัวโปรด สวนสวย", "A favourite table. An open garden.")}<br />{t("และเพื่อนที่อยากให้รู้จัก", "And friends to get to know.")}</h2></div>
+    <div class="introduction-note"><WatercolorAnimal animal="meerkats" /><p>{t("จะแวะมาทานข้าว เดินเล่นริมบ่อ หรือใช้เวลากับเพื่อนสัตว์ ก็เลือกวันของคุณได้ที่นี่", "Come for lunch, wander by the pond, or spend time with our animal friends. There is more than one way to enjoy the day.")}</p></div>
+    <div class="experience-paths">{paths.map(path => <a href={href(path.path)}><figure class={path.crop}><Image src={path.image} alt={path.alt} widths={[360, 600, 900]} sizes="(max-width: 700px) 90vw, 30vw" loading="lazy" /></figure><span class="path-number">{path.label}</span><h3>{path.title}</h3><p>{path.copy}</p><span class="path-link">{path.link} <ArrowIcon /></span></a>)}</div>
+    <p class="cafe-admission">{t("แวะเฉพาะคาเฟ่ได้ ไม่มีค่าเข้า · ขั้นต่ำอาหารหรือเครื่องดื่ม 1 ออร์เดอร์ต่อคน", "The café has no admission fee · Minimum 1 food or drink order per person.")}</p>
+  </section>

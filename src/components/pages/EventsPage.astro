@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import EventGallery from "../content/EventGallery.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import ArrowIcon from "../site/ArrowIcon.astro";
 import PageHero from "../site/PageHero.astro";
@@ -19,17 +19,17 @@ const phones = venuePhones(page.venue?.content);
   <section class="owner-section" id="group-visits" aria-labelledby="group-title">
     <p class="chapter-label">A day together</p><h2 id="group-title">{t("ทัวร์กลุ่มและกิจกรรมที่ร้าน", "Group visits & gatherings")}</h2>
     <p>{t("ชมภาพบรรยากาศการมาเยือนของโรงเรียนและการรวมกลุ่มในร้าน แล้วเล่าให้เราฟังว่าคุณอยากจัดวันแบบไหน", "Take a look at school visits and gatherings at the café, then tell us about the day you have in mind.")}</p>
-    <div class="event-gallery">{[16, 17, 20].map((number, index) => <figure><Image src={ownerPhoto(number)} alt={t(`บรรยากาศทัวร์กลุ่มและกิจกรรมที่ร้าน ภาพ ${index + 1}`, `Group visits and gatherings at the café, photo ${index + 1}`)} widths={[400, 700]} sizes="(max-width: 700px) 90vw, 30vw" format="webp" loading="lazy" /></figure>)}</div>
+    <EventGallery photos={[16, 17, 20].map((number, index) => ({ src: ownerPhoto(number), alt: t(`บรรยากาศทัวร์กลุ่มและกิจกรรมที่ร้าน ภาพ ${index + 1}`, `Group visits and gatherings at the café, photo ${index + 1}`) }))} />
     <a class="cafe-link" href={href("/activities/")}>{t("ดูโซนสัตว์และกิจกรรมในร้าน", "Explore animal zones & activities")} <ArrowIcon /></a>
   </section>
   <section class="owner-section" id="brand-events" aria-labelledby="brand-title">
     <p class="chapter-label">Events at the café</p><h2 id="brand-title">Suzuki Demo Day</h2><p>{t("อีกบรรยากาศของร้านในวันจัดกิจกรรม Suzuki Demo Day", "A different side of the café during Suzuki Demo Day.")}</p>
-    <div class="event-gallery">{[22, 23, 24].map((number, index) => <figure><Image src={ownerPhoto(number)} alt={t(`กิจกรรม Suzuki Demo Day ที่ A Cup of Zoo ภาพ ${index + 1}`, `Suzuki Demo Day at A Cup of Zoo, photo ${index + 1}`)} widths={[400, 700]} sizes="(max-width: 700px) 90vw, 30vw" format="webp" loading="lazy" /></figure>)}</div>
+    <EventGallery photos={[22, 23, 24].map((number, index) => ({ src: ownerPhoto(number), alt: t(`กิจกรรม Suzuki Demo Day ที่ A Cup of Zoo ภาพ ${index + 1}`, `Suzuki Demo Day at A Cup of Zoo, photo ${index + 1}`) }))} />
   </section>
   <section class="owner-section" id="collaborations" aria-labelledby="collaboration-title">
     <p class="chapter-label">Work with our animal family</p><h2 id="collaboration-title">{t("โฆษณา รีวิว และงานอีเวนต์", "Campaigns, reviews & events")}</h2>
     <p>{t("สนใจร่วมงานกับ A Cup of Zoo ทั้งงานถ่ายภาพ โฆษณา พรีเซ็นเตอร์ หรือออกอีเวนต์ ติดต่อเพื่อคุยรูปแบบงานกับทีมร้านได้", "Contact the café team to discuss photography, advertising, presenter work or event appearances with A Cup of Zoo.")}</p>
-    <div class="event-gallery campaign-gallery">{[26, 27].map((number, index) => <figure><Image src={ownerPhoto(number)} alt={t(`ผลงานโฆษณา Yagi Milk ร่วมกับ${index === 0 ? "น้องหมา" : "น้องแมว"}ของร้าน`, `Yagi Milk campaign featuring one of the café's ${index === 0 ? "dogs" : "cats"}`)} widths={[400, 700]} sizes="(max-width: 700px) 90vw, 30vw" format="webp" loading="lazy" /><figcaption>Yagi Milk · A Cup of Zoo</figcaption></figure>)}</div>
+    <EventGallery campaign caption="Yagi Milk · A Cup of Zoo" photos={[26, 27].map((number, index) => ({ src: ownerPhoto(number), alt: t(`ผลงานโฆษณา Yagi Milk ร่วมกับ${index === 0 ? "น้องหมา" : "น้องแมว"}ของร้าน`, `Yagi Milk campaign featuring one of the café's ${index === 0 ? "dogs" : "cats"}`) }))} />
   </section>
   <section class="owner-contact" id="event-contact" aria-labelledby="contact-title">
     <h2 id="contact-title">{t("วางแผนร่วมกับทีมร้าน", "Plan it with the café team")}</h2>

@@ -3,8 +3,9 @@ import ArrowIcon from "../site/ArrowIcon.astro";
 import "../../styles/cafe-home.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import ContentUnavailable from "../content/ContentUnavailable.astro";
-import { Image } from "astro:assets";
-import sign from "../../assets/watercolor/shop-sign-hero.png";
+import NewsCard from "../content/NewsCard.astro";
+import HomeIntroduction from "../home/HomeIntroduction.astro";
+import HomeStories from "../home/HomeStories.astro";
 import WatercolorAnimal from "../site/WatercolorAnimal.astro";
 import WishingCorner from "../site/WishingCorner.astro";
 import HeroVideo from "../site/HeroVideo.astro";
@@ -12,10 +13,8 @@ import ShopMap from "../site/ShopMap.astro";
 import OpeningHours from "../site/OpeningHours.astro";
 import SocialLinks from "../site/SocialLinks.astro";
 import AnimalVotes from "../site/AnimalVotes.astro";
-import { experienceImages as photos } from "../../lib/content/experience-images";
-import catPortrait from "../../assets/site/cat-portrait.png";
 import { localizedActivities } from "../../lib/i18n/activities";
-import { loadPage, isDemoPost, thaiTranslation } from "../../lib/content/load-page";
+import { loadPage } from "../../lib/content/load-page";
 import { allowedExternalUrl } from "../../lib/business/links";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import { localizedVenue } from "../../lib/i18n/venue";
@@ -23,16 +22,11 @@ interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
-const page = await loadPage();
+const page = await loadPage({ includePosts: locale === "th" });
 const content = localizedVenue(page.venue, locale)?.content;
 const { passes } = localizedActivities(locale);
 const maps = allowedExternalUrl(content?.mapsUrl ?? null, "maps");
 const news = locale === "th" ? page.posts.slice(0, 2) : [];
-const paths = [
-  { image: photos.table, path: "/menu/", label: "01 / CAFÉ", title: t("นั่งอร่อย มองสวน", "A table in the garden"), copy: t("อาหาร เครื่องดื่ม และมุมโปรดของคุณ", "Good food, drinks and a place to linger."), link: t("ดูเมนูอาหาร", "Food menu"), alt: t("โต๊ะริมกระจกที่มองออกไปเห็นสวน", "A café table overlooking the garden"), crop: "" },
-  { image: catPortrait, path: "/animals/", label: "02 / ANIMAL FRIENDS", title: t("ทำความรู้จักเพื่อนใหม่", "A few friendly faces"), copy: t("พบเพื่อนสัตว์ในกลุ่ม Indoor และ Outdoor", "Meet our Indoor and Outdoor animal friends."), link: t("พบเพื่อนสัตว์", "Meet the animals"), alt: t("แมวสีส้มนั่งอยู่บนเก้าอี้ในห้องเล่น", "An orange cat sitting on a chair in the playroom"), crop: "" },
-  { image: photos.garden, path: "/activities/", label: "03 / GARDEN & MOMENTS", title: t("เดินเล่นให้เต็มวัน", "Follow the garden path"), copy: t("สวนญี่ปุ่น ริมบ่อ และกิจกรรมเล็ก ๆ ร่วมกัน", "Garden paths, pond life and things to do together."), link: t("ดูสวนและกิจกรรม", "Explore the experiences"), alt: t("ทางเดินไม้ไปยังศาลาในสวนญี่ปุ่น", "A wooden walkway to a pavilion in the Japanese garden"), crop: "" },
-];
 ---
 <SiteLayout locale={locale} title={t("คาเฟ่สัตว์ คลอง 6 ปทุมธานี", "Animal café in Khlong 6, Pathum Thani")} description={t("A Cup of Zoo คาเฟ่สัตว์และสวน คลอง 6 ปทุมธานี จิบเครื่องดื่ม พบเพื่อนสัตว์ เดินเล่นในสวนญี่ปุ่น พร้อมเมนู แพ็กเกจและข้อมูลก่อนมาเที่ยว", "A café, a garden and a few new friends. Discover A Cup of Zoo in Khlong 6, Pathum Thani, with food, animal experiences and everything you need to plan your visit.")} page={page} includeJsonLd>
   <section class="garden-hero" aria-labelledby="home-title">
@@ -51,15 +45,10 @@ const paths = [
   </section>
   {page.venueProblem && <ContentUnavailable detail={page.venueProblem === "missing" ? t("ยังไม่ได้เผยแพร่ข้อมูลร้าน", "Café information has not been published yet.") : undefined} />}
 
-  <section class="home-introduction" id="experiences" aria-labelledby="experience-title">
-    <div class="introduction-heading"><p class="chapter-label">{t("หนึ่งวัน หลายความสุข", "A day, your way")}</p><h2 id="experience-title">{t("โต๊ะตัวโปรด สวนสวย", "A favourite table. An open garden.")}<br />{t("และเพื่อนที่อยากให้รู้จัก", "And friends to get to know.")}</h2></div>
-    <div class="introduction-note"><WatercolorAnimal animal="meerkats" /><p>{t("จะแวะมาทานข้าว เดินเล่นริมบ่อ หรือใช้เวลากับเพื่อนสัตว์ ก็เลือกวันของคุณได้ที่นี่", "Come for lunch, wander by the pond, or spend time with our animal friends. There is more than one way to enjoy the day.")}</p></div>
-    <div class="experience-paths">{paths.map(path => <a href={href(path.path)}><figure class={path.crop}><Image src={path.image} alt={path.alt} widths={[360, 600, 900]} sizes="(max-width: 700px) 90vw, 30vw" loading="lazy" /></figure><span class="path-number">{path.label}</span><h3>{path.title}</h3><p>{path.copy}</p><span class="path-link">{path.link} <ArrowIcon /></span></a>)}</div>
-    <p class="cafe-admission">{t("แวะเฉพาะคาเฟ่ได้ ไม่มีค่าเข้า · ขั้นต่ำอาหารหรือเครื่องดื่ม 1 ออร์เดอร์ต่อคน", "The café has no admission fee · Minimum 1 food or drink order per person.")}</p>
-  </section>
+  <HomeIntroduction locale={locale} />
 
   <ShopMap locale={locale} home />
-  <AnimalVotes locale={locale} venue={page.venue} compact />
+  <AnimalVotes locale={locale} venue={page.venue} />
 
   <section class="club-invitation" aria-labelledby="home-club-title">
     <div class="club-invitation__copy">
@@ -73,21 +62,7 @@ const paths = [
     </div>
   </section>
 
-  <section class="cat-story" id="friends" aria-labelledby="friends-title">
-    <figure class="cat-story-photo cat-crop"><a data-cat-room-link href={href("/animals/") + "#cat-room"} aria-label={t("พบเจ้าเหมียวและเพื่อนสัตว์", "Meet the cats and other animal friends")}><Image src={photos.cats} alt={t("ช่วงเวลาใกล้ชิดระหว่างเด็กกับแมวของร้าน", "A child sharing a quiet moment with a café cat")} widths={[480, 720, 960]} sizes="(max-width: 700px) 90vw, 48vw" loading="lazy" /></a><figcaption class="handwritten">{t("เพื่อนใหม่ อาจอยู่ใกล้กว่าที่คิด", "A little hello goes a long way.")}</figcaption></figure>
-    <div class="cat-story-copy"><p class="chapter-label">{t("ห้องเล่นกับแมว · Indoor", "The cat room · Indoor")}</p><h2 id="friends-title">{t("เผื่อเวลาไว้", "Make a little time")}<br />{t("ตกหลุมรักเจ้าเหมียว", "for a new friend.")}</h2><p>{t("นั่งอยู่ด้วยกัน มองความซนเล็ก ๆ แล้วค่อยทำความรู้จัก ที่ห้องเล่นกับแมวของเรา", "Take a seat, watch their little antics and get to know the cats at their own pace.")}</p><p class="story-detail">{t("ห้องเล่นกับแมวอยู่ในกลุ่มโซน Indoor เลือกเข้าด้วย One Zone Pass หรือ All Zone Pass", "The cat room is part of the Indoor group, accessible with an Indoor One Zone Pass or an All Zone Pass.")}</p><a class="cafe-link" href={href("/activities/") + "#passes"}>{t("ดูแพ็กเกจและเงื่อนไข", "Passes & visiting details")} <ArrowIcon /></a><figure class="cat-story-small"><a href={href("/animals/")} aria-label={t("พบเพื่อนริมบ่อและสัตว์อื่น ๆ", "Meet the pond companions and other animals")}><Image src={photos.rabbit} alt={t("กระต่ายก้มอยู่ริมบ่อ", "A rabbit beside the pond")} widths={[240, 400]} sizes="200px" loading="lazy" /></a><figcaption>{t("ยังมีเพื่อนอีกหลายตัวรอให้รู้จัก", "There are more friends to meet.")}</figcaption></figure></div>
-  </section>
-
-  <section class="cafe-table" aria-labelledby="table-title">
-    <div class="table-copy"><p class="chapter-label">{t("ที่โต๊ะของเรา", "At our table")}</p><h2 id="table-title">{t("เริ่มที่ของอร่อย", "Something delicious.")}<br />{t("อยู่ต่อเพราะบรรยากาศ", "Somewhere to stay.")}</h2><p>{t("เลือกอาหารที่ชอบ จิบเครื่องดื่มริมกระจก แล้วมองสีเขียวของสวนที่อยู่ใกล้แค่เอื้อม", "Choose a favourite dish, settle by the window and watch the garden outside.")}</p><a class="cafe-link" href={href("/menu/")}>{t("เปิดดูเมนูอาหาร", "Explore the food menu")} <ArrowIcon /></a><Image class="story-sign" src={sign} alt="" widths={[240, 400]} sizes="200px" loading="lazy" /></div>
-    <figure class="table-photo"><Image src={photos.table} alt={t("โต๊ะสำหรับนั่งทานอาหารริมหน้าต่างของร้าน", "A sunny window table at the café")} widths={[480, 720, 1080]} sizes="(max-width: 700px) 90vw, 50vw" loading="lazy" /><figcaption>{t("แสงอุ่น ๆ กับมุมที่มองเห็นสวน", "A little sunlight. A view of the garden.")}</figcaption></figure>
-  </section>
-
-  <section class="garden-story" aria-labelledby="garden-title">
-    <div class="garden-heading"><div><p class="chapter-label">{t("ออกไปเดินเล่นกัน", "Beyond the café")}</p><h2 id="garden-title">{t("ตามทางเดิน", "A path to follow.")}<br />{t("ไปหาความสุขเล็ก ๆ", "A moment to keep.")}</h2></div><WatercolorAnimal animal="ducks" /></div>
-    <figure class="garden-main"><Image src={photos.garden} alt={t("ศาลาและทางเดินกลางสวนญี่ปุ่นของร้าน", "The pavilion and walkway in the café's Japanese garden")} widths={[480, 800, 1080]} sizes="(max-width: 700px) 90vw, 65vw" loading="lazy" /><figcaption>{t("สวนญี่ปุ่น และทางเดินที่ชวนให้ค่อย ๆ มอง", "The Japanese garden, one step at a time.")}</figcaption></figure>
-    <div class="garden-aside"><figure><Image src={photos.pond} alt={t("เป็ดและปลาคาร์ฟริมระเบียงไม้", "A duck and koi beside the wooden deck")} widths={[360, 600]} sizes="(max-width: 700px) 90vw, 28vw" loading="lazy" /><figcaption class="handwritten">{t("ทักทายแก๊งริมบ่อ", "Hello from the pond.")}</figcaption></figure><p>{t("แวะดูปลาคาร์ฟ เดินผ่านสวน หรือเลือกกิจกรรมให้อาหารสัตว์ตามคำแนะนำของพนักงาน", "Watch the koi, wander through the garden or choose a feeding activity with guidance from the café team.")}</p><a class="cafe-link" href={href("/activities/") + "#experiences"}>{t("กิจกรรมที่ทำด้วยกันได้", "Things to do together")} <ArrowIcon /></a></div>
-  </section>
+  <HomeStories locale={locale} />
   <WishingCorner locale={locale} compact />
   <section class="owner-section" aria-label={t("มาเที่ยวเป็นกลุ่ม", "Visit as a group")}>
     <article><p class="chapter-label">Group tours & events</p><h2>{t("ชวนกันมา ทั้งกลุ่ม", "Bring your whole group")}</h2><p>{t("ทัวร์โรงเรียน กิจกรรมกลุ่ม และงานร่วมกับแบรนด์ คุยกับทีมร้านเพื่อวางแผนวันของคุณ", "School visits, group gatherings and brand collaborations. Plan your day with the café team.")}</p><a class="cafe-link" href={href("/events/")}>{t("ดูทัวร์กลุ่มและร่วมงาน", "Groups & collaborations")} <ArrowIcon /></a></article>
@@ -100,5 +75,5 @@ const paths = [
 
   <section class="visit-preview" aria-labelledby="choose-title"><div><p class="chapter-label">{t("เลือกวันของคุณ", "Before you visit")}</p><h2 id="choose-title">{t("แวะคาเฟ่ หรืออยู่กับเพื่อนสัตว์", "Come for the café. Stay for the company.")}</h2><p>{t("โซนคาเฟ่ไม่มีค่าเข้า ขั้นต่ำ 1 ออร์เดอร์ต่อคน หากอยากเข้าโซนสัตว์ใกล้ชิด เลือกแพ็กเกจที่เหมาะกับคุณ", "The café has no admission fee, with a minimum of 1 order per person. Choose a pass to spend time in the animal zones.")}</p></div><div class="home-passes">{passes.map(pass => <a href={href("/activities/") + "#" + pass.id}><span>{pass.name}</span><strong>{pass.price} <small>{t("บาท / คน", "THB / person")}</small></strong><p>{pass.description}</p><span class="path-link">{t("ดูสิทธิประโยชน์", "See what is included")} <ArrowIcon /></span></a>)}</div></section>
   {content && <section class="visit-letter" aria-labelledby="visit-title"><div class="letter-heading"><p class="chapter-label">{t("จากหน้าจอ มาเจอกันที่ร้าน", "From your screen to our garden")}</p><h2 id="visit-title">{t("แล้วแวะมานะ", "See you in the garden.")}</h2><p>A Cup of Zoo<br />{content.locationLabel}</p><p>{content.addressLine}</p><div class="letter-actions">{maps && <a class="button" href={maps}>{t("เปิดแผนที่มาร้าน", "Open the café map")} <ArrowIcon /></a>}<a class="cafe-link" href={href("/visit/")}>{t("ข้อมูลก่อนมาเที่ยว", "Before your visit")} <ArrowIcon /></a></div></div><div class="letter-details"><h3>{t("เวลาเจอกัน", "Opening hours")}</h3><OpeningHours exceptions={content.hoursExceptions} entries={content.regularHours} holidayNote={content.holidayNote} locale={locale} compact /></div></section>}
-  {locale === "th" && (news.length > 0 || page.postsProblem) && <section class="cafe-news" aria-labelledby="news-title"><div class="news-heading"><h2 id="news-title">จดหมายจากร้าน</h2><a class="cafe-link" href="/news/">อ่านทั้งหมด <ArrowIcon /></a></div>{page.postsProblem && <ContentUnavailable />}{news.map(post => { const translation = thaiTranslation(post); return <article class="cafe-news-item"><h3><a href={"/news/" + translation.slug + "/"}>{translation.title}</a></h3>{isDemoPost(post) && <span class="badge">ตัวอย่างระบบ</span>}<p>{translation.excerpt.replace("[[demo]]", "").trim()}</p></article>; })}</section>}
+  {locale === "th" && (news.length > 0 || page.postsProblem) && <section class="cafe-news" aria-labelledby="news-title"><div class="news-heading"><h2 id="news-title">จดหมายจากร้าน</h2><a class="cafe-link" href="/news/">อ่านทั้งหมด <ArrowIcon /></a></div>{page.postsProblem && <ContentUnavailable />}{news.map(post => <NewsCard post={post} heading="h3" className="cafe-news-item" />)}</section>}
 </SiteLayout>

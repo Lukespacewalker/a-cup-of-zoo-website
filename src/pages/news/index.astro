@@ -1,17 +1,15 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import ContentUnavailable from "../../components/content/ContentUnavailable.astro";
-import { isDemoPost, loadPage, thaiTranslation } from "../../lib/content/load-page";
-const page = await loadPage();
+import NewsCard from "../../components/content/NewsCard.astro";
+import { loadPage } from "../../lib/content/load-page";
+const page = await loadPage({ includePosts: true });
 ---
 <SiteLayout title="ข่าวและประกาศจากร้าน" description="ติดตามข่าวและประกาศที่เผยแพร่จาก A Cup of Zoo คาเฟ่สัตว์ คลอง 6 ปทุมธานี ตรวจสอบข้อมูลจากร้านก่อนวางแผนแวะมาเที่ยว" page={page}>
   <header class="page-intro"><h1>ข่าวจากร้าน</h1></header>
   {page.postsProblem && <ContentUnavailable />}
   {!page.postsProblem && page.posts.length === 0 && <p class="page-intro">ยังไม่มีข่าวที่เผยแพร่</p>}
   <section class="band news-grid">
-    {page.posts.map((post) => {
-      const translation = thaiTranslation(post);
-      return <article class="card"><h2><a href={`/news/${translation.slug}/`}>{translation.title}</a></h2>{isDemoPost(post) && <span class="badge">ตัวอย่างระบบ</span>}<p>{translation.excerpt.replace("[[demo]]", "").trim()}</p></article>;
-    })}
+    {page.posts.map(post => <NewsCard post={post} heading="h2" className="card" />)}
   </section>
 </SiteLayout>
