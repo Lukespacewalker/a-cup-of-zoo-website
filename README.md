@@ -1,5 +1,7 @@
 # A Cup of Zoo
 
+> ปัจจุบัน 28 ตุลาคม 2026: เผยแพร่ refactor คุณภาพโค้ดโดยรักษาหน้าตาเดิมแล้ว เวอร์ชัน `14303406-94d1-4a4e-8d16-e2b9b8fae56f` ดู [หลักฐานตรวจและ deploy](docs/review/code-quality-2026-10-28/README.md) Repository นี้เปิด public ตามคำสั่งผู้ใช้ และมี [GitHub Actions](.github/workflows/ci.yml) ตรวจ PR/ทุก push; deploy เมื่อ checks ผ่านเฉพาะสาขาหลักปัจจุบัน `codex/garden-animal-experience` รายละเอียดใน [CI/CD](docs/ci-cd.md) ข้อนี้แทนสถานะเวอร์ชัน/การติดตั้ง SDK ในบันทึกเก่าด้านล่าง
+
 > สถานะปัจจุบัน 28 ตุลาคม 2026: CMS จริงพร้อมใช้ เผยแพร่สัตว์ Canva ครบ 23 ตัว ระบบโหวตซ้ำ/โหลคะแนนและแท่นหน้าแรก พร้อมภาพ ZooClub แล้ว เวอร์ชัน `4b18293c-4c0b-486a-860e-dfec07ca78c7` บน apex/www ใช้ production/CMS และ sitemap 17 หน้า ดู [ผลตรวจหลัง deploy](docs/review/animal-voting-2026-10-28/deployment.md) สถานะ fixture/CMS รอเชื่อมต่อในบันทึกเก่าด้านล่างเป็นประวัติที่ถูกแทนแล้ว
 
 > อัปเดตล่าสุด 27 ตุลาคม 2026: เผยแพร่ Footer ที่อยู่/เบอร์โทร/Facebook/Instagram/TikTok และส่วนชวนติดตามหน้าแรกแล้ว เปิด indexing บนโดเมนร้านพร้อม sitemap15หน้า เวอร์ชัน `8556b10b-60bf-4578-9093-efc3477eae35` ดู [ผลตรวจและหลักฐาน](docs/review/footer-social-2026-10-27/README.md) ข้อนี้แทนสถานะ noindex ของรอบก่อน; CMS จริงยังรอเชื่อมต่อ
@@ -58,7 +60,7 @@ Astro สร้าง `dist/server/wrangler.json` และ Wrangler อ่า�
 
 ตรวจความพร้อมในเครื่องรอบ 27 ตุลาคม: Astro 63 ไฟล์ไม่มี diagnostics, unit tests 22 ผ่าน / 246 assertions, browser tests 30 ผ่าน, content verification ไม่มีรายการ invalid, build และ Wrangler dry run ผ่าน ข้อมูล `displayName` และ `parkingNote` ยังรอการยืนยันตามรายงานเดิม ผลทดสอบในเครื่องแยกจากการตรวจ URL ที่เผยแพร่จริง บันทึก deploy ในเครื่องอยู่ที่ `tmp/cloudflare-deploy-nawaratthinsook.log`
 
-การติดตั้ง dependency ต้องมี `../CMS-Platform-acupofzoo/packages/client` ในเครื่อง เพราะแพ็กเกจ client ยังอ้างผ่าน `file:` จึงยังไม่พร้อมสำหรับ Cloudflare Git build จาก repository เดี่ยว หากจะเปิด production ต้องมี CMS URL ที่เข้าถึงได้จาก Cloudflare ตั้ง `CONTENT_MODE=cms`, `CMS_BASE_URL`, `SITE_ENV=production` และแก้ `site` ใน `astro.config.mjs` จาก `.invalid` เป็นโดเมนจริงก่อน canonical, sitemap และข้อมูลร้านจะใช้โดเมนจากจุดเดียวกัน โดยโค้ดปฏิเสธ fixture ใน production
+ข้อจำกัดเดิมที่ต้องมี `../CMS-Platform-acupofzoo/packages/client` ถูกแทนแล้วด้วย [public SDK snapshot](vendor/cms-client/README.md) ภายใน repository นี้ จึงติดตั้งและ build จาก checkout เดี่ยวได้ Production ใช้ `CONTENT_MODE=cms`, `CMS_BASE_URL`, `SITE_ENV=production` และโดเมนจริงตาม config ที่ commit ไว้ โดยโค้ดปฏิเสธ fixture ใน production
 
 ## SEO ระหว่างเตรียมเว็บไซต์
 

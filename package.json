@@ -20,7 +20,7 @@
     "@fontsource/itim": "^5.3.0",
     "@fontsource/mali": "^5.3.0",
     "@fontsource/noto-sans-thai-looped": "^5.3.0",
-    "@lukespace-cms/client": "file:../CMS-Platform-acupofzoo/packages/client",
+    "@lukespace-cms/client": "file:./vendor/cms-client",
     "astro": "7.3.4",
     "three": "0.186.1"
   },

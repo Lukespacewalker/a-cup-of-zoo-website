@@ -1,0 +1,16 @@
+// Generated metadata.
+export const publicContractsRevision = {
+  "source": "packages/contracts/src",
+  "sourceRevision": "381d8077d62fed9eae5d61bf14910b1282beee31",
+  "files": {
+    "aoed.ts": "49ecded20ed021ac91bac5b88466c1fbca606820ffca9d4c76b03c17ddb6a98c",
+    "enquiries.ts": "88c2055a248f126fd4e1981fc8ef7f6c5cd0482fd4fb4c8b7027dee81a4cc2bd",
+    "media.ts": "36a33df810fdefb9d634c608322b7bebd3ca071108d913f068fd22944f1a06a5",
+    "portfolio-projects.ts": "8e45de5f797166511409a93644575fdab48c12ab3b86057e18c53de1327cabe0",
+    "posts.ts": "85e965efc3ff2b7a80b7bfd57911cc3d52162b0c5abf7dc1be182f0b19a3185d",
+    "products.ts": "3c3955a3db957fa2a7374a62adba7dfbef529b6a1ac96d8e5a5a2351a082265a",
+    "shared.ts": "d5c972c22d2650b64cdbcb0b546fb063890810da5808e9d65599272f796c0194",
+    "venue-content.ts": "cfa2171015febb79d8d3ff603ab8aa45eaad6416bb53fa35fc838999f9a9c6b6",
+    "animal-votes.ts": "ec2954e8cd4d1c5bc8a9831eda6f0e4a71fea6f9990d14e2b613ef493e74a0a0"
+  }
+} as const;
