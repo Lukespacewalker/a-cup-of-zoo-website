@@ -1,5 +1,5 @@
 import { animalVoteCountSchema } from "@lukespace-cms/client";
-import { ballCount, JAR_CAPACITY } from "./model";
+import { ballCount, JAR_CAPACITY, voteBallColor } from "./model";
 
 export function initAnimalDirectory() {
   document
@@ -69,13 +69,16 @@ export function initAnimalDirectory() {
         const paintJar = (count: number) => {
           const balls = ballCount(count),
             full = Math.floor(count / JAR_CAPACITY);
-          card
-            .querySelector("[data-vote-balls]")!
-            .replaceChildren(
-              ...Array.from({ length: balls }, () =>
-                document.createElement("i"),
-              ),
-            );
+          card.querySelector("[data-vote-balls]")!.replaceChildren(
+            ...Array.from({ length: balls }, (_, index) => {
+              const ball = document.createElement("i");
+              ball.style.setProperty(
+                "--ball-color",
+                voteBallColor(count - balls + index + 1),
+              );
+              return ball;
+            }),
+          );
           card.querySelector<HTMLElement>("[data-full-jars]")!.hidden =
             full === 0;
           card.querySelector("[data-full-jar-count]")!.textContent =
@@ -152,6 +155,9 @@ export function initAnimalDirectory() {
             // One ball in flight plus the preceding jar contents equals the confirmed count.
             if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
               paintJar(Math.max(0, result.count - 1));
+              card
+                .querySelector<HTMLElement>(".vote-droplet")!
+                .style.setProperty("--ball-color", voteBallColor(result.count));
               card.style.setProperty(
                 "--drop-distance",
                 `${216 - Math.floor(ballCount(Math.max(0, result.count - 1)) / 7) * 18}px`,

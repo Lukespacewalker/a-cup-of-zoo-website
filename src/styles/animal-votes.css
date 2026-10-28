@@ -463,19 +463,10 @@
   flex: 0 0 16px;
   height: 16px;
   border-radius: 50%;
-  background: #d39479;
+  background: var(--ball-color);
   box-shadow:
     inset -2px -2px 0 #00000015,
     inset 2px 2px 0 #ffffff60;
-}
-.vote-balls i:nth-child(4n) {
-  background: #a8b383;
-}
-.vote-balls i:nth-child(4n + 1) {
-  background: #ddbd68;
-}
-.vote-balls i:nth-child(4n + 2) {
-  background: #a8b9c3;
 }
 .vote-droplet {
   position: absolute;
@@ -485,8 +476,10 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #d39479;
-  box-shadow: inset 2px 2px 0 #ffffff60;
+  background: var(--ball-color);
+  box-shadow:
+    inset -2px -2px 0 #00000015,
+    inset 2px 2px 0 #ffffff60;
   z-index: 4;
 }
 .vote-just-sent .vote-droplet {

@@ -160,11 +160,16 @@ test("repeat votes add exactly one ball, preserve focus/layout and restore the p
   const button = card.locator('[data-vote-button]');
   const before = await card.boundingBox();
   await button.focus();
+  const settledColors: string[] = [];
   for (const count of [1, 2]) {
     await page.keyboard.press("Enter");
     await expect(card).toHaveAttribute("data-count", String(count));
+    await expect(card).toHaveClass(/vote-just-sent/);
+    const fallingColor = await card.locator('.vote-droplet').evaluate(e => getComputedStyle(e).backgroundColor);
     await expect(card).not.toHaveClass(/vote-just-sent/);
     await expect(card.locator('[data-vote-balls] i')).toHaveCount(count);
+    settledColors.push(fallingColor);
+    expect(await card.locator('[data-vote-balls] i').evaluateAll(balls => balls.map(e => getComputedStyle(e).backgroundColor))).toEqual(settledColors);
     await expect(card).toHaveAttribute("data-show-jar", "true");
     await expect(button).toBeFocused();
     expect((await card.boundingBox())!.height).toBe(before!.height);
@@ -176,6 +181,7 @@ test("repeat votes add exactly one ball, preserve focus/layout and restore the p
   await expect(card.locator('[data-vote-balls] i')).toHaveCount(2);
   await page.reload();
   await expect(card).toHaveAttribute("data-count", "2");
+  expect(await card.locator('[data-vote-balls] i').evaluateAll(balls => balls.map(e => getComputedStyle(e).backgroundColor))).toEqual(settledColors);
 });
 
 test("49 to 50 to 51 stores one full jar without scaling other animals", async ({ page }) => {
@@ -192,14 +198,21 @@ test("49 to 50 to 51 stores one full jar without scaling other animals", async (
   for (const [count, balls] of [[50, 0], [51, 1]]) {
     await card.locator('[data-vote-button]').click();
     await expect(card).toHaveAttribute("data-count", String(count));
+    await expect(card).toHaveClass(/vote-just-sent/);
+    const fallingColor = await card.locator('.vote-droplet').evaluate(e => getComputedStyle(e).backgroundColor);
+    // Absolute vote 50 is blue and 51 is terracotta; the palette does not reset with the jar.
+    expect(fallingColor).toBe(count === 50 ? 'rgb(168, 185, 195)' : 'rgb(211, 148, 121)');
     await expect(card).not.toHaveClass(/vote-just-sent/);
     await expect(card.locator('[data-vote-balls] i')).toHaveCount(balls);
+    if (balls) await expect(card.locator('[data-vote-balls] i').last()).toHaveCSS('background-color', fallingColor);
     await expect(card.locator('[data-full-jars]')).toBeVisible();
     await expect(card.locator('[data-full-jar-count]')).toHaveText('× 1');
     await expect(card.locator('[data-jar-summary]')).toContainText(`1 โหลเต็ม และ ${balls} ลูก`);
   }
   await expect(page.locator('[data-resident="nama"] [data-vote-balls] i')).toHaveCount(2);
   await expect(page.locator('[data-resident="dorayaki"] [data-full-jar-count]')).toHaveText('× 2');
+  await page.reload();
+  await expect(card.locator('[data-vote-balls] i')).toHaveCSS('background-color', 'rgb(211, 148, 121)');
 });
 
 test("search uses both CMS languages and keeps an explicit empty/clear path", async ({ page }) => {

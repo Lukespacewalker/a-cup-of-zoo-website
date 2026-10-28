@@ -5,7 +5,7 @@ import AnimalPodium from "./AnimalPodium.astro";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import { runtimeConfig } from "../../lib/content/runtime-config";
 import { loadVoteTotals } from "../../lib/voting/gateway";
-import { ballCount, JAR_CAPACITY } from "../../lib/voting/model";
+import { ballCount, JAR_CAPACITY, voteBallColor } from "../../lib/voting/model";
 import "../../styles/animal-votes.css";
 interface Props {
   locale: Locale;
@@ -160,9 +160,14 @@ const format = (n: number) =>
                   />
                 </div>
                 <div class="vote-balls" data-vote-balls>
-                  {Array.from({ length: known ? ballCount(count) : 0 }, () => (
-                    <i />
-                  ))}
+                  {Array.from(
+                    { length: known ? ballCount(count) : 0 },
+                    (_, index) => (
+                      <i
+                        style={`--ball-color: ${voteBallColor(count - ballCount(count) + index + 1)}`}
+                      />
+                    ),
+                  )}
                 </div>
                 <i class="vote-droplet"></i>
                 <div class="vote-jar-lid"></div>
