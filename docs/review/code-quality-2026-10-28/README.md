@@ -1,6 +1,16 @@
 # ผลปรับคุณภาพโค้ด — 28 ตุลาคม 2026
 
-สถานะ **PASS** บน product commit `acd198c49e17b9fdfd3fe2abeacae49a15e79ca7` หลังแก้ข้อพบจากรีวิวอิสระครบแล้ว งานนี้ commit ในเครื่อง ไม่มีการ deploy หรือเขียนข้อมูล production
+สถานะ **PASS** บน product commit `acd198c49e17b9fdfd3fe2abeacae49a15e79ca7` หลังแก้ข้อพบจากรีวิวอิสระครบแล้ว ณ จุดยอมรับเดิมงานนี้ commit ในเครื่อง ต่อมาได้รับคำสั่ง push/deploy ตามบันทึกด้านล่าง
+
+## เผยแพร่ — 28 ตุลาคม 2026
+
+Deploy source commit `169217c17a6a656baead0f50d5aa364f0d2defc2` เป็น Worker version `14303406-94d1-4a4e-8d16-e2b9b8fae56f` บน https://acupofzoo.com และ https://www.acupofzoo.com แทน version `d99b1af6-25b6-45b3-8dfd-fd189c5afb30` โดยคง production CMS/indexing configuration เดิม
+
+ก่อน deploy รัน unit tests 45 รายการ/365 assertions, format check, Astro check 104 ไฟล์, build และ Wrangler dry run ผ่าน หลัง deploy ตรวจ HTTP 200 ทั้ง 34 หน้าบน apex/www, สัตว์ 23 ตัว, สิทธิสมาชิก 5 ระดับ, map pins 19 จุด, Three.js พร้อมใช้ และภาพสัตว์/สติกเกอร์โหล 46 ภาพ decode สำเร็จ ทดสอบค้นหานามะและเปิด/ปิดโหลจริงผ่าน BrowserOS neo; missing page/news/farm ตอบ 404, robots/sitemap ตอบ 200
+
+คะแนนรายตัวก่อน–หลังตรงกันทั้งหมด รวม 71 คะแนน ไม่มีการส่งโหวตหรือเปลี่ยนข้อมูล CMS ในรอบนี้ หลักฐาน deploy และ live verification อยู่ที่ `C:/Users/Sutti/.codex/artifacts/acupofzoo-code-quality-deploy-2026-10-28/`
+
+สร้าง [private GitHub repository](https://github.com/Lukespacewalker/a-cup-of-zoo-website) ตามคำสั่งผู้ใช้ สำหรับ push สาขา `codex/garden-animal-experience` บันทึกเอกสารหลัง deploy ไม่เปลี่ยน product source จาก commit ที่ deploy
 
 รอ chat “ออกแบบระบบโหวตสัตว์ใน CMS” เสร็จและ deploy Three.js version `d99b1af6-25b6-45b3-8dfd-fd189c5afb30` ก่อนเริ่ม จากนั้นบันทึกงานเดิมเป็น checkpoint `e21f18ebe014fa3c0b551ef0dd49abd4f3b6c63f`
 

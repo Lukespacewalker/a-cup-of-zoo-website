@@ -1,6 +1,10 @@
 # CMS Cloudflare rollout coordination — 28 October 2026
 
-## Current accepted website — Three.js podium and jar stickers
+## Current accepted website — code quality refactor
+
+**PASS**: website version `14303406-94d1-4a4e-8d16-e2b9b8fae56f`, source `169217c17a6a656baead0f50d5aa364f0d2defc2`, deployed to apex/www with existing production CMS and indexing configuration.34 live page responses passed; Three.js,23 animals,46 decoded animal/jar images,5 Club tiers and19 map pins verified. Search and jar expansion passed in BrowserOS neo. All scores unchanged, total71; no vote writes or CMS changes. [Release evidence](review/code-quality-2026-10-28/README.md). This section supersedes the website version below; earlier entries remain history.
+
+## Previous accepted website — Three.js podium and jar stickers
 
 **PASS**: website `d99b1af6-25b6-45b3-8dfd-fd189c5afb30` on apex/www. Shared Three.js podium on home and animals, circular portraits stuck on jars, miniature full jars ×N, heart total/top refresh and straight paper controls.96 live checks/34 page responses passed.23 animals and all pre-existing scores retained; deliberate Nama acceptance vote62→63, total70→71, others unchanged. CMS API/Admin/FARM unchanged; no deployment hold remains. [Release evidence](review/animal-podium-2026-10-28/README.md). This section supersedes the prior website visual treatment below; earlier entries remain history.
 
