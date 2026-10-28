@@ -12,13 +12,6 @@ export const partners = [
   { name: "BG Pathum United", image: 33 }, { name: "PKAH", image: 34 },
   { name: "24 Sleep Resort", image: 29 }, { name: "Petopia", image: 31 },
 ];
-export const memberTiers = [
-  { name: "Friend", spend: 0, discount: 0, guestTh: "—", guestEn: "—", couponTh: "—", couponEn: "—" },
-  { name: "Buddy", spend: 3000, discount: 0, guestTh: "1 ครั้ง", guestEn: "Once", couponTh: "อาหารสัตว์", couponEn: "Animal food" },
-  { name: "Besties", spend: 7000, discount: 5, guestTh: "1 ครั้ง", guestEn: "Once", couponTh: "อาหารสัตว์ + ตะกร้าอาหารสัตว์", couponEn: "Animal food + food basket" },
-  { name: "Soulmate", spend: 12000, discount: 10, guestTh: "เดือนละ 1 ครั้ง", guestEn: "Once a month", couponTh: "อาหารสัตว์ + ตะกร้าอาหารสัตว์ + เครื่องดื่ม 1 ฟรี 1", couponEn: "Animal food + food basket + buy-one-get-one drink" },
-  { name: "Family", spend: 20000, discount: 15, guestTh: "เดือนละ 1 ครั้ง", guestEn: "Once a month", couponTh: "อาหารสัตว์ + ตะกร้าอาหารสัตว์ + เครื่องดื่ม 1 ฟรี 1 + ของที่ระลึกปีใหม่", couponEn: "Animal food + food basket + buy-one-get-one drink + New Year souvenir" },
-];
 export const memberRewards = [
   { points: 20, th: "ป้ายเอมะเขียนขอพร", en: "Ema wishing plaque" },
   { points: 20, th: "อาหารสัตว์ 1 อย่าง", en: "One animal food item" },

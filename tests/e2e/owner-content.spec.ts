@@ -26,6 +26,41 @@ test("owner content is bilingual, discoverable, and fits phones", async ({ page 
   }
 });
 
+test("club tiers keep their artwork, coupon separators and added benefits in both languages", async ({ page }) => {
+  const tiers = ["Friend", "Buddy", "Besties", "Soulmate", "Family"];
+  const highlightedRows = [0, 2, 3, 3, 2];
+  const copy = {
+    th: [
+      { guest: "—", coupons: ["—"], additions: [] },
+      { guest: "1 ครั้ง", coupons: ["อาหารสัตว์"], additions: ["1 ครั้ง", "อาหารสัตว์"] },
+      { guest: "1 ครั้ง", coupons: ["อาหารสัตว์", "+ ตะกร้าอาหารสัตว์"], additions: ["5%", "ตะกร้าอาหารสัตว์", "+ ของที่ระลึก"] },
+      { guest: "เดือนละ 1 ครั้ง", coupons: ["อาหารสัตว์", "+ ตะกร้าอาหารสัตว์", "+ เครื่องดื่ม 1 ฟรี 1"], additions: ["10%", "เดือนละ 1 ครั้ง", "เครื่องดื่ม 1 ฟรี 1"] },
+      { guest: "เดือนละ 1 ครั้ง", coupons: ["อาหารสัตว์", "+ ตะกร้าอาหารสัตว์", "+ เครื่องดื่ม 1 ฟรี 1", "+ ของที่ระลึกปีใหม่"], additions: ["15%", "ของที่ระลึกปีใหม่"] },
+    ],
+    en: [
+      { guest: "—", coupons: ["—"], additions: [] },
+      { guest: "Once", coupons: ["Animal food"], additions: ["Once", "Animal food"] },
+      { guest: "Once", coupons: ["Animal food", "+ food basket"], additions: ["5%", "food basket", "+ souvenir"] },
+      { guest: "Once a month", coupons: ["Animal food", "+ food basket", "+ buy-one-get-one drink"], additions: ["10%", "Once a month", "buy-one-get-one drink"] },
+      { guest: "Once a month", coupons: ["Animal food", "+ food basket", "+ buy-one-get-one drink", "+ New Year souvenir"], additions: ["15%", "New Year souvenir"] },
+    ],
+  };
+  for (const locale of ["th", "en"] as const) {
+    await page.goto(locale === "th" ? "/club/" : "/en/club/");
+    await expect(page.locator(".tier-heading h3")).toHaveText(tiers);
+    for (const [index, name] of tiers.entries()) {
+      const tier = page.locator(`[data-member-tier="${name}"]`);
+      const benefits = tier.locator(".tier-benefits > div");
+      await expect(tier.locator(".tier-artwork")).toHaveAttribute("src", new RegExp(`${name.toLowerCase()}\\.`));
+      await expect(tier.locator(".tier-benefit--new")).toHaveCount(highlightedRows[index]);
+      await expect(benefits.nth(1).locator("dd")).toHaveText(copy[locale][index].guest);
+      await expect(benefits.nth(2).locator(".tier-coupon")).toHaveText(copy[locale][index].coupons);
+      await expect(tier.locator(".tier-benefit__addition")).toHaveText(copy[locale][index].additions);
+      await expect(benefits.nth(3).locator(".tier-coupon")).toHaveCount(index >= 2 ? 1 : 0);
+    }
+  }
+});
+
 test("map and every place link remain available without JavaScript", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();

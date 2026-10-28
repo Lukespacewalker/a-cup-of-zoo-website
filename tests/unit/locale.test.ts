@@ -2,6 +2,7 @@ import { expect, test } from "bun:test";
 import { bilingualPaths, languageAlternates, localePath } from "../../src/lib/i18n/locale";
 import { localizedMenu, localizedExtras } from "../../src/lib/i18n/menu";
 import { localizedActivities } from "../../src/lib/i18n/activities";
+import { passes, experiences, animalFood } from "../../src/lib/content/activities-catalog";
 import { localizedVenue, englishSourceText } from "../../src/lib/i18n/venue";
 import { fixtureVenue } from "../../src/lib/content/fixture-data";
 import { cafeJsonLd } from "../../src/lib/seo/metadata";
@@ -30,6 +31,42 @@ test("English activities preserve all pass, food and promotional amounts", () =>
   const numeric = (value: unknown) => JSON.stringify(value).match(/\d+/g);
   expect(numeric(localizedActivities("en"))).toEqual(numeric(localizedActivities("th")));
   expect(JSON.stringify(localizedActivities("en"))).not.toMatch(/[\u0E00-\u0E7F]/);
+  expect(localizedActivities("th").gardenSpots).toHaveLength(16);
+  expect(localizedActivities("en").gardenSpots).toHaveLength(16);
+});
+
+test("activity translations follow item identity when the source catalogs are reordered", () => {
+  // Reorder the real catalogs to catch translations accidentally coupled to array positions.
+  const catalogs = [passes, experiences, animalFood];
+  catalogs.forEach(catalog => Array.prototype.reverse.call(catalog));
+  try {
+    const english = localizedActivities("en");
+    expect(english.passes.map(pass => [pass.id, pass.description, pass.benefits.at(-1)]))
+      .toEqual([
+        ["all-zone", "Visit both Indoor and Outdoor zones.", "Socks and an ema wooden wish plaque"],
+        ["one-zone", "Choose either the Indoor or Outdoor group of zones.", "Outdoor choice: an ema wooden wish plaque included"],
+      ]);
+    expect(english.experiences.map(activity => [activity.id, activity.name, activity.unit, activity.note]))
+      .toEqual([
+        ["koi", "Feed the koi", "bag", "Watch and feed koi at the pond."],
+        ["ema", "Write an ema wish plaque", "plaque", "Write your wish on a wooden plaque."],
+        ["goat-milk", "Bottle-feed a miniature goat", "bottle", "Spend a little time with the goats."],
+        ["alligator-gar", "Feed the alligator gar", "3 sticks", "Feed fish at the pond, following staff instructions."],
+        ["basket", "Animal food basket", "basket", "Promotional price shown in the shop menu. Includes dog and cat food, goat food, grass for goats and fish food."],
+      ]);
+    expect(english.animalFood.map(food => [food.id, food.name, food.note]))
+      .toEqual([
+        ["alligator-gar", "Alligator gar food · 3 sticks", ""],
+        ["goat-milk", "Goat milk · 1 bottle", ""],
+        ["bird", "Bird food", "Limited availability each day"],
+        ["fish-duck", "Fish and duck food", ""],
+        ["grass", "Grass for goats and rabbits", ""],
+        ["goat-rabbit", "Goat and rabbit food", ""],
+        ["dog-cat", "Dog and cat food", ""],
+      ]);
+  } finally {
+    catalogs.forEach(catalog => Array.prototype.reverse.call(catalog));
+  }
 });
 
 test("locale equivalents preserve hashes and exclude untranslated news from alternates", () => {

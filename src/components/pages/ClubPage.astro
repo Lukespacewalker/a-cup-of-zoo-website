@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import ArrowIcon from "../site/ArrowIcon.astro";
 import WatercolorAnimal from "../site/WatercolorAnimal.astro";
@@ -9,28 +10,21 @@ import bestiesArtwork from "../../assets/club/besties.png";
 import soulmateArtwork from "../../assets/club/soulmate.png";
 import familyArtwork from "../../assets/club/family.png";
 import { loadPage } from "../../lib/content/load-page";
-import { memberRewards, memberTiers, ownerPhoto, partners } from "../../lib/content/owner-brief";
+import { memberRewards, ownerPhoto, partners } from "../../lib/content/owner-brief";
+import { memberTiers, presentMemberTier, type MemberTier } from "../../lib/content/member-tiers";
 import { translator, type Locale } from "../../lib/i18n/locale";
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const t = translator(locale);
 const page = await loadPage();
-const tierArtwork = [friendArtwork, buddyArtwork, bestiesArtwork, soulmateArtwork, familyArtwork];
-const tiers = memberTiers.map((tier, index) => {
-  const previous = memberTiers[index - 1];
-  const previousCoupons = previous ? t(previous.couponTh, previous.couponEn).split(" + ") : [];
-  return {
-    ...tier,
-    artwork: tierArtwork[index],
-    level: index + 1,
-    newDiscount: !!previous && tier.discount > previous.discount,
-    newGuest: !!previous && tier.guestTh !== previous.guestTh,
-    newCoupon: !!previous && tier.couponTh !== previous.couponTh,
-    coupons: t(tier.couponTh, tier.couponEn).split(" + ").map(label => ({ label, isNew: !!previous && !previousCoupons.includes(label) })),
-    birthdaySouvenir: tier.spend >= 7000,
-    newBirthdaySouvenir: tier.spend >= 7000 && (previous?.spend ?? 0) < 7000,
-  };
-});
+// Artwork follows tier identity even if the owner changes the display order.
+const tierArtwork: Record<MemberTier["id"], ImageMetadata> = { friend: friendArtwork, buddy: buddyArtwork, besties: bestiesArtwork, soulmate: soulmateArtwork, family: familyArtwork };
+const tiers = memberTiers.map((tier, index) => ({
+  ...tier,
+  ...presentMemberTier(tier, memberTiers[index - 1], locale),
+  artwork: tierArtwork[tier.id],
+  level: index + 1,
+}));
 ---
 <SiteLayout locale={locale} title={t("Zoo Clubs สมาชิกและสิทธิพิเศษ", "Zoo Clubs membership & benefits")} description={t("สมัคร Zoo Clubs ฟรีผ่าน LINE @acupofzoo สะสม 25 บาทต่อ 1 แต้ม ดูสมาชิกทั้ง 5 ระดับ ของแลกแต้ม และพาร์ตเนอร์ของ A Cup of Zoo", "Join Zoo Clubs free through LINE @acupofzoo. Earn 1 point per 25 THB and explore five membership tiers, rewards and A Cup of Zoo partners.")} page={page}>
   <header class="club-intro" aria-labelledby="club-title">
@@ -64,7 +58,7 @@ const tiers = memberTiers.map((tier, index) => {
         </div>
         <div class:list={["tier-benefit", { "tier-benefit--new": tier.newGuest }]}>
           <dt>{t("พาเพื่อนมาฟรี*", "Bring a friend free*")}{tier.newGuest && <span class="tier-benefit__tag">{t("เพิ่มสิทธิ์", "Added benefit")}</span>}</dt>
-          <dd>{tier.newGuest ? <strong class="tier-benefit__addition">{t(tier.guestTh, tier.guestEn)}</strong> : t(tier.guestTh, tier.guestEn)}</dd>
+          <dd>{tier.newGuest ? <strong class="tier-benefit__addition">{tier.guest}</strong> : tier.guest}</dd>
         </div>
         <div class:list={["tier-benefit", { "tier-benefit--new": tier.newCoupon }]}>
           <dt>{t("คูปองรายปี", "Annual coupons")}{tier.newCoupon && <span class="tier-benefit__tag">{t("เพิ่มสิทธิ์", "Added benefit")}</span>}</dt>
