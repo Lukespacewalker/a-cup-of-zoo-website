@@ -1,5 +1,6 @@
 import {
   createCmsClient,
+  postDtoSchema,
   type PostDto,
   type PublicVenueDto,
 } from "@lukespace-cms/client";
@@ -33,8 +34,10 @@ export function createCmsGateway(
     },
     async getPost(slug: string) {
       try {
-        return await client.request<PostDto>(
-          `/api/public/posts/${encodeURIComponent(slug)}?locale=th`,
+        return postDtoSchema.parse(
+          await client.request<unknown>(
+            `/api/public/posts/${encodeURIComponent(slug)}?locale=th`,
+          ),
         );
       } catch (error) {
         const mapped = mapCmsError(error);

@@ -2,24 +2,18 @@
   --page: min(1200px, calc(100% - 4rem));
   --milk: #f5f1e8;
   --paper: #fffaf0;
-  --peach: #c4a484;
   --blush: #eae1d2;
   --butter: #ebdcb7;
   --sage: #59634b;
   --cocoa: #544637;
   --cocoa-deep: #40382c;
-  --berry: #c96b63;
   --ink: #544b3d;
   --line: #d5cbbb;
   --shadow: 0 8px 18px #3d291714;
   --button: #586149;
   --on-button: #fffaf0;
-  --band: #49463c;
-  --on-band: #fff6ec;
-  --header: 5rem;
   --sticky: calc(4.75rem + env(safe-area-inset-bottom));
   --font: "Noto Sans Thai Looped", sans-serif;
-  --heading: "Mali", sans-serif;
   --gold: #c29d62;
   --gold-deep: #9d7b42;
   --gold-light: rgba(194, 157, 98, 0.14);
@@ -43,7 +37,6 @@
 html[data-theme="dark"] {
   --milk: #292a23;
   --paper: #35372d;
-  --peach: #e3a888;
   --blush: #454639;
   --butter: #574c32;
   --sage: #bdcba7;
@@ -54,8 +47,6 @@ html[data-theme="dark"] {
   --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   --button: #cad2b3;
   --on-button: #292a23;
-  --band: #3a2420;
-  --on-band: #fff6ec;
   --gold: #e2be85;
   --gold-deep: #f3d7a8;
   --gold-light: rgba(226, 190, 133, 0.18);
@@ -80,7 +71,6 @@ html[data-theme="dark"] {
   :root[data-theme="auto"] {
     --milk: #292a23;
     --paper: #35372d;
-    --peach: #e3a888;
     --blush: #454639;
     --butter: #574c32;
     --sage: #bdcba7;
@@ -91,8 +81,6 @@ html[data-theme="dark"] {
     --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
     --button: #cad2b3;
     --on-button: #292a23;
-    --band: #3a2420;
-    --on-band: #fff6ec;
     --gold: #e2be85;
     --gold-deep: #f3d7a8;
     --gold-light: rgba(226, 190, 133, 0.18);

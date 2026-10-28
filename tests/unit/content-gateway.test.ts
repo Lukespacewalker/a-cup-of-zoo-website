@@ -105,6 +105,36 @@ test("a parent request that is already aborted remains cancelled", async () => {
   }
 });
 
+test("a stalled post body is unavailable while a genuine 404 remains missing", async () => {
+  const server = Bun.serve({
+    hostname: "127.0.0.1",
+    port: 0,
+    fetch: (request) =>
+      new URL(request.url).pathname.includes("/missing")
+        ? new Response(null, { status: 404 })
+        : new Response(
+            new ReadableStream({
+              start(controller) {
+                controller.enqueue(new TextEncoder().encode('{"id":'));
+              },
+            }),
+            { headers: { "content-type": "application/json" } },
+          ),
+  });
+  try {
+    const gateway = createGateway(
+      { mode: "cms", environment: "local", cmsBaseUrl: server.url.origin },
+      fetchWithTimeout(80),
+    );
+    await expect(gateway.getPost("stalled")).rejects.toBeInstanceOf(
+      ContentUnavailableError,
+    );
+    expect(await gateway.getPost("missing")).toBeNull();
+  } finally {
+    await server.stop(true);
+  }
+});
+
 test("production hides demo posts", () => {
   const post = {
     translations: [
