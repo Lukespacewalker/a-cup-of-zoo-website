@@ -25,14 +25,26 @@ interface Props {
   includeJsonLd?: boolean;
   locale?: Locale;
 }
-const { title, description, page, includeJsonLd = false, locale = localeFromPath(Astro.url.pathname) } = Astro.props;
+const {
+  title,
+  description,
+  page,
+  includeJsonLd = false,
+  locale = localeFromPath(Astro.url.pathname),
+} = Astro.props;
 const t = translator(locale);
 const translatedContact = localizedVenue(page.venue, locale)?.content;
-const footerAddress = translatedContact?.addressLine ?? page.venue?.content.addressLine ?? null;
+const footerAddress =
+  translatedContact?.addressLine ?? page.venue?.content.addressLine ?? null;
 const footerAddressLang = translatedContact?.addressLine ? locale : "th";
 const requestedFont = Astro.url.searchParams.get("font-preview");
-const previewFont = page.environment === "local" && (requestedFont === "itim" || requestedFont === "looped") ? requestedFont : undefined;
+const previewFont =
+  page.environment === "local" &&
+  (requestedFont === "itim" || requestedFont === "looped")
+    ? requestedFont
+    : undefined;
 ---
+
 <html lang={locale} data-font-preview={previewFont}>
   <head>
     <meta charset="utf-8" />
@@ -40,25 +52,41 @@ const previewFont = page.environment === "local" && (requestedFont === "itim" ||
     <script is:inline>
       (() => {
         const saved = localStorage.getItem("cup-theme");
-        document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : "auto";
+        document.documentElement.dataset.theme =
+          saved === "light" || saved === "dark" ? saved : "auto";
       })();
     </script>
-    <SeoHead title={title} description={description} environment={page.environment} venue={includeJsonLd ? localizedVenue(page.venue, locale) : null} locale={locale} />
+    <SeoHead
+      title={title}
+      description={description}
+      environment={page.environment}
+      venue={includeJsonLd ? localizedVenue(page.venue, locale) : null}
+      locale={locale}
+    />
   </head>
   <body>
-    <a class="skip-link" href="#content">{t("ข้ามไปเนื้อหา", "Skip to content")}</a>
+    <a class="skip-link" href="#content">
+      {t("ข้ามไปเนื้อหา", "Skip to content")}
+    </a>
     <Header />
     <main id="content">
       <div class="shell">
         <slot />
       </div>
     </main>
-    <Footer phones={venuePhones(page.venue?.content)} mapsUrl={page.venue?.content.mapsUrl ?? null} addressLine={footerAddress} addressLang={footerAddressLang} facebookUrl={page.venue?.content.facebookUrl ?? null} />
+    <Footer
+      phones={venuePhones(page.venue?.content)}
+      mapsUrl={page.venue?.content.mapsUrl ?? null}
+      addressLine={footerAddress}
+      addressLang={footerAddressLang}
+      facebookUrl={page.venue?.content.facebookUrl ?? null}
+    />
     {previewFont && <script is:inline define:vars={{ previewFont }}>
       // Keep the selected local comparison when visiting another page.
       for (const link of document.querySelectorAll("a[href]")) {
         const url = new URL(link.getAttribute("href"), location.href);
-        if (url.origin !== location.origin || url.pathname === "/font-preview/") continue;
+        if (url.origin !== location.origin || url.pathname === "/font-preview/")
+          continue;
         url.searchParams.set("font-preview", previewFont);
         link.href = url.href;
       }

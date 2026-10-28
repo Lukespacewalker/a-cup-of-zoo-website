@@ -8,4 +8,19 @@ interface Props {
 }
 const { photos, campaign = false, caption } = Astro.props;
 ---
-<div class={campaign ? "event-gallery campaign-gallery" : "event-gallery"}>{photos.map(photo => <figure><Image src={photo.src} alt={photo.alt} widths={[400, 700]} sizes="(max-width: 700px) 90vw, 30vw" format="webp" loading="lazy" />{caption && <figcaption>{caption}</figcaption>}</figure>)}</div>
+
+<div class={campaign ? "event-gallery campaign-gallery" : "event-gallery"}>
+  {photos.map((photo) => (
+    <figure>
+      <Image
+        src={photo.src}
+        alt={photo.alt}
+        widths={[400, 700]}
+        sizes="(max-width: 700px) 90vw, 30vw"
+        format="webp"
+        loading="lazy"
+      />
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+  ))}
+</div>

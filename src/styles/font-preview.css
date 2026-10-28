@@ -1,4 +1,6 @@
 /* Optional local comparison. The main site uses the selected Looped + Mali pair. */
 @import "@fontsource/itim/400.css";
 
-:root[data-font-preview="itim"] { --font: "Itim", sans-serif; }
+:root[data-font-preview="itim"] {
+  --font: "Itim", sans-serif;
+}

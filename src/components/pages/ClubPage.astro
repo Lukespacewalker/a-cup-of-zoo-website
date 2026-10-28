@@ -10,15 +10,31 @@ import bestiesArtwork from "../../assets/club/besties.png";
 import soulmateArtwork from "../../assets/club/soulmate.png";
 import familyArtwork from "../../assets/club/family.png";
 import { loadPage } from "../../lib/content/load-page";
-import { memberRewards, ownerPhoto, partners } from "../../lib/content/owner-brief";
-import { memberTiers, presentMemberTier, type MemberTier } from "../../lib/content/member-tiers";
+import {
+  memberRewards,
+  ownerPhoto,
+  partners,
+} from "../../lib/content/owner-brief";
+import {
+  memberTiers,
+  presentMemberTier,
+  type MemberTier,
+} from "../../lib/content/member-tiers";
 import { translator, type Locale } from "../../lib/i18n/locale";
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+}
 const { locale } = Astro.props;
 const t = translator(locale);
 const page = await loadPage();
 // Artwork follows tier identity even if the owner changes the display order.
-const tierArtwork: Record<MemberTier["id"], ImageMetadata> = { friend: friendArtwork, buddy: buddyArtwork, besties: bestiesArtwork, soulmate: soulmateArtwork, family: familyArtwork };
+const tierArtwork: Record<MemberTier["id"], ImageMetadata> = {
+  friend: friendArtwork,
+  buddy: buddyArtwork,
+  besties: bestiesArtwork,
+  soulmate: soulmateArtwork,
+  family: familyArtwork,
+};
 const tiers = memberTiers.map((tier, index) => ({
   ...tier,
   ...presentMemberTier(tier, memberTiers[index - 1], locale),
@@ -26,58 +42,302 @@ const tiers = memberTiers.map((tier, index) => ({
   level: index + 1,
 }));
 ---
-<SiteLayout locale={locale} title={t("Zoo Clubs สมาชิกและสิทธิพิเศษ", "Zoo Clubs membership & benefits")} description={t("สมัคร Zoo Clubs ฟรีผ่าน LINE @acupofzoo สะสม 25 บาทต่อ 1 แต้ม ดูสมาชิกทั้ง 5 ระดับ ของแลกแต้ม และพาร์ตเนอร์ของ A Cup of Zoo", "Join Zoo Clubs free through LINE @acupofzoo. Earn 1 point per 25 THB and explore five membership tiers, rewards and A Cup of Zoo partners.")} page={page}>
+
+<SiteLayout
+  locale={locale}
+  title={t("Zoo Clubs สมาชิกและสิทธิพิเศษ", "Zoo Clubs membership & benefits")}
+  description={t(
+    "สมัคร Zoo Clubs ฟรีผ่าน LINE @acupofzoo สะสม 25 บาทต่อ 1 แต้ม ดูสมาชิกทั้ง 5 ระดับ ของแลกแต้ม และพาร์ตเนอร์ของ A Cup of Zoo",
+    "Join Zoo Clubs free through LINE @acupofzoo. Earn 1 point per 25 THB and explore five membership tiers, rewards and A Cup of Zoo partners.",
+  )}
+  page={page}
+>
   <header class="club-intro" aria-labelledby="club-title">
     <div class="club-intro__inner">
-    <div class="club-intro__copy">
-      <p class="chapter-label">{t("มาเป็นเพื่อนกัน", "A little closer, every visit")}</p>
-      <h1 id="club-title">Zoo Clubs</h1>
-      <p class="club-intro__tagline">{t("ยิ่งมาบ่อย ยิ่งสนิทกับน้อง ๆ", "More visits. More time with your favourites.")}</p>
-      <p>{t("สมัครฟรีผ่าน LINE สะสมแต้มทุกบิล แล้วขยับจาก Friend ไปเป็น Family ของน้อง ๆ", "Join free on LINE, collect points with each bill and work your way from Friend to Family.")}</p>
-      <a class="button" href="https://line.me/R/ti/p/%40acupofzoo">{t("สมัคร Zoo Clubs ฟรี", "Join Zoo Clubs free")} <ArrowIcon /></a>
-      <p class="section-note">{t('เพิ่มเพื่อน LINE @acupofzoo แล้วกด “สมัครสมาชิก” เพื่อสมัครและดูข้อมูลสมาชิก', 'Add LINE @acupofzoo, then select “สมัครสมาชิก” (Join membership) to sign up and view your membership.')}</p>
-    </div>
-    <div class="club-welcome">
-      <div class="club-welcome__heading"><p>{t("เริ่มต้นที่ Friend", "Start as a Friend")}</p><WatercolorAnimal animal="meerkats" /></div>
-      <div class="club-facts"><p><strong>{t("5 แต้ม", "5 points")}</strong>{t("รับทันทีเมื่อสมัครสมาชิกฟรี", "Yours when you join for free")}</p><p><strong>{t("25 บาท = 1 แต้ม", "25 THB = 1 point")}</strong>{t("สะสมได้ทุกบิล รวมแพ็กเกจ", "Earn on every bill, including passes")}</p><p><strong>{t("ยอดสะสม 1 ปี", "One year of spending")}</strong>{t("ถึงเกณฑ์ ขยับระดับอัตโนมัติ", "Reach the threshold to move up a tier")}</p></div>
-    </div>
+      <div class="club-intro__copy">
+        <p class="chapter-label">
+          {t("มาเป็นเพื่อนกัน", "A little closer, every visit")}
+        </p>
+        <h1 id="club-title">Zoo Clubs</h1>
+        <p class="club-intro__tagline">
+          {t(
+            "ยิ่งมาบ่อย ยิ่งสนิทกับน้อง ๆ",
+            "More visits. More time with your favourites.",
+          )}
+        </p>
+        <p>
+          {t(
+            "สมัครฟรีผ่าน LINE สะสมแต้มทุกบิล แล้วขยับจาก Friend ไปเป็น Family ของน้อง ๆ",
+            "Join free on LINE, collect points with each bill and work your way from Friend to Family.",
+          )}
+        </p>
+        <a class="button" href="https://line.me/R/ti/p/%40acupofzoo">
+          {t("สมัคร Zoo Clubs ฟรี", "Join Zoo Clubs free")} <ArrowIcon />
+        </a>
+        <p class="section-note">
+          {t(
+            "เพิ่มเพื่อน LINE @acupofzoo แล้วกด “สมัครสมาชิก” เพื่อสมัครและดูข้อมูลสมาชิก",
+            "Add LINE @acupofzoo, then select “สมัครสมาชิก” (Join membership) to sign up and view your membership.",
+          )}
+        </p>
+      </div>
+      <div class="club-welcome">
+        <div class="club-welcome__heading">
+          <p>{t("เริ่มต้นที่ Friend", "Start as a Friend")}</p>
+          <WatercolorAnimal animal="meerkats" />
+        </div>
+        <div class="club-facts">
+          <p>
+            <strong>{t("5 แต้ม", "5 points")}</strong>
+            {t("รับทันทีเมื่อสมัครสมาชิกฟรี", "Yours when you join for free")}
+          </p>
+          <p>
+            <strong>{t("25 บาท = 1 แต้ม", "25 THB = 1 point")}</strong>
+            {t(
+              "สะสมได้ทุกบิล รวมแพ็กเกจ",
+              "Earn on every bill, including passes",
+            )}
+          </p>
+          <p>
+            <strong>{t("ยอดสะสม 1 ปี", "One year of spending")}</strong>
+            {t(
+              "ถึงเกณฑ์ ขยับระดับอัตโนมัติ",
+              "Reach the threshold to move up a tier",
+            )}
+          </p>
+        </div>
+      </div>
     </div>
   </header>
-  <section class="owner-section" aria-labelledby="tiers-title"><h2 id="tiers-title">{t("5 ระดับความสนิท", "Five levels of friendship")}</h2>
-    <p class="tier-guide">{t("ขยับระดับตามยอดใช้จ่ายสะสม 1 ปี แถบสีพร้อมป้าย “เพิ่มสิทธิ์” ช่วยให้เห็นสิทธิ์ที่เพิ่มจากระดับก่อน", "Move up with one year of accumulated spending. Coloured rows marked “Added benefit” show what improves from the previous level.")}</p>
-    <ul class="tier-list">{tiers.map(tier => <li data-member-tier={tier.name}>
-      <div class="tier-heading">
-        <Image src={tier.artwork} class="tier-artwork" alt="" aria-hidden="true" widths={[160, 320]} sizes="136px" format="webp" loading="lazy" />
-        <div class="tier-heading__copy"><span class="tier-level">Lv. {tier.level}</span><h3>{tier.name}</h3></div>
-      </div>
-      <p class="tier-spend">{tier.spend ? <><span>{t("ยอดสะสม", "Spend")}</span> {tier.spend.toLocaleString("en-US")}{t(" บาท", " THB")}</> : t("สมัครฟรี", "Free to join")}</p>
-      <dl class="tier-benefits">
-        <div class:list={["tier-benefit", { "tier-benefit--new": tier.newDiscount }]}>
-          <dt>{t("ส่วนลดอาหารและเครื่องดื่ม", "Food & drink discount")}{tier.newDiscount && <span class="tier-benefit__tag">{t("เพิ่มสิทธิ์", "Added benefit")}</span>}</dt>
-          <dd>{tier.newDiscount ? <strong class="tier-benefit__addition">{tier.discount}%</strong> : tier.discount ? `${tier.discount}%` : "—"}</dd>
-        </div>
-        <div class:list={["tier-benefit", { "tier-benefit--new": tier.newGuest }]}>
-          <dt>{t("พาเพื่อนมาฟรี*", "Bring a friend free*")}{tier.newGuest && <span class="tier-benefit__tag">{t("เพิ่มสิทธิ์", "Added benefit")}</span>}</dt>
-          <dd>{tier.newGuest ? <strong class="tier-benefit__addition">{tier.guest}</strong> : tier.guest}</dd>
-        </div>
-        <div class:list={["tier-benefit", { "tier-benefit--new": tier.newCoupon }]}>
-          <dt>{t("คูปองรายปี", "Annual coupons")}{tier.newCoupon && <span class="tier-benefit__tag">{t("เพิ่มสิทธิ์", "Added benefit")}</span>}</dt>
-          <dd>{tier.coupons.map((coupon, index) => <span class="tier-coupon">{index > 0 && "+ "}{coupon.isNew ? <strong class="tier-benefit__addition">{coupon.label}</strong> : coupon.label}</span>)}</dd>
-        </div>
-        <div class:list={["tier-benefit", { "tier-benefit--new": tier.newBirthdaySouvenir, "tier-benefit--welcome": tier.level === 1 }]}>
-          <dt>{t("เดือนเกิด", "Birthday month")}{tier.newBirthdaySouvenir && <span class="tier-benefit__tag">{t("เพิ่มสิทธิ์", "Added benefit")}</span>}{tier.level === 1 && <span class="tier-benefit__tag">{t("รับตั้งแต่เริ่ม", "From day one")}</span>}</dt>
-          <dd>{t("HBD Cake + แต้ม x2", "HBD cake + double points")}{tier.birthdaySouvenir && <span class="tier-coupon">{tier.newBirthdaySouvenir ? <strong class="tier-benefit__addition">{t("+ ของที่ระลึก", "+ souvenir")}</strong> : t("+ ของที่ระลึก", "+ souvenir")}</span>}</dd>
-        </div>
-      </dl>
-    </li>)}</ul>
-    <a href="#membership-terms">{t("อ่านเงื่อนไขสิทธิสมาชิก", "Read the membership terms")}</a>
+  <section class="owner-section" aria-labelledby="tiers-title">
+    <h2 id="tiers-title">
+      {t("5 ระดับความสนิท", "Five levels of friendship")}
+    </h2>
+    <p class="tier-guide">
+      {t(
+        "ขยับระดับตามยอดใช้จ่ายสะสม 1 ปี แถบสีพร้อมป้าย “เพิ่มสิทธิ์” ช่วยให้เห็นสิทธิ์ที่เพิ่มจากระดับก่อน",
+        "Move up with one year of accumulated spending. Coloured rows marked “Added benefit” show what improves from the previous level.",
+      )}
+    </p>
+    <ul class="tier-list">
+      {tiers.map((tier) => (
+        <li data-member-tier={tier.name}>
+          <div class="tier-heading">
+            <Image
+              src={tier.artwork}
+              class="tier-artwork"
+              alt=""
+              aria-hidden="true"
+              widths={[160, 320]}
+              sizes="136px"
+              format="webp"
+              loading="lazy"
+            />
+            <div class="tier-heading__copy">
+              <span class="tier-level">Lv. {tier.level}</span>
+              <h3>{tier.name}</h3>
+            </div>
+          </div>
+          <p class="tier-spend">
+            {tier.spend ? (
+              <>
+                <span>{t("ยอดสะสม", "Spend")}</span>{" "}
+                {tier.spend.toLocaleString("en-US")}
+                {t(" บาท", " THB")}
+              </>
+            ) : (
+              t("สมัครฟรี", "Free to join")
+            )}
+          </p>
+          <dl class="tier-benefits">
+            <div
+              class:list={[
+                "tier-benefit",
+                { "tier-benefit--new": tier.newDiscount },
+              ]}
+            >
+              <dt>
+                {t("ส่วนลดอาหารและเครื่องดื่ม", "Food & drink discount")}
+                {tier.newDiscount && (
+                  <span class="tier-benefit__tag">
+                    {t("เพิ่มสิทธิ์", "Added benefit")}
+                  </span>
+                )}
+              </dt>
+              <dd>
+                {tier.newDiscount ? (
+                  <strong class="tier-benefit__addition">
+                    {tier.discount}%
+                  </strong>
+                ) : tier.discount ? (
+                  `${tier.discount}%`
+                ) : (
+                  "—"
+                )}
+              </dd>
+            </div>
+            <div
+              class:list={[
+                "tier-benefit",
+                { "tier-benefit--new": tier.newGuest },
+              ]}
+            >
+              <dt>
+                {t("พาเพื่อนมาฟรี*", "Bring a friend free*")}
+                {tier.newGuest && (
+                  <span class="tier-benefit__tag">
+                    {t("เพิ่มสิทธิ์", "Added benefit")}
+                  </span>
+                )}
+              </dt>
+              <dd>
+                {tier.newGuest ? (
+                  <strong class="tier-benefit__addition">{tier.guest}</strong>
+                ) : (
+                  tier.guest
+                )}
+              </dd>
+            </div>
+            <div
+              class:list={[
+                "tier-benefit",
+                { "tier-benefit--new": tier.newCoupon },
+              ]}
+            >
+              <dt>
+                {t("คูปองรายปี", "Annual coupons")}
+                {tier.newCoupon && (
+                  <span class="tier-benefit__tag">
+                    {t("เพิ่มสิทธิ์", "Added benefit")}
+                  </span>
+                )}
+              </dt>
+              <dd>
+                {tier.coupons.map((coupon, index) => (
+                  <span class="tier-coupon">
+                    {index > 0 && "+ "}
+                    {coupon.isNew ? (
+                      <strong class="tier-benefit__addition">
+                        {coupon.label}
+                      </strong>
+                    ) : (
+                      coupon.label
+                    )}
+                  </span>
+                ))}
+              </dd>
+            </div>
+            <div
+              class:list={[
+                "tier-benefit",
+                {
+                  "tier-benefit--new": tier.newBirthdaySouvenir,
+                  "tier-benefit--welcome": tier.level === 1,
+                },
+              ]}
+            >
+              <dt>
+                {t("เดือนเกิด", "Birthday month")}
+                {tier.newBirthdaySouvenir && (
+                  <span class="tier-benefit__tag">
+                    {t("เพิ่มสิทธิ์", "Added benefit")}
+                  </span>
+                )}
+                {tier.level === 1 && (
+                  <span class="tier-benefit__tag">
+                    {t("รับตั้งแต่เริ่ม", "From day one")}
+                  </span>
+                )}
+              </dt>
+              <dd>
+                {t("HBD Cake + แต้ม x2", "HBD cake + double points")}
+                {tier.birthdaySouvenir && (
+                  <span class="tier-coupon">
+                    {tier.newBirthdaySouvenir ? (
+                      <strong class="tier-benefit__addition">
+                        {t("+ ของที่ระลึก", "+ souvenir")}
+                      </strong>
+                    ) : (
+                      t("+ ของที่ระลึก", "+ souvenir")
+                    )}
+                  </span>
+                )}
+              </dd>
+            </div>
+          </dl>
+        </li>
+      ))}
+    </ul>
+    <a href="#membership-terms">
+      {t("อ่านเงื่อนไขสิทธิสมาชิก", "Read the membership terms")}
+    </a>
   </section>
-  <section class="owner-section" aria-labelledby="rewards-title"><h2 id="rewards-title">{t("แต้มแลกอะไรได้บ้าง", "What can your points get you?")}</h2><ul class="club-rewards">{memberRewards.map(reward => <li><strong>{reward.points} {t("แต้ม", "points")}</strong>{t(reward.th, reward.en)}</li>)}</ul></section>
-  <section class="owner-section club-terms" id="membership-terms" aria-labelledby="terms-title"><h2 id="terms-title">{t("ก่อนใช้สิทธิ", "Before using your benefits")}</h2><ul>
-    <li>{t("ระดับคิดจากยอดใช้จ่ายสะสม 1 ปี ส่วนลดใช้กับอาหารและเครื่องดื่มเท่านั้น", "Tiers are based on one year of accumulated spending. Discounts apply to food and drinks only.")}</li>
-    <li>{t("พาเพื่อนฟรีเฉพาะวันธรรมดา รายชื่อเพื่อนต้องไม่ซ้ำกัน เพื่อนต้องสมัครสมาชิกใหม่ และใช้สิทธิ์เข้าโซนเดียวกับสมาชิก", "Free friend visits are on weekdays only. Each friend must be different, join as a new member and enter the same zone as the member.")}</li>
-    <li>{t("HBD Cake เมื่อใช้จ่ายครบ 500 บาทในเดือนเกิด จำกัด 1 สิทธิ์", "The HBD cake requires spending of 500 THB during your birthday month, limited to one redemption.")}</li>
-    <li>{t("คูปองรายปีให้ทุกปีที่ยังอยู่ในระดับนั้น เงื่อนไขเป็นไปตามที่ร้านกำหนดและอาจเปลี่ยนแปลงได้ สอบถามทีมร้านก่อนใช้สิทธิ", "Annual coupons are provided for each year you remain in that tier. Café terms apply and may change; check with the team before redeeming.")}</li>
-  </ul></section>
-  <section class="owner-section" id="partners" aria-labelledby="partners-title"><p class="chapter-label">Our partners</p><h2 id="partners-title">{t("เพื่อนของ A Cup of Zoo", "Friends of A Cup of Zoo")}</h2><ul class="partner-list">{partners.map(partner => <li><Image src={ownerPhoto(partner.image)} alt="" width={240} format="webp" loading="lazy" /><span>{partner.name}</span></li>)}</ul></section>
+  <section class="owner-section" aria-labelledby="rewards-title">
+    <h2 id="rewards-title">
+      {t("แต้มแลกอะไรได้บ้าง", "What can your points get you?")}
+    </h2>
+    <ul class="club-rewards">
+      {memberRewards.map((reward) => (
+        <li>
+          <strong>
+            {reward.points} {t("แต้ม", "points")}
+          </strong>
+          {t(reward.th, reward.en)}
+        </li>
+      ))}
+    </ul>
+  </section>
+  <section
+    class="owner-section club-terms"
+    id="membership-terms"
+    aria-labelledby="terms-title"
+  >
+    <h2 id="terms-title">{t("ก่อนใช้สิทธิ", "Before using your benefits")}</h2>
+    <ul>
+      <li>
+        {t(
+          "ระดับคิดจากยอดใช้จ่ายสะสม 1 ปี ส่วนลดใช้กับอาหารและเครื่องดื่มเท่านั้น",
+          "Tiers are based on one year of accumulated spending. Discounts apply to food and drinks only.",
+        )}
+      </li>
+      <li>
+        {t(
+          "พาเพื่อนฟรีเฉพาะวันธรรมดา รายชื่อเพื่อนต้องไม่ซ้ำกัน เพื่อนต้องสมัครสมาชิกใหม่ และใช้สิทธิ์เข้าโซนเดียวกับสมาชิก",
+          "Free friend visits are on weekdays only. Each friend must be different, join as a new member and enter the same zone as the member.",
+        )}
+      </li>
+      <li>
+        {t(
+          "HBD Cake เมื่อใช้จ่ายครบ 500 บาทในเดือนเกิด จำกัด 1 สิทธิ์",
+          "The HBD cake requires spending of 500 THB during your birthday month, limited to one redemption.",
+        )}
+      </li>
+      <li>
+        {t(
+          "คูปองรายปีให้ทุกปีที่ยังอยู่ในระดับนั้น เงื่อนไขเป็นไปตามที่ร้านกำหนดและอาจเปลี่ยนแปลงได้ สอบถามทีมร้านก่อนใช้สิทธิ",
+          "Annual coupons are provided for each year you remain in that tier. Café terms apply and may change; check with the team before redeeming.",
+        )}
+      </li>
+    </ul>
+  </section>
+  <section class="owner-section" id="partners" aria-labelledby="partners-title">
+    <p class="chapter-label">Our partners</p>
+    <h2 id="partners-title">
+      {t("เพื่อนของ A Cup of Zoo", "Friends of A Cup of Zoo")}
+    </h2>
+    <ul class="partner-list">
+      {partners.map((partner) => (
+        <li>
+          <Image
+            src={ownerPhoto(partner.image)}
+            alt=""
+            width={240}
+            format="webp"
+            loading="lazy"
+          />
+          <span>{partner.name}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
 </SiteLayout>

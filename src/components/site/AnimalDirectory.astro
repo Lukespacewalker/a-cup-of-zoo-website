@@ -7,46 +7,253 @@ import { runtimeConfig } from "../../lib/content/runtime-config";
 import { loadVoteTotals } from "../../lib/voting/gateway";
 import { ballCount, JAR_CAPACITY } from "../../lib/voting/model";
 import "../../styles/animal-votes.css";
-interface Props { locale: Locale; venue: PublicVenueDto | null; }
+interface Props {
+  locale: Locale;
+  venue: PublicVenueDto | null;
+}
 const { locale, venue } = Astro.props;
 const t = translator(locale);
 const votes = await loadVoteTotals(runtimeConfig());
 const ready = votes.state === "ready";
-const counts = new Map(votes.totals?.items.map(item => [item.animalId, item.count]) ?? []);
-const animals = [...(venue?.content.animals ?? [])].filter(a => a.visible).sort((a, b) => a.sortOrder - b.sortOrder);
-const format = (n: number) => n.toLocaleString(locale === "th" ? "th-TH" : "en-GB");
+const counts = new Map(
+  votes.totals?.items.map((item) => [item.animalId, item.count]) ?? [],
+);
+const animals = [...(venue?.content.animals ?? [])]
+  .filter((a) => a.visible)
+  .sort((a, b) => a.sortOrder - b.sortOrder);
+const format = (n: number) =>
+  n.toLocaleString(locale === "th" ? "th-TH" : "en-GB");
 ---
-<section id="animal-family" class="animal-directory" data-animal-directory data-vote-board data-ready={String(ready)} data-locale={locale} data-total={votes.totals?.total ?? 0} aria-labelledby="family-title">
-  <h2 id="family-title" class="sr-only">{t("วันนี้อยากหยอดใจให้ใคร", "Who has your heart today?")}</h2>
-  <div class="directory-heading"><p>{t("โหวตซ้ำได้ ทุกครั้งคืออีกหนึ่งหัวใจ", "Vote again whenever you like. Every vote is another little heart.")}</p><div class="directory-tools"><span class="votes-total"><svg class="total-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20S3 14.5 3 8.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 9 1.5C21 14.5 12 20 12 20Z" /></svg><span class="sr-only">{t("หัวใจทั้งหมด", "Hearts collected")}</span><strong data-vote-total>{ready ? format(votes.totals!.total) : "—"}</strong></span><a class="score-refresh" href={localePath("/animals/", locale)}><span aria-hidden="true">↻</span> {t("โหลดคะแนนล่าสุด", "Refresh scores")}</a></div></div>
+
+<section
+  id="animal-family"
+  class="animal-directory"
+  data-animal-directory
+  data-vote-board
+  data-ready={String(ready)}
+  data-locale={locale}
+  data-total={votes.totals?.total ?? 0}
+  aria-labelledby="family-title"
+>
+  <h2 id="family-title" class="sr-only">
+    {t("วันนี้อยากหยอดใจให้ใคร", "Who has your heart today?")}
+  </h2>
+  <div class="directory-heading">
+    <p>
+      {t(
+        "โหวตซ้ำได้ ทุกครั้งคืออีกหนึ่งหัวใจ",
+        "Vote again whenever you like. Every vote is another little heart.",
+      )}
+    </p>
+    <div class="directory-tools">
+      <span class="votes-total">
+        <svg class="total-heart" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 20S3 14.5 3 8.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 9 1.5C21 14.5 12 20 12 20Z" />
+        </svg>
+        <span class="sr-only">{t("หัวใจทั้งหมด", "Hearts collected")}</span>
+        <strong data-vote-total>
+          {ready ? format(votes.totals!.total) : "—"}
+        </strong>
+      </span>
+      <a class="score-refresh" href={localePath("/animals/", locale)}>
+        <span aria-hidden="true">↻</span>{" "}
+        {t("โหลดคะแนนล่าสุด", "Refresh scores")}
+      </a>
+    </div>
+  </div>
   <AnimalPodium locale={locale} venue={venue} counts={counts} ready={ready} />
-  <div class="animal-search" data-animal-search hidden><label for="animal-search">{t("ค้นหาเพื่อนสัตว์", "Find an animal friend")}</label><div><input id="animal-search" type="search" placeholder={t("ชื่อ หรือสายพันธุ์…", "Name or breed…")} aria-controls="animal-cards" autocomplete="off" /><button type="button" data-search-clear>{t("ดูทุกตัว", "Show all")}</button></div><p data-search-status role="status" aria-live="polite">{t(`เพื่อนสัตว์ ${animals.length} ตัว`, `${animals.length} animal friends`)}</p></div>
-  {!ready && <p class="votes-unavailable" role="status">{votes.state === "disabled" ? t("กำลังเตรียมเปิดโหวต ทำความรู้จักน้อง ๆ ก่อนได้เลย", "Voting is getting ready. Meet the animal family in the meantime.") : t("ตอนนี้โหลดคะแนนไม่ได้ ยังดูเพื่อนสัตว์ได้ตามปกติ ลองโหลดคะแนนอีกครั้งได้เลย", "Scores are temporarily unavailable. You can still meet the animals and try refreshing the scores.")}</p>}
-  {animals.length === 0 && <p class="votes-empty">{t("ยังไม่มีเพื่อนสัตว์เปิดรับโหวตในตอนนี้", "No animal friends are listed just yet.")}</p>}
-  <div class="animal-cards" id="animal-cards">{animals.map(animal => {
-    const name = locale === "en" && animal.titleEn ? animal.titleEn : animal.title;
-    const description = locale === "en" && animal.descriptionEn ? animal.descriptionEn : animal.description;
-    const count = counts.get(animal.id) ?? 0;
-    const known = ready && counts.has(animal.id);
-    const full = Math.floor(count / JAR_CAPACITY);
-    return <article id={`animal-${animal.id}`} tabindex="-1" class="animal-card" data-resident={animal.id} data-vote-card data-animal-id={animal.id} data-count={count} data-eligible={String(known)} data-search={[animal.title, animal.titleEn, animal.description, animal.descriptionEn].join(" ").toLocaleLowerCase()}>
-      <div class="animal-visual">
-        <div class="directory-photo"><Picture mediaId={animal.mediaAssetId} media={venue?.media ?? []} alt={name} />{!animal.mediaAssetId && <span aria-hidden="true">♡</span>}</div>
-        <div class="animal-jar-scene" id={`jar-${animal.id}`} aria-hidden="true">
-          <div class="vote-jar"><div class="vote-jar-rim"></div><div class="vote-portrait jar-sticker"><Picture mediaId={animal.mediaAssetId} media={venue?.media ?? []} alt={name} /></div><div class="vote-balls" data-vote-balls>{Array.from({ length: known ? ballCount(count) : 0 }, () => <i />)}</div><i class="vote-droplet"></i><div class="vote-jar-lid"></div><span class="full-jar-badge" data-full-jars hidden={!known || full === 0}><span class="mini-full-jar"><i /><i /><i /><i /><i /><i /></span><span data-full-jar-count>× {format(full)}</span></span></div>
-        </div>
-      </div>
-      <h3 data-animal-name>{name}</h3><p class="animal-description">{description}</p>
-      <p class="vote-score"><strong data-vote-count>{known ? format(count) : "—"}</strong> <span data-vote-unit>{t("คะแนน", count === 1 ? "vote" : "votes")}</span></p>
-      <p class="sr-only" data-jar-summary>{known ? t(`${format(full)} โหลเต็ม และ ${ballCount(count)} ลูกในโหลปัจจุบัน`, `${format(full)} full jars and ${ballCount(count)} balls in the current jar`) : ""}</p>
-      <div class="animal-card-actions"><button class="jar-toggle" type="button" data-jar-toggle aria-expanded="false" aria-controls={`jar-${animal.id}`} disabled>{t("ดูโหลคะแนน", "See the jar")}</button><button class="vote-button" type="button" data-vote-button disabled aria-label={t(`โหวตให้ ${name}`, `Vote for ${name}`)}><span aria-hidden="true">♡</span> <span data-vote-label>{t("หยอดใจ", "Send love")}</span></button></div>
-      <p class="vote-notice" data-vote-notice aria-hidden="true"></p>
-    </article>;
-  })}</div>
-  <p class="votes-empty" data-search-empty hidden>{t("ยังไม่พบชื่อนี้ ลองชื่ออื่น หรือกดดูทุกตัว", "No matching friends. Try another name or show all animals.")}</p>
-  <p class="sr-only">{t("1 คะแนน = 1 ลูก · ครบ 50 ลูก เก็บเป็นโหลเต็มแล้วเริ่มโหลใหม่", "1 vote = 1 ball. Every 50 balls fill a jar, then a new one begins.")}</p>
-  <p class="sr-only" data-vote-feedback role="status" aria-live="polite" aria-atomic="true"></p>
-  <noscript><p>{t("เปิด JavaScript เพื่อหยอดใจ ค้นหา และดูโหลคะแนน หรือโหลดหน้านี้ใหม่เพื่อดูคะแนนล่าสุด", "Enable JavaScript to vote, search and open the jars, or reload to see the latest scores.")}</p></noscript>
+  <div class="animal-search" data-animal-search hidden>
+    <label for="animal-search">
+      {t("ค้นหาเพื่อนสัตว์", "Find an animal friend")}
+    </label>
+    <div>
+      <input
+        id="animal-search"
+        type="search"
+        placeholder={t("ชื่อ หรือสายพันธุ์…", "Name or breed…")}
+        aria-controls="animal-cards"
+        autocomplete="off"
+      />
+      <button type="button" data-search-clear>
+        {t("ดูทุกตัว", "Show all")}
+      </button>
+    </div>
+    <p data-search-status role="status" aria-live="polite">
+      {t(
+        `เพื่อนสัตว์ ${animals.length} ตัว`,
+        `${animals.length} animal friends`,
+      )}
+    </p>
+  </div>
+  {!ready && (
+    <p class="votes-unavailable" role="status">
+      {votes.state === "disabled"
+        ? t(
+            "กำลังเตรียมเปิดโหวต ทำความรู้จักน้อง ๆ ก่อนได้เลย",
+            "Voting is getting ready. Meet the animal family in the meantime.",
+          )
+        : t(
+            "ตอนนี้โหลดคะแนนไม่ได้ ยังดูเพื่อนสัตว์ได้ตามปกติ ลองโหลดคะแนนอีกครั้งได้เลย",
+            "Scores are temporarily unavailable. You can still meet the animals and try refreshing the scores.",
+          )}
+    </p>
+  )}
+  {animals.length === 0 && (
+    <p class="votes-empty">
+      {t(
+        "ยังไม่มีเพื่อนสัตว์เปิดรับโหวตในตอนนี้",
+        "No animal friends are listed just yet.",
+      )}
+    </p>
+  )}
+  <div class="animal-cards" id="animal-cards">
+    {animals.map((animal) => {
+      const name =
+        locale === "en" && animal.titleEn ? animal.titleEn : animal.title;
+      const description =
+        locale === "en" && animal.descriptionEn
+          ? animal.descriptionEn
+          : animal.description;
+      const count = counts.get(animal.id) ?? 0;
+      const known = ready && counts.has(animal.id);
+      const full = Math.floor(count / JAR_CAPACITY);
+      return (
+        <article
+          id={`animal-${animal.id}`}
+          tabindex="-1"
+          class="animal-card"
+          data-resident={animal.id}
+          data-vote-card
+          data-animal-id={animal.id}
+          data-count={count}
+          data-eligible={String(known)}
+          data-search={[
+            animal.title,
+            animal.titleEn,
+            animal.description,
+            animal.descriptionEn,
+          ]
+            .join(" ")
+            .toLocaleLowerCase()}
+        >
+          <div class="animal-visual">
+            <div class="directory-photo">
+              <Picture
+                mediaId={animal.mediaAssetId}
+                media={venue?.media ?? []}
+                alt={name}
+              />
+              {!animal.mediaAssetId && <span aria-hidden="true">♡</span>}
+            </div>
+            <div
+              class="animal-jar-scene"
+              id={`jar-${animal.id}`}
+              aria-hidden="true"
+            >
+              <div class="vote-jar">
+                <div class="vote-jar-rim"></div>
+                <div class="vote-portrait jar-sticker">
+                  <Picture
+                    mediaId={animal.mediaAssetId}
+                    media={venue?.media ?? []}
+                    alt={name}
+                  />
+                </div>
+                <div class="vote-balls" data-vote-balls>
+                  {Array.from({ length: known ? ballCount(count) : 0 }, () => (
+                    <i />
+                  ))}
+                </div>
+                <i class="vote-droplet"></i>
+                <div class="vote-jar-lid"></div>
+                <span
+                  class="full-jar-badge"
+                  data-full-jars
+                  hidden={!known || full === 0}
+                >
+                  <span class="mini-full-jar">
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span data-full-jar-count>× {format(full)}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <h3 data-animal-name>{name}</h3>
+          <p class="animal-description">{description}</p>
+          <p class="vote-score">
+            <strong data-vote-count>{known ? format(count) : "—"}</strong>{" "}
+            <span data-vote-unit>
+              {t("คะแนน", count === 1 ? "vote" : "votes")}
+            </span>
+          </p>
+          <p class="sr-only" data-jar-summary>
+            {known
+              ? t(
+                  `${format(full)} โหลเต็ม และ ${ballCount(count)} ลูกในโหลปัจจุบัน`,
+                  `${format(full)} full jars and ${ballCount(count)} balls in the current jar`,
+                )
+              : ""}
+          </p>
+          <div class="animal-card-actions">
+            <button
+              class="jar-toggle"
+              type="button"
+              data-jar-toggle
+              aria-expanded="false"
+              aria-controls={`jar-${animal.id}`}
+              disabled
+            >
+              {t("ดูโหลคะแนน", "See the jar")}
+            </button>
+            <button
+              class="vote-button"
+              type="button"
+              data-vote-button
+              disabled
+              aria-label={t(`โหวตให้ ${name}`, `Vote for ${name}`)}
+            >
+              <span aria-hidden="true">♡</span>{" "}
+              <span data-vote-label>{t("หยอดใจ", "Send love")}</span>
+            </button>
+          </div>
+          <p class="vote-notice" data-vote-notice aria-hidden="true"></p>
+        </article>
+      );
+    })}
+  </div>
+  <p class="votes-empty" data-search-empty hidden>
+    {t(
+      "ยังไม่พบชื่อนี้ ลองชื่ออื่น หรือกดดูทุกตัว",
+      "No matching friends. Try another name or show all animals.",
+    )}
+  </p>
+  <p class="sr-only">
+    {t(
+      "1 คะแนน = 1 ลูก · ครบ 50 ลูก เก็บเป็นโหลเต็มแล้วเริ่มโหลใหม่",
+      "1 vote = 1 ball. Every 50 balls fill a jar, then a new one begins.",
+    )}
+  </p>
+  <p
+    class="sr-only"
+    data-vote-feedback
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></p>
+  <noscript>
+    <p>
+      {t(
+        "เปิด JavaScript เพื่อหยอดใจ ค้นหา และดูโหลคะแนน หรือโหลดหน้านี้ใหม่เพื่อดูคะแนนล่าสุด",
+        "Enable JavaScript to vote, search and open the jars, or reload to see the latest scores.",
+      )}
+    </p>
+  </noscript>
 </section>
 <script>
   import { initAnimalDirectory } from "../../lib/voting/directory";

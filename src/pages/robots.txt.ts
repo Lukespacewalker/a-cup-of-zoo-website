@@ -9,5 +9,7 @@ export const GET: APIRoute = ({ site, url }) => {
   const body = canIndex(url, site, config.searchIndexing)
     ? `User-agent: *\nAllow: /\n${origin ? `Sitemap: ${new URL("/sitemap.xml", origin).href}\n` : ""}`
     : "User-agent: *\nDisallow: /\n";
-  return new Response(body, { headers: { "content-type": "text/plain; charset=utf-8" } });
+  return new Response(body, {
+    headers: { "content-type": "text/plain; charset=utf-8" },
+  });
 };

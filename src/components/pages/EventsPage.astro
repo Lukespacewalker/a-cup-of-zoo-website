@@ -7,33 +7,151 @@ import { loadPage } from "../../lib/content/load-page";
 import { ownerPhoto } from "../../lib/content/owner-brief";
 import { venuePhones } from "../../lib/business/contact";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+}
 const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
 const page = await loadPage();
 const phones = venuePhones(page.venue?.content);
 ---
-<SiteLayout locale={locale} title={t("ทัวร์กลุ่ม จัดงาน และร่วมงานกับเรา", "Group visits, events & collaborations")} description={t("พาโรงเรียนหรือกลุ่มเพื่อนมาเที่ยว A Cup of Zoo คลอง 6 ดูภาพกิจกรรมกลุ่ม งาน Suzuki และผลงาน Yagi Milk พร้อมช่องทางติดต่อร้าน", "Plan a school or group visit to A Cup of Zoo, Khlong 6. Explore past group visits, the Suzuki event and Yagi Milk work, and contact the café.")} page={page}>
-  <PageHero id="events-top" label="Group tours & events" title={t("ชวนกันมา เป็นความทรงจำของทั้งกลุ่ม", "A day to share with your whole group")} description={t("โรงเรียน กลุ่มเพื่อน หรือทีมงาน มาใช้เวลาท่ามกลางสวนและเพื่อนสัตว์ที่ A Cup of Zoo คลอง 6 ปทุมธานี", "Bring your school, friends or team to spend time in the garden and meet the animal family at A Cup of Zoo in Khlong 6, Pathum Thani.")} image={ownerPhoto(18)} alt={t("กลุ่มนักเรียนและครูเดินชมสวนของร้าน", "Students and teachers exploring the café garden")} position="center 65%" href="#event-contact" action={t("คุยเรื่องวันของคุณ", "Enquire about your visit")} />
-  <section class="owner-section" id="group-visits" aria-labelledby="group-title">
-    <p class="chapter-label">A day together</p><h2 id="group-title">{t("ทัวร์กลุ่มและกิจกรรมที่ร้าน", "Group visits & gatherings")}</h2>
-    <p>{t("ชมภาพบรรยากาศการมาเยือนของโรงเรียนและการรวมกลุ่มในร้าน แล้วเล่าให้เราฟังว่าคุณอยากจัดวันแบบไหน", "Take a look at school visits and gatherings at the café, then tell us about the day you have in mind.")}</p>
-    <EventGallery photos={[16, 17, 20].map((number, index) => ({ src: ownerPhoto(number), alt: t(`บรรยากาศทัวร์กลุ่มและกิจกรรมที่ร้าน ภาพ ${index + 1}`, `Group visits and gatherings at the café, photo ${index + 1}`) }))} />
-    <a class="cafe-link" href={href("/activities/")}>{t("ดูโซนสัตว์และกิจกรรมในร้าน", "Explore animal zones & activities")} <ArrowIcon /></a>
+
+<SiteLayout
+  locale={locale}
+  title={t(
+    "ทัวร์กลุ่ม จัดงาน และร่วมงานกับเรา",
+    "Group visits, events & collaborations",
+  )}
+  description={t(
+    "พาโรงเรียนหรือกลุ่มเพื่อนมาเที่ยว A Cup of Zoo คลอง 6 ดูภาพกิจกรรมกลุ่ม งาน Suzuki และผลงาน Yagi Milk พร้อมช่องทางติดต่อร้าน",
+    "Plan a school or group visit to A Cup of Zoo, Khlong 6. Explore past group visits, the Suzuki event and Yagi Milk work, and contact the café.",
+  )}
+  page={page}
+>
+  <PageHero
+    id="events-top"
+    label="Group tours & events"
+    title={t(
+      "ชวนกันมา เป็นความทรงจำของทั้งกลุ่ม",
+      "A day to share with your whole group",
+    )}
+    description={t(
+      "โรงเรียน กลุ่มเพื่อน หรือทีมงาน มาใช้เวลาท่ามกลางสวนและเพื่อนสัตว์ที่ A Cup of Zoo คลอง 6 ปทุมธานี",
+      "Bring your school, friends or team to spend time in the garden and meet the animal family at A Cup of Zoo in Khlong 6, Pathum Thani.",
+    )}
+    image={ownerPhoto(18)}
+    alt={t(
+      "กลุ่มนักเรียนและครูเดินชมสวนของร้าน",
+      "Students and teachers exploring the café garden",
+    )}
+    position="center 65%"
+    href="#event-contact"
+    action={t("คุยเรื่องวันของคุณ", "Enquire about your visit")}
+  />
+  <section
+    class="owner-section"
+    id="group-visits"
+    aria-labelledby="group-title"
+  >
+    <p class="chapter-label">A day together</p>
+    <h2 id="group-title">
+      {t("ทัวร์กลุ่มและกิจกรรมที่ร้าน", "Group visits & gatherings")}
+    </h2>
+    <p>
+      {t(
+        "ชมภาพบรรยากาศการมาเยือนของโรงเรียนและการรวมกลุ่มในร้าน แล้วเล่าให้เราฟังว่าคุณอยากจัดวันแบบไหน",
+        "Take a look at school visits and gatherings at the café, then tell us about the day you have in mind.",
+      )}
+    </p>
+    <EventGallery
+      photos={[16, 17, 20].map((number, index) => ({
+        src: ownerPhoto(number),
+        alt: t(
+          `บรรยากาศทัวร์กลุ่มและกิจกรรมที่ร้าน ภาพ ${index + 1}`,
+          `Group visits and gatherings at the café, photo ${index + 1}`,
+        ),
+      }))}
+    />
+    <a class="cafe-link" href={href("/activities/")}>
+      {t("ดูโซนสัตว์และกิจกรรมในร้าน", "Explore animal zones & activities")}{" "}
+      <ArrowIcon />
+    </a>
   </section>
-  <section class="owner-section" id="brand-events" aria-labelledby="brand-title">
-    <p class="chapter-label">Events at the café</p><h2 id="brand-title">Suzuki Demo Day</h2><p>{t("อีกบรรยากาศของร้านในวันจัดกิจกรรม Suzuki Demo Day", "A different side of the café during Suzuki Demo Day.")}</p>
-    <EventGallery photos={[22, 23, 24].map((number, index) => ({ src: ownerPhoto(number), alt: t(`กิจกรรม Suzuki Demo Day ที่ A Cup of Zoo ภาพ ${index + 1}`, `Suzuki Demo Day at A Cup of Zoo, photo ${index + 1}`) }))} />
+  <section
+    class="owner-section"
+    id="brand-events"
+    aria-labelledby="brand-title"
+  >
+    <p class="chapter-label">Events at the café</p>
+    <h2 id="brand-title">Suzuki Demo Day</h2>
+    <p>
+      {t(
+        "อีกบรรยากาศของร้านในวันจัดกิจกรรม Suzuki Demo Day",
+        "A different side of the café during Suzuki Demo Day.",
+      )}
+    </p>
+    <EventGallery
+      photos={[22, 23, 24].map((number, index) => ({
+        src: ownerPhoto(number),
+        alt: t(
+          `กิจกรรม Suzuki Demo Day ที่ A Cup of Zoo ภาพ ${index + 1}`,
+          `Suzuki Demo Day at A Cup of Zoo, photo ${index + 1}`,
+        ),
+      }))}
+    />
   </section>
-  <section class="owner-section" id="collaborations" aria-labelledby="collaboration-title">
-    <p class="chapter-label">Work with our animal family</p><h2 id="collaboration-title">{t("โฆษณา รีวิว และงานอีเวนต์", "Campaigns, reviews & events")}</h2>
-    <p>{t("สนใจร่วมงานกับ A Cup of Zoo ทั้งงานถ่ายภาพ โฆษณา พรีเซ็นเตอร์ หรือออกอีเวนต์ ติดต่อเพื่อคุยรูปแบบงานกับทีมร้านได้", "Contact the café team to discuss photography, advertising, presenter work or event appearances with A Cup of Zoo.")}</p>
-    <EventGallery campaign caption="Yagi Milk · A Cup of Zoo" photos={[26, 27].map((number, index) => ({ src: ownerPhoto(number), alt: t(`ผลงานโฆษณา Yagi Milk ร่วมกับ${index === 0 ? "น้องหมา" : "น้องแมว"}ของร้าน`, `Yagi Milk campaign featuring one of the café's ${index === 0 ? "dogs" : "cats"}`) }))} />
+  <section
+    class="owner-section"
+    id="collaborations"
+    aria-labelledby="collaboration-title"
+  >
+    <p class="chapter-label">Work with our animal family</p>
+    <h2 id="collaboration-title">
+      {t("โฆษณา รีวิว และงานอีเวนต์", "Campaigns, reviews & events")}
+    </h2>
+    <p>
+      {t(
+        "สนใจร่วมงานกับ A Cup of Zoo ทั้งงานถ่ายภาพ โฆษณา พรีเซ็นเตอร์ หรือออกอีเวนต์ ติดต่อเพื่อคุยรูปแบบงานกับทีมร้านได้",
+        "Contact the café team to discuss photography, advertising, presenter work or event appearances with A Cup of Zoo.",
+      )}
+    </p>
+    <EventGallery
+      campaign
+      caption="Yagi Milk · A Cup of Zoo"
+      photos={[26, 27].map((number, index) => ({
+        src: ownerPhoto(number),
+        alt: t(
+          `ผลงานโฆษณา Yagi Milk ร่วมกับ${index === 0 ? "น้องหมา" : "น้องแมว"}ของร้าน`,
+          `Yagi Milk campaign featuring one of the café's ${index === 0 ? "dogs" : "cats"}`,
+        ),
+      }))}
+    />
   </section>
-  <section class="owner-contact" id="event-contact" aria-labelledby="contact-title">
-    <h2 id="contact-title">{t("วางแผนร่วมกับทีมร้าน", "Plan it with the café team")}</h2>
-    <p>{t("แจ้งวันที่สนใจ จำนวนคน ช่วงอายุ และรูปแบบกิจกรรมที่ต้องการ เพื่อให้ทีมร้านช่วยตรวจความพร้อมและเสนอรายละเอียดที่เหมาะกับกลุ่มของคุณ", "Share your preferred date, group size, age range and activity ideas so the team can check availability and discuss suitable arrangements.")}</p>
-    <div class="actions">{phones.map(phone => <a class="button secondary" href={`tel:${phone.e164}`}>{t("โทร ", "Call ")}{phone.display}</a>)}<a class="cafe-link" href={href("/visit/")}>{t("ข้อมูลร้านและเส้นทาง", "Café details & directions")} <ArrowIcon /></a></div>
+  <section
+    class="owner-contact"
+    id="event-contact"
+    aria-labelledby="contact-title"
+  >
+    <h2 id="contact-title">
+      {t("วางแผนร่วมกับทีมร้าน", "Plan it with the café team")}
+    </h2>
+    <p>
+      {t(
+        "แจ้งวันที่สนใจ จำนวนคน ช่วงอายุ และรูปแบบกิจกรรมที่ต้องการ เพื่อให้ทีมร้านช่วยตรวจความพร้อมและเสนอรายละเอียดที่เหมาะกับกลุ่มของคุณ",
+        "Share your preferred date, group size, age range and activity ideas so the team can check availability and discuss suitable arrangements.",
+      )}
+    </p>
+    <div class="actions">
+      {phones.map((phone) => (
+        <a class="button secondary" href={`tel:${phone.e164}`}>
+          {t("โทร ", "Call ")}
+          {phone.display}
+        </a>
+      ))}
+      <a class="cafe-link" href={href("/visit/")}>
+        {t("ข้อมูลร้านและเส้นทาง", "Café details & directions")} <ArrowIcon />
+      </a>
+    </div>
   </section>
 </SiteLayout>

@@ -14,45 +14,176 @@ interface Props {
   href: string;
   action: string;
 }
-const { id, label, title, description, image, alt, position = "center", href, action } = Astro.props;
+const {
+  id,
+  label,
+  title,
+  description,
+  image,
+  alt,
+  position = "center",
+  href,
+  action,
+} = Astro.props;
 ---
-<header class="page-hero" id={id} aria-labelledby={`${id}-title`} style={`--hero-position: ${position}`}>
-  <Image class="page-hero__photo" src={image} alt={alt} widths={[640, 960, 1440, 1920]} sizes="100vw" format="webp" loading="eager" fetchpriority="high" />
+
+<header
+  class="page-hero"
+  id={id}
+  aria-labelledby={`${id}-title`}
+  style={`--hero-position: ${position}`}
+>
+  <Image
+    class="page-hero__photo"
+    src={image}
+    alt={alt}
+    widths={[640, 960, 1440, 1920]}
+    sizes="100vw"
+    format="webp"
+    loading="eager"
+    fetchpriority="high"
+  />
   <div class="page-hero__inner">
     <div class="page-hero__copy">
       <p class="page-hero__label">{label}</p>
       <h1 id={`${id}-title`}>{title}</h1>
       <p class="page-hero__description">{description}</p>
-      <a class="page-hero__action" href={href}>{action} <ArrowIcon /></a>
+      <a class="page-hero__action" href={href}>
+        {action} <ArrowIcon />
+      </a>
     </div>
   </div>
 </header>
 
 <style>
-  .page-hero { position: relative; isolation: isolate; width: 100vw; margin-inline: calc(50% - 50vw); background: #303a2d; color: #fffaf0; scroll-margin-top: 1rem; }
-  .page-hero__photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: var(--hero-position); }
-  .page-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(22 29 21 / .88), rgb(22 29 21 / .67) 40%, rgb(22 29 21 / .12) 75%); }
-  .page-hero__inner { width: var(--page); margin-inline: auto; min-height: 460px; display: flex; align-items: center; padding-block: 2.8rem; }
-  .page-hero__copy { max-width: 35rem; }
-  .page-hero__label { margin: 0 0 1rem; font-size: .78rem; letter-spacing: .07em; }
-  .page-hero h1 { color: inherit; font-size: clamp(2.1rem, 3.6vw, 3.3rem); font-weight: 400; line-height: 1.4; margin: 0 0 1rem; text-wrap: balance; }
-  .page-hero__description { max-width: 30rem; margin: 0 0 1.4rem; line-height: 1.85; }
-  .page-hero__action { display: inline-flex; align-items: center; justify-content: space-between; gap: 1.3rem; min-height: 48px; padding: .65rem 1.15rem; color: #303a2d; background: #fffaf0; text-decoration: none; border-radius: 2px; }
-  .page-hero__action:hover { background: #e6e7d8; }
-  .page-hero__action:focus-visible { outline: 2px solid #fffaf0; outline-offset: 5px; }
+  .page-hero {
+    position: relative;
+    isolation: isolate;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    background: #303a2d;
+    color: #fffaf0;
+    scroll-margin-top: 1rem;
+  }
+  .page-hero__photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--hero-position);
+  }
+  .page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      90deg,
+      rgb(22 29 21 / 0.88),
+      rgb(22 29 21 / 0.67) 40%,
+      rgb(22 29 21 / 0.12) 75%
+    );
+  }
+  .page-hero__inner {
+    width: var(--page);
+    margin-inline: auto;
+    min-height: 460px;
+    display: flex;
+    align-items: center;
+    padding-block: 2.8rem;
+  }
+  .page-hero__copy {
+    max-width: 35rem;
+  }
+  .page-hero__label {
+    margin: 0 0 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.07em;
+  }
+  .page-hero h1 {
+    color: inherit;
+    font-size: clamp(2.1rem, 3.6vw, 3.3rem);
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+  .page-hero__description {
+    max-width: 30rem;
+    margin: 0 0 1.4rem;
+    line-height: 1.85;
+  }
+  .page-hero__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.3rem;
+    min-height: 48px;
+    padding: 0.65rem 1.15rem;
+    color: #303a2d;
+    background: #fffaf0;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+  .page-hero__action:hover {
+    background: #e6e7d8;
+  }
+  .page-hero__action:focus-visible {
+    outline: 2px solid #fffaf0;
+    outline-offset: 5px;
+  }
   @media (min-width: 701px) and (max-width: 1050px) {
-    .page-hero::before { background: linear-gradient(90deg, rgb(22 29 21 / .88), rgb(22 29 21 / .72) 65%, rgb(22 29 21 / .35)); }
+    .page-hero::before {
+      background: linear-gradient(
+        90deg,
+        rgb(22 29 21 / 0.88),
+        rgb(22 29 21 / 0.72) 65%,
+        rgb(22 29 21 / 0.35)
+      );
+    }
   }
   @media (max-width: 700px) {
-    .page-hero { background: var(--garden-field); color: var(--ink); }
-    .page-hero__photo { position: relative; z-index: auto; height: 220px; }
-    .page-hero::before { display: none; }
-    .page-hero__inner { min-height: 0; padding-block: 1.5rem 1.8rem; }
-    .page-hero__label { margin-bottom: .5rem; color: var(--leaf); }
-    .page-hero h1 { font-size: clamp(1.85rem, 7vw, 2.4rem); margin-bottom: .7rem; }
-    .page-hero__description { font-size: .95rem; margin-bottom: 1rem; }
-    .page-hero__action { background: var(--button); color: var(--on-button); font-size: .9rem; }
-    .page-hero__action:hover { background: var(--button-hover); color: var(--on-button-hover); }
-    .page-hero__action:focus-visible { outline-color: var(--leaf); }
+    .page-hero {
+      background: var(--garden-field);
+      color: var(--ink);
+    }
+    .page-hero__photo {
+      position: relative;
+      z-index: auto;
+      height: 220px;
+    }
+    .page-hero::before {
+      display: none;
+    }
+    .page-hero__inner {
+      min-height: 0;
+      padding-block: 1.5rem 1.8rem;
+    }
+    .page-hero__label {
+      margin-bottom: 0.5rem;
+      color: var(--leaf);
+    }
+    .page-hero h1 {
+      font-size: clamp(1.85rem, 7vw, 2.4rem);
+      margin-bottom: 0.7rem;
+    }
+    .page-hero__description {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .page-hero__action {
+      background: var(--button);
+      color: var(--on-button);
+      font-size: 0.9rem;
+    }
+    .page-hero__action:hover {
+      background: var(--button-hover);
+      color: var(--on-button-hover);
+    }
+    .page-hero__action:focus-visible {
+      outline-color: var(--leaf);
+    }
   }
 </style>

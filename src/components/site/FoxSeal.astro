@@ -1,6 +1,12 @@
 ---
 import WatercolorAnimal from "./WatercolorAnimal.astro";
-interface Props { class?: string; }
+interface Props {
+  class?: string;
+}
 const className = Astro.props.class;
 ---
-<WatercolorAnimal animal="fox" class={`fox-seal watercolor-seal ${className ?? ""}`} />
+
+<WatercolorAnimal
+  animal="fox"
+  class={`fox-seal watercolor-seal ${className ?? ""}`}
+/>

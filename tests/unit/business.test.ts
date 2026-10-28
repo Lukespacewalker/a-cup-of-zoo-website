@@ -11,14 +11,19 @@ test("the user selected both phones without inferring coordinates from Maps acce
   expect(maps?.verifiedAt).toBeNull();
   expect(evidence.initialValues.coordinates).toBeNull();
   expect(evidence.initialValues.phoneConflict).toBe(false);
-  expect(evidence.initialValues.phoneNumbers).toEqual(["+66989838037", "+66922791890"]);
+  expect(evidence.initialValues.phoneNumbers).toEqual([
+    "+66989838037",
+    "+66922791890",
+  ]);
   expect(evidence.initialValues.hoursVerification).toBe("source_verified");
 });
 
 test("checked dates alone do not mark claims verified", () => {
   const unverified = structuredClone(evidence);
   unverified.initialValues.hoursVerification = "user_provided";
-  unverified.claims.find((claim) => claim.field === "regularHours")!.verificationStatus = "user_provided";
+  unverified.claims.find(
+    (claim) => claim.field === "regularHours",
+  )!.verificationStatus = "user_provided";
   const report = assessEvidence(unverified);
   expect(report.invalid).toEqual([]);
   expect(report.ready).toContain("addressLine");

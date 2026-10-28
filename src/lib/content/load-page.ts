@@ -1,35 +1,14 @@
-import type { PostDto, PublicVenueDto } from "@lukespace-cms/client";
-import { ContentNotFoundError, ContentUnavailableError } from "./errors";
+import { ContentUnavailableError } from "./errors";
 import { gatewayFromRuntime, runtimeConfig } from "./runtime-config";
-import { isDemoPost, postsForEnvironment, thaiTranslation } from "./posts";
+import { isDemoPost, thaiTranslation } from "./posts";
+import { loadPageData, type LoadPageOptions } from "./load-page-data";
 
-export type PageData = {
-  mode: "fixture" | "cms";
-  environment: "local" | "staging" | "production";
-  venue: PublicVenueDto | null;
-  venueProblem: "missing" | "unavailable" | null;
-  posts: PostDto[];
-  postsProblem: "unavailable" | null;
-};
+export type { PageData } from "./load-page-data";
 
-export async function loadPage(): Promise<PageData> {
+export function loadPage(options: LoadPageOptions = {}) {
   const config = runtimeConfig();
   const gateway = gatewayFromRuntime();
-  let venue: PublicVenueDto | null = null;
-  let venueProblem: PageData["venueProblem"] = null;
-  try {
-    venue = await gateway.getVenue();
-  } catch (error) {
-    venueProblem = error instanceof ContentNotFoundError ? "missing" : "unavailable";
-  }
-  let posts: PostDto[] = [];
-  let postsProblem: PageData["postsProblem"] = null;
-  try {
-    posts = postsForEnvironment(await gateway.listPosts(), config.environment);
-  } catch (error) {
-    if (!(error instanceof ContentNotFoundError)) postsProblem = "unavailable";
-  }
-  return { mode: config.mode, environment: config.environment, venue, venueProblem, posts, postsProblem };
+  return loadPageData(config, gateway, options);
 }
 
 export async function loadPost(slug: string) {
@@ -37,10 +16,12 @@ export async function loadPost(slug: string) {
   const gateway = gatewayFromRuntime();
   try {
     const post = await gateway.getPost(slug);
-    if (!post || (config.environment === "production" && isDemoPost(post))) return { post: null, problem: "missing" as const, config };
+    if (!post || (config.environment === "production" && isDemoPost(post)))
+      return { post: null, problem: "missing" as const, config };
     return { post, problem: null, config };
   } catch (error) {
-    if (error instanceof ContentUnavailableError) return { post: null, problem: "unavailable" as const, config };
+    if (error instanceof ContentUnavailableError)
+      return { post: null, problem: "unavailable" as const, config };
     return { post: null, problem: "missing" as const, config };
   }
 }

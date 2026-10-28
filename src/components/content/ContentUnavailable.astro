@@ -1,8 +1,19 @@
 ---
 import { localeFromPath, localePath, translator } from "../../lib/i18n/locale";
-interface Props { detail?: string; }
+interface Props {
+  detail?: string;
+}
 const locale = localeFromPath(Astro.url.pathname);
 const t = translator(locale);
-const { detail = t("ขณะนี้โหลดข้อมูลส่วนนี้ไม่ได้", "This information is currently unavailable.") } = Astro.props;
+const {
+  detail = t(
+    "ขณะนี้โหลดข้อมูลส่วนนี้ไม่ได้",
+    "This information is currently unavailable.",
+  ),
+} = Astro.props;
 ---
-<p class="note" role="status">{detail} <a href={localePath("/", locale)}>{t("กลับหน้าแรก", "Back to home")}</a></p>
+
+<p class="note" role="status">
+  {detail}{" "}
+  <a href={localePath("/", locale)}>{t("กลับหน้าแรก", "Back to home")}</a>
+</p>

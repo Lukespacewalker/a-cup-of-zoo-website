@@ -9,29 +9,171 @@ import { localizedActivities } from "../../lib/i18n/activities";
 import { loadPage } from "../../lib/content/load-page";
 import { animalGroups } from "../../lib/content/decor";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+}
 const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
-const dogBreeds = t(animalGroups[0].names, "Shetland Sheepdog, Border Collie, Pomeranian");
-const catBreeds = t(animalGroups[1].names, "Maine Coon, Ragdoll, Persian, Sphynx, Scottish Fold");
+const dogBreeds = t(
+  animalGroups[0].names,
+  "Shetland Sheepdog, Border Collie, Pomeranian",
+);
+const catBreeds = t(
+  animalGroups[1].names,
+  "Maine Coon, Ragdoll, Persian, Sphynx, Scottish Fold",
+);
 const { animalZones } = localizedActivities(locale);
 const page = await loadPage();
 ---
-<SiteLayout locale={locale} title={t("รู้จักน้องสัตว์ที่คาเฟ่ คลอง 6", "Meet the animals · Khlong 6 café")} description={t("ห้องเล่นกับแมวและเพื่อนสัตว์ที่ A Cup of Zoo คลอง 6 ปทุมธานี ทำความรู้จักโซน Indoor และ Outdoor พร้อมข้อมูลแพ็กเกจ", "Meet the cats and other animal friends at A Cup of Zoo in Khlong 6, Pathum Thani. Explore Indoor and Outdoor zones and plan your visit.")} page={page}>
-  <header class="animals-intro"><p class="chapter-label">A CUP OF ZOO · ANIMAL FRIENDS</p><h1>{t("รู้จักกัน แล้วหยอดใจให้ตัวโปรด", "Meet a friend. Send a little love.")}</h1><p>{t("เพื่อนสัตว์ของเรา แต่ละตัวมีเรื่องน่ารักให้รู้จัก", "Every animal has a little something to love.")}</p></header>
+
+<SiteLayout
+  locale={locale}
+  title={t(
+    "รู้จักน้องสัตว์ที่คาเฟ่ คลอง 6",
+    "Meet the animals · Khlong 6 café",
+  )}
+  description={t(
+    "ห้องเล่นกับแมวและเพื่อนสัตว์ที่ A Cup of Zoo คลอง 6 ปทุมธานี ทำความรู้จักโซน Indoor และ Outdoor พร้อมข้อมูลแพ็กเกจ",
+    "Meet the cats and other animal friends at A Cup of Zoo in Khlong 6, Pathum Thani. Explore Indoor and Outdoor zones and plan your visit.",
+  )}
+  page={page}
+>
+  <header class="animals-intro">
+    <p class="chapter-label">A CUP OF ZOO · ANIMAL FRIENDS</p>
+    <h1>
+      {t(
+        "รู้จักกัน แล้วหยอดใจให้ตัวโปรด",
+        "Meet a friend. Send a little love.",
+      )}
+    </h1>
+    <p>
+      {t(
+        "เพื่อนสัตว์ของเรา แต่ละตัวมีเรื่องน่ารักให้รู้จัก",
+        "Every animal has a little something to love.",
+      )}
+    </p>
+  </header>
   <AnimalDirectory locale={locale} venue={page.venue} />
-  <section id="cat-room" class="animal-visit-intro"><h2>{t("พบกันที่ร้าน · ห้องเล่นกับแมวและเพื่อนสัตว์", "Meet in person · The cat room and animal zones")}</h2><p>{t("เริ่มจากนั่งเป็นเพื่อนเจ้าเหมียวในห้องเล่นกับแมว แล้วค่อยออกไปพบเพื่อนตัวอื่น ๆ รอบร้าน ห้องเล่นกับแมวอยู่ในกลุ่ม Indoor เข้าได้ด้วย One Zone Pass ที่เลือก Indoor หรือ All Zone Pass ทำกิจกรรมตามคำแนะนำของพนักงาน", "Start with a little time in the cat room, then meet more friends around the café. The cat room is in the Indoor group. Choose an Indoor One Zone Pass or an All Zone Pass, and follow the team's guidance.")}</p><a class="cafe-link" href={href("/activities/") + "#animal-zones"}>{t("ดูโซนสัตว์และแพ็กเกจ", "Animal zones & passes")} <ArrowIcon /></a></section>
-  <div class="animal-zone-heading"><div><p class="chapter-label">{t("เพื่อนอีกหลายตัวรอให้รู้จัก", "More friends to meet")}</p><h2>{t("สองกลุ่มโซน หกมุมทำความรู้จัก", "Two groups. Six animal zones.")}</h2></div><WatercolorAnimal animal="meerkats" class="zone-watercolor" /></div>
-  <section class="animal-zone-columns" aria-label={t("โซนสัตว์ของร้าน", "The café's animal zones")}>
-    <div><h3>Indoor</h3><ul>{animalZones.indoor.map((name, index) => <li><span>{name}</span>{index === 0 && <div class="zone-residents"><p><strong>{t("น้องหมา", "Dogs")}</strong>{dogBreeds}</p><p><strong>{t("น้องแมว", "Cats")}</strong>{catBreeds}</p></div>}</li>)}</ul></div>
-    <div><h3>Outdoor</h3><ul>{animalZones.outdoor.map(name => <li>{name}</li>)}</ul><p class="section-note">{t("น้องสัตว์ Outdoor เข้าบ้านเวลา 18:00 น.", "Outdoor animals return to their houses at 18:00.")}</p></div>
-    <div class="animal-more"><h3>{t("ยังมีเพื่อนอีกหลายตัว", "More friends at the café")}</h3><p>{t("เฟนเน็กฟอกซ์ อีกัวนา งูบอลไพธอน แฮมสเตอร์ และแกตสบี้เมาส์", "Fennec fox, iguana, ball python, hamster and Gatsby mouse")}</p><p>{t("รวมถึงกาลาห์ ค็อกคาทู นกแก้ว เลิฟเบิร์ด และค็อกคาเทล", "Plus Galah cockatoos, parrots, lovebirds and cockatiels")}</p></div>
+  <section id="cat-room" class="animal-visit-intro">
+    <h2>
+      {t(
+        "พบกันที่ร้าน · ห้องเล่นกับแมวและเพื่อนสัตว์",
+        "Meet in person · The cat room and animal zones",
+      )}
+    </h2>
+    <p>
+      {t(
+        "เริ่มจากนั่งเป็นเพื่อนเจ้าเหมียวในห้องเล่นกับแมว แล้วค่อยออกไปพบเพื่อนตัวอื่น ๆ รอบร้าน ห้องเล่นกับแมวอยู่ในกลุ่ม Indoor เข้าได้ด้วย One Zone Pass ที่เลือก Indoor หรือ All Zone Pass ทำกิจกรรมตามคำแนะนำของพนักงาน",
+        "Start with a little time in the cat room, then meet more friends around the café. The cat room is in the Indoor group. Choose an Indoor One Zone Pass or an All Zone Pass, and follow the team's guidance.",
+      )}
+    </p>
+    <a class="cafe-link" href={href("/activities/") + "#animal-zones"}>
+      {t("ดูโซนสัตว์และแพ็กเกจ", "Animal zones & passes")} <ArrowIcon />
+    </a>
   </section>
-  <div class="actions"><a class="button" href={href("/activities/") + "#passes"}>{t("เลือกแพ็กเกจและดูเงื่อนไข", "Choose a pass & see the terms")}</a><a class="cafe-link" href={href("/visit/")}>{t("วางแผนมาเที่ยว", "Plan your visit")} <ArrowIcon /></a></div>
+  <div class="animal-zone-heading">
+    <div>
+      <p class="chapter-label">
+        {t("เพื่อนอีกหลายตัวรอให้รู้จัก", "More friends to meet")}
+      </p>
+      <h2>
+        {t("สองกลุ่มโซน หกมุมทำความรู้จัก", "Two groups. Six animal zones.")}
+      </h2>
+    </div>
+    <WatercolorAnimal animal="meerkats" class="zone-watercolor" />
+  </div>
+  <section
+    class="animal-zone-columns"
+    aria-label={t("โซนสัตว์ของร้าน", "The café's animal zones")}
+  >
+    <div>
+      <h3>Indoor</h3>
+      <ul>
+        {animalZones.indoor.map((name, index) => (
+          <li>
+            <span>{name}</span>
+            {index === 0 && (
+              <div class="zone-residents">
+                <p>
+                  <strong>{t("น้องหมา", "Dogs")}</strong>
+                  {dogBreeds}
+                </p>
+                <p>
+                  <strong>{t("น้องแมว", "Cats")}</strong>
+                  {catBreeds}
+                </p>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h3>Outdoor</h3>
+      <ul>
+        {animalZones.outdoor.map((name) => (
+          <li>{name}</li>
+        ))}
+      </ul>
+      <p class="section-note">
+        {t(
+          "น้องสัตว์ Outdoor เข้าบ้านเวลา 18:00 น.",
+          "Outdoor animals return to their houses at 18:00.",
+        )}
+      </p>
+    </div>
+    <div class="animal-more">
+      <h3>{t("ยังมีเพื่อนอีกหลายตัว", "More friends at the café")}</h3>
+      <p>
+        {t(
+          "เฟนเน็กฟอกซ์ อีกัวนา งูบอลไพธอน แฮมสเตอร์ และแกตสบี้เมาส์",
+          "Fennec fox, iguana, ball python, hamster and Gatsby mouse",
+        )}
+      </p>
+      <p>
+        {t(
+          "รวมถึงกาลาห์ ค็อกคาทู นกแก้ว เลิฟเบิร์ด และค็อกคาเทล",
+          "Plus Galah cockatoos, parrots, lovebirds and cockatiels",
+        )}
+      </p>
+    </div>
+  </section>
+  <div class="actions">
+    <a class="button" href={href("/activities/") + "#passes"}>
+      {t("เลือกแพ็กเกจและดูเงื่อนไข", "Choose a pass & see the terms")}
+    </a>
+    <a class="cafe-link" href={href("/visit/")}>
+      {t("วางแผนมาเที่ยว", "Plan your visit")} <ArrowIcon />
+    </a>
+  </div>
   <div class="animal-photo-pair">
-    <figure><Image src={photos.rabbit} alt={t("กระต่ายริมบ่อในร้าน", "A rabbit beside the café pond")} widths={[360, 600, 900]} sizes="(max-width: 700px) 43vw, 45vw" loading="lazy" /><figcaption>{t("เพื่อนตัวเล็กริมสวน", "A little garden companion")}</figcaption></figure>
-    <figure><Image src={photos.pond} alt={t("เป็ดและปลาคาร์ฟในบ่อของร้าน", "A duck and koi in the café pond")} widths={[360, 600, 900]} sizes="(max-width: 700px) 43vw, 45vw" loading="lazy" /><figcaption>{t("อีกหนึ่งมุมที่มีชีวิตชีวา", "A lively little corner of the pond")}</figcaption></figure>
+    <figure>
+      <Image
+        src={photos.rabbit}
+        alt={t("กระต่ายริมบ่อในร้าน", "A rabbit beside the café pond")}
+        widths={[360, 600, 900]}
+        sizes="(max-width: 700px) 43vw, 45vw"
+        loading="lazy"
+      />
+      <figcaption>
+        {t("เพื่อนตัวเล็กริมสวน", "A little garden companion")}
+      </figcaption>
+    </figure>
+    <figure>
+      <Image
+        src={photos.pond}
+        alt={t(
+          "เป็ดและปลาคาร์ฟในบ่อของร้าน",
+          "A duck and koi in the café pond",
+        )}
+        widths={[360, 600, 900]}
+        sizes="(max-width: 700px) 43vw, 45vw"
+        loading="lazy"
+      />
+      <figcaption>
+        {t("อีกหนึ่งมุมที่มีชีวิตชีวา", "A lively little corner of the pond")}
+      </figcaption>
+    </figure>
   </div>
 </SiteLayout>
-

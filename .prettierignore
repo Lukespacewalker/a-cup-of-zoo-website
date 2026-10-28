@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+tmp/
+test-results/
+artifacts/
+docs/review/
+reference-assets/
+reference-data/
+bun.lock

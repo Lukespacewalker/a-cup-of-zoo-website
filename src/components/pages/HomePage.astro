@@ -18,7 +18,9 @@ import { loadPage } from "../../lib/content/load-page";
 import { allowedExternalUrl } from "../../lib/business/links";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import { localizedVenue } from "../../lib/i18n/venue";
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+}
 const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
@@ -28,22 +30,81 @@ const { passes } = localizedActivities(locale);
 const maps = allowedExternalUrl(content?.mapsUrl ?? null, "maps");
 const news = locale === "th" ? page.posts.slice(0, 2) : [];
 ---
-<SiteLayout locale={locale} title={t("คาเฟ่สัตว์ คลอง 6 ปทุมธานี", "Animal café in Khlong 6, Pathum Thani")} description={t("A Cup of Zoo คาเฟ่สัตว์และสวน คลอง 6 ปทุมธานี จิบเครื่องดื่ม พบเพื่อนสัตว์ เดินเล่นในสวนญี่ปุ่น พร้อมเมนู แพ็กเกจและข้อมูลก่อนมาเที่ยว", "A café, a garden and a few new friends. Discover A Cup of Zoo in Khlong 6, Pathum Thani, with food, animal experiences and everything you need to plan your visit.")} page={page} includeJsonLd>
+
+<SiteLayout
+  locale={locale}
+  title={t(
+    "คาเฟ่สัตว์ คลอง 6 ปทุมธานี",
+    "Animal café in Khlong 6, Pathum Thani",
+  )}
+  description={t(
+    "A Cup of Zoo คาเฟ่สัตว์และสวน คลอง 6 ปทุมธานี จิบเครื่องดื่ม พบเพื่อนสัตว์ เดินเล่นในสวนญี่ปุ่น พร้อมเมนู แพ็กเกจและข้อมูลก่อนมาเที่ยว",
+    "A café, a garden and a few new friends. Discover A Cup of Zoo in Khlong 6, Pathum Thani, with food, animal experiences and everything you need to plan your visit.",
+  )}
+  page={page}
+  includeJsonLd
+>
   <section class="garden-hero" aria-labelledby="home-title">
-    <HeroVideo locale={locale} videoSrc="/videos/hero-animal.mp4" posterSrc="/videos/hero-animal-poster.webp" />
-    <p class="hero-place">A CUP OF ZOO <span>CAFÉ & FARM · KHLONG 6</span></p>
+    <HeroVideo
+      locale={locale}
+      videoSrc="/videos/hero-animal.mp4"
+      posterSrc="/videos/hero-animal-poster.webp"
+    />
+    <p class="hero-place">
+      A CUP OF ZOO <span>CAFÉ & FARM · KHLONG 6</span>
+    </p>
     <div class="hero-copy">
-      <p class="hero-eyebrow">{t("กาแฟหนึ่งแก้ว เพื่อนใหม่อีกหลายตัว", "A little closer to nature")}</p>
-      <h1 id="home-title">{t("จิบอะไรดี…", "A little sip…")}<br /><span>{t("มีเพื่อนรออยู่", "a friendly hello")}</span></h1>
-      <p class="hero-lede">{t("คาเฟ่ สวนญี่ปุ่น และห้องเล่นกับแมว", "A café, a Japanese garden and time with the cats.")}<br />{t("ชวนมาใช้เวลาด้วยกันที่คลอง 6 ปทุมธานี", "Make a day of it in Khlong 6, Pathum Thani.")}</p>
+      <p class="hero-eyebrow">
+        {t("กาแฟหนึ่งแก้ว เพื่อนใหม่อีกหลายตัว", "A little closer to nature")}
+      </p>
+      <h1 id="home-title">
+        {t("จิบอะไรดี…", "A little sip…")}
+        <br />
+        <span>{t("มีเพื่อนรออยู่", "a friendly hello")}</span>
+      </h1>
+      <p class="hero-lede">
+        {t(
+          "คาเฟ่ สวนญี่ปุ่น และห้องเล่นกับแมว",
+          "A café, a Japanese garden and time with the cats.",
+        )}
+        <br />
+        {t(
+          "ชวนมาใช้เวลาด้วยกันที่คลอง 6 ปทุมธานี",
+          "Make a day of it in Khlong 6, Pathum Thani.",
+        )}
+      </p>
       <div class="hero-actions" data-hero-actions>
-        <a class="hero-action" href={href("/visit/")}>{t("วางแผนมาเที่ยว", "Plan your visit")} <ArrowIcon /></a>
-        <a class="hero-explore" href="#experiences">{t("สำรวจประสบการณ์", "Explore experiences")} <ArrowIcon direction="down" /></a>
+        <a class="hero-action" href={href("/visit/")}>
+          {t("วางแผนมาเที่ยว", "Plan your visit")} <ArrowIcon />
+        </a>
+        <a class="hero-explore" href="#experiences">
+          {t("สำรวจประสบการณ์", "Explore experiences")}{" "}
+          <ArrowIcon direction="down" />
+        </a>
       </div>
     </div>
-    <div class="hero-foot"><span>{t("ค่อย ๆ รู้จักกัน", "Good company. A slower afternoon.")}</span><a href="#experiences" aria-label={t("เลื่อนลงเพื่อสำรวจร้าน", "Scroll to explore the café")}><ArrowIcon direction="down" /></a></div>
+    <div class="hero-foot">
+      <span>{t("ค่อย ๆ รู้จักกัน", "Good company. A slower afternoon.")}</span>
+      <a
+        href="#experiences"
+        aria-label={t("เลื่อนลงเพื่อสำรวจร้าน", "Scroll to explore the café")}
+      >
+        <ArrowIcon direction="down" />
+      </a>
+    </div>
   </section>
-  {page.venueProblem && <ContentUnavailable detail={page.venueProblem === "missing" ? t("ยังไม่ได้เผยแพร่ข้อมูลร้าน", "Café information has not been published yet.") : undefined} />}
+  {page.venueProblem && (
+    <ContentUnavailable
+      detail={
+        page.venueProblem === "missing"
+          ? t(
+              "ยังไม่ได้เผยแพร่ข้อมูลร้าน",
+              "Café information has not been published yet.",
+            )
+          : undefined
+      }
+    />
+  )}
 
   <HomeIntroduction locale={locale} />
 
@@ -53,27 +114,149 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
   <section class="club-invitation" aria-labelledby="home-club-title">
     <div class="club-invitation__copy">
       <p class="club-invitation__name">Zoo Clubs</p>
-      <h2 id="home-club-title">{t("ยิ่งมา ยิ่งสนิท", "Make yourself a regular")}</h2>
-      <p>{t("สมัครสมาชิกฟรีผ่าน LINE สะสมแต้มทุกบิล แล้วค่อย ๆ ขยับจาก Friend ไปเป็น Family ของน้อง ๆ", "Join free on LINE, collect points with every bill and grow from Friend to Family.")}</p>
+      <h2 id="home-club-title">
+        {t("ยิ่งมา ยิ่งสนิท", "Make yourself a regular")}
+      </h2>
+      <p>
+        {t(
+          "สมัครสมาชิกฟรีผ่าน LINE สะสมแต้มทุกบิล แล้วค่อย ๆ ขยับจาก Friend ไปเป็น Family ของน้อง ๆ",
+          "Join free on LINE, collect points with every bill and grow from Friend to Family.",
+        )}
+      </p>
     </div>
     <div class="club-invitation__benefits">
-      <div class="club-invitation__facts"><p><strong>{t("รับ 5 แต้ม", "5 welcome points")}</strong>{t("เมื่อสมัครสมาชิก", "When you join")}</p><p><strong>{t("25 บาท = 1 แต้ม", "25 THB = 1 point")}</strong>{t("ทุกบิล รวมแพ็กเกจ", "Every bill, including passes")}</p></div>
-      <a class="button" href={href("/club/")}>{t("รู้จัก Zoo Clubs และสมัครฟรี", "Explore Zoo Clubs & join free")} <ArrowIcon /></a>
+      <div class="club-invitation__facts">
+        <p>
+          <strong>{t("รับ 5 แต้ม", "5 welcome points")}</strong>
+          {t("เมื่อสมัครสมาชิก", "When you join")}
+        </p>
+        <p>
+          <strong>{t("25 บาท = 1 แต้ม", "25 THB = 1 point")}</strong>
+          {t("ทุกบิล รวมแพ็กเกจ", "Every bill, including passes")}
+        </p>
+      </div>
+      <a class="button" href={href("/club/")}>
+        {t("รู้จัก Zoo Clubs และสมัครฟรี", "Explore Zoo Clubs & join free")}{" "}
+        <ArrowIcon />
+      </a>
     </div>
   </section>
 
   <HomeStories locale={locale} />
   <WishingCorner locale={locale} compact />
-  <section class="owner-section" aria-label={t("มาเที่ยวเป็นกลุ่ม", "Visit as a group")}>
-    <article><p class="chapter-label">Group tours & events</p><h2>{t("ชวนกันมา ทั้งกลุ่ม", "Bring your whole group")}</h2><p>{t("ทัวร์โรงเรียน กิจกรรมกลุ่ม และงานร่วมกับแบรนด์ คุยกับทีมร้านเพื่อวางแผนวันของคุณ", "School visits, group gatherings and brand collaborations. Plan your day with the café team.")}</p><a class="cafe-link" href={href("/events/")}>{t("ดูทัวร์กลุ่มและร่วมงาน", "Groups & collaborations")} <ArrowIcon /></a></article>
+  <section
+    class="owner-section"
+    aria-label={t("มาเที่ยวเป็นกลุ่ม", "Visit as a group")}
+  >
+    <article>
+      <p class="chapter-label">Group tours & events</p>
+      <h2>{t("ชวนกันมา ทั้งกลุ่ม", "Bring your whole group")}</h2>
+      <p>
+        {t(
+          "ทัวร์โรงเรียน กิจกรรมกลุ่ม และงานร่วมกับแบรนด์ คุยกับทีมร้านเพื่อวางแผนวันของคุณ",
+          "School visits, group gatherings and brand collaborations. Plan your day with the café team.",
+        )}
+      </p>
+      <a class="cafe-link" href={href("/events/")}>
+        {t("ดูทัวร์กลุ่มและร่วมงาน", "Groups & collaborations")} <ArrowIcon />
+      </a>
+    </article>
   </section>
 
   <section class="home-follow" aria-labelledby="follow-title">
-    <div class="home-follow-copy"><WatercolorAnimal animal="ducks" /><p class="chapter-label">{t("เจอกันได้ทุกวัน", "Between visits")}</p><h2 id="follow-title">{t("เป็นเพื่อนกันต่อ", "Let's stay in touch.")}</h2><p>{t("แวะดูความซนของน้อง ๆ ภาพจากสวน และข่าวจากร้าน แม้วันที่ยังไม่ได้แวะมา", "Little moments with the animals, a look around the garden and news from the café — even when you can't stop by.")}</p></div>
+    <div class="home-follow-copy">
+      <WatercolorAnimal animal="ducks" />
+      <p class="chapter-label">{t("เจอกันได้ทุกวัน", "Between visits")}</p>
+      <h2 id="follow-title">{t("เป็นเพื่อนกันต่อ", "Let's stay in touch.")}</h2>
+      <p>
+        {t(
+          "แวะดูความซนของน้อง ๆ ภาพจากสวน และข่าวจากร้าน แม้วันที่ยังไม่ได้แวะมา",
+          "Little moments with the animals, a look around the garden and news from the café — even when you can't stop by.",
+        )}
+      </p>
+    </div>
     <SocialLinks facebookUrl={content?.facebookUrl} />
   </section>
 
-  <section class="visit-preview" aria-labelledby="choose-title"><div><p class="chapter-label">{t("เลือกวันของคุณ", "Before you visit")}</p><h2 id="choose-title">{t("แวะคาเฟ่ หรืออยู่กับเพื่อนสัตว์", "Come for the café. Stay for the company.")}</h2><p>{t("โซนคาเฟ่ไม่มีค่าเข้า ขั้นต่ำ 1 ออร์เดอร์ต่อคน หากอยากเข้าโซนสัตว์ใกล้ชิด เลือกแพ็กเกจที่เหมาะกับคุณ", "The café has no admission fee, with a minimum of 1 order per person. Choose a pass to spend time in the animal zones.")}</p></div><div class="home-passes">{passes.map(pass => <a href={href("/activities/") + "#" + pass.id}><span>{pass.name}</span><strong>{pass.price} <small>{t("บาท / คน", "THB / person")}</small></strong><p>{pass.description}</p><span class="path-link">{t("ดูสิทธิประโยชน์", "See what is included")} <ArrowIcon /></span></a>)}</div></section>
-  {content && <section class="visit-letter" aria-labelledby="visit-title"><div class="letter-heading"><p class="chapter-label">{t("จากหน้าจอ มาเจอกันที่ร้าน", "From your screen to our garden")}</p><h2 id="visit-title">{t("แล้วแวะมานะ", "See you in the garden.")}</h2><p>A Cup of Zoo<br />{content.locationLabel}</p><p>{content.addressLine}</p><div class="letter-actions">{maps && <a class="button" href={maps}>{t("เปิดแผนที่มาร้าน", "Open the café map")} <ArrowIcon /></a>}<a class="cafe-link" href={href("/visit/")}>{t("ข้อมูลก่อนมาเที่ยว", "Before your visit")} <ArrowIcon /></a></div></div><div class="letter-details"><h3>{t("เวลาเจอกัน", "Opening hours")}</h3><OpeningHours exceptions={content.hoursExceptions} entries={content.regularHours} holidayNote={content.holidayNote} locale={locale} compact /></div></section>}
-  {locale === "th" && (news.length > 0 || page.postsProblem) && <section class="cafe-news" aria-labelledby="news-title"><div class="news-heading"><h2 id="news-title">จดหมายจากร้าน</h2><a class="cafe-link" href="/news/">อ่านทั้งหมด <ArrowIcon /></a></div>{page.postsProblem && <ContentUnavailable />}{news.map(post => <NewsCard post={post} heading="h3" className="cafe-news-item" />)}</section>}
+  <section class="visit-preview" aria-labelledby="choose-title">
+    <div>
+      <p class="chapter-label">{t("เลือกวันของคุณ", "Before you visit")}</p>
+      <h2 id="choose-title">
+        {t(
+          "แวะคาเฟ่ หรืออยู่กับเพื่อนสัตว์",
+          "Come for the café. Stay for the company.",
+        )}
+      </h2>
+      <p>
+        {t(
+          "โซนคาเฟ่ไม่มีค่าเข้า ขั้นต่ำ 1 ออร์เดอร์ต่อคน หากอยากเข้าโซนสัตว์ใกล้ชิด เลือกแพ็กเกจที่เหมาะกับคุณ",
+          "The café has no admission fee, with a minimum of 1 order per person. Choose a pass to spend time in the animal zones.",
+        )}
+      </p>
+    </div>
+    <div class="home-passes">
+      {passes.map((pass) => (
+        <a href={href("/activities/") + "#" + pass.id}>
+          <span>{pass.name}</span>
+          <strong>
+            {pass.price} <small>{t("บาท / คน", "THB / person")}</small>
+          </strong>
+          <p>{pass.description}</p>
+          <span class="path-link">
+            {t("ดูสิทธิประโยชน์", "See what is included")} <ArrowIcon />
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+  {content && (
+    <section class="visit-letter" aria-labelledby="visit-title">
+      <div class="letter-heading">
+        <p class="chapter-label">
+          {t("จากหน้าจอ มาเจอกันที่ร้าน", "From your screen to our garden")}
+        </p>
+        <h2 id="visit-title">{t("แล้วแวะมานะ", "See you in the garden.")}</h2>
+        <p>
+          A Cup of Zoo
+          <br />
+          {content.locationLabel}
+        </p>
+        <p>{content.addressLine}</p>
+        <div class="letter-actions">
+          {maps && (
+            <a class="button" href={maps}>
+              {t("เปิดแผนที่มาร้าน", "Open the café map")} <ArrowIcon />
+            </a>
+          )}
+          <a class="cafe-link" href={href("/visit/")}>
+            {t("ข้อมูลก่อนมาเที่ยว", "Before your visit")} <ArrowIcon />
+          </a>
+        </div>
+      </div>
+      <div class="letter-details">
+        <h3>{t("เวลาเจอกัน", "Opening hours")}</h3>
+        <OpeningHours
+          exceptions={content.hoursExceptions}
+          entries={content.regularHours}
+          holidayNote={content.holidayNote}
+          locale={locale}
+          compact
+        />
+      </div>
+    </section>
+  )}
+  {locale === "th" && (news.length > 0 || page.postsProblem) && (
+    <section class="cafe-news" aria-labelledby="news-title">
+      <div class="news-heading">
+        <h2 id="news-title">จดหมายจากร้าน</h2>
+        <a class="cafe-link" href="/news/">
+          อ่านทั้งหมด <ArrowIcon />
+        </a>
+      </div>
+      {page.postsProblem && <ContentUnavailable />}
+      {news.map((post) => (
+        <NewsCard post={post} heading="h3" className="cafe-news-item" />
+      ))}
+    </section>
+  )}
 </SiteLayout>

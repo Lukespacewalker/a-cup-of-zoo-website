@@ -6,58 +6,246 @@ import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import ArrowIcon from "./ArrowIcon.astro";
 import MapIcon from "./MapIcon.astro";
 import "../../styles/shop-map.css";
-interface Props { locale: Locale; home?: boolean; }
+interface Props {
+  locale: Locale;
+  home?: boolean;
+}
 const { locale, home = false } = Astro.props;
 const t = translator(locale);
 const stops = shopMapStops(locale);
 const href = (path: string) => localePath(path, locale);
-const alt = t("แผนผังร้าน: คาเฟ่และสวนทะเลทรายอยู่ใกล้ทางเข้า สวนญี่ปุ่นและบ่อปลาอยู่กลางร้าน บ้านจิ้งจอก กระต่าย และแพะอยู่ด้านใน", "Shop map: the café and desert garden are near the entrance, the Japanese garden and pond are in the centre, and the fox, rabbit and goat houses are further inside.");
+const alt = t(
+  "แผนผังร้าน: คาเฟ่และสวนทะเลทรายอยู่ใกล้ทางเข้า สวนญี่ปุ่นและบ่อปลาอยู่กลางร้าน บ้านจิ้งจอก กระต่าย และแพะอยู่ด้านใน",
+  "Shop map: the café and desert garden are near the entrance, the Japanese garden and pond are in the centre, and the fox, rabbit and goat houses are further inside.",
+);
 ---
+
 <section class="shop-map-section" id="garden" aria-labelledby="shop-map-title">
   <div class="shop-map" data-shop-map>
     <header class="shop-map-heading" data-map-heading>
-      <div><p class="chapter-label">{t("แผนที่วันสบาย ๆ ของคุณ", "A little map. A whole afternoon.")}</p><h2 id="shop-map-title">{t("เลือกมุมที่อยากไปเจอกัน", "Where shall we wander?")}</h2></div>
-      <p>{t("จากคาเฟ่ ไปสวนญี่ปุ่น แล้วแวะทักทายเพื่อนสัตว์ ลองเลือกจุดบนแผนที่เพื่อรู้จักร้านก่อนมาเที่ยว", "From the café to the Japanese garden and our animal friends. Pick a spot and take a little look around before your visit.")}</p>
+      <div>
+        <p class="chapter-label">
+          {t("แผนที่วันสบาย ๆ ของคุณ", "A little map. A whole afternoon.")}
+        </p>
+        <h2 id="shop-map-title">
+          {t("เลือกมุมที่อยากไปเจอกัน", "Where shall we wander?")}
+        </h2>
+      </div>
+      <p>
+        {t(
+          "จากคาเฟ่ ไปสวนญี่ปุ่น แล้วแวะทักทายเพื่อนสัตว์ ลองเลือกจุดบนแผนที่เพื่อรู้จักร้านก่อนมาเที่ยว",
+          "From the café to the Japanese garden and our animal friends. Pick a spot and take a little look around before your visit.",
+        )}
+      </p>
     </header>
     <div class="shop-map-toolbar" data-map-controls hidden>
-      <p id="shop-map-help">{t("แตะหรือชี้ที่ไอคอนเพื่อสำรวจ · คลิกเพื่อเปิดค้าง", "Tap or hover over an icon to explore · Click to keep it open")}</p>
-      <button class="map-zoom" type="button" data-map-zoom aria-pressed="false"><MapIcon name="zoom" /><span data-zoom-in>{t("ขยายแผนที่", "Enlarge map")}</span><span data-zoom-out hidden>{t("ดูภาพรวม", "Show overview")}</span></button>
+      <p id="shop-map-help">
+        {t(
+          "แตะหรือชี้ที่ไอคอนเพื่อสำรวจ · คลิกเพื่อเปิดค้าง",
+          "Tap or hover over an icon to explore · Click to keep it open",
+        )}
+      </p>
+      <button class="map-zoom" type="button" data-map-zoom aria-pressed="false">
+        <MapIcon name="zoom" />
+        <span data-zoom-in>{t("ขยายแผนที่", "Enlarge map")}</span>
+        <span data-zoom-out hidden>
+          {t("ดูภาพรวม", "Show overview")}
+        </span>
+      </button>
     </div>
     <div class="shop-map-explorer" data-map-explorer>
-      <div class="shop-map-viewport" data-map-viewport role="region" aria-label={t("สำรวจแผนผังร้าน", "Explore the shop map")} tabindex="0">
+      <div
+        class="shop-map-viewport"
+        data-map-viewport
+        role="region"
+        aria-label={t("สำรวจแผนผังร้าน", "Explore the shop map")}
+        tabindex="0"
+      >
         <div class="shop-map-board" data-map-board>
-          <Image class="shop-map-illustration" src={ownerPhoto(5)} alt={alt} widths={[560, 900, 1131]} sizes="(max-width: 759px) 100vw, 68vw" format="webp" loading="lazy" />
+          <Image
+            class="shop-map-illustration"
+            src={ownerPhoto(5)}
+            alt={alt}
+            widths={[560, 900, 1131]}
+            sizes="(max-width: 759px) 100vw, 68vw"
+            format="webp"
+            loading="lazy"
+          />
           <div class="shop-map-pins" data-map-controls hidden>
-            {stops.map(stop => <button type="button" class:list={["map-pin", `map-pin--${stop.icon}`]} style={`--pin-x:${stop.x / 1131 * 100}%;--pin-y:${(stop.y - 280) / 1120 * 100}%`} data-map-pin={stop.id} data-map-number={stop.number ?? undefined} aria-label={`${stop.number ? `${stop.number}. ` : ""}${stop.title}`} aria-pressed="false" aria-controls={`map-panel-${stop.id}`}><span class="map-pin-symbol"><MapIcon name={stop.icon} /></span>{stop.number && <span class="map-pin-number" aria-hidden="true">{stop.number}</span>}<span class="map-pin-label" aria-hidden="true">{stop.title}</span></button>)}
+            {stops.map((stop) => (
+              <button
+                type="button"
+                class:list={["map-pin", `map-pin--${stop.icon}`]}
+                style={`--pin-x:${(stop.x / 1131) * 100}%;--pin-y:${((stop.y - 280) / 1120) * 100}%`}
+                data-map-pin={stop.id}
+                data-map-number={stop.number ?? undefined}
+                aria-label={`${stop.number ? `${stop.number}. ` : ""}${stop.title}`}
+                aria-pressed="false"
+                aria-controls={`map-panel-${stop.id}`}
+              >
+                <span class="map-pin-symbol">
+                  <MapIcon name={stop.icon} />
+                </span>
+                {stop.number && (
+                  <span class="map-pin-number" aria-hidden="true">
+                    {stop.number}
+                  </span>
+                )}
+                <span class="map-pin-label" aria-hidden="true">
+                  {stop.title}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
-      <aside class="shop-map-details" data-map-details aria-label={t("รู้จักจุดที่เลือก", "About your chosen stop")}>
+      <aside
+        class="shop-map-details"
+        data-map-details
+        aria-label={t("รู้จักจุดที่เลือก", "About your chosen stop")}
+      >
         <div class="shop-map-picker" data-map-controls hidden>
-          <label for="map-stop">{t("อยากแวะตรงไหน", "Pick your next stop")}</label>
-          <select id="map-stop" data-map-select><option value="">{t("เลือกจุดบนแผนที่", "Choose a place on the map")}</option>{stops.map(stop => <option value={stop.id}>{stop.number ? `${stop.number}. ` : ""}{stop.title}</option>)}</select>
+          <label for="map-stop">
+            {t("อยากแวะตรงไหน", "Pick your next stop")}
+          </label>
+          <select id="map-stop" data-map-select>
+            <option value="">
+              {t("เลือกจุดบนแผนที่", "Choose a place on the map")}
+            </option>
+            {stops.map((stop) => (
+              <option value={stop.id}>
+                {stop.number ? `${stop.number}. ` : ""}
+                {stop.title}
+              </option>
+            ))}
+          </select>
         </div>
         <div class="map-overview" data-map-overview>
-          <span class="map-overview-icon"><MapIcon name="tree" /></span>
-          <p class="chapter-label">{t("ค่อย ๆ เดิน ค่อย ๆ รู้จัก", "Take your time. Look around.")}</p>
+          <span class="map-overview-icon">
+            <MapIcon name="tree" />
+          </span>
+          <p class="chapter-label">
+            {t("ค่อย ๆ เดิน ค่อย ๆ รู้จัก", "Take your time. Look around.")}
+          </p>
           <h3>{t("มีมุมโปรดรอให้เจอ", "Find your favourite corner.")}</h3>
-          <p data-map-controls hidden>{t("เลือกไอคอนบนแผนที่ หรือเลือกจากรายชื่อด้านบน เพื่อดูรูป กิจกรรม และข้อมูลของแต่ละจุด", "Choose an icon on the map, or a place from the list above, to discover photos, activities and visiting details.")}</p>
-          <div class="map-key"><span><MapIcon name="cup" />{t("คาเฟ่และสวน", "Café & gardens")}</span><span><MapIcon name="paw" />{t("เพื่อนสัตว์", "Animal friends")}</span><span><MapIcon name="parking" />{t("จุดบริการ", "Facilities")}</span></div>
-          <p class="map-admission">{t("โซนคาเฟ่ไม่มีค่าเข้า ขั้นต่ำ 1 ออร์เดอร์ต่อคน การเข้าโซนสัตว์ใกล้ชิดใช้แพ็กเกจ", "The café has no admission fee, with a minimum of 1 order per person. A pass is required to enter the animal zones.")}</p>
+          <p data-map-controls hidden>
+            {t(
+              "เลือกไอคอนบนแผนที่ หรือเลือกจากรายชื่อด้านบน เพื่อดูรูป กิจกรรม และข้อมูลของแต่ละจุด",
+              "Choose an icon on the map, or a place from the list above, to discover photos, activities and visiting details.",
+            )}
+          </p>
+          <div class="map-key">
+            <span>
+              <MapIcon name="cup" />
+              {t("คาเฟ่และสวน", "Café & gardens")}
+            </span>
+            <span>
+              <MapIcon name="paw" />
+              {t("เพื่อนสัตว์", "Animal friends")}
+            </span>
+            <span>
+              <MapIcon name="parking" />
+              {t("จุดบริการ", "Facilities")}
+            </span>
+          </div>
+          <p class="map-admission">
+            {t(
+              "โซนคาเฟ่ไม่มีค่าเข้า ขั้นต่ำ 1 ออร์เดอร์ต่อคน การเข้าโซนสัตว์ใกล้ชิดใช้แพ็กเกจ",
+              "The café has no admission fee, with a minimum of 1 order per person. A pass is required to enter the animal zones.",
+            )}
+          </p>
         </div>
         <div class="map-stop-content" data-map-stop-content hidden>
-          <button class="map-close" type="button" data-map-close aria-label={t("ปิดรายละเอียดจุดที่เลือก", "Close stop details")}><MapIcon name="close" /></button>
-          {stops.map(stop => <article id={`map-panel-${stop.id}`} data-map-panel={stop.id} hidden>
-            {stop.image ? <Image class="map-stop-photo" src={stop.image} alt={stop.title} widths={[360, 600]} sizes="(max-width: 759px) 90vw, 350px" format="webp" loading="lazy" /> : <div class="map-stop-symbol"><MapIcon name={stop.icon} /></div>}
-            <p class="chapter-label">{stop.number ? `${String(stop.number).padStart(2, "0")} / ` : ""}{stop.group}</p><h3>{stop.title}</h3><p>{stop.copy}</p><p class="map-stop-note">{stop.note}</p><a class="cafe-link" href={href(stop.path)}>{stop.link}<ArrowIcon /></a>
-          </article>)}
+          <button
+            class="map-close"
+            type="button"
+            data-map-close
+            aria-label={t("ปิดรายละเอียดจุดที่เลือก", "Close stop details")}
+          >
+            <MapIcon name="close" />
+          </button>
+          {stops.map((stop) => (
+            <article
+              id={`map-panel-${stop.id}`}
+              data-map-panel={stop.id}
+              hidden
+            >
+              {stop.image ? (
+                <Image
+                  class="map-stop-photo"
+                  src={stop.image}
+                  alt={stop.title}
+                  widths={[360, 600]}
+                  sizes="(max-width: 759px) 90vw, 350px"
+                  format="webp"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="map-stop-symbol">
+                  <MapIcon name={stop.icon} />
+                </div>
+              )}
+              <p class="chapter-label">
+                {stop.number
+                  ? `${String(stop.number).padStart(2, "0")} / `
+                  : ""}
+                {stop.group}
+              </p>
+              <h3>{stop.title}</h3>
+              <p>{stop.copy}</p>
+              <p class="map-stop-note">{stop.note}</p>
+              <a class="cafe-link" href={href(stop.path)}>
+                {stop.link}
+                <ArrowIcon />
+              </a>
+            </article>
+          ))}
         </div>
-        <a class="map-section-link" data-map-activities={home ? "" : undefined} href={href(home ? "/activities/#garden" : "/activities/#passes")}>{home ? t("สำรวจต่อ · กิจกรรมและแพ็กเกจ", "Keep exploring · Activities & passes") : t("กลับไปดูแพ็กเกจและราคา", "Back to passes & prices")}<ArrowIcon /></a>
-        <noscript><p>{t("ดูตำแหน่งจากแผนผังด้านบน และเลือกอ่านข้อมูลของแต่ละจุดได้จากรายชื่อ", "Use the illustrated map above and follow the place links for more information.")}</p><ul class="map-static-stops">{stops.map(stop => <li><a href={href(stop.path)}>{stop.number ? `${stop.number}. ` : ""}{stop.title}</a></li>)}</ul></noscript>
+        <a
+          class="map-section-link"
+          data-map-activities={home ? "" : undefined}
+          href={href(home ? "/activities/#garden" : "/activities/#passes")}
+        >
+          {home
+            ? t(
+                "สำรวจต่อ · กิจกรรมและแพ็กเกจ",
+                "Keep exploring · Activities & passes",
+              )
+            : t("กลับไปดูแพ็กเกจและราคา", "Back to passes & prices")}
+          <ArrowIcon />
+        </a>
+        <noscript>
+          <p>
+            {t(
+              "ดูตำแหน่งจากแผนผังด้านบน และเลือกอ่านข้อมูลของแต่ละจุดได้จากรายชื่อ",
+              "Use the illustrated map above and follow the place links for more information.",
+            )}
+          </p>
+          <ul class="map-static-stops">
+            {stops.map((stop) => (
+              <li>
+                <a href={href(stop.path)}>
+                  {stop.number ? `${stop.number}. ` : ""}
+                  {stop.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </noscript>
       </aside>
     </div>
-    <p class="shop-map-status" data-map-status role="status" aria-live="polite"></p>
-    <p class="shop-map-footnote">{t("แผนผังภาพประกอบสำหรับสำรวจร้าน · สอบถามพนักงานเรื่องกิจกรรมที่พร้อมให้บริการในวันที่มาเที่ยว", "An illustrated guide to the café · Ask the team which activities are available on the day")}</p>
+    <p
+      class="shop-map-status"
+      data-map-status
+      role="status"
+      aria-live="polite"
+    ></p>
+    <p class="shop-map-footnote">
+      {t(
+        "แผนผังภาพประกอบสำหรับสำรวจร้าน · สอบถามพนักงานเรื่องกิจกรรมที่พร้อมให้บริการในวันที่มาเที่ยว",
+        "An illustrated guide to the café · Ask the team which activities are available on the day",
+      )}
+    </p>
   </div>
 </section>
 
@@ -82,7 +270,10 @@ const alt = t("แผนผังร้าน: คาเฟ่และสวน
       for (const panel of panels) panel.hidden = panel.dataset.mapPanel !== id;
       for (const pin of pins) {
         pin.dataset.active = String(pin.dataset.mapPin === id);
-        pin.setAttribute("aria-pressed", String(pin.dataset.mapPin === selected));
+        pin.setAttribute(
+          "aria-pressed",
+          String(pin.dataset.mapPin === selected),
+        );
       }
     };
     const choose = (id: string) => {
@@ -90,34 +281,50 @@ const alt = t("แผนผังร้าน: คาเฟ่และสวน
       select.value = id;
       show(id);
       map.querySelector<HTMLElement>("[data-map-status]")!.textContent = id
-        ? pins.find(pin => pin.dataset.mapPin === id)!.getAttribute("aria-label")
+        ? pins
+            .find((pin) => pin.dataset.mapPin === id)!
+            .getAttribute("aria-label")
         : overview.querySelector("h3")!.textContent;
     };
     const close = () => {
-      const previous = pins.find(pin => pin.dataset.mapPin === (selected || displayed));
+      const previous = pins.find(
+        (pin) => pin.dataset.mapPin === (selected || displayed),
+      );
       choose("");
-      if (previous && document.activeElement !== select) previous.focus({ preventScroll: true });
+      if (previous && document.activeElement !== select)
+        previous.focus({ preventScroll: true });
       show("");
     };
 
     for (const pin of pins) {
       // Scrolling can dispatch enter/leave without the user moving the pointer.
-      pin.addEventListener("pointermove", event => {
-        if (event.pointerType === "mouse" && displayed !== pin.dataset.mapPin) show(pin.dataset.mapPin!);
+      pin.addEventListener("pointermove", (event) => {
+        if (event.pointerType === "mouse" && displayed !== pin.dataset.mapPin)
+          show(pin.dataset.mapPin!);
       });
       pin.addEventListener("focus", () => show(pin.dataset.mapPin!));
-      pin.addEventListener("blur", event => {
+      pin.addEventListener("blur", (event) => {
         // A preview link must stay mounted through mousedown → focus → click.
-        if (!(event.relatedTarget instanceof Node) || !details.contains(event.relatedTarget)) show(selected);
+        if (
+          !(event.relatedTarget instanceof Node) ||
+          !details.contains(event.relatedTarget)
+        )
+          show(selected);
       });
       pin.addEventListener("click", () => choose(pin.dataset.mapPin!));
     }
-    document.addEventListener("pointermove", event => {
-      if (event.pointerType === "mouse" && displayed !== selected && event.target instanceof Node && !explorer.contains(event.target)) show(selected);
+    document.addEventListener("pointermove", (event) => {
+      if (
+        event.pointerType === "mouse" &&
+        displayed !== selected &&
+        event.target instanceof Node &&
+        !explorer.contains(event.target)
+      )
+        show(selected);
     });
     select.addEventListener("change", () => choose(select.value));
     map.querySelector("[data-map-close]")!.addEventListener("click", close);
-    map.addEventListener("keydown", event => {
+    map.addEventListener("keydown", (event) => {
       if (event.key === "Escape") close();
     });
     zoom.addEventListener("click", () => {
@@ -128,6 +335,9 @@ const alt = t("แผนผังร้าน: คาเฟ่และสวน
       viewport.classList.toggle("is-zoomed", enlarged);
       if (!enlarged) viewport.scrollTo({ top: 0, left: 0 });
     });
-    for (const control of map.querySelectorAll<HTMLElement>("[data-map-controls]")) control.hidden = false;
+    for (const control of map.querySelectorAll<HTMLElement>(
+      "[data-map-controls]",
+    ))
+      control.hidden = false;
   }
 </script>

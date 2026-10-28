@@ -5,11 +5,42 @@ import { localImages } from "../../lib/content/local-images";
 import { localeFromPath } from "../../lib/i18n/locale";
 import { englishMediaAlt } from "../../lib/i18n/venue";
 
-interface Props { mediaId: string | null; media: PublicVenueMedia[]; alt?: string; class?: string; eager?: boolean; }
+interface Props {
+  mediaId: string | null;
+  media: PublicVenueMedia[];
+  alt?: string;
+  class?: string;
+  eager?: boolean;
+}
 const { mediaId, media, alt, class: className, eager = false } = Astro.props;
 const remote = media.find((item) => item.id === mediaId);
-const local = mediaId && mediaId in localImages ? localImages[mediaId as keyof typeof localImages] : undefined;
-const label = alt || (localeFromPath(Astro.url.pathname) === "en" ? englishMediaAlt[mediaId ?? ""] || "Image from A Cup of Zoo" : remote?.altTh || "ภาพจากร้าน A Cup of Zoo");
+const local =
+  mediaId && mediaId in localImages
+    ? localImages[mediaId as keyof typeof localImages]
+    : undefined;
+const label =
+  alt ||
+  (localeFromPath(Astro.url.pathname) === "en"
+    ? englishMediaAlt[mediaId ?? ""] || "Image from A Cup of Zoo"
+    : remote?.altTh || "ภาพจากร้าน A Cup of Zoo");
 ---
-{local && <Image class={className} src={local} alt={label} widths={[480, 800, 1200]} sizes="(max-width: 800px) 100vw, 50vw" loading={eager ? "eager" : "lazy"} />}
-{!local && remote?.url && <img class={className} src={remote.url} alt={label} width={remote.width ?? 1080} height={remote.height ?? 1080} />}
+
+{local && (
+  <Image
+    class={className}
+    src={local}
+    alt={label}
+    widths={[480, 800, 1200]}
+    sizes="(max-width: 800px) 100vw, 50vw"
+    loading={eager ? "eager" : "lazy"}
+  />
+)}
+{!local && remote?.url && (
+  <img
+    class={className}
+    src={remote.url}
+    alt={label}
+    width={remote.width ?? 1080}
+    height={remote.height ?? 1080}
+  />
+)}

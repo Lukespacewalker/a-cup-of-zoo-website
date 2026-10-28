@@ -1,6 +1,6 @@
 ---
 import type { PostDto } from "@lukespace-cms/client";
-import { isDemoPost, thaiTranslation } from "../../lib/content/load-page";
+import { isDemoPost, thaiTranslation } from "../../lib/content/posts";
 interface Props {
   post: PostDto;
   heading: "h2" | "h3";
@@ -9,4 +9,11 @@ interface Props {
 const { post, heading: Heading, className } = Astro.props;
 const translation = thaiTranslation(post);
 ---
-<article class={className}><Heading><a href={`/news/${translation.slug}/`}>{translation.title}</a></Heading>{isDemoPost(post) && <span class="badge">ตัวอย่างระบบ</span>}<p>{translation.excerpt.replace("[[demo]]", "").trim()}</p></article>
+
+<article class={className}>
+  <Heading>
+    <a href={`/news/${translation.slug}/`}>{translation.title}</a>
+  </Heading>
+  {isDemoPost(post) && <span class="badge">ตัวอย่างระบบ</span>}
+  <p>{translation.excerpt.replace("[[demo]]", "").trim()}</p>
+</article>

@@ -1,18 +1,57 @@
 ---
 import { translator, type Locale } from "../../lib/i18n/locale";
-interface Props { locale: Locale; videoSrc: string; posterSrc: string; }
+interface Props {
+  locale: Locale;
+  videoSrc: string;
+  posterSrc: string;
+}
 const { locale, videoSrc, posterSrc } = Astro.props;
 const t = translator(locale);
 ---
+
 <div class="hero-media" data-hero-media>
   <div class="hero-media__scene" aria-hidden="true">
-    <img data-hero-poster src={posterSrc} alt="" width="1920" height="1080" fetchpriority="high" />
-    <video data-hero-video muted loop playsinline preload="none" poster={posterSrc} tabindex="-1"><source src={videoSrc} type="video/mp4" /></video>
+    <img
+      data-hero-poster
+      src={posterSrc}
+      alt=""
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+    />
+    <video
+      data-hero-video
+      muted
+      loop
+      playsinline
+      preload="none"
+      poster={posterSrc}
+      tabindex="-1"
+    >
+      <source src={videoSrc} type="video/mp4" />
+    </video>
   </div>
-  <button hidden type="button" class="hero-media__toggle" data-hero-toggle data-play-label={t("เล่นวิดีโอ", "Play video")} data-pause-label={t("หยุดวิดีโอชั่วคราว", "Pause video")} aria-label={t("เล่นวิดีโอ", "Play video")}><span data-play-icon aria-hidden="true">▷</span><span data-pause-icon aria-hidden="true" hidden>Ⅱ</span></button>
+  <button
+    hidden
+    type="button"
+    class="hero-media__toggle"
+    data-hero-toggle
+    data-play-label={t("เล่นวิดีโอ", "Play video")}
+    data-pause-label={t("หยุดวิดีโอชั่วคราว", "Pause video")}
+    aria-label={t("เล่นวิดีโอ", "Play video")}
+  >
+    <span data-play-icon aria-hidden="true">
+      ▷
+    </span>
+    <span data-pause-icon aria-hidden="true" hidden>
+      Ⅱ
+    </span>
+  </button>
 </div>
 <script>
-  for (const root of document.querySelectorAll<HTMLElement>("[data-hero-media]")) {
+  for (const root of document.querySelectorAll<HTMLElement>(
+    "[data-hero-media]",
+  )) {
     const video = root.querySelector<HTMLVideoElement>("[data-hero-video]");
     const button = root.querySelector<HTMLButtonElement>("[data-hero-toggle]");
     if (!video || !button) continue;
@@ -23,30 +62,53 @@ const t = translator(locale);
     let wantsPlayback = false;
     const sync = () => {
       const playing = !video.paused && !video.ended;
-      button.setAttribute("aria-label", (playing ? button.dataset.pauseLabel : button.dataset.playLabel)!);
+      button.setAttribute(
+        "aria-label",
+        (playing ? button.dataset.pauseLabel : button.dataset.playLabel)!,
+      );
       playIcon.hidden = playing;
       pauseIcon.hidden = !playing;
     };
-    const stop = () => { wantsPlayback = false; video.pause(); sync(); };
+    const stop = () => {
+      wantsPlayback = false;
+      video.pause();
+      sync();
+    };
     const play = async () => {
       if (failed) return;
       wantsPlayback = true;
-      try { await video.play(); if (!wantsPlayback) video.pause(); }
-      catch { wantsPlayback = false; video.pause(); }
+      try {
+        await video.play();
+        if (!wantsPlayback) video.pause();
+      } catch {
+        wantsPlayback = false;
+        video.pause();
+      }
       sync();
     };
     video.muted = true;
     button.hidden = false;
-    button.addEventListener("click", () => video.paused ? void play() : stop());
+    button.addEventListener("click", () =>
+      video.paused ? void play() : stop(),
+    );
     video.addEventListener("play", sync);
     video.addEventListener("pause", sync);
     video.addEventListener("ended", sync);
-    video.addEventListener("playing", () => { root.dataset.ready = "true"; });
-    const fail = () => { failed = true; stop(); root.dataset.ready = "false"; button.hidden = true; };
+    video.addEventListener("playing", () => {
+      root.dataset.ready = "true";
+    });
+    const fail = () => {
+      failed = true;
+      stop();
+      root.dataset.ready = "false";
+      button.hidden = true;
+    };
     video.addEventListener("error", fail);
     // A failed nested source does not bubble an error to the video element.
     video.querySelector("source")?.addEventListener("error", fail);
-    motion.addEventListener("change", () => { if (motion.matches) stop(); });
+    motion.addEventListener("change", () => {
+      if (motion.matches) stop();
+    });
     if (!motion.matches) void play();
   }
 </script>

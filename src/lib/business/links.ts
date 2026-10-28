@@ -1,7 +1,20 @@
-const mapsHosts = new Set(["maps.app.goo.gl", "goo.gl", "maps.google.com", "www.google.com", "google.com"]);
-const facebookHosts = new Set(["facebook.com", "www.facebook.com", "m.facebook.com"]);
+const mapsHosts = new Set([
+  "maps.app.goo.gl",
+  "goo.gl",
+  "maps.google.com",
+  "www.google.com",
+  "google.com",
+]);
+const facebookHosts = new Set([
+  "facebook.com",
+  "www.facebook.com",
+  "m.facebook.com",
+]);
 
-export function allowedExternalUrl(value: string | null, kind: "maps" | "facebook") {
+export function allowedExternalUrl(
+  value: string | null,
+  kind: "maps" | "facebook",
+) {
   if (!value) return null;
   try {
     const url = new URL(value);

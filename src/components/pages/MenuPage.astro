@@ -9,74 +9,222 @@ import ArrowIcon from "../site/ArrowIcon.astro";
 import { loadPage } from "../../lib/content/load-page";
 import { localizedMenu, localizedExtras } from "../../lib/i18n/menu";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+}
 const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
 const menuCatalog = localizedMenu(locale);
 const sandwichExtras = localizedExtras(locale);
 const page = await loadPage();
-const photos = import.meta.glob<{ default: ImageMetadata }>("../../assets/food-menu/*.jpg", { eager: true });
-const photo = (number: number) => photos[`../../assets/food-menu/page-${String(number).padStart(2, "0")}.jpg`].default;
+const photos = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/food-menu/*.jpg",
+  { eager: true },
+);
+const photo = (number: number) =>
+  photos[`../../assets/food-menu/page-${String(number).padStart(2, "0")}.jpg`]
+    .default;
 const menuSchema = {
-  "@context": "https://schema.org", "@type": "Menu", name: t("เมนูอาหาร A Cup of Zoo", "A Cup of Zoo food menu"), inLanguage: locale,
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  name: t("เมนูอาหาร A Cup of Zoo", "A Cup of Zoo food menu"),
+  inLanguage: locale,
   hasMenuSection: menuCatalog.map((section) => ({
-    "@type": "MenuSection", name: section.title,
+    "@type": "MenuSection",
+    name: section.title,
     hasMenuItem: section.items.map((item) => ({
-      "@type": "MenuItem", name: item.name, description: item.note,
+      "@type": "MenuItem",
+      name: item.name,
+      description: item.note,
       offers: item.variants
-        ? item.variants.map((variant) => ({ "@type": "Offer", name: variant.label, price: variant.price, priceCurrency: "THB" }))
+        ? item.variants.map((variant) => ({
+            "@type": "Offer",
+            name: variant.label,
+            price: variant.price,
+            priceCurrency: "THB",
+          }))
         : { "@type": "Offer", price: item.price, priceCurrency: "THB" },
     })),
   })),
 };
 ---
-<SiteLayout locale={locale} title={t("เมนูอาหารและราคา คาเฟ่ คลอง 6", "Food menu & prices · Khlong 6 café")} description={t("เลือกอาหาร 47 รายการที่ A Cup of Zoo คลอง 6 ปทุมธานี ทั้งจานซิกเนเจอร์ แซนวิช สเต็ก สปาเก็ตตี้ ข้าว และเมนูจากพืช พร้อมราคาและตัวเลือกเพิ่มไส้", "Browse 47 food dishes at A Cup of Zoo in Khlong 6, Pathum Thani: signature dishes, sandwiches, steaks, spaghetti, rice and plant-based options, with prices and add-ons.")} page={page}>
+
+<SiteLayout
+  locale={locale}
+  title={t(
+    "เมนูอาหารและราคา คาเฟ่ คลอง 6",
+    "Food menu & prices · Khlong 6 café",
+  )}
+  description={t(
+    "เลือกอาหาร 47 รายการที่ A Cup of Zoo คลอง 6 ปทุมธานี ทั้งจานซิกเนเจอร์ แซนวิช สเต็ก สปาเก็ตตี้ ข้าว และเมนูจากพืช พร้อมราคาและตัวเลือกเพิ่มไส้",
+    "Browse 47 food dishes at A Cup of Zoo in Khlong 6, Pathum Thani: signature dishes, sandwiches, steaks, spaghetti, rice and plant-based options, with prices and add-ons.",
+  )}
+  page={page}
+>
   <header class="page-intro menu-mast" id="menu-top">
     <FoxSeal class="page-intro__fox" />
     <p class="eyebrow">At our table</p>
     <h1>{t("มื้ออร่อยที่ A Cup of Zoo", "At our table")}</h1>
-    <p>{t("เลือกจานที่ชอบ แล้วนั่งใช้เวลาด้วยกัน มีทั้งจานทานเล่น มื้ออิ่ม และเมนูจากพืช", "Choose something to share or a meal of your own. Explore small plates, filling dishes and plant-based choices.")}</p>
-    <p class="catalog-note">{t("ราคาต่อจานเป็นบาท · รายการและราคาตามเมนูร้านที่ตรวจเมื่อ 26 กันยายน 2569", "Prices per dish in THB · Menu and prices checked against the shop menu on 26 September 2026")}</p>
-    <div class="menu-books"><div class="actions"><a class="button secondary" href={menuBooks.food}>{t("เปิดเล่มเมนูอาหาร", "Open the food menu book")}</a><a class="button" href={menuBooks.drinks}>{t("เปิดเล่มเครื่องดื่มและขนม", "Open the drinks & treats menu")}</a></div><p>{t("เปิดอ่านเล่มเมนูของร้านบน Heyzine หรือเลื่อนเลือกอาหารพร้อมราคาด้านล่าง", "Read the café’s menu books on Heyzine, or browse the food dishes and prices below.")}</p></div>
+    <p>
+      {t(
+        "เลือกจานที่ชอบ แล้วนั่งใช้เวลาด้วยกัน มีทั้งจานทานเล่น มื้ออิ่ม และเมนูจากพืช",
+        "Choose something to share or a meal of your own. Explore small plates, filling dishes and plant-based choices.",
+      )}
+    </p>
+    <p class="catalog-note">
+      {t(
+        "ราคาต่อจานเป็นบาท · รายการและราคาตามเมนูร้านที่ตรวจเมื่อ 26 กันยายน 2569",
+        "Prices per dish in THB · Menu and prices checked against the shop menu on 26 September 2026",
+      )}
+    </p>
+    <div class="menu-books">
+      <div class="actions">
+        <a class="button secondary" href={menuBooks.food}>
+          {t("เปิดเล่มเมนูอาหาร", "Open the food menu book")}
+        </a>
+        <a class="button" href={menuBooks.drinks}>
+          {t("เปิดเล่มเครื่องดื่มและขนม", "Open the drinks & treats menu")}
+        </a>
+      </div>
+      <p>
+        {t(
+          "เปิดอ่านเล่มเมนูของร้านบน Heyzine หรือเลื่อนเลือกอาหารพร้อมราคาด้านล่าง",
+          "Read the café’s menu books on Heyzine, or browse the food dishes and prices below.",
+        )}
+      </p>
+    </div>
     <nav class="menu-jump" aria-label={t("หมวดเมนู", "Menu categories")}>
-      {menuCatalog.map((section) => <a href={`#${section.id}`}>{section.title}</a>)}
+      {menuCatalog.map((section) => (
+        <a href={`#${section.id}`}>{section.title}</a>
+      ))}
     </nav>
   </header>
   <div class="food-catalog">
-    {menuCatalog.map((section, index) => <section class="food-section" id={section.id} aria-labelledby={`${section.id}-title`}>
-      <header class="food-section__heading">
-        <p class="eyebrow">{String(index + 1).padStart(2, "0")} / {String(menuCatalog.length).padStart(2, "0")}</p>
-        <h2 id={`${section.id}-title`}>{section.title}</h2>
-        <p>{section.lede}</p>
-      </header>
-      <div class="food-section__body">
-        <div class="food-section__photos">
-          <Image src={photo(section.imagePages[0])} alt={section.imageAlt} widths={[320, 560]} sizes="(max-width: 700px) 90vw, 30vw" format="webp" loading={index === 0 ? "eager" : "lazy"} />
-          {section.imagePages.length > 1 && <div class="food-gallery">
-            {section.imagePages.slice(1).map((number) => <Image src={photo(number)} alt={t(`ภาพเมนู${section.title}จากร้าน`, `${section.title} from the café's menu`)} width={560} format="webp" loading="lazy" />)}
-          </div>}
+    {menuCatalog.map((section, index) => (
+      <section
+        class="food-section"
+        id={section.id}
+        aria-labelledby={`${section.id}-title`}
+      >
+        <header class="food-section__heading">
+          <p class="eyebrow">
+            {String(index + 1).padStart(2, "0")} /{" "}
+            {String(menuCatalog.length).padStart(2, "0")}
+          </p>
+          <h2 id={`${section.id}-title`}>{section.title}</h2>
+          <p>{section.lede}</p>
+        </header>
+        <div class="food-section__body">
+          <div class="food-section__photos">
+            <Image
+              src={photo(section.imagePages[0])}
+              alt={section.imageAlt}
+              widths={[320, 560]}
+              sizes="(max-width: 700px) 90vw, 30vw"
+              format="webp"
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+            {section.imagePages.length > 1 && (
+              <div class="food-gallery">
+                {section.imagePages.slice(1).map((number) => (
+                  <Image
+                    src={photo(number)}
+                    alt={t(
+                      `ภาพเมนู${section.title}จากร้าน`,
+                      `${section.title} from the café's menu`,
+                    )}
+                    width={560}
+                    format="webp"
+                    loading="lazy"
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+          <div>
+            <ul class="food-list">
+              {section.items.map((item) => (
+                <li
+                  data-menu-code={item.code}
+                  id={`dish-${item.code.toLowerCase()}`}
+                >
+                  <div class="food-list__title">
+                    <h3>
+                      <span class="dish-code">{item.code}</span> {item.name}
+                    </h3>
+                    {!item.variants && (
+                      <span class="dish-price">
+                        {item.price}
+                        {t(" บาท", " THB")}
+                      </span>
+                    )}
+                  </div>
+                  <p>{item.note}</p>
+                  {item.variants && (
+                    <dl class="price-options">
+                      {item.variants.map((variant) => (
+                        <div>
+                          <dt>{variant.label}</dt>
+                          <dd>
+                            {variant.price}
+                            {t(" บาท", " THB")}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
+                </li>
+              ))}
+            </ul>
+            {section.id === "sandwiches" && (
+              <div class="sandwich-extras">
+                {sandwichExtras.map((group) => (
+                  <section>
+                    <h3>{group.title}</h3>
+                    <dl class="price-options">
+                      {group.items.map((item) => (
+                        <div>
+                          <dt>{item.name}</dt>
+                          <dd>
+                            +{item.price}
+                            {t(" บาท", " THB")}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </section>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-        <div>
-          <ul class="food-list">
-            {section.items.map((item) => <li data-menu-code={item.code} id={`dish-${item.code.toLowerCase()}`}>
-              <div class="food-list__title"><h3><span class="dish-code">{item.code}</span> {item.name}</h3>{!item.variants && <span class="dish-price">{item.price}{t(" บาท", " THB")}</span>}</div>
-              <p>{item.note}</p>
-              {item.variants && <dl class="price-options">{item.variants.map((variant) => <div><dt>{variant.label}</dt><dd>{variant.price}{t(" บาท", " THB")}</dd></div>)}</dl>}
-            </li>)}
-          </ul>
-          {section.id === "sandwiches" && <div class="sandwich-extras">
-            {sandwichExtras.map((group) => <section><h3>{group.title}</h3><dl class="price-options">{group.items.map((item) => <div><dt>{item.name}</dt><dd>+{item.price}{t(" บาท", " THB")}</dd></div>)}</dl></section>)}
-          </div>}
-        </div>
-      </div>
-      <a class="catalog-back" href="#menu-top">{t("กลับไปเลือกหมวด", "Back to menu categories")} <ArrowIcon direction="up" /></a>
-    </section>)}
+        <a class="catalog-back" href="#menu-top">
+          {t("กลับไปเลือกหมวด", "Back to menu categories")}{" "}
+          <ArrowIcon direction="up" />
+        </a>
+      </section>
+    ))}
   </div>
   <aside class="catalog-end">
     <h2>{t("เครื่องดื่มและขนม", "Drinks & treats")}</h2>
-    <p>{t("เปิดเล่มเครื่องดื่มและขนมได้จากปุ่มด้านบน และสอบถามพนักงานเรื่องรายการที่พร้อมเสิร์ฟในวันที่มาเที่ยว", "Open the drinks and treats menu using the link above, and ask the café team which items are available on your visit.")}</p>
-    <div class="actions"><a class="button" href={href("/activities/")}>{t("ดูแพ็กเกจและกิจกรรม", "Passes & activities")}</a><a class="button secondary" href={href("/visit/")}>{t("วางแผนมาเที่ยว", "Plan your visit")}</a></div>
+    <p>
+      {t(
+        "เปิดเล่มเครื่องดื่มและขนมได้จากปุ่มด้านบน และสอบถามพนักงานเรื่องรายการที่พร้อมเสิร์ฟในวันที่มาเที่ยว",
+        "Open the drinks and treats menu using the link above, and ask the café team which items are available on your visit.",
+      )}
+    </p>
+    <div class="actions">
+      <a class="button" href={href("/activities/")}>
+        {t("ดูแพ็กเกจและกิจกรรม", "Passes & activities")}
+      </a>
+      <a class="button secondary" href={href("/visit/")}>
+        {t("วางแผนมาเที่ยว", "Plan your visit")}
+      </a>
+    </div>
   </aside>
-  <script type="application/ld+json" set:html={JSON.stringify(menuSchema).replace(/</g, "\\u003c")} />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(menuSchema).replace(/</g, "\\u003c")}
+  />
 </SiteLayout>

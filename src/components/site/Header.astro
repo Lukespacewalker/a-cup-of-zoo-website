@@ -1,7 +1,13 @@
 ---
 import ShopLogo from "./ShopLogo.astro";
 import ArrowIcon from "./ArrowIcon.astro";
-import { localeFromPath, localePath, basePath, bilingualPaths, translator } from "../../lib/i18n/locale";
+import {
+  localeFromPath,
+  localePath,
+  basePath,
+  bilingualPaths,
+  translator,
+} from "../../lib/i18n/locale";
 const locale = localeFromPath(Astro.url.pathname);
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
@@ -14,38 +20,150 @@ const links = [
   ["/news/", t("ข่าว", "News (Thai)")],
 ];
 const currentPath = Astro.url.pathname;
-const isCurrent = (url: string) => basePath(url) === "/" ? currentPath === url : currentPath.startsWith(url);
+const isCurrent = (url: string) =>
+  basePath(url) === "/" ? currentPath === url : currentPath.startsWith(url);
 const counterpart = bilingualPaths.includes(basePath(currentPath));
-const switchHref = localePath(counterpart ? currentPath : "/", locale === "th" ? "en" : "th");
+const switchHref = localePath(
+  counterpart ? currentPath : "/",
+  locale === "th" ? "en" : "th",
+);
 ---
+
 <header class="site-header">
-  <a class="wordmark" href={href("/")}><ShopLogo id="header-logo" /></a>
+  <a class="wordmark" href={href("/")}>
+    <ShopLogo id="header-logo" />
+  </a>
   <nav class="desktop-nav" aria-label={t("หลัก", "Main navigation")}>
-    {links.map(([href, label]) => <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>{label}</a>)}
-    <a class="club-link" href={href("/club/")} aria-current={isCurrent(href("/club/")) ? "page" : undefined}>Zoo Clubs</a>
-    <a class="visit-link" href={href("/visit/")}>{t("วางแผนมาเที่ยว", "Plan your visit")} <ArrowIcon /></a>
+    {links.map(([href, label]) => (
+      <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+        {label}
+      </a>
+    ))}
+    <a
+      class="club-link"
+      href={href("/club/")}
+      aria-current={isCurrent(href("/club/")) ? "page" : undefined}
+    >
+      Zoo Clubs
+    </a>
+    <a class="visit-link" href={href("/visit/")}>
+      {t("วางแผนมาเที่ยว", "Plan your visit")} <ArrowIcon />
+    </a>
   </nav>
   <div class="header-tools">
-  <a class="language-switch" data-equivalent={counterpart ? "true" : "false"} href={switchHref} lang="en" aria-label={locale === "en" ? counterpart ? "Thai" : "Thai home" : counterpart ? "English" : "English home"}>{locale === "en" ? counterpart ? "TH" : "TH · Home" : counterpart ? "EN" : "EN · Home"}</a>
-  <button class="theme-button" type="button" aria-label={t("โหมดสีตามเครื่อง", "System colour theme")}>
-    <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18V3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>
-    <svg class="icon-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4 19 19M19 5l-1.6 1.6M6.6 17.4 5 19"/></svg>
-    <svg class="icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.5 3.2a8.2 8.2 0 1 0 5.3 12.6A7 7 0 0 1 15.5 3.2z"/></svg>
-  </button>
-  <button class="menu-button" type="button" aria-label={t("เมนู", "Open navigation")} aria-expanded="false" aria-controls="mobile-nav">{t("เมนู", "Menu")}</button>
+    <a
+      class="language-switch"
+      data-equivalent={counterpart ? "true" : "false"}
+      href={switchHref}
+      lang="en"
+      aria-label={
+        locale === "en"
+          ? counterpart
+            ? "Thai"
+            : "Thai home"
+          : counterpart
+            ? "English"
+            : "English home"
+      }
+    >
+      {locale === "en"
+        ? counterpart
+          ? "TH"
+          : "TH · Home"
+        : counterpart
+          ? "EN"
+          : "EN · Home"}
+    </a>
+    <button
+      class="theme-button"
+      type="button"
+      aria-label={t("โหมดสีตามเครื่อง", "System colour theme")}
+    >
+      <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M12 3a9 9 0 1 0 0 18V3z" />
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"
+        />
+      </svg>
+      <svg class="icon-light" viewBox="0 0 24 24" aria-hidden="true">
+        <circle
+          cx="12"
+          cy="12"
+          r="4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4 19 19M19 5l-1.6 1.6M6.6 17.4 5 19"
+        />
+      </svg>
+      <svg class="icon-dark" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M15.5 3.2a8.2 8.2 0 1 0 5.3 12.6A7 7 0 0 1 15.5 3.2z"
+        />
+      </svg>
+    </button>
+    <button
+      class="menu-button"
+      type="button"
+      aria-label={t("เมนู", "Open navigation")}
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      {t("เมนู", "Menu")}
+    </button>
   </div>
 </header>
-<nav id="mobile-nav" class="mobile-panel" aria-label={t("มือถือ", "Mobile navigation")} hidden>
-  <a class="club-link" href={href("/club/")} aria-current={isCurrent(href("/club/")) ? "page" : undefined}><span>Zoo Clubs</span><span class="club-link__note">{t("สมัครฟรี", "Join free")}</span></a>
-  {links.map(([href, label]) => <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>{label}</a>)}
-  <a href={href("/events/")} aria-current={isCurrent(href("/events/")) ? "page" : undefined}>{t("ทัวร์กลุ่มและร่วมงาน", "Groups & collaborations")}</a>
-  <a href={href("/visit/")} aria-current={isCurrent(href("/visit/")) ? "page" : undefined}>{t("มาเที่ยว", "Plan your visit")}</a>
+<nav
+  id="mobile-nav"
+  class="mobile-panel"
+  aria-label={t("มือถือ", "Mobile navigation")}
+  hidden
+>
+  <a
+    class="club-link"
+    href={href("/club/")}
+    aria-current={isCurrent(href("/club/")) ? "page" : undefined}
+  >
+    <span>Zoo Clubs</span>
+    <span class="club-link__note">{t("สมัครฟรี", "Join free")}</span>
+  </a>
+  {links.map(([href, label]) => (
+    <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+      {label}
+    </a>
+  ))}
+  <a
+    href={href("/events/")}
+    aria-current={isCurrent(href("/events/")) ? "page" : undefined}
+  >
+    {t("ทัวร์กลุ่มและร่วมงาน", "Groups & collaborations")}
+  </a>
+  <a
+    href={href("/visit/")}
+    aria-current={isCurrent(href("/visit/")) ? "page" : undefined}
+  >
+    {t("มาเที่ยว", "Plan your visit")}
+  </a>
 </nav>
 <script>
   const english = document.documentElement.lang === "en";
-  const languageSwitch = document.querySelector<HTMLAnchorElement>('.language-switch[data-equivalent="true"]');
+  const languageSwitch = document.querySelector<HTMLAnchorElement>(
+    '.language-switch[data-equivalent="true"]',
+  );
   if (languageSwitch) {
-    const updateHash = () => { languageSwitch.hash = location.hash; };
+    const updateHash = () => {
+      languageSwitch.hash = location.hash;
+    };
     updateHash();
     window.addEventListener("hashchange", updateHash);
   }
@@ -68,7 +186,7 @@ const switchHref = localePath(counterpart ? currentPath : "/", locale === "th" ?
       document.body.classList.add("menu-open");
       panel.querySelector("a")?.focus();
     };
-    button.addEventListener("click", () => panel.hidden ? open() : close());
+    button.addEventListener("click", () => (panel.hidden ? open() : close()));
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && !panel.hidden) close();
     });
@@ -76,9 +194,13 @@ const switchHref = localePath(counterpart ? currentPath : "/", locale === "th" ?
 
   const themeButton = document.querySelector(".theme-button");
   const order = ["auto", "light", "dark"] as const;
-  type Theme = typeof order[number];
+  type Theme = (typeof order)[number];
   const labels: Record<Theme, string> = english
-    ? { auto: "System colour theme", light: "Light colour theme", dark: "Dark colour theme" }
+    ? {
+        auto: "System colour theme",
+        light: "Light colour theme",
+        dark: "Dark colour theme",
+      }
     : { auto: "โหมดสีตามเครื่อง", light: "โหมดสว่าง", dark: "โหมดมืด" };
   const paintTheme = (theme: Theme) => {
     document.documentElement.dataset.theme = theme;
@@ -86,14 +208,16 @@ const switchHref = localePath(counterpart ? currentPath : "/", locale === "th" ?
     themeButton.setAttribute("aria-label", labels[theme]);
     for (const name of order) {
       const icon = themeButton.querySelector(`.icon-${name}`);
-      if (icon instanceof SVGElement) icon.style.display = name === theme ? "block" : "none";
+      if (icon instanceof SVGElement)
+        icon.style.display = name === theme ? "block" : "none";
     }
   };
   const initial = document.documentElement.dataset.theme;
   paintTheme(initial === "light" || initial === "dark" ? initial : "auto");
   themeButton?.addEventListener("click", () => {
     const saved = document.documentElement.dataset.theme;
-    const current: Theme = saved === "light" || saved === "dark" ? saved : "auto";
+    const current: Theme =
+      saved === "light" || saved === "dark" ? saved : "auto";
     const next = order[(order.indexOf(current) + 1) % order.length];
     localStorage.setItem("cup-theme", next);
     paintTheme(next);

@@ -6,6 +6,8 @@
     "prepare:assets": "bun run scripts/prepare-assets.ts",
     "dev": "bun run prepare:assets && astro dev --host 127.0.0.1 --port 4321",
     "check": "astro check",
+    "format": "prettier --write src tests/unit",
+    "format:check": "prettier --check src tests/unit",
     "test:unit": "bun test tests/unit",
     "test:e2e": "playwright test",
     "build": "bun run prepare:assets && astro build",
@@ -26,6 +28,8 @@
     "@astrojs/check": "^0.9.10",
     "@playwright/test": "^1.56.1",
     "@types/three": "0.186.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.2",
     "typescript": "^5.9.3",
     "wrangler": "^4.139.0"
   }

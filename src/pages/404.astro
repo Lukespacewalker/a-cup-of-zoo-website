@@ -7,9 +7,20 @@ const locale = localeFromPath(Astro.url.pathname);
 const t = translator(locale);
 Astro.response.status = 404;
 ---
-<SiteLayout locale={locale} title={t("ไม่พบหน้า", "Page not found")} description={t("ไม่พบหน้าที่ต้องการในเว็บ A Cup of Zoo", "The page you are looking for could not be found at A Cup of Zoo.")} page={page}>
+
+<SiteLayout
+  locale={locale}
+  title={t("ไม่พบหน้า", "Page not found")}
+  description={t(
+    "ไม่พบหน้าที่ต้องการในเว็บ A Cup of Zoo",
+    "The page you are looking for could not be found at A Cup of Zoo.",
+  )}
+  page={page}
+>
   <header class="page-intro">
     <h1>{t("ไม่พบหน้านี้", "Page not found")}</h1>
-    <p><a href={localePath("/", locale)}>{t("กลับหน้าแรก", "Back to home")}</a></p>
+    <p>
+      <a href={localePath("/", locale)}>{t("กลับหน้าแรก", "Back to home")}</a>
+    </p>
   </header>
 </SiteLayout>

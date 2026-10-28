@@ -15,7 +15,8 @@ test("English unknown routes return localized404 with an English home link", asy
   await expect(page).toHaveURL(/\/en\/$/);
 });
 
-test("English primary paths render complete English content and matching metadata", async ({ page }) => {
+test("English primary paths render complete English content and matching metadata", async ({ page, baseURL }) => {
+  const origin = new URL(baseURL!).origin;
   for (const route of ["/en/", "/en/animals/", "/en/menu/", "/en/activities/", "/en/visit/"]) {
     const response = await page.goto(route);
     expect(response?.status()).toBe(200);
@@ -28,10 +29,10 @@ test("English primary paths render complete English content and matching metadat
     expect(labels).not.toMatch(/[\u0E00-\u0E7F]/);
     const metadata = await page.locator('title, meta[content]').evaluateAll(elements => elements.map(element => element.getAttribute('content') ?? element.textContent).join(' '));
     expect(metadata).not.toMatch(/[\u0E00-\u0E7F]/);
-    await expect(page.locator('link[hreflang="th"]')).toHaveAttribute("href", /127\.0\.0\.1:4321\/(animals\/|menu\/|activities\/|visit\/)?$/);
-    await expect(page.locator('link[hreflang="en"]')).toHaveAttribute("href", new RegExp(`127\\.0\\.0\\.1:4321${route}$`));
+    await expect(page.locator('link[hreflang="th"]')).toHaveAttribute("href", `${origin}${route.slice(3)}`);
+    await expect(page.locator('link[hreflang="en"]')).toHaveAttribute("href", `${origin}${route}`);
     expect(await page.getByRole('link', { name: 'Thai', exact: true }).evaluate((link: HTMLAnchorElement) => link.href))
-      .toBe(`http://127.0.0.1:4321${route.slice(3)}`);
+      .toBe(`${origin}${route.slice(3)}`);
   }
   await page.goto("/en/menu/");
   await expect(page.locator('[data-menu-code]')).toHaveCount(47);

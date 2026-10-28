@@ -10,7 +10,11 @@ export function createFixtureGateway(): SiteContentGateway {
       return structuredClone(fixturePosts);
     },
     async getPost(slug: string) {
-      return structuredClone(fixturePosts).find((post) => post.translations.some((translation) => translation.slug === slug)) ?? null;
+      return (
+        structuredClone(fixturePosts).find((post) =>
+          post.translations.some((translation) => translation.slug === slug),
+        ) ?? null
+      );
     },
   };
 }

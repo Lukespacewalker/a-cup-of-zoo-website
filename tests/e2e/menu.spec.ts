@@ -44,7 +44,8 @@ test("activities explain separate admission, benefits, children and all feeding 
   await expect(page.locator("#basket")).toContainText("80 บาท");
   await expect(page.locator("#basket")).toContainText("โปรโมชัน");
   await expect(page.locator(".animal-food-list > div")).toHaveCount(7);
-  await expect(page.locator(".garden-spots > li")).toHaveCount(15);
+  await expect(page.locator(".garden-spots > li")).toHaveCount(16);
+  await expect(page.locator(".garden-spots > li").last()).toHaveText("สวนทะเลทราย");
   await expect(page.locator('iframe, a[href*="heyzine"]')).toHaveCount(0);
 });
 

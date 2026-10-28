@@ -2,13 +2,54 @@
 import type { HoursEntry, HoursException } from "@lukespace-cms/client";
 import { dayName, formatDay } from "../../lib/business/format-hours";
 import { translator, type Locale } from "../../lib/i18n/locale";
-interface Props { entries: HoursEntry[]; exceptions?: HoursException[]; holidayNote?: string | null; locale: Locale; compact?: boolean; }
-const { entries, exceptions = [], holidayNote, locale, compact = false } = Astro.props;
+interface Props {
+  entries: HoursEntry[];
+  exceptions?: HoursException[];
+  holidayNote?: string | null;
+  locale: Locale;
+  compact?: boolean;
+}
+const {
+  entries,
+  exceptions = [],
+  holidayNote,
+  locale,
+  compact = false,
+} = Astro.props;
 const t = translator(locale);
 ---
+
 <div class:list={["opening-hours", { "opening-hours--compact": compact }]}>
-  <ul class="hours">{entries.map(entry => <li><span>{dayName(entry.isoWeekday, locale)}</span><span>{formatDay(entry, locale)}</span></li>)}</ul>
+  <ul class="hours">
+    {entries.map((entry) => (
+      <li>
+        <span>{dayName(entry.isoWeekday, locale)}</span>
+        <span>{formatDay(entry, locale)}</span>
+      </li>
+    ))}
+  </ul>
   {holidayNote && <p>{holidayNote}</p>}
-  {exceptions.length > 0 && <div class="hours-exceptions"><h3>{t("เวลาเปิดในวันพิเศษ", "Special opening dates")}</h3><ul>{exceptions.map(entry => <li><time datetime={entry.date}>{entry.date}</time> · {entry.closed ? t("ปิด", "Closed") : `${entry.opens}–${entry.closes}`}<br />{entry.note}</li>)}</ul></div>}
-  <p class="outdoor-hours">{t("โซนสัตว์ Outdoor เข้าบ้าน 18:00 น.", "Outdoor animals return to their houses at 18:00.")}</p>
+  {exceptions.length > 0 && (
+    <div class="hours-exceptions">
+      <h3>{t("เวลาเปิดในวันพิเศษ", "Special opening dates")}</h3>
+      <ul>
+        {exceptions.map((entry) => (
+          <li>
+            <time datetime={entry.date}>{entry.date}</time> ·{" "}
+            {entry.closed
+              ? t("ปิด", "Closed")
+              : `${entry.opens}–${entry.closes}`}
+            <br />
+            {entry.note}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+  <p class="outdoor-hours">
+    {t(
+      "โซนสัตว์ Outdoor เข้าบ้าน 18:00 น.",
+      "Outdoor animals return to their houses at 18:00.",
+    )}
+  </p>
 </div>
