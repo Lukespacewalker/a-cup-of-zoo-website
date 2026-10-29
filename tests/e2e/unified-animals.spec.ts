@@ -40,6 +40,33 @@ test("jar sticker, miniature full jars and top tools follow the paper theme", as
   }
 });
 
+test("all animal portraits retain CMS focus in square cards and circular stickers", async ({ page }) => {
+  for (const width of [320, 390, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const card of await page.locator('[data-resident]').all()) {
+      const portrait = card.locator('.directory-photo [data-animal-portrait]');
+      const square = await portrait.boundingBox();
+      expect(Math.abs(square!.width - square!.height)).toBeLessThan(1);
+      const style = await portrait.getAttribute('style');
+      expect(await card.locator('.jar-sticker [data-animal-portrait]').getAttribute('style')).toBe(style);
+      const image = portrait.locator('img');
+      await expect(image).toBeVisible();
+      await image.evaluate(img => img.decode());
+      const geometry = await image.evaluate(img => {
+        const box = img.getBoundingClientRect(), frame = img.parentElement!.getBoundingClientRect();
+        return { w: box.width, h: box.height, ratio: img.naturalWidth / img.naturalHeight,
+          covers: box.left <= frame.left + 1 && box.top <= frame.top + 1 && box.right >= frame.right - 1 && box.bottom >= frame.bottom - 1 };
+      });
+      expect(geometry.covers).toBe(true);
+      expect(Math.abs(geometry.w / geometry.h - geometry.ratio)).toBeLessThan(0.01);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+  const nama = page.locator('[data-resident="nama"] .directory-photo [data-animal-portrait]');
+  expect(await nama.evaluate(e => e.style.getPropertyValue('--portrait-left'))).toBe('-28%');
+  expect(await nama.evaluate(e => e.style.getPropertyValue('--portrait-top'))).toBe('-47.5%');
+});
+
 test("Three.js podium appears on both pages with accessible CMS portraits and scores", async ({ page }) => {
   for (const path of ['/animals/', '/']) {
     await page.goto(path);
@@ -103,6 +130,9 @@ test("podium can change leaders and clear a filter before opening an animal", as
   const first = page.locator('[data-podium-place]').first();
   await expect(first).toHaveAttribute('data-animal-id', 'mine');
   await expect(first.locator('[data-podium-score]')).toHaveText('101');
+  expect(await first.locator('[data-animal-portrait]').getAttribute('style')).toBe(
+    await page.locator('[data-resident="mine"] .directory-photo [data-animal-portrait]').getAttribute('style'),
+  );
   await page.getByRole('searchbox').fill('Nama');
   await first.click();
   await expect(page.getByRole('searchbox')).toHaveValue('');
@@ -146,7 +176,7 @@ test("podium scores retain readable contrast in dark mode and WebGL fallback", a
 test("photo frame stays inside its card and does not cover the name or voting controls", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   const frame = await page.locator('.animal-visual').first().boundingBox();
-  const image = await page.locator('.animal-visual img').first().boundingBox();
+  const image = await page.locator('.animal-visual [data-animal-portrait]').first().boundingBox();
   expect(image!.y + image!.height).toBeLessThanOrEqual(frame!.y + frame!.height + 1);
   const name = await page.locator('[data-animal-name]').first().boundingBox();
   expect(name!.y).toBeGreaterThanOrEqual(frame!.y + frame!.height);

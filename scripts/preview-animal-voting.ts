@@ -12,7 +12,9 @@ const runtime = await createLocalCmsRuntime({ databasePath: join(root, "cms.sqli
 const server = Bun.serve({ hostname: "127.0.0.1", port: 8796, fetch: request => runtime.fetch(request) });
 const content = structuredClone(fixtureVenue.content);
 for (const [index, animal] of content.animals.entries()) {
-  const file = Bun.file(`src/assets/animal-roster/${animal.id}.png`);
+  const file = Bun.file(animal.id === "mee-chok"
+    ? "reference-data/owner-feedback-2026-10-27/assets/asset-12.png"
+    : `src/assets/animal-roster/${animal.id}.png`);
   const bytes = await file.arrayBuffer(); const dimensions = new DataView(bytes);
   const form = new FormData(); form.set("file", new File([bytes], `animal-${index}.png`, { type: "image/png" }));
   form.set("width", String(dimensions.getUint32(16))); form.set("height", String(dimensions.getUint32(20)));

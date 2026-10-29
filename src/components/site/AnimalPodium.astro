@@ -1,6 +1,6 @@
 ---
 import type { PublicVenueDto } from "@lukespace-cms/client";
-import Picture from "../content/Picture.astro";
+import AnimalPortrait from "../content/AnimalPortrait.astro";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import { rankAnimals } from "../../lib/voting/model";
 import "../../styles/animal-podium.css";
@@ -55,10 +55,11 @@ const level = (rank: number | null) => (rank === 1 ? 1 : rank === 2 ? 0.37 : 0);
             href={localePath(`/animals/#animal-${animal.id}`, locale)}
           >
             <span class="podium-portrait" aria-hidden="true">
-              <Picture
+              <AnimalPortrait
                 mediaId={animal.mediaAssetId}
                 media={venue?.media ?? []}
                 alt={name}
+                focus={animal.imageFocus}
               />
               {!animal.mediaAssetId && <span>◇</span>}
             </span>

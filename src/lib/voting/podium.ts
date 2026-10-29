@@ -28,12 +28,12 @@ export function initPodiums() {
               animal.card.querySelector("[data-animal-name]")!.textContent!;
             const id = animal.card.dataset.animalId!;
             if (place.dataset.animalId !== id) {
-              const image = animal.card.querySelector(".directory-photo img");
+              const image = animal.card.querySelector("[data-animal-portrait]");
               place
                 .querySelector(".podium-portrait")!
                 .replaceChildren(
                   ...(image
-                    ? [image.cloneNode(false)]
+                    ? [image.cloneNode(true)]
                     : [document.createTextNode("◇")]),
                 );
             }

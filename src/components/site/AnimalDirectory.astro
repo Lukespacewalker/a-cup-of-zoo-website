@@ -1,6 +1,6 @@
 ---
 import type { PublicVenueDto } from "@lukespace-cms/client";
-import Picture from "../content/Picture.astro";
+import AnimalPortrait from "../content/AnimalPortrait.astro";
 import AnimalPodium from "./AnimalPodium.astro";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import { runtimeConfig } from "../../lib/content/runtime-config";
@@ -138,10 +138,11 @@ const format = (n: number) =>
         >
           <div class="animal-visual">
             <div class="directory-photo">
-              <Picture
+              <AnimalPortrait
                 mediaId={animal.mediaAssetId}
                 media={venue?.media ?? []}
                 alt={name}
+                focus={animal.imageFocus}
               />
               {!animal.mediaAssetId && <span aria-hidden="true">♡</span>}
             </div>
@@ -153,10 +154,11 @@ const format = (n: number) =>
               <div class="vote-jar">
                 <div class="vote-jar-rim"></div>
                 <div class="vote-portrait jar-sticker">
-                  <Picture
+                  <AnimalPortrait
                     mediaId={animal.mediaAssetId}
                     media={venue?.media ?? []}
                     alt={name}
+                    focus={animal.imageFocus}
                   />
                 </div>
                 <div class="vote-balls" data-vote-balls>

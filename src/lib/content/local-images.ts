@@ -8,12 +8,14 @@ import ducks from "../../assets/site/ducks-pond.png";
 import entrance from "../../assets/site/entrance-promo-banner.png";
 import pond from "../../assets/site/pond-promo-graphic.png";
 import type { ImageMetadata } from "astro";
+import meerkatSource from "../../../reference-data/owner-feedback-2026-10-27/assets/asset-12.png";
 const animalImages = import.meta.glob<{ default: ImageMetadata }>(
   "../../assets/animal-roster/*.png",
   { eager: true },
 );
 
 export const localImages = {
+  "owner-meerkat-source": meerkatSource,
   ...Object.fromEntries(
     Object.entries(animalImages).map(([path, image]) => [
       `owner-${path.split("/").at(-1)!.replace(".png", "")}`,

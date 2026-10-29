@@ -23,6 +23,14 @@ export type HoursException = {
   note: string;
 };
 
+/** Focus coordinates in the source image; omitted/null uses the centered, unzoomed crop. */
+export type ImageFocus = { x: number; y: number; zoom: number };
+export const imageFocusSchema = z.object({
+  x: z.number().finite().min(0).max(100),
+  y: z.number().finite().min(0).max(100),
+  zoom: z.number().finite().min(1).max(4),
+}).strict();
+
 export type VenueItem = {
   id: string;
   title: string;
@@ -30,6 +38,7 @@ export type VenueItem = {
   titleEn?: string;
   descriptionEn?: string;
   mediaAssetId: string | null;
+  imageFocus?: ImageFocus | null;
   featured: boolean;
   visible: boolean;
   sortOrder: number;
@@ -129,6 +138,7 @@ const venueItemSchema = z.object({
   titleEn: z.string().trim().max(120).optional(),
   descriptionEn: z.string().trim().max(600).optional(),
   mediaAssetId: z.string().trim().min(1).max(80).nullable(),
+  imageFocus: imageFocusSchema.nullable().optional(),
   featured: z.boolean(),
   visible: z.boolean(),
   sortOrder: z.number().int().nonnegative().max(10_000),

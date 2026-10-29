@@ -55,11 +55,6 @@
   border: 4px solid var(--paper);
   box-shadow: 0 0 0 1px var(--gold-border);
 }
-.vote-portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 .vote-score {
   margin: 0.4rem 0;
   font-size: 0.85rem;
@@ -208,7 +203,7 @@
   scroll-margin-top: 1rem;
 }
 .animal-visual {
-  height: 270px;
+  aspect-ratio: 1;
   position: relative;
   flex-shrink: 0;
 }
@@ -222,12 +217,7 @@
     opacity 0.25s,
     transform 0.3s;
 }
-.directory-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.directory-photo > span {
+.directory-photo > span:not([data-animal-portrait]) {
   display: grid;
   place-items: center;
   height: 100%;
@@ -560,9 +550,6 @@
     max-width: 420px;
     width: 100%;
     margin-inline: auto;
-  }
-  .animal-visual {
-    height: 250px;
   }
   .animal-search {
     margin: 1rem 0;

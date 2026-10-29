@@ -4,7 +4,7 @@ Repository: https://github.com/Lukespacewalker/a-cup-of-zoo-website (public).
 
 [Check and deploy](../.github/workflows/ci.yml) runs on pull requests, pushes and manual dispatch. Verification uses Bun 1.3.14, Node 22, frozen dependencies, prepared assets, formatting, Astro diagnostics, unit/content checks, fixture browser tests, production build and Wrangler dry run. The CMS public SDK is [vendored](../vendor/cms-client/README.md); no private repository credentials are needed to build.
 
-Browser tests create a temporary ignored `.dev.vars` with local fixture mode and a loopback-only CMS origin, then remove it before production build. The standard suite contains 42 fixture tests; the 16 CMS-backed voting tests deliberately skip because they require a separate disposable CMS. CI never submits votes to production.
+Browser tests create a temporary ignored `.dev.vars` with local fixture mode and a loopback-only CMS origin, then remove it before production build. The standard suite contains 42 fixture tests; the 17 CMS-backed voting/portrait tests deliberately skip because they require a separate disposable CMS. CI never submits votes to production.
 
 The deploy job requires successful verification and runs only for the repository's current default branch (`codex/garden-animal-experience`). Other branches and PRs cannot enter that job. `workflow_dispatch` on the default branch also deploys. Deployments run in the GitHub `production` environment and use the existing apex/www routes and production CMS configuration. Concurrent runs for a branch are serialized.
 
