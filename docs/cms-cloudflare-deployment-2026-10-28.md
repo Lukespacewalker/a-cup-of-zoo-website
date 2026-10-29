@@ -1,6 +1,12 @@
 # CMS Cloudflare rollout coordination — 28 October 2026
 
-## Current accepted website — public source and CI/CD
+## Current accepted website and CMS — animal face framing, 29 October 2026
+
+**PASS**: website `7ced4a48-a904-4b90-9365-a0d1b4bb69f8`, source `10e2168657b4591ddff38d8127e24769ab894971`, [Actions40886105760](https://github.com/Lukespacewalker/a-cup-of-zoo-website/actions/runs/40886105760). CMS API `6385c433-d84f-4243-8597-81cd4725b3c1`, Admin `ceede1eb-c110-4420-801a-d12ddcf740d7`. All23 animals have CMS/MCP-editable focus/zoom, used consistently by cards, jar stickers and home/directory podiums. Mee Chok uses the retained original sheet to restore its previously clipped nose. Venue2→26,23 IDs retained, every vote count unchanged (total245), unrelated draft/published content preserved. No migration or production voting writes.
+
+Website unit48/370 assertions, disposable CMS browser17, fixture CI browser42 and96 live checks across34 pages passed. Root inspected all23 actual production portrait pairs and320px home/directory renders. CMS frozen review passed16 hashes; independently rerun focus/API tests11/582 assertions, plus CMS owner's16 executed Admin browser checks. [Plan and acceptance](superpowers/plans/2026-10-29-animal-faces.md), [release receipt](review/animal-faces-2026-10-29/deployment.json). This supersedes the release pointer below; earlier entries remain history.
+
+## Previous accepted website — public source and CI/CD
 
 **PASS**: public repository and GitHub Actions are active. [First successful run40680964366](https://github.com/Lukespacewalker/a-cup-of-zoo-website/actions/runs/40680964366) verified source `ad09fe4bd9a1eb77fdd8e33aa56057f9a6c0b60f` and automatically deployed website version `0b44532f-5d03-445d-85bc-7ca04e0288ae` to apex/www. Unit45/365 assertions and fixture browser42 passed;16 tests require a separate disposable CMS and skip in standard CI. All23 animal scores remained unchanged, total71. No CMS deployment/migration or voting write. Subsequent default-branch pushes deploy automatically after checks; [Actions](https://github.com/Lukespacewalker/a-cup-of-zoo-website/actions) records the latest version. [CI/CD documentation](ci-cd.md). This section supersedes the website release pointer below; earlier entries remain history.
 

@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "website": "7ced4a48-a904-4b90-9365-a0d1b4bb69f8",
+  "source": "10e2168657b4591ddff38d8127e24769ab894971",
+  "run": "https://github.com/Lukespacewalker/a-cup-of-zoo-website/actions/runs/40886105760",
+  "cmsApi": "6385c433-d84f-4243-8597-81cd4725b3c1",
+  "cmsAdmin": "ceede1eb-c110-4420-801a-d12ddcf740d7",
+  "venueVersion": 26,
+  "animalCount": 23,
+  "voteTotalBefore": 245,
+  "voteTotalAfter": 245,
+  "productionVotesWritten": 0,
+  "checks": {
+    "unit": "48 tests,370 assertions",
+    "cmsBrowser": "17 passed against disposable CMS",
+    "fixtureBrowser": "42 passed in CI",
+    "astro": "106 files,zero diagnostics",
+    "liveHttp": "96 checks,34 page responses on apex/www",
+    "liveVisual": "All23 actual production card/sticker pairs and320px animal/home podium screenshots inspected",
+    "cmsReview": "16 frozen file hashes verified;11 independently executed focus/API tests,582 assertions; CMS owner's16 Admin interactions passed"
+  },
+  "limits": "CMS source review was separate from its implementation session; website Root proposed the interface and authored website geometry. Neo unavailable; actual browser evidence used Playwright Chromium. Original source-image resolution retained.",
+  "artifacts": "C:/Users/Sutti/.codex/artifacts/acupofzoo-animal-faces-2026-10-29",
+  "cmsArtifacts": "C:/Users/Sutti/.codex/artifacts/acupofzoo-cms-faces-2026-10-29"
+}
