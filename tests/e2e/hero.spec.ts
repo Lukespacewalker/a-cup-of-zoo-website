@@ -1,5 +1,17 @@
 import { expect, test } from "@playwright/test";
 
+test("only the home pages preload their hero poster", async ({ page }) => {
+  const preload = page.locator('head link[rel="preload"][as="image"][fetchpriority="high"]');
+  for (const path of ["/", "/en/"]) {
+    await page.goto(path);
+    const poster = await page.locator("[data-hero-poster]").getAttribute("src");
+    expect(poster).toBeTruthy();
+    await expect(preload).toHaveAttribute("href", poster!);
+  }
+  await page.goto("/en/visit/");
+  await expect(preload).toHaveCount(0);
+});
+
 test("home header receives clicks above the media on desktop and mobile", async ({ page }) => {
   for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: 900 });

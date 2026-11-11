@@ -24,6 +24,7 @@ interface Props {
 const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
+const heroPosterSrc = "/videos/hero-animal-poster.webp";
 const page = await loadPage({ includePosts: locale === "th" });
 const content = localizedVenue(page.venue, locale)?.content;
 const { passes } = localizedActivities(locale);
@@ -44,11 +45,18 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
   page={page}
   includeJsonLd
 >
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={heroPosterSrc}
+    fetchpriority="high"
+  />
   <section class="garden-hero" aria-labelledby="home-title">
     <HeroVideo
       locale={locale}
       videoSrc="/videos/hero-animal.mp4"
-      posterSrc="/videos/hero-animal-poster.webp"
+      posterSrc={heroPosterSrc}
     />
     <p class="hero-place">
       A CUP OF ZOO <span>CAFÉ & FARM · KHLONG 6</span>
