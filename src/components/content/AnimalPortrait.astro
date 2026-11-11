@@ -9,8 +9,9 @@ interface Props {
   media: PublicVenueMedia[];
   alt: string;
   focus?: ImageFocus | null;
+  compact?: boolean;
 }
-const { mediaId, media, alt, focus } = Astro.props;
+const { mediaId, media, alt, focus, compact } = Astro.props;
 const remote = media.find((item) => item.id === mediaId);
 const local = mediaId
   ? localImages[mediaId as keyof typeof localImages]
@@ -21,6 +22,12 @@ const crop = portraitGeometry(
   source?.height ?? null,
   focus,
 );
+const responsive = compact
+  ? {
+      widths: [128, 192, 256, 384, 512, 640],
+      sizes: `auto, (max-width: 600px) ${Math.ceil((54 * crop.width) / 100)}px, ${Math.ceil((70 * crop.width) / 100)}px`,
+    }
+  : undefined;
 ---
 
 <span
@@ -28,7 +35,7 @@ const crop = portraitGeometry(
   data-animal-portrait
   style={`--portrait-width:${crop.width}%;--portrait-height:${crop.height}%;--portrait-left:${crop.left}%;--portrait-top:${crop.top}%`}
 >
-  <Picture mediaId={mediaId} media={media} alt={alt} />
+  <Picture mediaId={mediaId} media={media} alt={alt} responsive={responsive} />
 </span>
 
 <style>

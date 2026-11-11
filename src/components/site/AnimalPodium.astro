@@ -60,6 +60,7 @@ const level = (rank: number | null) => (rank === 1 ? 1 : rank === 2 ? 0.37 : 0);
                 media={venue?.media ?? []}
                 alt={name}
                 focus={animal.imageFocus}
+                compact
               />
               {!animal.mediaAssetId && <span>◇</span>}
             </span>

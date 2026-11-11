@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 import type { PublicVenueMedia } from "@lukespace-cms/client";
 import { localImages } from "../../lib/content/local-images";
 import { localeFromPath } from "../../lib/i18n/locale";
@@ -11,13 +11,49 @@ interface Props {
   alt?: string;
   class?: string;
   eager?: boolean;
+  responsive?: { widths: number[]; sizes: string };
 }
-const { mediaId, media, alt, class: className, eager = false } = Astro.props;
+const {
+  mediaId,
+  media,
+  alt,
+  class: className,
+  eager = false,
+  responsive,
+} = Astro.props;
 const remote = media.find((item) => item.id === mediaId);
 const local =
   mediaId && mediaId in localImages
     ? localImages[mediaId as keyof typeof localImages]
     : undefined;
+const loading = eager ? "eager" : "lazy";
+const remoteWidth = remote?.width ?? 0;
+const remoteHeight = remote?.height ?? 0;
+const variants =
+  responsive && remoteWidth > 0 && remoteHeight > 0
+    ? [
+        ...new Set(
+          responsive.widths.map((width) => Math.min(width, remoteWidth)),
+        ),
+      ]
+    : [];
+const largest = variants.at(-1);
+const optimized =
+  !local &&
+  remote?.url &&
+  largest &&
+  URL.canParse(remote.url) &&
+  /\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(remote.url)
+    ? await getImage({
+        src: remote.url,
+        width: largest,
+        height: Math.max(1, Math.round((largest * remoteHeight) / remoteWidth)),
+        widths: variants,
+        format: "webp",
+        quality: 76,
+      })
+    : undefined;
+const useVariants = optimized && optimized.src !== remote?.url;
 const label =
   alt ||
   (localeFromPath(Astro.url.pathname) === "en"
@@ -30,17 +66,27 @@ const label =
     class={className}
     src={local}
     alt={label}
-    widths={[480, 800, 1200]}
-    sizes="(max-width: 800px) 100vw, 50vw"
-    loading={eager ? "eager" : "lazy"}
+    widths={responsive?.widths ?? [480, 800, 1200]}
+    sizes={responsive?.sizes ?? "(max-width: 800px) 100vw, 50vw"}
+    loading={loading}
   />
 )}
 {!local && remote?.url && (
   <img
     class={className}
-    src={remote.url}
+    src={useVariants ? optimized.src : remote.url}
+    srcset={useVariants ? optimized.srcSet.attribute : undefined}
+    sizes={useVariants ? responsive?.sizes : undefined}
     alt={label}
     width={remote.width ?? 1080}
     height={remote.height ?? 1080}
+    loading={responsive ? loading : undefined}
+    decoding={responsive ? "async" : undefined}
+    data-original={useVariants ? remote.url : undefined}
+    onerror={
+      useVariants
+        ? "this.onerror = null; this.removeAttribute('srcset'); this.src = this.dataset.original;"
+        : undefined
+    }
   />
 )}

@@ -17,6 +17,34 @@ test("home header receives clicks above the media on desktop and mobile", async 
   }
 });
 
+test("hero autoplay waits for the poster while manual playback is available", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  let releasePoster!: () => void;
+  const posterReady = new Promise<void>(resolve => { releasePoster = resolve; });
+  await page.route("**/videos/hero-animal-poster.webp", async route => {
+    await posterReady;
+    await route.continue();
+  });
+  await page.addInitScript(() => {
+    HTMLMediaElement.prototype.play = function () {
+      this.setAttribute("data-play-attempted", "true");
+      return Promise.reject(new DOMException("Blocked", "NotAllowedError"));
+    };
+  });
+
+  try {
+    await page.goto("/en/", { waitUntil: "domcontentloaded" });
+    const control = page.getByRole("button", { name: "Play video", exact: true });
+    await expect(control).toBeVisible();
+    const video = page.locator("[data-hero-video]");
+    await expect(video).not.toHaveAttribute("data-play-attempted", "true");
+    await control.click();
+    await expect(video).toHaveAttribute("data-play-attempted", "true");
+  } finally {
+    releasePoster();
+  }
+});
+
 test("video plays, pauses and respects changes to reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/en/");

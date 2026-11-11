@@ -1,0 +1,5 @@
+/videos/hero-animal.mp4
+  Cache-Control: public, max-age=604800
+
+/videos/hero-animal-poster.webp
+  Cache-Control: public, max-age=604800
