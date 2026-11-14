@@ -27,7 +27,14 @@ const href = (path: string) => localePath(path, locale);
 const heroPosterSrc = "/videos/hero-animal-poster.webp";
 const page = await loadPage({ includePosts: locale === "th" });
 const content = localizedVenue(page.venue, locale)?.content;
-const { passes } = localizedActivities(locale);
+const { admissionSummary, passes } = localizedActivities(locale);
+const hashtags = [
+  "#Petcafe",
+  "#Acupofzoo",
+  t("#คาเฟ่สัตว์คลองหก", "#Khlong6AnimalCafe"),
+  t("#คาเฟ่สัตว์รังสิต", "#RangsitAnimalCafe"),
+  "#Petfriendly",
+];
 const maps = allowedExternalUrl(content?.mapsUrl ?? null, "maps");
 const news = locale === "th" ? page.posts.slice(0, 2) : [];
 ---
@@ -59,26 +66,29 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
       posterSrc={heroPosterSrc}
     />
     <p class="hero-place">
-      A CUP OF ZOO <span>CAFÉ & FARM · KHLONG 6</span>
+      A CUP OF ZOO <span>CAFÉ & RESTAURANT · KHLONG 6 · PATHUM THANI</span>
     </p>
     <div class="hero-copy">
       <p class="hero-eyebrow">
-        {t("กาแฟหนึ่งแก้ว เพื่อนใหม่อีกหลายตัว", "A little closer to nature")}
+        {t(
+          "อิ่มอร่อย เพลิดเพลินกับสวนญี่ปุ่นและเพื่อนสัตว์กว่า 20 ชนิด",
+          "Enjoy good food, a Japanese garden and more than 20 kinds of animals",
+        )}
       </p>
       <h1 id="home-title">
-        {t("จิบอะไรดี…", "A little sip…")}
+        {t("วันนี้กินอะไรดี…", "What’s good to eat today?")}
         <br />
-        <span>{t("มีเพื่อนรออยู่", "a friendly hello")}</span>
+        <span>{t("มีเพื่อนรออยู่", "Friends are waiting")}</span>
       </h1>
       <p class="hero-lede">
         {t(
-          "คาเฟ่ สวนญี่ปุ่น และห้องเล่นกับแมว",
-          "A café, a Japanese garden and time with the cats.",
+          "ร้านอาหารและคาเฟ่ สัตว์เลี้ยงฮีลใจ",
+          "A restaurant and café with animals to brighten your day.",
         )}
         <br />
         {t(
-          "ชวนมาใช้เวลาด้วยกันที่คลอง 6 ปทุมธานี",
-          "Make a day of it in Khlong 6, Pathum Thani.",
+          "ชวนมาใช้เวลาด้วยกันทั้งวัน ที่คลอง 6 ปทุมธานี",
+          "Spend the day with us in Khlong 6, Pathum Thani.",
         )}
       </p>
       <div class="hero-actions" data-hero-actions>
@@ -92,7 +102,11 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
       </div>
     </div>
     <div class="hero-foot">
-      <span>{t("ค่อย ๆ รู้จักกัน", "Good company. A slower afternoon.")}</span>
+      <p class="hero-hashtags">
+        {hashtags.map((hashtag) => (
+          <span>{hashtag}</span>
+        ))}
+      </p>
       <a
         href="#experiences"
         aria-label={t("เลื่อนลงเพื่อสำรวจร้าน", "Scroll to explore the café")}
@@ -195,12 +209,7 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
           "Come for the café. Stay for the company.",
         )}
       </h2>
-      <p>
-        {t(
-          "โซนคาเฟ่ไม่มีค่าเข้า ขั้นต่ำ 1 ออร์เดอร์ต่อคน หากอยากเข้าโซนสัตว์ใกล้ชิด เลือกแพ็กเกจที่เหมาะกับคุณ",
-          "The café has no admission fee, with a minimum of 1 order per person. Choose a pass to spend time in the animal zones.",
-        )}
-      </p>
+      <p>{admissionSummary}</p>
     </div>
     <div class="home-passes">
       {passes.map((pass) => (

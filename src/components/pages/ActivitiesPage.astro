@@ -83,19 +83,13 @@ const items =
   <section class="activity-section" id="passes" aria-labelledby="passes-title">
     <p class="eyebrow">Choose your day</p>
     <h2 id="passes-title">{t("แพ็กเกจและการเข้าชม", "Passes & admission")}</h2>
-    <p>{admissionSummary}</p>
-    <p>
-      {t(
-        "มาเฉพาะคาเฟ่ได้โดยไม่ต้องซื้อแพ็กเกจ แวะทานอาหาร ชมสวนญี่ปุ่น บ่อปลาคาร์ฟ พายเรือ ชมสัตว์ในคาเฟ่ และชมแพะกับกระต่ายจากพื้นที่ชมสัตว์ ส่วนการเข้าโซนสัตว์ใกล้ชิดให้เลือกแพ็กเกจด้านล่าง",
-        "You can visit the café without buying an animal-zone pass: enjoy a meal, the Japanese garden and koi pond, rowing boats, animals in the café, and views of goats and rabbits from the viewing area. Choose a pass below to enter the animal zones for closer visits.",
-      )}
-    </p>
     <aside class="free-zone" id="free-zone">
-      <h3>Free Zone Pass</h3>
+      <h3>Free Zone</h3>
+      <p>{admissionSummary}</p>
       <p>
         {t(
-          "โซนคาเฟ่ไม่มีค่าเข้า ขั้นต่ำ 1 ออร์เดอร์ต่อคน ส่วนโซนสัตว์ที่ต้องใช้แพ็กเกจเลือกได้ด้านล่าง",
-          "The café has no admission fee, with a minimum of 1 order per person. For the animal zones, choose a pass below.",
+          "แวะทานอาหาร เดินชมสวนญี่ปุ่นและบ่อปลาคาร์ฟ พายเรือ ทักทายสัตว์ในคาเฟ่ หรือดูแพะกับกระต่ายจากจุดชมสัตว์",
+          "Enjoy a meal, visit the Japanese garden and koi pond, go rowing, meet the animals in the café, or watch goats and rabbits from the viewing area.",
         )}
       </p>
       <a href="#garden">{t("ดูแผนผังร้าน", "See the shop map")}</a>

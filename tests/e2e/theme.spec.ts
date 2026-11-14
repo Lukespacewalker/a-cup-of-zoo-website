@@ -17,7 +17,7 @@ test("home actions and mobile navigation reach the menu and visit pages", async 
   await expect(toggle).toHaveAttribute("aria-expanded", "false");
   await expect(toggle).toBeFocused();
   await toggle.click();
-  await page.getByRole("navigation", { name: "มือถือ" }).getByRole("link", { name: "มาเที่ยว" }).click();
+  await page.getByRole("navigation", { name: "มือถือ" }).getByRole("link", { name: "เวลาทำการ/แผนที่" }).click();
   await expect(page).toHaveURL(/\/visit\/$/);
 });
 

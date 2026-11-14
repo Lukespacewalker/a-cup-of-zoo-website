@@ -168,8 +168,15 @@
   font-size: 0.76rem;
   letter-spacing: 0.04em;
 }
+.hero-hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.55rem;
+  margin: 0;
+}
 .hero-foot a {
   color: white;
+  flex: none;
   width: 44px;
   min-height: 44px;
   text-align: center;
@@ -543,7 +550,7 @@
       linear-gradient(180deg, rgb(25 25 19 / 0.25), transparent 20%);
   }
   .hero-copy {
-    padding: 12rem 0 1.2rem;
+    padding: 7rem 0 1.2rem;
   }
   .garden-hero h1 {
     font-size: clamp(2.1rem, 8.4vw, 3.1rem);

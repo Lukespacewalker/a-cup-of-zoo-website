@@ -40,23 +40,24 @@ const href = (path: string) => localePath(path, locale);
   </figure>
   <div class="cat-story-copy">
     <p class="chapter-label">
-      {t("ห้องเล่นกับแมว · Indoor", "The cat room · Indoor")}
+      {t("ห้องสัตว์เลี้ยง Indoor", "Indoor Pet Zone")}
     </p>
     <h2 id="friends-title">
-      {t("เผื่อเวลาไว้", "Make a little time")}
-      <br />
-      {t("ตกหลุมรักเจ้าเหมียว", "for a new friend.")}
+      {t(
+        "สายหมา สายแมว หรือสัตว์แปลก ที่นี่ก็มีให้รัก",
+        "Dogs, cats and a few animals you might not expect",
+      )}
     </h2>
     <p>
       {t(
-        "นั่งอยู่ด้วยกัน มองความซนเล็ก ๆ แล้วค่อยทำความรู้จัก ที่ห้องเล่นกับแมวของเรา",
-        "Take a seat, watch their little antics and get to know the cats at their own pace.",
+        "ฮีลใจกับน้อง ๆ ดูความซน แล้วค่อย ๆ ทำความรู้จักเพื่อนใหม่",
+        "Watch their little antics and take your time getting to know them.",
       )}
     </p>
     <p class="story-detail">
       {t(
-        "ห้องเล่นกับแมวอยู่ในกลุ่มโซน Indoor เลือกเข้าด้วย One Zone Pass หรือ All Zone Pass",
-        "The cat room is part of the Indoor group, accessible with an Indoor One Zone Pass or an All Zone Pass.",
+        "ใช้ One Zone Pass (Indoor) หรือ All Zone Pass เล่นกับเพื่อนสัตว์ได้แบบไม่จำกัดเวลาในช่วงเปิดบริการ",
+        "An Indoor One Zone Pass or an All Zone Pass lets you spend as long as you like in the Indoor Pet Zone during opening hours.",
       )}
     </p>
     <a class="cafe-link" href={href("/activities/") + "#passes"}>
@@ -92,14 +93,15 @@ const href = (path: string) => localePath(path, locale);
   <div class="table-copy">
     <p class="chapter-label">{t("ที่โต๊ะของเรา", "At our table")}</p>
     <h2 id="table-title">
-      {t("เริ่มที่ของอร่อย", "Something delicious.")}
-      <br />
-      {t("อยู่ต่อเพราะบรรยากาศ", "Somewhere to stay.")}
+      {t(
+        "เริ่มต้นที่ของอร่อย กับบรรยากาศแสนอบอุ่น",
+        "Good food and a cosy spot to settle in",
+      )}
     </h2>
     <p>
       {t(
-        "เลือกอาหารที่ชอบ จิบเครื่องดื่มริมกระจก แล้วมองสีเขียวของสวนที่อยู่ใกล้แค่เอื้อม",
-        "Choose a favourite dish, settle by the window and watch the garden outside.",
+        "เลือกอาหารที่ชอบ จิบเครื่องดื่มที่ใช่ แล้วนั่งสบาย ๆ มองสวน",
+        "Pick a dish and a drink you love, then settle in with a view of the garden.",
       )}
     </p>
     <a class="cafe-link" href={href("/menu/")}>
@@ -139,9 +141,10 @@ const href = (path: string) => localePath(path, locale);
     <div>
       <p class="chapter-label">{t("ออกไปเดินเล่นกัน", "Beyond the café")}</p>
       <h2 id="garden-title">
-        {t("ตามทางเดิน", "A path to follow.")}
-        <br />
-        {t("ไปหาความสุขเล็ก ๆ", "A moment to keep.")}
+        {t(
+          "ชมวิวตามทางเดิน ไปหาความสุขเล็ก ๆ",
+          "Take the garden path and see what you find",
+        )}
       </h2>
     </div>
     <WatercolorAnimal animal="ducks" />
@@ -182,8 +185,8 @@ const href = (path: string) => localePath(path, locale);
     </figure>
     <p>
       {t(
-        "แวะดูปลาคาร์ฟ เดินผ่านสวน หรือเลือกกิจกรรมให้อาหารสัตว์ตามคำแนะนำของพนักงาน",
-        "Watch the koi, wander through the garden or choose a feeding activity with guidance from the café team.",
+        "แวะดูปลาคาร์ฟ เดินชมสวน พายเรือ หรือให้อาหารปลาตามคำแนะนำของพนักงาน",
+        "Watch the koi and stroll through the garden. Ask our team about rowing or feeding the fish.",
       )}
     </p>
     <a class="cafe-link" href={href("/activities/") + "#experiences"}>

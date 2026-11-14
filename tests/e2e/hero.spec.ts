@@ -16,6 +16,8 @@ test("home header receives clicks above the media on desktop and mobile", async 
   for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("วันนี้กินอะไรดี… มีเพื่อนรออยู่");
+    await expect(page.locator(".hero-hashtags")).toContainText("#คาเฟ่สัตว์คลองหก");
     if (width === 390) {
       const toggle = page.getByRole("button", { name: "เมนู", exact: true });
       await toggle.click({ timeout: 3000 });
@@ -23,7 +25,7 @@ test("home header receives clicks above the media on desktop and mobile", async 
       await page.keyboard.press("Escape");
       await expect(toggle).toBeFocused();
     } else {
-      await page.locator(".desktop-nav").getByRole("link", { name: "สัตว์", exact: true }).click({ timeout: 3000 });
+      await page.locator(".desktop-nav").getByRole("link", { name: "เพื่อนสัตว์", exact: true }).click({ timeout: 3000 });
       await expect(page).toHaveURL(/\/animals\/$/);
     }
   }

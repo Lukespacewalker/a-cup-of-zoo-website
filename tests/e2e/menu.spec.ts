@@ -33,7 +33,7 @@ test("all food and prices are server rendered with optional menu-book links", as
 
 test("activities explain separate admission, benefits, children and all feeding choices", async ({ page }) => {
   await page.goto("/activities/");
-  await expect(page.locator("#passes")).toContainText("ขั้นต่ำ 1 ออร์เดอร์ต่อคน");
+  await expect(page.locator("#passes")).toContainText("ขั้นต่ำ 1 ออร์เดอร์ต่อท่าน");
   await expect(page.locator("#one-zone")).toContainText("249");
   await expect(page.locator("#all-zone")).toContainText("349");
   await expect(page.locator("#one-zone")).toContainText("95 บาท");

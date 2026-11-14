@@ -15,7 +15,7 @@ interface Props {
 }
 const { locale } = Astro.props;
 const t = translator(locale);
-const { admissionSummary } = localizedActivities(locale);
+const { admissionSummary, passes } = localizedActivities(locale);
 const href = (path: string) => localePath(path, locale);
 
 const page = await loadPage();
@@ -74,6 +74,14 @@ const mapEmbed = `https://www.google.com/maps?cid=13571304804789208237&output=em
       />
       <h2>{t("เลือกมาเที่ยวแบบที่ชอบ", "Choose your visit")}</h2>
       <p>{admissionSummary}</p>
+      <p>
+        {passes.map((pass, index) => (
+          <>
+            {index > 0 && " · "}
+            {pass.name} {pass.price} {t("บาท", "THB")}
+          </>
+        ))}
+      </p>
       <p>
         <a class="cafe-link" href={href("/activities/#passes")}>
           {t(

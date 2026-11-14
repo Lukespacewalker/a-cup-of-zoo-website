@@ -13,10 +13,10 @@ const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
 const links = [
   [href("/"), t("หน้าแรก", "Home")],
-  [href("/animals/"), t("สัตว์", "Animals")],
-  [href("/activities/"), t("กิจกรรม", "Activities")],
+  [href("/animals/"), t("เพื่อนสัตว์", "Animal friends")],
+  [href("/activities/"), t("กิจกรรม & แพ็กเกจ", "Activities & passes")],
   [href("/menu/"), t("เมนู", "Menu")],
-  [href("/farm/"), t("สัตว์หาบ้าน", "Farm")],
+  [href("/farm/"), t("ฟาร์มของเรา", "Our farm")],
   ["/news/", t("ข่าว", "News (Thai)")],
 ];
 const currentPath = Astro.url.pathname;
@@ -44,10 +44,10 @@ const switchHref = localePath(
       href={href("/club/")}
       aria-current={isCurrent(href("/club/")) ? "page" : undefined}
     >
-      Zoo Clubs
+      {t("สมาชิก Zoo Clubs", "Zoo Clubs membership")}
     </a>
     <a class="visit-link" href={href("/visit/")}>
-      {t("วางแผนมาเที่ยว", "Plan your visit")} <ArrowIcon />
+      {t("เวลาทำการ/แผนที่", "Hours & directions")} <ArrowIcon />
     </a>
   </nav>
   <div class="header-tools">
@@ -134,7 +134,7 @@ const switchHref = localePath(
     href={href("/club/")}
     aria-current={isCurrent(href("/club/")) ? "page" : undefined}
   >
-    <span>Zoo Clubs</span>
+    <span>{t("สมาชิก Zoo Clubs", "Zoo Clubs membership")}</span>
     <span class="club-link__note">{t("สมัครฟรี", "Join free")}</span>
   </a>
   {links.map(([href, label]) => (
@@ -146,13 +146,13 @@ const switchHref = localePath(
     href={href("/events/")}
     aria-current={isCurrent(href("/events/")) ? "page" : undefined}
   >
-    {t("ทัวร์กลุ่มและร่วมงาน", "Groups & collaborations")}
+    {t("ทัวร์กลุ่ม & ร่วมงาน", "Group tours & collaborations")}
   </a>
   <a
     href={href("/visit/")}
     aria-current={isCurrent(href("/visit/")) ? "page" : undefined}
   >
-    {t("มาเที่ยว", "Plan your visit")}
+    {t("เวลาทำการ/แผนที่", "Hours & directions")}
   </a>
 </nav>
 <script>

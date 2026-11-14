@@ -1,7 +1,7 @@
 // Source: shop menu, pages 2–3 and 24. See docs/menu-import.md.
 // IDs keep translations attached to the menu item when display order changes.
 export const admissionSummary =
-  "โซนคาเฟ่ไม่มีค่าเข้า สั่งอาหารหรือเครื่องดื่มขั้นต่ำ 1 ออร์เดอร์ต่อคน ส่วนโซนสัตว์มี One Zone Pass 249 บาท และ All Zone Pass 349 บาท";
+  "โซนคาเฟ่ไม่มีค่าเข้า สั่งอาหารหรือเครื่องดื่มขั้นต่ำ 1 ออร์เดอร์ต่อท่าน หากอยากเข้าโซนเล่นกับสัตว์ สามารถซื้อแพ็กเกจเพิ่มได้";
 export const passes = [
   {
     id: "one-zone",
@@ -31,7 +31,7 @@ export const passes = [
 export const animalZones = {
   indoor: [
     "ห้องน้องหมาและน้องแมว",
-    "โซนเมียร์แคทและแพรี่ด็อก",
+    "โซนเมียร์แคทและแพรรีด็อก",
     "โซนน้องอีเห็น",
   ],
   outdoor: [

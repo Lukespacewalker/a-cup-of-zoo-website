@@ -12,6 +12,9 @@ const translations: Record<string, string> = {
   [source.holidayNote!]:
     "Open as usual when Tuesday falls on a public holiday. Check the café's announcements before travelling.",
   [source.admissionText!]: englishAdmission,
+  // Previously published CMS text can still appear on the visit page and in its FAQ.
+  "โซนคาเฟ่ไม่มีค่าเข้า สั่งอาหารหรือเครื่องดื่มขั้นต่ำ 1 ออร์เดอร์ต่อคน ส่วนโซนสัตว์มี One Zone Pass 249 บาท และ All Zone Pass 349 บาท":
+    "There’s no admission fee for the café area. Please order at least 1 food item or drink per person. Animal zones require a One Zone Pass at 249 THB or an All Zone Pass at 349 THB.",
 };
 const faqText = [
   [

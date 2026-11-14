@@ -9,7 +9,7 @@ import {
 import type { Locale } from "./locale";
 
 export const englishAdmission =
-  "No admission fee for the café area; a minimum of 1 food or drink order per person applies. Animal zones require a One Zone Pass at 249 THB or an All Zone Pass at 349 THB.";
+  "There’s no admission fee for the café area. Please order at least 1 food item or drink per person. You can buy a pass to enter the animal zones.";
 // Exhaustive ID records preserve the menu translations independently of source row order.
 const passText = {
   "one-zone": {

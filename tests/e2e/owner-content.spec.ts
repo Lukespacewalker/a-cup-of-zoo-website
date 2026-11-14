@@ -69,7 +69,7 @@ test("map and every place link remain available without JavaScript", async ({ br
   await expect(map.locator(".shop-map-illustration")).toBeVisible();
   await expect(map.locator(".map-static-stops a")).toHaveCount(19);
   await expect(map.locator(".map-detail")).toHaveCount(0);
-  await expect(page.locator("#free-zone")).toContainText("1 ออร์เดอร์ต่อคน");
+  await expect(page.locator("#free-zone")).toContainText("1 ออร์เดอร์ต่อท่าน");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
   await map.locator('.map-static-stops a[href="/activities/#wishing-corner"]').focus();
   await page.keyboard.press("Enter");
