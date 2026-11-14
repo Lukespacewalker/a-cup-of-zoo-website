@@ -9,6 +9,12 @@ test("every numbered map stop and each facility can be explored, including place
     for (const route of ["/", "/activities/"]) {
       await page.goto(`${prefix}${route}#garden`);
       const map = page.locator("[data-shop-map]");
+      await expect(map.locator("#shop-map-title")).toHaveText(
+        prefix ? "One visit, plenty to explore" : "มาครั้งเดียว เที่ยวได้หลายมุม",
+      );
+      await expect(map.locator("[data-map-overview] h3")).toHaveText(
+        prefix ? "Pick your favourite spot" : "เลือกมุมโปรดของคุณ",
+      );
       await expect(map.locator("[data-map-pin]")).toHaveCount(19);
       await expect(map.locator(".map-detail")).toHaveCount(0);
       await expect(map.locator("[data-map-zoom]")).toBeVisible();
@@ -21,6 +27,16 @@ test("every numbered map stop and each facility can be explored, including place
         await expect(panel.locator("h3")).not.toBeEmpty();
         await expect(panel.locator("a")).toHaveAttribute("href", new RegExp(`^${prefix || ""}/(activities|animals|menu|visit)/`));
       }
+      await expect(map.locator('[data-map-panel="cafe"] .map-stop-note')).toHaveText(
+        prefix ? "No admission fee · Minimum 1 order per person" : "ไม่มีค่าเข้า · ขั้นต่ำ 1 ออร์เดอร์ต่อท่าน",
+      );
+      await expect(map.locator('[data-map-panel="indoor"] h3')).toHaveText("Indoor Pet Zone");
+      await expect(map.locator('[data-map-panel="indoor"] .map-stop-note')).toContainText(
+        prefix ? "Indoor One Zone Pass or All Zone Pass" : "One Zone Pass (Indoor) หรือ All Zone Pass",
+      );
+      await expect(map.locator('[data-map-panel="kurama"] .map-stop-note')).toHaveText(
+        prefix ? "Free to explore" : "เดินชมฟรี",
+      );
       for (const id of ["restroom", "parking", "parking-rear"]) {
         await map.locator("[data-map-select]").selectOption(id);
         await expect(map.locator(`[data-map-panel="${id}"]`)).toBeVisible();
