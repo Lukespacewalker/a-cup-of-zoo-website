@@ -2,12 +2,8 @@
 html:has(.food-catalog) {
   scroll-behavior: auto;
 }
-.catalog-note,
 .food-list > li > p {
   color: var(--muted-text);
-}
-.catalog-note {
-  font-size: 0.9rem;
 }
 .food-section {
   padding: 3rem 0 2rem;

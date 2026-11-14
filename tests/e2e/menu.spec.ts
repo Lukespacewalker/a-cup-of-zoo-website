@@ -6,6 +6,8 @@ test("all food and prices are server rendered with optional menu-book links", as
   const requests: string[] = [];
   page.on("request", (request) => requests.push(request.url()));
   await page.goto("/menu/");
+  await expect(page.locator(".menu-books")).toContainText("เลือกชมเมนูพร้อมราคาด้านล่าง");
+  await expect(page.locator(".menu-mast")).not.toContainText("ราคาต่อจานเป็นบาท");
   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
   await expect(page.locator('[data-menu-code="B3"]')).toContainText("189 บาท");
   await expect(page.locator('[data-menu-code="R9"]')).toContainText("129 บาท");
