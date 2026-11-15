@@ -1,0 +1,299 @@
+---
+import ActivityPhoto from "./ActivityPhoto.astro";
+import {
+  animalZonePhotos,
+  freeActivityPhotos,
+} from "../../lib/content/activity-photos";
+import { localizedActivities } from "../../lib/i18n/activities";
+import { translator, type Locale } from "../../lib/i18n/locale";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = translator(locale);
+const { passes, animalZones } = localizedActivities(locale);
+const oneZone = passes.find((pass) => pass.id === "one-zone")!;
+const allZone = passes.find((pass) => pass.id === "all-zone")!;
+const boatNote = t(
+  "สอบถามพนักงานเรื่องการใช้เรือและค่าใช้จ่าย (ถ้ามี)",
+  "Ask staff about boat availability and any charges.",
+);
+const cafeOrder = t(
+  "สั่งอาหารหรือเครื่องดื่มขั้นต่ำ 1 ออร์เดอร์ต่อท่าน",
+  "At least 1 food or drink order per person",
+);
+const free = [
+  {
+    title: t("อาหารและเครื่องดื่ม", "Food and drinks"),
+    image: freeActivityPhotos.food,
+  },
+  {
+    title: t("สวนญี่ปุ่น", "Japanese garden"),
+    image: freeActivityPhotos.garden,
+  },
+  {
+    title: t("ชมบ่อปลาคาร์ฟ", "Visit the koi pond"),
+    image: freeActivityPhotos.pond,
+    note: t("มีอาหารปลาคาร์ฟให้ซื้อเพิ่ม", "Koi food is available to buy."),
+  },
+  {
+    title: t("พายเรือ", "Row a boat"),
+    image: freeActivityPhotos.boat,
+    note: boatNote,
+  },
+  {
+    title: t("ชมสัตว์ในคาเฟ่", "Meet the café animals"),
+    image: freeActivityPhotos.cafePets,
+  },
+  {
+    title: t("จุดชมแพะและกระต่าย", "Goat and rabbit viewing area"),
+    image: freeActivityPhotos.viewing,
+    note: t(
+      "เลือก Outdoor หรือ All Zone Pass เพื่อเข้าบ้านแพะและบ้านกระต่าย",
+      "Choose Outdoor or All Zone Pass to enter the goat and rabbit houses.",
+    ),
+  },
+];
+const indoor = animalZones.indoor.map((title, i) => ({
+  title,
+  image: animalZonePhotos.indoor[i],
+}));
+const outdoor = animalZones.outdoor.map((name, i) => {
+  const [title, detail] = name.split(" (");
+  return {
+    title,
+    image: animalZonePhotos.outdoor[i],
+    note: detail?.replace(/\)$/, ""),
+  };
+});
+const choices = [
+  {
+    id: "free-zone",
+    tone: "free",
+    name: "Free Zone",
+    price: null,
+    includes: cafeOrder,
+    photos: free,
+    benefits: [],
+  },
+  {
+    id: "one-zone",
+    tone: "indoor",
+    name: "Indoor",
+    headingId: "animal-zones",
+    price: oneZone.price,
+    includes: t("Free Zone + โซนสัตว์ในร่ม", "Free Zone + indoor animal zones"),
+    photos: indoor,
+    benefits: [oneZone.benefits[1], t("ถุงเท้า", "Socks")],
+  },
+  {
+    id: "outdoor-pass",
+    tone: "outdoor",
+    name: "Outdoor",
+    price: oneZone.price,
+    includes: t(
+      "Free Zone + โซนสัตว์กลางแจ้ง",
+      "Free Zone + outdoor animal zones",
+    ),
+    photos: outdoor,
+    benefits: [
+      oneZone.benefits[1],
+      t("ป้ายไม้อธิษฐานเอมะ", "An ema wooden wish plaque"),
+    ],
+  },
+  {
+    id: "all-zone",
+    tone: "all",
+    name: allZone.name,
+    price: allZone.price,
+    includes: "Free Zone + Indoor + Outdoor",
+    photos: [...indoor, ...outdoor],
+    benefits: allZone.benefits.slice(1),
+  },
+];
+---
+
+<div class="activity-passes">
+  {choices.map((choice) => (
+    <article
+      class="activity-pass"
+      id={choice.id}
+      data-pass={choice.tone}
+      aria-labelledby={choice.headingId ?? `${choice.id}-title`}
+    >
+      <h2 id={choice.headingId ?? `${choice.id}-title`} lang="en">
+        {choice.name}
+      </h2>
+      <p class="activity-pass__price">
+        {choice.price === null ? (
+          t("ไม่มีค่าเข้า", "No admission fee")
+        ) : (
+          <>
+            {choice.price} <span>{t("บาท / ท่าน", "THB / person")}</span>
+          </>
+        )}
+      </p>
+      <p class="activity-pass__includes">{choice.includes}</p>
+      <div class="activity-pass__body">
+        <ul class="activity-pass__photos" data-activity-gallery>
+          {choice.photos.map((photo) => (
+            <li>
+              <ActivityPhoto {...photo} locale={locale} />
+            </li>
+          ))}
+        </ul>
+        {choice.tone === "free" && (
+          <p class="activity-pass__note">{boatNote}</p>
+        )}
+        {choice.benefits.length > 0 && (
+          <div class="activity-pass__benefits">
+            <p>{t("สิทธิในแพ็กเกจ", "Pass benefits")}</p>
+            <ul>
+              {choice.benefits.map((benefit) => (
+                <li>{benefit}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </article>
+  ))}
+</div>
+<p class="activity-passes-note">
+  {t(
+    "One Zone Pass เลือก Indoor หรือ Outdoor อย่างใดอย่างหนึ่ง แพ็กเกจเข้าโซนที่เลือกได้ตลอดช่วงเปิดบริการ",
+    "With a One Zone Pass, choose either Indoor or Outdoor. Animal-zone passes allow unlimited time in the included zones during opening hours.",
+  )}
+  <a href="#experiences">{t("ดูกิจกรรมซื้อเพิ่ม", "See optional extras")}</a>
+</p>
+
+<style>
+  .activity-passes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .activity-pass {
+    --pass-accent: var(--leaf);
+    --pass-tint: var(--garden-field);
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+    align-items: start;
+    gap: 0;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-block-start: 3px solid var(--pass-accent);
+    border-radius: 8px;
+    background: var(--paper);
+    scroll-margin-block-start: 7rem;
+  }
+
+  .activity-pass[data-pass="indoor"] {
+    --pass-accent: light-dark(#4c535c, #c2cbd3);
+    --pass-tint: light-dark(#e9eced, #3c4246);
+  }
+
+  .activity-pass[data-pass="outdoor"] {
+    --pass-accent: var(--fox-ink);
+    --pass-tint: light-dark(#f4e7dc, #49392e);
+  }
+
+  .activity-pass[data-pass="all"] {
+    --pass-accent: light-dark(#725124, #efcf8b);
+    --pass-tint: light-dark(#f3e8c9, #514633);
+    background: color-mix(in srgb, var(--pass-tint) 42%, var(--paper));
+  }
+
+  .activity-pass h2,
+  .activity-pass p {
+    margin: 0;
+  }
+
+  .activity-pass h2,
+  .activity-pass__price {
+    font-size: clamp(1.4rem, 2.05vw, 1.9rem);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .activity-pass__price {
+    color: var(--pass-accent);
+  }
+
+  .activity-pass__price span {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .activity-pass__includes {
+    border-block-start: 1px solid var(--line);
+    padding-block: 0.65rem 0.55rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .activity-pass__photos {
+    display: grid;
+    gap: 0.3rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #animal-zones {
+    scroll-margin-block-start: 7rem;
+  }
+
+  .activity-pass .activity-pass__note,
+  .activity-pass__benefits {
+    margin-block-start: 0.65rem;
+    padding: 0.55rem 0.65rem;
+    border-radius: 4px;
+    background: var(--pass-tint);
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .activity-pass__benefits p {
+    font-weight: 600;
+  }
+
+  .activity-pass__benefits ul {
+    margin: 0.2rem 0 0;
+    padding-inline-start: 1.1rem;
+  }
+
+  .activity-passes-note {
+    font-size: 0.9rem;
+    color: var(--muted-text);
+  }
+
+  .activity-passes-note a {
+    display: inline-block;
+    margin-inline-start: 0.5rem;
+    font-weight: 600;
+  }
+
+  @media (max-width: 1020px) {
+    .activity-passes {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 585px) {
+    .activity-passes {
+      grid-template-columns: 1fr;
+    }
+
+    .activity-pass {
+      display: block;
+      padding: 0.9rem;
+    }
+  }
+</style>

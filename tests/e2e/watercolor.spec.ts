@@ -10,6 +10,6 @@ test("wishing corner is discoverable and keeps its section when switching langua
   await expect(page).toHaveURL(/\/activities\/#wishing-corner$/);
   await expect(page.locator("#wishing-corner")).toContainText("น้องจิ้งจอกเก้าหาง");
   await page.getByRole("navigation", { name: "หมวดกิจกรรม" }).getByRole("link", { name: "แพ็กเกจและเงื่อนไข" }).click();
-  await expect(page.locator("#passes h2")).toBeInViewport();
+  await expect(page.locator("#passes-title")).toBeInViewport();
   await expect(page.locator(".activity-terms")).toContainText("100 ซม.");
 });

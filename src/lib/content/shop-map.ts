@@ -274,7 +274,7 @@ export function shopMapStops(locale: Locale) {
         "ใช้ One Zone Pass (Outdoor) หรือ All Zone Pass · เข้าบ้าน 18:00 น.",
         "Outdoor One Zone Pass or All Zone Pass required · Animals return home at 18:00",
       ),
-      path: "/activities/#animal-zones",
+      path: "/activities/#outdoor-pass",
       link: t("ดูโซนและแพ็กเกจ", "Zones & passes"),
     },
     {

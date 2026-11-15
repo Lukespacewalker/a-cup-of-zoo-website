@@ -1,0 +1,202 @@
+---
+import { translator, type Locale } from "../../lib/i18n/locale";
+
+interface Props {
+  locale: Locale;
+}
+
+const t = translator(Astro.props.locale);
+---
+
+<dialog class="activity-photo-dialog" aria-labelledby="activity-photo-title">
+  <div class="activity-photo-dialog__top">
+    <span data-counter aria-hidden="true"></span>
+    <button
+      type="button"
+      data-close
+      aria-label={t("ปิดภาพขยาย", "Close enlarged photo")}
+      autofocus
+    >
+      ×
+    </button>
+  </div>
+  <img alt="" />
+  <div class="activity-photo-dialog__bottom">
+    <button
+      type="button"
+      data-previous
+      aria-label={t("ภาพก่อนหน้า", "Previous photo")}
+    >
+      ‹
+    </button>
+    <div aria-live="polite">
+      <h2 id="activity-photo-title"></h2>
+      <p data-note hidden></p>
+    </div>
+    <button type="button" data-next aria-label={t("ภาพถัดไป", "Next photo")}>
+      ›
+    </button>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>(
+    ".activity-photo-dialog",
+  )!;
+  const image = dialog.querySelector("img")!;
+  const title = dialog.querySelector("h2")!;
+  const note = dialog.querySelector<HTMLParagraphElement>("[data-note]")!;
+  const counter = dialog.querySelector("[data-counter]")!;
+  const photoSelector = "a[data-activity-photo]";
+  let photos: HTMLAnchorElement[] = [];
+  let index = 0;
+  let opener: HTMLAnchorElement | undefined;
+
+  function showPhoto(nextIndex: number) {
+    index = (nextIndex + photos.length) % photos.length;
+    const photo = photos[index];
+    const thumbnail = photo.querySelector("img")!;
+    image.src = photo.href;
+    image.style.setProperty(
+      "--photo-width",
+      `${Math.min(640, Number(thumbnail.getAttribute("width")) * 2)}px`,
+    );
+    title.textContent = photo.dataset.caption ?? "";
+    note.textContent = photo.dataset.note ?? "";
+    note.hidden = !note.textContent;
+    counter.textContent = `${index + 1} / ${photos.length}`;
+  }
+
+  document.addEventListener("click", (event) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.shiftKey ||
+      !(event.target instanceof Element) ||
+      typeof dialog.showModal !== "function"
+    )
+      return;
+    const link = event.target.closest<HTMLAnchorElement>(photoSelector);
+    const gallery = link?.closest("[data-activity-gallery]");
+    if (!link || !gallery) return;
+    event.preventDefault();
+    opener = link;
+    photos = Array.from(gallery.querySelectorAll(photoSelector));
+    showPhoto(photos.indexOf(link));
+    dialog.showModal();
+  });
+
+  dialog
+    .querySelector("[data-close]")!
+    .addEventListener("click", () => dialog.close());
+  dialog
+    .querySelector("[data-previous]")!
+    .addEventListener("click", () => showPhoto(index - 1));
+  dialog
+    .querySelector("[data-next]")!
+    .addEventListener("click", () => showPhoto(index + 1));
+  dialog.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    showPhoto(index + (event.key === "ArrowRight" ? 1 : -1));
+  });
+  dialog.addEventListener("click", (event) => {
+    if (event.target !== dialog) return;
+    const { left, right, top, bottom } = dialog.getBoundingClientRect();
+    if (
+      event.clientX < left ||
+      event.clientX > right ||
+      event.clientY < top ||
+      event.clientY > bottom
+    )
+      dialog.close();
+  });
+  dialog.addEventListener("close", () => {
+    image.removeAttribute("src");
+    opener?.focus({ preventScroll: true });
+  });
+</script>
+
+<style>
+  .activity-photo-dialog {
+    width: min(43rem, calc(100% - 1.5rem));
+    max-height: calc(100dvh - 1.5rem);
+    padding: 0.75rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 0.65rem;
+    line-height: 1.55;
+    overscroll-behavior: contain;
+  }
+
+  .activity-photo-dialog::backdrop {
+    background: rgb(21 25 17 / 80%);
+  }
+
+  :global(body:has(.activity-photo-dialog[open])) {
+    overflow: hidden;
+  }
+
+  .activity-photo-dialog img {
+    width: min(var(--photo-width, 100%), 100%);
+    max-height: max(8rem, calc(100dvh - 13rem));
+    object-fit: contain;
+    margin: 0.5rem auto;
+  }
+
+  .activity-photo-dialog__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding-inline-start: 0.35rem;
+  }
+
+  .activity-photo-dialog__bottom {
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr) 2.75rem;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .activity-photo-dialog button {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--milk);
+    color: var(--cocoa-deep);
+    font: inherit;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .activity-photo-dialog button:hover {
+    background: var(--garden-field);
+  }
+
+  .activity-photo-dialog h2,
+  .activity-photo-dialog p {
+    margin: 0;
+  }
+
+  .activity-photo-dialog h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .activity-photo-dialog p,
+  .activity-photo-dialog [data-counter] {
+    color: var(--muted-text);
+    font-size: 0.85rem;
+  }
+</style>

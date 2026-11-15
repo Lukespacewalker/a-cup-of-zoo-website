@@ -195,46 +195,20 @@
   color: var(--muted-text);
 }
 
-.zone-photo-grid ul {
-  list-style: none;
-  padding: 0;
-}
-.zone-photo-grid li {
-  display: grid;
-  grid-template-columns: 7rem 1fr;
-  gap: 1.2rem;
-  align-items: center;
-  padding-block: 0.6rem;
-  border-bottom: 1px solid var(--line);
-}
 .experience-list > li {
   display: grid;
   grid-template-columns: 10rem 1fr auto;
   gap: 1.5rem;
   align-items: center;
 }
-.experience-list > li > .brochure-photo {
+.experience-list > li > .activity-photo {
   width: 100%;
-}
-.zone-pass {
-  border-radius: 2px;
-  padding: 2rem;
-  background: transparent;
-}
-.zone-pass + .zone-pass {
-  background: var(--garden-field);
-}
-.zone-pass h3 {
-  font-weight: 400;
-}
-.pass-price {
-  font-weight: 400;
 }
 .activity-terms {
   padding: 1.5rem;
   background: var(--paper);
 }
-.activity-terms h3 {
+.activity-terms h2 {
   font-weight: 500;
 }
 .garden-section-heading {
@@ -378,7 +352,7 @@
   .experience-list .experience-price {
     grid-column: 2;
   }
-  .experience-list > li > .brochure-photo {
+  .experience-list > li > .activity-photo {
     grid-row: span 2;
   }
   .food-section__photos {
@@ -391,9 +365,6 @@
     max-height: 21rem;
     object-fit: contain;
     object-position: left;
-  }
-  .zone-pass {
-    padding: 1.4rem;
   }
   .wishing-story {
     grid-template-columns: 1fr;

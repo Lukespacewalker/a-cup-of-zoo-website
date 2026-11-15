@@ -1,6 +1,8 @@
 # A Cup of Zoo
 
-> ปัจจุบัน 28 ตุลาคม 2026: เผยแพร่ refactor คุณภาพโค้ดโดยรักษาหน้าตาเดิมแล้ว ดู [หลักฐานตรวจและ deploy](docs/review/code-quality-2026-10-28/README.md) Repository นี้เปิด public ตามคำสั่งผู้ใช้ และมี [GitHub Actions](.github/workflows/ci.yml) ตรวจ PR/ทุก push; deploy เมื่อ checks ผ่านเฉพาะสาขาหลักปัจจุบัน `codex/garden-animal-experience` รอบจริงผ่านแล้ว ดูเวอร์ชันที่เผยแพร่ล่าสุดจาก [Actions](https://github.com/Lukespacewalker/a-cup-of-zoo-website/actions) รายละเอียดใน [CI/CD](docs/ci-cd.md) ข้อนี้แทนสถานะเวอร์ชัน/การติดตั้ง SDK ในบันทึกเก่าด้านล่าง
+> 15 พฤศจิกายน 2026: `main` เป็นสาขาหลักและสาขาที่ GitHub Actions ใช้เผยแพร่เว็บไซต์ รายละเอียดปัจจุบันดูที่ [CI/CD](docs/ci-cd.md)
+
+> บันทึกเมื่อ 28 ตุลาคม 2026: เผยแพร่ refactor คุณภาพโค้ดโดยรักษาหน้าตาเดิมแล้ว ดู [หลักฐานตรวจและ deploy](docs/review/code-quality-2026-10-28/README.md) Repository นี้เปิด public ตามคำสั่งผู้ใช้ และมี [GitHub Actions](.github/workflows/ci.yml) ตรวจ PR/ทุก push; deploy เมื่อ checks ผ่านเฉพาะสาขาหลักในขณะนั้น `codex/garden-animal-experience` รอบจริงผ่านแล้ว ดูเวอร์ชันที่เผยแพร่ล่าสุดจาก [Actions](https://github.com/Lukespacewalker/a-cup-of-zoo-website/actions) รายละเอียดใน [CI/CD](docs/ci-cd.md) ข้อนี้แทนสถานะเวอร์ชัน/การติดตั้ง SDK ในบันทึกเก่าด้านล่าง
 
 > สถานะปัจจุบัน 28 ตุลาคม 2026: CMS จริงพร้อมใช้ เผยแพร่สัตว์ Canva ครบ 23 ตัว ระบบโหวตซ้ำ/โหลคะแนนและแท่นหน้าแรก พร้อมภาพ ZooClub แล้ว เวอร์ชัน `4b18293c-4c0b-486a-860e-dfec07ca78c7` บน apex/www ใช้ production/CMS และ sitemap 17 หน้า ดู [ผลตรวจหลัง deploy](docs/review/animal-voting-2026-10-28/deployment.md) สถานะ fixture/CMS รอเชื่อมต่อในบันทึกเก่าด้านล่างเป็นประวัติที่ถูกแทนแล้ว
 

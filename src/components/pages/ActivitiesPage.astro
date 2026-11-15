@@ -1,18 +1,13 @@
 ---
 import ShopMap from "../site/ShopMap.astro";
-import PageHero from "../site/PageHero.astro";
 import "../../styles/activities.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import { experienceImages as photos } from "../../lib/content/experience-images";
 import WishingCorner from "../site/WishingCorner.astro";
 import WatercolorAnimal from "../site/WatercolorAnimal.astro";
-import BrochurePhoto from "../site/BrochurePhoto.astro";
-import {
-  activitySheet,
-  zoneSheet,
-  activityCrops,
-  zoneCrops,
-} from "../../lib/content/brochure-images";
+import ActivityPasses from "../site/ActivityPasses.astro";
+import ActivityPhoto from "../site/ActivityPhoto.astro";
+import ActivityPhotoDialog from "../site/ActivityPhotoDialog.astro";
+import { extraActivityPhotos } from "../../lib/content/activity-photos";
 import Picture from "../content/Picture.astro";
 import ContentUnavailable from "../content/ContentUnavailable.astro";
 import { loadPage } from "../../lib/content/load-page";
@@ -25,14 +20,7 @@ interface Props {
 const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
-const {
-  admissionSummary,
-  passes,
-  animalZones,
-  experiences,
-  animalFood,
-  gardenSpots,
-} = localizedActivities(locale);
+const { experiences, animalFood, gardenSpots } = localizedActivities(locale);
 const page = await loadPage();
 const items =
   localizedVenue(page.venue, locale)
@@ -52,66 +40,23 @@ const items =
   )}
   page={page}
 >
-  <PageHero
+  <nav
     id="activities-top"
-    label="SPACE & MOMENTS"
-    title={t(
-      "หนึ่งวันกับเพื่อนสัตว์และสวนสวย",
-      "A day with animal friends and the garden",
-    )}
-    description={t(
-      "นั่งพักในคาเฟ่ เดินเล่นในสวนญี่ปุ่น หรือเลือกแพ็กเกจเข้าไปใกล้ชิดกับเพื่อนสัตว์",
-      "Relax in the café, stroll through the Japanese garden, or choose a pass to spend time in the animal zones.",
-    )}
-    image={photos.garden}
-    alt={t(
-      "ศาลาและทางเดินไม้ในสวนญี่ปุ่นของร้าน",
-      "The pavilion and wooden walkway in the café's Japanese garden",
-    )}
-    position="center 54%"
-    href="#passes"
-    action={t("เลือกแพ็กเกจสำหรับวันของคุณ", "Find your pass")}
-  />
-  <nav class="menu-jump" aria-label={t("หมวดกิจกรรม", "Activity sections")}>
+    class="menu-jump"
+    aria-label={t("หมวดกิจกรรม", "Activity sections")}
+  >
     <a href="#passes">{t("แพ็กเกจและเงื่อนไข", "Passes & terms")}</a>
     <a href="#animal-zones">{t("โซนสัตว์", "Animal zones")}</a>
     <a href="#experiences">{t("กิจกรรมและราคา", "Activities & prices")}</a>
     <a href="#wishing-corner">{t("มุมขอพร", "Wishing corner")}</a>
-    <a href="#garden">{t("เดินเล่นในสวน", "Around the garden")}</a>
+    <a href="#garden">{t("แผนผังร้าน", "Shop map")}</a>
   </nav>
   {page.venueProblem && <ContentUnavailable />}
   <section class="activity-section" id="passes" aria-labelledby="passes-title">
-    <p class="eyebrow">Choose your day</p>
-    <h2 id="passes-title">{t("แพ็กเกจและการเข้าชม", "Passes & admission")}</h2>
-    <aside class="free-zone" id="free-zone">
-      <h3>Free Zone</h3>
-      <p>{admissionSummary}</p>
-      <p>
-        {t(
-          "แวะทานอาหาร เดินชมสวนญี่ปุ่นและบ่อปลาคาร์ฟ พายเรือ ทักทายสัตว์ในคาเฟ่ หรือดูแพะกับกระต่ายจากจุดชมสัตว์",
-          "Enjoy a meal, visit the Japanese garden and koi pond, go rowing, meet the animals in the café, or watch goats and rabbits from the viewing area.",
-        )}
-      </p>
-      <a href="#garden">{t("ดูแผนผังร้าน", "See the shop map")}</a>
-    </aside>
-    <div class="pass-grid">
-      {passes.map((pass) => (
-        <article class="zone-pass" id={pass.id}>
-          <h3>{pass.name}</h3>
-          <p class="pass-price">
-            {pass.price} <span>{t("บาท / คน", "THB / person")}</span>
-          </p>
-          <p>{pass.description}</p>
-          <ul>
-            {pass.benefits.map((benefit) => (
-              <li>{benefit}</li>
-            ))}
-          </ul>
-        </article>
-      ))}
-    </div>
+    <h1 id="passes-title">{t("แพ็กเกจและการเข้าชม", "Passes & admission")}</h1>
+    <ActivityPasses locale={locale} />
     <div class="activity-terms">
-      <h3>{t("พาเด็ก ๆ มาเที่ยว", "Visiting with children")}</h3>
+      <h2>{t("เงื่อนไขการเข้าชม", "Admission terms")}</h2>
       <ul>
         <li>
           {t(
@@ -154,60 +99,36 @@ const items =
   <ShopMap locale={locale} />
   <section
     class="activity-section"
-    id="animal-zones"
-    aria-labelledby="zones-title"
-  >
-    <h2 id="zones-title">
-      {t("พบเพื่อนสัตว์ทั้ง 6 โซน", "Meet friends in all 6 animal zones")}
-    </h2>
-    <div class="zone-grid zone-photo-grid">
-      <section>
-        <h3>Indoor</h3>
-        <ul>
-          {animalZones.indoor.map((name, i) => (
-            <li>
-              <BrochurePhoto source={zoneSheet} crop={zoneCrops[i]} alt="" />
-              <span>{name}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section>
-        <h3>Outdoor</h3>
-        <ul>
-          {animalZones.outdoor.map((name, i) => (
-            <li>
-              <BrochurePhoto
-                source={zoneSheet}
-                crop={zoneCrops[i + 3]}
-                alt=""
-              />
-              <span>{name}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-  </section>
-  <section
-    class="activity-section"
     id="experiences"
     aria-labelledby="experiences-title"
   >
-    <h2 id="experiences-title">
-      {t("กิจกรรมที่ชวนทำด้วยกัน", "Things to do together")}
-    </h2>
-    <ul class="experience-list">
+    <h2 id="experiences-title">{t("กิจกรรมซื้อเพิ่ม", "Optional extras")}</h2>
+    <ul class="experience-list" data-activity-gallery>
       {experiences.map((activity) => (
         <li id={activity.id}>
-          <BrochurePhoto
-            source={activitySheet}
-            crop={activityCrops[activity.id]}
-            alt={activity.name}
+          <ActivityPhoto
+            image={extraActivityPhotos[activity.id]}
+            title={activity.name}
+            note={activity.note}
+            locale={locale}
+            captioned={false}
           />
           <div>
             <h3>{activity.name}</h3>
             <p>{activity.note}</p>
+            {activity.id === "basket" && (
+              <p class="experience-inclusion">
+                {t("รวมใน All Zone Pass", "Included in All Zone Pass")}
+              </p>
+            )}
+            {activity.id === "ema" && (
+              <p class="experience-inclusion">
+                {t(
+                  "รวมใน Outdoor และ All Zone Pass",
+                  "Included in Outdoor and All Zone Pass",
+                )}
+              </p>
+            )}
           </div>
           <p class="experience-price">
             {activity.originalPrice && (
@@ -333,4 +254,5 @@ const items =
       <Picture mediaId="entrance-promo-banner" media={page.venue.media} />
     </section>
   )}
+  <ActivityPhotoDialog locale={locale} />
 </SiteLayout>

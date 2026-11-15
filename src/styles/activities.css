@@ -8,41 +8,18 @@
   font-size: clamp(1.8rem, 3vw, 2.7rem);
   margin-top: 0.5rem;
 }
-.pass-grid,
-.zone-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 2rem;
+#passes {
+  padding-block-start: 1.4rem;
 }
-.pass-grid {
-  margin-top: 2rem;
+#passes-title {
+  font-size: clamp(1.9rem, 3.6vw, 3.3rem);
+  line-height: 1.4;
+  margin: 0 0 1.15rem;
 }
-.zone-pass {
-  padding: 1.5rem;
-  border: 1px solid var(--line);
-  background: var(--paper);
-  border-radius: 0.5rem;
-}
-.zone-pass h3 {
-  margin-top: 0;
-}
-.pass-price {
-  font-size: 2.5rem;
-  line-height: 1.3;
-  margin: 0.5rem 0;
-  color: var(--cocoa-deep);
-}
-.pass-price span {
-  font-size: 1rem;
-}
-.zone-pass ul,
-.activity-terms ul,
-.zone-grid ul {
+.activity-terms ul {
   padding-left: 1.3rem;
 }
-.zone-pass li,
-.activity-terms li,
-.zone-grid li {
+.activity-terms li {
   margin: 0.5rem 0;
 }
 .activity-terms {
@@ -66,6 +43,10 @@
 }
 .experience-list p {
   margin: 0.4rem 0 0;
+}
+.experience-inclusion {
+  font-size: 0.85rem;
+  color: var(--muted-text);
 }
 .experience-price {
   flex-shrink: 0;
@@ -103,11 +84,6 @@
   padding: 0.3rem 0;
 }
 @media (max-width: 700px) {
-  .pass-grid,
-  .zone-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
-  }
   .experience-list > li {
     display: block;
   }

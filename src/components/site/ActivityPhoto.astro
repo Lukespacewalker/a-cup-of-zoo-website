@@ -1,0 +1,101 @@
+---
+import type { ImageMetadata } from "astro";
+import { translator, type Locale } from "../../lib/i18n/locale";
+
+interface Props {
+  image: ImageMetadata;
+  title: string;
+  note?: string;
+  locale: Locale;
+  captioned?: boolean;
+}
+
+const { image, title, note, locale, captioned = true } = Astro.props;
+const t = translator(locale);
+---
+
+<a
+  class:list={["activity-photo", { "activity-photo--captioned": captioned }]}
+  href={image.src}
+  aria-label={t(`ขยายภาพ ${title}`, `Enlarge photo: ${title}`)}
+  data-activity-photo
+  data-caption={title}
+  data-note={note}
+>
+  <span class="activity-photo__frame">
+    <img
+      src={image.src}
+      width={image.width}
+      height={image.height}
+      loading="lazy"
+      decoding="async"
+      alt=""
+    />
+    <span class="activity-photo__zoom" aria-hidden="true">
+      +
+    </span>
+  </span>
+  {captioned && <span>{title}</span>}
+</a>
+
+<style>
+  .activity-photo {
+    display: block;
+    min-width: 0;
+    text-decoration: none;
+    cursor: zoom-in;
+  }
+
+  .activity-photo--captioned {
+    display: grid;
+    grid-template-columns: 3.75rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 3rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .activity-photo--captioned:hover {
+    background: var(--pass-tint);
+  }
+
+  .activity-photo__frame {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .activity-photo__frame img {
+    width: 100%;
+    height: auto;
+  }
+
+  .activity-photo--captioned img {
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+  }
+
+  .activity-photo__zoom {
+    position: absolute;
+    inset-inline-end: 0.25rem;
+    inset-block-end: 0.25rem;
+    display: grid;
+    place-items: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--cocoa-deep);
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+
+  .activity-photo:hover .activity-photo__zoom {
+    background: var(--button);
+    color: var(--on-button);
+  }
+</style>

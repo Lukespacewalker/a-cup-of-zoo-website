@@ -41,7 +41,7 @@ test("activities explain separate admission, benefits, children and all feeding 
   await expect(page.locator(".activity-terms")).toContainText("ต่ำกว่า 100 ซม.");
   await expect(page.locator(".activity-terms")).toContainText("49 บาท");
   await expect(page.locator(".activity-terms")).toContainText("18:00");
-  await expect(page.locator("#animal-zones li")).toHaveCount(6);
+  await expect(page.locator("#all-zone [data-activity-gallery] li")).toHaveCount(6);
   await expect(page.locator(".experience-list > li")).toHaveCount(5);
   await expect(page.locator("#basket")).toContainText("80 บาท");
   await expect(page.locator("#basket")).toContainText("โปรโมชัน");
@@ -49,6 +49,38 @@ test("activities explain separate admission, benefits, children and all feeding 
   await expect(page.locator(".garden-spots > li")).toHaveCount(16);
   await expect(page.locator(".garden-spots > li").last()).toHaveText("สวนทะเลทราย");
   await expect(page.locator('iframe, a[href*="heyzine"]')).toHaveCount(0);
+});
+
+test("package photos match their cards and open a local gallery", async ({ page, request }) => {
+  for (const path of ["/activities/", "/en/activities/"]) {
+    await page.goto(path + "#animal-zones");
+    await expect(page.locator("#animal-zones")).toHaveText("Indoor");
+    await expect(page.locator("#animal-zones")).toBeInViewport();
+    await expect(page.locator(".activity-pass h2")).toHaveText(["Free Zone", "Indoor", "Outdoor", "All Zone Pass"]);
+    for (const [id, count] of [["free-zone", 6], ["one-zone", 3], ["outdoor-pass", 3], ["all-zone", 6]] as const) {
+      await expect(page.locator(`#${id} [data-activity-photo] img`)).toHaveCount(count);
+    }
+    await expect(page.locator("#outdoor-pass")).toContainText("249");
+    const photos = page.locator("#one-zone [data-activity-photo]");
+    const first = photos.first();
+    const second = photos.nth(1);
+    const href = await first.getAttribute("href");
+    expect(href).toBeTruthy();
+    const response = await request.get(href!);
+    expect(response.ok()).toBe(true);
+    expect(response.headers()["content-type"]).toContain("image/webp");
+
+    await first.focus();
+    await page.keyboard.press("Enter");
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole("heading")).toHaveText((await first.getAttribute("data-caption"))!);
+    await page.keyboard.press("ArrowRight");
+    await expect(dialog.getByRole("heading")).toHaveText((await second.getAttribute("data-caption"))!);
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
+    await expect(first).toBeFocused();
+  }
 });
 
 test("menu and activities fit narrow phones and desktop with working category navigation", async ({ page }) => {
@@ -61,6 +93,6 @@ test("menu and activities fit narrow phones and desktop with working category na
     }
     await page.getByRole("navigation", { name: "หมวดกิจกรรม" }).getByRole("link", { name: "กิจกรรมและราคา" }).click();
     await expect(page).toHaveURL(/#experiences$/);
-    await expect(page.getByRole("heading", { name: "กิจกรรมที่ชวนทำด้วยกัน" })).toBeInViewport();
+    await expect(page.getByRole("heading", { name: "กิจกรรมซื้อเพิ่ม" })).toBeInViewport();
   }
 });
