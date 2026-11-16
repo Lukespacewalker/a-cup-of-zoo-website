@@ -73,6 +73,30 @@
   },
   {
     "partyId": "cat",
+    "id": "pha-raoh",
+    "nameTh": "ฟาโรห์",
+    "nameEn": "Pha-Raoh",
+    "source": "34.png",
+    "crop": {
+      "left": 351,
+      "top": 304,
+      "size": 780
+    }
+  },
+  {
+    "partyId": "cat",
+    "id": "batman",
+    "nameTh": "แบทแมน",
+    "nameEn": "Batman",
+    "source": "35.png",
+    "crop": {
+      "left": 622,
+      "top": 333,
+      "size": 758
+    }
+  },
+  {
+    "partyId": "cat",
     "id": "sua-phu-khao",
     "nameTh": "เสือภูเขา",
     "nameEn": "Sua Phu Khao",
@@ -81,6 +105,66 @@
       "left": 151,
       "top": 416,
       "size": 713
+    }
+  },
+  {
+    "partyId": "cat",
+    "id": "loma",
+    "nameTh": "โลมา",
+    "nameEn": "Loma",
+    "source": "38.png",
+    "crop": {
+      "left": 522,
+      "top": 416,
+      "size": 782
+    }
+  },
+  {
+    "partyId": "cat",
+    "id": "cemol",
+    "nameTh": "ซีมอลล์",
+    "nameEn": "Cemol",
+    "source": "41.png",
+    "crop": {
+      "left": 142,
+      "top": 633,
+      "size": 858
+    }
+  },
+  {
+    "partyId": "cat",
+    "id": "tiger",
+    "nameTh": "ไทเกอร์",
+    "nameEn": "Tiger",
+    "source": "51.png",
+    "crop": {
+      "left": 13,
+      "top": 684,
+      "size": 751
+    }
+  },
+  {
+    "partyId": "cat",
+    "id": "miso",
+    "nameTh": "มิโซะ",
+    "nameEn": "Miso",
+    "source": "A4 Pet Poster (14).png",
+    "crop": {
+      "left": 38,
+      "top": 716,
+      "size": 604
+    }
+  },
+  {
+    "partyId": "fox",
+    "id": "dango",
+    "nameTh": "ดังโงะ",
+    "nameEn": "Dango",
+    "source": "4.png",
+    "crop": {
+      "left": 333,
+      "top": 467,
+      "size": 813
     }
   },
   {
