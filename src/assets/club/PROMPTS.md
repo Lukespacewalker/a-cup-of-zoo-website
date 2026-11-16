@@ -2,13 +2,13 @@
 
 The current tier images come from the owner's [Membership folder](https://drive.google.com/drive/folders/1beo6R8-Pn0URSRFVv6BtPYeJW6dpPc0i). The 1080 × 1080 originals keep their full backgrounds. Astro serves responsive WebP versions, and tier names and benefits are rendered in HTML.
 
-| Tier | Drive original | Website source |
-| --- | --- | --- |
-| Friend | 2.png | `friend.png` |
-| Buddy | 3.png | `buddy.png` |
-| Besties | 4.png | `besties.png` |
-| Soulmate | 5.png | `soulmate.png` |
-| Family | 6.png | `family.png` |
+| Tier     | Drive original | Website source |
+| -------- | -------------- | -------------- |
+| Friend   | 2.png          | `friend.png`   |
+| Buddy    | 3.png          | `buddy.png`    |
+| Besties  | 4.png          | `besties.png`  |
+| Soulmate | 5.png          | `soulmate.png` |
+| Family   | 6.png          | `family.png`   |
 
 ## Previous illustrations
 
