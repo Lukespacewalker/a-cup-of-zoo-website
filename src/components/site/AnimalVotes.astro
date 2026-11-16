@@ -1,5 +1,6 @@
 ---
 import type { PublicVenueDto } from "@lukespace-cms/client";
+import AnimalOverview from "./AnimalOverview.astro";
 import AnimalPodium from "./AnimalPodium.astro";
 import ArrowIcon from "./ArrowIcon.astro";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
@@ -50,6 +51,7 @@ const format = (value: number) =>
       <strong>{ready ? format(votes.totals!.total) : "—"}</strong>
     </span>
   </div>
+  <AnimalOverview locale={locale} />
   {!ready && (
     <p class="votes-unavailable">
       {t(

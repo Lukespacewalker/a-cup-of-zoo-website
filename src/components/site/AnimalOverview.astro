@@ -1,0 +1,346 @@
+---
+import { Image } from "astro:assets";
+import garden from "../../assets/watercolor/animal-friends-garden.webp";
+import { translator, type Locale } from "../../lib/i18n/locale";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = translator(locale);
+
+// Pin positions are percentages of the uncropped illustration.
+const groups = [
+  {
+    id: "dog",
+    label: t("สุนัข", "Dogs"),
+    x: 12,
+    y: 23,
+    pictured: t("ในภาพคือเช็ตแลนด์ ชีพด็อก", "Pictured: a Shetland Sheepdog"),
+  },
+  {
+    id: "cat",
+    label: t("แมว / แมวป่า", "Cats / wildcats"),
+    x: 33,
+    y: 27,
+    pictured: t("ในภาพคือแมวแร็กดอลล์", "Pictured: a Ragdoll cat"),
+  },
+  {
+    id: "bird",
+    label: t("นก", "Birds"),
+    x: 53,
+    y: 23,
+    pictured: t("ในภาพคือนกกาลาห์ ค็อกคาทู", "Pictured: a Galah cockatoo"),
+  },
+  { id: "civet", label: t("อีเห็น", "Civets"), x: 85, y: 22 },
+  {
+    id: "fox",
+    label: t("จิ้งจอก", "Foxes"),
+    x: 9,
+    y: 50,
+    pictured: t("ในภาพคือจิ้งจอกแดง", "Pictured: a red fox"),
+  },
+  { id: "meerkat", label: t("เมียร์แคท", "Meerkats"), x: 30, y: 50 },
+  { id: "prairie-dog", label: t("แพรรีด็อก", "Prairie dogs"), x: 46, y: 53 },
+  { id: "rabbit", label: t("กระต่าย", "Rabbits"), x: 65, y: 52 },
+  { id: "goat", label: t("แพะแคระมินิปิ๊กมี่", "Pygmy goats"), x: 87, y: 48 },
+  {
+    id: "snake",
+    label: t("งู", "Snakes"),
+    x: 10,
+    y: 84,
+    pictured: t("ในภาพคืองูบอลไพธอน", "Pictured: a ball python"),
+  },
+  { id: "iguana", label: t("อีกัวน่า", "Iguanas"), x: 30, y: 84 },
+  {
+    id: "turtle",
+    label: t("เต่า", "Turtles"),
+    x: 48,
+    y: 75,
+    pictured: t("ในภาพคือเต่าบก", "Pictured: a tortoise"),
+  },
+  {
+    id: "fish",
+    label: t("ปลา", "Fish"),
+    x: 64,
+    y: 86,
+    pictured: t("ในภาพคือปลาคาร์ฟ", "Pictured: koi"),
+  },
+  {
+    id: "poultry",
+    label: t("ไก่ เป็ด และห่าน", "Chickens, ducks and geese"),
+    x: 85,
+    y: 77,
+  },
+];
+const chooseLabel = t("เลือกหมวดสัตว์", "Choose an animal group");
+---
+
+<figure class="animal-overview" data-animal-overview>
+  <div class="animal-overview__scene">
+    <Image
+      src={garden}
+      alt={t(
+        "ภาพการ์ตูนสีน้ำของเพื่อนสัตว์ในสวนญี่ปุ่นริมบ่อปลาคาร์ฟ",
+        "Watercolor illustration of the animal friends around a koi pond in a Japanese garden",
+      )}
+      widths={[320, 480, 768, 1152, 1536]}
+      sizes="(max-width: 800px) calc(100vw - 3rem), 768px"
+      quality={80}
+      loading="lazy"
+    />
+    <div data-overview-control hidden>
+      {groups.map(({ id, label, x, y }) => (
+        <button
+          type="button"
+          class="animal-overview__pin"
+          style={`--pin-x:${x}%;--pin-y:${y}%`}
+          data-animal-pin={id}
+          aria-label={label}
+          aria-haspopup="dialog"
+        >
+          <span aria-hidden="true">+</span>
+        </button>
+      ))}
+    </div>
+  </div>
+  <details>
+    <summary>{t("ดูรายชื่อทั้ง 14 หมวด", "See all 14 animal groups")}</summary>
+    <ul>
+      {groups.map(({ label }) => (
+        <li>{label}</li>
+      ))}
+    </ul>
+  </details>
+  <dialog aria-labelledby="animal-overview-title">
+    <div class="animal-overview__dialog-heading">
+      <h2 id="animal-overview-title"></h2>
+      <form method="dialog">
+        <button type="submit" aria-label={t("ปิด", "Close")} autofocus>
+          ×
+        </button>
+      </form>
+    </div>
+    <p data-pictured-note hidden></p>
+  </dialog>
+  <figcaption data-overview-control hidden>
+    <span>
+      {t(
+        "แตะ + บนภาพเพื่อรู้จักสัตว์",
+        "Tap + on the picture to meet the animals",
+      )}
+    </span>
+    <form class="animal-overview__picker">
+      <select aria-label={chooseLabel} required>
+        <option value="">{chooseLabel}</option>
+        {groups.map(({ id, label, pictured }) => (
+          <option value={id} data-pictured={pictured}>
+            {label}
+          </option>
+        ))}
+      </select>
+      <button type="submit" aria-haspopup="dialog">
+        {t("เปิด", "Show")}
+      </button>
+    </form>
+  </figcaption>
+</figure>
+
+<script>
+  for (const overview of document.querySelectorAll("[data-animal-overview]")) {
+    const dialog = overview.querySelector("dialog")!;
+    if (typeof dialog.showModal !== "function") continue;
+
+    const picker = overview.querySelector<HTMLFormElement>(
+      ".animal-overview__picker",
+    )!;
+    const select = picker.querySelector("select")!;
+    const title = dialog.querySelector("h2")!;
+    const note = dialog.querySelector<HTMLParagraphElement>(
+      "[data-pictured-note]",
+    )!;
+    function showAnimal(id: string, trigger: HTMLElement) {
+      const group = [...select.options].find((option) => option.value === id);
+      if (!group || !id) return;
+
+      title.textContent = group.label;
+      note.textContent = group.dataset.pictured ?? "";
+      note.hidden = !note.textContent;
+      trigger.focus({ preventScroll: true });
+      dialog.showModal();
+    }
+
+    for (const pin of overview.querySelectorAll<HTMLButtonElement>(
+      "[data-animal-pin]",
+    )) {
+      pin.addEventListener("click", () =>
+        showAnimal(pin.dataset.animalPin!, pin),
+      );
+    }
+    picker.addEventListener("submit", (event) => {
+      event.preventDefault();
+      showAnimal(select.value, event.submitter ?? select);
+    });
+    dialog.addEventListener("click", (event) => {
+      if (event.target !== dialog) return;
+      const { left, right, top, bottom } = dialog.getBoundingClientRect();
+      if (
+        event.clientX < left ||
+        event.clientX > right ||
+        event.clientY < top ||
+        event.clientY > bottom
+      ) {
+        dialog.close();
+      }
+    });
+
+    overview.querySelector("details")!.hidden = true;
+    for (const control of overview.querySelectorAll<HTMLElement>(
+      "[data-overview-control]",
+    )) {
+      control.hidden = false;
+    }
+  }
+</script>
+
+<style>
+  .animal-overview {
+    width: min(100%, 48rem);
+    margin: 1.25rem auto;
+    padding: clamp(0.25rem, 1vw, 0.5rem);
+    border: 1px solid var(--line);
+    background: var(--paper);
+    border-radius: 4px;
+  }
+
+  .animal-overview__scene {
+    position: relative;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .animal-overview__pin {
+    position: absolute;
+    top: var(--pin-y);
+    left: var(--pin-x);
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .animal-overview__pin span {
+    display: grid;
+    place-items: center;
+    width: clamp(1.125rem, 3vw, 1.5rem);
+    aspect-ratio: 1;
+    border: 1.5px solid #fffaf0;
+    border-radius: 50%;
+    background: #514633;
+    color: #fffaf0;
+    box-shadow: 0 1px 4px #2c211b70;
+    font: 500 0.9rem/1 var(--font);
+  }
+
+  .animal-overview__pin:is(:hover, :focus-visible) span {
+    background: #873d28;
+  }
+
+  .animal-overview__pin:focus-visible {
+    outline: 2px solid #fffaf0;
+    outline-offset: -3px;
+  }
+
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem 1rem;
+    padding: 0.4rem 0.35rem 0;
+    color: var(--muted-text);
+    font-size: 0.875rem;
+  }
+
+  [hidden] {
+    display: none;
+  }
+
+  .animal-overview__picker {
+    display: flex;
+    gap: 0.35rem;
+    max-width: 100%;
+  }
+
+  .animal-overview__picker :is(select, button) {
+    min-width: 0;
+    min-height: 44px;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--ink);
+    background: var(--paper);
+    font: inherit;
+  }
+
+  .animal-overview__picker button {
+    min-width: 44px;
+    background: var(--button);
+    color: var(--on-button);
+    cursor: pointer;
+  }
+
+  dialog {
+    width: min(23rem, calc(100% - 1.5rem));
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--ink);
+    background: var(--paper);
+    box-shadow: var(--shadow);
+  }
+
+  dialog::backdrop {
+    background: rgb(21 25 17 / 60%);
+  }
+
+  .animal-overview__dialog-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  dialog button {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--ink);
+    background: var(--milk);
+    font: 1.5rem/1 var(--font);
+    cursor: pointer;
+  }
+
+  dialog h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    line-height: 1.4;
+  }
+
+  dialog p {
+    margin: 0.25rem 0 0;
+    color: var(--muted-text);
+  }
+</style>

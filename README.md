@@ -16,6 +16,12 @@
 
 เว็บคาเฟ่ A Cup of Zoo ใช้ Astro และมีทางอ่านข้อมูลจาก CMS โปรไฟล์ `acupofzoo` เมื่อเปิดโหมด CMS
 
+## คู่มือใช้ CMS
+
+- [เปิด CMS Admin](https://acupofzoo-cms-admin.a-cup-of-zoo-website.workers.dev/th) ถ้าขึ้นหน้า **เข้าสู่ระบบ** ให้ใช้บัญชีจากผู้ดูแลระบบ ถ้าเป็น CMS รุ่นเดิมให้บันทึก Admin token ใน [ตั้งค่า](https://acupofzoo-cms-admin.a-cup-of-zoo-website.workers.dev/th/settings)
+- เปิดคู่มือ Astro ที่ `http://127.0.0.1:4321/cms-guide/` หลังรัน `bun run dev` หน้า `/cms-guide/` ใช้ได้เมื่อเผยแพร่เว็บจากโค้ดรุ่นนี้
+- [Agent Instructions สำหรับ CMS MCP](AGENTS.md) ใช้ไฟล์เดียวกับที่เปิดคัดลอกได้จากหน้าเว็บคู่มือ
+
 ## Cloudflare preview
 
 > Deploy รอบใหม่ — 27 ตุลาคม 2026: ใช้บัญชี Cloudflare `Nawaratthinsook@gmail.com` ยืนยันด้วย Wrangler แล้ว และกำหนด `account_id=033dbd2d33d8bb93fcc2930c22752d8a` ใน `wrangler.jsonc` สถานะนี้แทนที่เป้าหมายเตรียมงานก่อนหน้า

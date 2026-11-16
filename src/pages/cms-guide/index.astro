@@ -1,0 +1,531 @@
+---
+import "@fontsource/mali/500.css";
+import "@fontsource/noto-sans-thai-looped/400.css";
+import "@fontsource/noto-sans-thai-looped/700.css";
+import ArrowIcon from "../../components/site/ArrowIcon.astro";
+
+export const prerender = true;
+
+const admin = "https://acupofzoo-cms-admin.a-cup-of-zoo-website.workers.dev/th";
+const mcp = "https://acupofzoo-cms-api.a-cup-of-zoo-website.workers.dev/mcp";
+const publicSite = "https://acupofzoo.com";
+const sections = [
+  { id: "access", label: "เข้า CMS" },
+  { id: "edit", label: "แก้เนื้อหา" },
+  { id: "ai", label: "ใช้ AI ผ่าน MCP" },
+  { id: "help", label: "แก้ปัญหา" },
+];
+---
+
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="วิธีเข้า CMS ของ A Cup of Zoo แก้เนื้อหา และเชื่อม AI ผ่าน MCP"
+    />
+    <title>คู่มือ CMS | A Cup of Zoo</title>
+  </head>
+  <body>
+    <a class="skip" href="#guide">
+      ข้ามไปยังคู่มือ
+    </a>
+    <header class="cover">
+      <div class="wrap cover-inner">
+        <div>
+          <a class="wordmark" href="/" lang="en">
+            A Cup of Zoo
+          </a>
+          <h1>คู่มือ CMS</h1>
+          <p>
+            แก้เวลาเปิดร้าน อัปเดตรูปสัตว์ ลงข่าว และจัดการประกาศสัตว์หาบ้าน
+          </p>
+          <a class="button" href={admin}>
+            เปิด CMS Admin <ArrowIcon />
+          </a>
+        </div>
+        <img
+          src="/videos/hero-animal-poster.webp"
+          width="1920"
+          height="1080"
+          alt=""
+        />
+      </div>
+    </header>
+
+    <div class="wrap guide-layout">
+      <nav aria-label="สารบัญคู่มือ">
+        <ul>
+          {sections.map(({ id, label }) => (
+            <li>
+              <a href={`#${id}`}>{label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <main id="guide" tabindex="-1">
+        <section id="access">
+          <h2>เข้าสู่ระบบ CMS</h2>
+          <p>
+            ถ้า CMS ขึ้นหน้า <strong>เข้าสู่ระบบ</strong>{" "}
+            ให้ใช้ชื่อผู้ใช้และรหัสผ่านจากผู้ดูแลระบบ
+          </p>
+          <p>
+            เมื่อเข้าได้แล้ว ไปที่ <a href={`${admin}/settings`}>ตั้งค่า</a>{" "}
+            เพื่อเพิ่ม <strong>Passkey</strong> หรือเลือกธีม{" "}
+            <strong>สว่าง</strong> <strong>มืด</strong> หรือ{" "}
+            <strong>ตามอุปกรณ์</strong> ครั้งต่อไปกด{" "}
+            <strong>เข้าด้วย Passkey</strong> เพื่อยืนยันตัวตนบนเครื่องของคุณได้
+          </p>
+          <details>
+            <summary>ถ้ายังใช้ CMS รุ่นที่เข้าด้วย Admin token</summary>
+            <p>
+              ขอ Admin token จากผู้ดูแลระบบ เปิด{" "}
+              <a href={`${admin}/settings`}>ตั้งค่า</a> วางรหัสในช่อง{" "}
+              <strong>Bearer token</strong> แล้วกด{" "}
+              <strong>บันทึกในเครื่องนี้</strong>
+            </p>
+          </details>
+        </section>
+
+        <section id="edit">
+          <h2>แก้เนื้อหาและเผยแพร่</h2>
+          <p>
+            กด <strong>บันทึกฉบับร่าง</strong> เพื่อเก็บงานไว้ตรวจ
+            หน้าเว็บยังแสดงฉบับที่เผยแพร่ล่าสุด เมื่อพร้อม ให้กด{" "}
+            <strong>เผยแพร่</strong> แล้วเปิดหน้าจริงเพื่อตรวจผล
+          </p>
+
+          <div class="task">
+            <h3>
+              <a href={`${admin}/venue`}>
+                ข้อมูลร้าน <ArrowIcon />
+              </a>
+            </h3>
+            <p>
+              แก้เวลาเปิดรายวัน <strong>หมายเหตุวันหยุด</strong> เบอร์โทร
+              หรือลิงก์แผนที่ ก่อนกดเผยแพร่ ให้ตรวจร่างทั้งชุด
+              เพราะรายการสัตว์ที่ค้างในร่างจะถูกเผยแพร่พร้อมกัน
+            </p>
+            <a class="public-link" href={`${publicSite}/visit/`}>
+              ตรวจหน้าข้อมูลการเดินทาง <ArrowIcon />
+            </a>
+          </div>
+
+          <div class="task">
+            <h3>
+              <a href={`${admin}/animals`}>
+                สัตว์และรูปโปรไฟล์ <ArrowIcon />
+              </a>
+            </h3>
+            <p>
+              กด <strong>เพิ่มสัตว์</strong> หรือ <strong>แก้ไข</strong>{" "}
+              กรอกชื่อและคำบรรยายภาษาไทย แล้วเพิ่มภาษาอังกฤษได้
+              เลือกหรืออัปโหลดรูป ปรับจุดโฟกัสและซูมจากภาพตัวอย่าง
+            </p>
+            <p>
+              ถ้าต้องการซ่อนสัตว์ ให้เอาเครื่องหมายออกจาก{" "}
+              <strong>แสดงบนเว็บไซต์</strong> คะแนนเดิมจะยังเก็บอยู่ หลังบันทึก
+              ให้ตรวจร่างทั้งรายชื่อ แล้วกด <strong>เผยแพร่รายชื่อสัตว์</strong>{" "}
+              และ <strong>ยืนยันเผยแพร่</strong>
+            </p>
+            <a class="public-link" href={`${publicSite}/animals/`}>
+              ตรวจหน้าสัตว์และโหวต <ArrowIcon />
+            </a>
+          </div>
+
+          <div class="task">
+            <h3>
+              <a href={`${admin}/products`}>
+                ประกาศสัตว์หาบ้าน <ArrowIcon />
+              </a>
+            </h3>
+            <p>
+              กด <strong>สร้างประกาศใหม่</strong> ใส่ชื่อ Slug รายละเอียด และรูป
+              รูปแรกเป็นภาพปก กรอกราคาเป็นบาท หรือเว้นว่างให้แสดง “สอบถามราคา”
+              แล้วบันทึกและยืนยันเผยแพร่
+            </p>
+            <p>
+              เมื่อปิดประกาศ ให้กด <strong>เก็บเข้าคลัง</strong> แล้วกดยืนยัน
+              หน้าเว็บจะถอดประกาศออกและเก็บข้อมูลกับรูปไว้ใน CMS
+            </p>
+            <a class="public-link" href={`${publicSite}/farm/`}>
+              ตรวจหน้าประกาศ <ArrowIcon />
+            </a>
+          </div>
+
+          <div class="task">
+            <h3>
+              <a href={`${admin}/posts`}>
+                ข่าวและบทความ <ArrowIcon />
+              </a>
+            </h3>
+            <p>
+              กด <strong>สร้างข่าวใหม่</strong> ใส่ชื่อเรื่อง{" "}
+              <strong>Slug</strong> (ส่วนท้ายของ URL) คำโปรย และเนื้อหาภาษาไทย
+              แล้วกด <strong>ดูตัวอย่าง</strong> ก่อนบันทึกร่างและยืนยันเผยแพร่
+              หน้าข่าวของเว็บใช้ฉบับภาษาไทย
+            </p>
+            <a class="public-link" href={`${publicSite}/news/`}>
+              ตรวจหน้าข่าว <ArrowIcon />
+            </a>
+          </div>
+
+          <div class="task">
+            <h3>
+              <a href={`${admin}/media`}>
+                คลังรูปภาพ <ArrowIcon />
+              </a>
+            </h3>
+            <p>
+              อัปโหลด JPG, PNG หรือ WebP ขนาดไม่เกิน 5 MB
+              พร้อมคำอธิบายภาพภาษาไทยและอังกฤษ จากนั้นเลือกรูปในหน้าแก้สัตว์
+            </p>
+          </div>
+        </section>
+
+        <section id="ai">
+          <h2>ใช้ AI ผ่าน MCP</h2>
+          <p>
+            ใน CMS รุ่นที่มีหน้าเข้าสู่ระบบ เปิด{" "}
+            <a href={`${admin}/settings`}>ตั้งค่า</a> ไปที่{" "}
+            <strong>MCP token</strong> ตั้งชื่อคีย์ตามโปรแกรมหรือเครื่อง แล้วกด{" "}
+            <strong>สร้างคีย์</strong> คัดลอกเก็บทันที
+            เพราะระบบแสดงคีย์เพียงครั้งเดียว ถ้าเลิกใช้เครื่องนั้น ให้กด{" "}
+            <strong>เพิกถอน</strong> ที่คีย์ของเครื่อง
+          </p>
+          <p>
+            เพิ่มเซิร์ฟเวอร์ชื่อ <code>acupofzoo-cms</code> แบบ Streamable HTTP
+            ในโปรแกรม AI แล้วตั้งค่า <strong>MCP token</strong> ของร้านเป็น
+            Bearer token ในช่องเก็บความลับของโปรแกรม
+          </p>
+          <p class="endpoint">
+            <code>{mcp}</code>
+          </p>
+          <details>
+            <summary>คำสั่งสำหรับ Codex CLI</summary>
+            <p>
+              ตั้งค่า <code>ACUPOFZOO_MCP_TOKEN</code> จากที่เก็บความลับใน
+              Terminal ที่จะเปิด Codex แล้วรัน
+            </p>
+            <pre><code>{`codex mcp add acupofzoo-cms --url ${mcp} --bearer-token-env-var ACUPOFZOO_MCP_TOKEN
+codex mcp list`}</code></pre>
+          </details>
+          <p>
+            เปิด <strong>Agent Instructions</strong> แล้วส่งให้ AI ใช้กับงาน CMS
+            จากนั้นลองสั่งอ่านข้อมูลก่อนแก้ไข
+          </p>
+          <a class="button button-ink" href="/cms-guide/agent-instructions.txt">
+            เปิด Agent Instructions <ArrowIcon />
+          </a>
+          <blockquote>
+            “ใช้ acupofzoo-cms อ่านเวลาเปิดร้านที่เผยแพร่อยู่
+            โดยยังไม่แก้ข้อมูล”
+          </blockquote>
+          <p>
+            เวลาขอให้ AI แก้ข้อมูล ให้ระบุรายการและสิ่งที่ต้องเปลี่ยน
+            ขอให้บันทึกเป็นร่าง แล้วตรวจร่างก่อนอนุมัติให้เผยแพร่
+          </p>
+        </section>
+
+        <section id="help">
+          <h2>เมื่อใช้งานติดขัด</h2>
+          <details>
+            <summary>ขึ้น 401 หรือโหลดรายการไม่ได้</summary>
+            <p>
+              ใน CMS ให้ลองเข้าสู่ระบบใหม่ สำหรับโปรแกรม AI ให้ตรวจว่า URL
+              ลงท้าย <code>/mcp</code> และคีย์ MCP ยังใช้ได้
+            </p>
+          </details>
+          <details>
+            <summary>ขึ้น 409 หรือมีคนแก้ข้อมูลพร้อมกัน</summary>
+            <p>
+              เก็บข้อความที่ยังไม่ได้บันทึกไว้ แล้วโหลดฉบับล่าสุด
+              เปรียบเทียบกับที่เพิ่งแก้ก่อนบันทึกอีกครั้ง
+            </p>
+          </details>
+          <details>
+            <summary>บันทึกแล้วแต่หน้าเว็บยังแสดงข้อมูลเดิม</summary>
+            <p>
+              ตรวจว่ากดเผยแพร่และยืนยันในหน้าที่มีปุ่มยืนยันแล้ว
+              จากนั้นเปิดหน้าจริงและตรวจภาษาที่แก้ ข่าวบนเว็บใช้ภาษาไทย
+            </p>
+          </details>
+          <details>
+            <summary>จะแก้ราคาเมนูอาหารหรือหน้าตาเว็บที่ไหน</summary>
+            <p>
+              เมนูและราคาอาหารกับเครื่องดื่ม กิจกรรม Zoo Clubs
+              และหน้าตาเว็บอยู่ในซอร์สของเว็บไซต์
+            </p>
+          </details>
+        </section>
+      </main>
+    </div>
+
+    <footer class="wrap">
+      <a href="/">กลับเว็บไซต์ A Cup of Zoo</a>
+    </footer>
+  </body>
+</html>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+  :global(body) {
+    margin: 0;
+    color: #352b21;
+    background: #fcf8ee;
+    font:
+      1rem/1.75 "Noto Sans Thai Looped",
+      sans-serif;
+  }
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    line-height: 1.35;
+  }
+  p {
+    margin: 0.65rem 0 0;
+  }
+  a {
+    color: inherit;
+    text-underline-offset: 0.2em;
+  }
+  a:hover {
+    text-decoration-thickness: 2px;
+  }
+  a:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+  code {
+    font-size: 0.9em;
+    overflow-wrap: anywhere;
+  }
+  .skip {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    transform: translateY(-180%);
+    background: #fcf8ee;
+  }
+  .skip:focus {
+    transform: none;
+  }
+  .wrap {
+    width: min(68rem, calc(100% - 3rem));
+    margin-inline: auto;
+  }
+  .cover {
+    background: #374334;
+    color: #fff9e9;
+    border-bottom: 4px solid #c9a876;
+  }
+  .cover-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.72fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    padding-block: clamp(2rem, 5vw, 4.5rem);
+  }
+  .cover img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 12 / 5;
+    object-fit: cover;
+    border: 5px solid #eee2c8;
+  }
+  .wordmark {
+    font:
+      500 1.2rem "Mali",
+      cursive;
+    text-decoration: none;
+  }
+  .wordmark:hover {
+    text-decoration: underline;
+  }
+  h1 {
+    font:
+      500 clamp(2.6rem, 5.5vw, 4.6rem)/1.22 "Mali",
+      cursive;
+    margin-top: 0.75rem;
+  }
+  .cover p {
+    max-width: 30rem;
+    color: #f3e8d2;
+  }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.875rem;
+    margin-top: 1.1rem;
+    padding: 0.5rem 1rem;
+    background: #f2e1bd;
+    color: #30261a;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .button:hover {
+    background: #fff6e2;
+  }
+  .button:focus-visible {
+    outline-color: #fff9e9;
+  }
+  .button-ink {
+    background: #374334;
+    color: #fff9e9;
+  }
+  .button-ink:hover {
+    background: #273224;
+  }
+  .button-ink:focus-visible {
+    outline-color: #374334;
+  }
+  .guide-layout {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 1fr);
+    gap: clamp(1.75rem, 5vw, 5rem);
+    padding-block: clamp(1.5rem, 5vw, 3.5rem);
+  }
+  nav {
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #d2c4ae;
+  }
+  nav a {
+    display: block;
+    padding: 0.5rem 0.85rem;
+    color: #43523c;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  nav a:hover {
+    background: #eae8d8;
+  }
+  nav a:focus-visible {
+    outline-offset: -3px;
+  }
+  main {
+    max-width: 47rem;
+  }
+  section {
+    scroll-margin-top: 1rem;
+  }
+  section + section {
+    border-top: 1px solid #d2c4ae;
+    margin-top: 2rem;
+    padding-top: 2rem;
+  }
+  h2 {
+    color: #374334;
+    font:
+      500 clamp(1.65rem, 3vw, 2.2rem)/1.35 "Mali",
+      cursive;
+  }
+  h3 {
+    font-size: 1.12rem;
+  }
+  h3 a {
+    display: inline-block;
+    padding-block: 0.3rem;
+  }
+  ol {
+    padding-inline-start: 1.5rem;
+  }
+  li + li {
+    margin-top: 0.35rem;
+  }
+  .task {
+    border-left: 2px solid #d2c4ae;
+    padding-left: 1rem;
+    margin-top: 1.35rem;
+  }
+  .task p {
+    margin-top: 0.35rem;
+  }
+  .public-link {
+    display: inline-block;
+    margin-top: 0.45rem;
+    padding-block: 0.3rem;
+    color: #4b5740;
+  }
+  .endpoint,
+  pre,
+  blockquote {
+    padding: 0.8rem 1rem;
+    background: #eee8d9;
+  }
+  .endpoint {
+    border: 1px solid #d2c4ae;
+  }
+  pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  blockquote {
+    margin: 1rem 0 0;
+    border-left: 3px solid #9d7947;
+  }
+  details {
+    border-bottom: 1px solid #d2c4ae;
+  }
+  details:first-of-type {
+    margin-top: 0.6rem;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.65rem 0;
+  }
+  details p {
+    margin: 0 0 0.75rem;
+  }
+  footer {
+    border-top: 1px solid #d2c4ae;
+    padding-block: 1.5rem 2rem;
+  }
+  @media (max-width: 46rem) {
+    .wrap {
+      width: calc(100% - 2rem);
+    }
+    .cover-inner,
+    .guide-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .cover img {
+      display: none;
+    }
+    nav {
+      position: static;
+    }
+    nav ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.25rem 0.5rem;
+      border-left: 0;
+      border-bottom: 1px solid #d2c4ae;
+    }
+    nav li + li {
+      margin-top: 0;
+    }
+    nav a {
+      padding-inline: 0.5rem;
+    }
+  }
+</style>
