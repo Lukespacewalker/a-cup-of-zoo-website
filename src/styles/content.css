@@ -109,6 +109,17 @@
   padding-left: 0.8rem;
 }
 
+.animal-visit-intro {
+  margin: 3rem 0 1rem;
+  padding: 1.5rem;
+  border-radius: 2px;
+  background: var(--garden-field);
+  line-height: 1.8;
+}
+.animal-visit-intro h2 {
+  margin-top: 0;
+  font-weight: 500;
+}
 .animal-zone-heading {
   display: flex;
   justify-content: space-between;

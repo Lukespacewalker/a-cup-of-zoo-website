@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "a-cup-of-zoo-preview",
+  "main": "./src/worker.ts",
   "account_id": "033dbd2d33d8bb93fcc2930c22752d8a",
   "compatibility_date": "2026-09-25",
   "compatibility_flags": ["nodejs_compat"],
@@ -21,6 +22,14 @@
     "binding": "ASSETS",
     "directory": "./dist"
   },
+  "durable_objects": {
+    "bindings": [
+      { "name": "PARTY_VOTES", "class_name": "PartyVoteCounter" }
+    ]
+  },
+  "migrations": [
+    { "tag": "party-vote-counter-v1", "new_sqlite_classes": ["PartyVoteCounter"] }
+  ],
   "vars": {
     "SITE_ENV": "production",
     "CONTENT_MODE": "cms",

@@ -1,6 +1,5 @@
 ---
-import AnimalDirectory from "../site/AnimalDirectory.astro";
-import AnimalOverview from "../site/AnimalOverview.astro";
+import AnimalPartyMap from "../site/AnimalPartyMap.astro";
 import ArrowIcon from "../site/ArrowIcon.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { Image } from "astro:assets";
@@ -40,29 +39,7 @@ const page = await loadPage();
   )}
   page={page}
 >
-  <div class="animal-page-overview">
-    <header class="animals-intro">
-      <p class="chapter-label">A CUP OF ZOO · ANIMAL FRIENDS</p>
-      <h1>
-        {t(
-          "รู้จักกัน แล้วหยอดใจให้ตัวโปรด",
-          "Meet a friend. Send a little love.",
-        )}
-      </h1>
-      <p>
-        {t(
-          "เพื่อนสัตว์ของเรา แต่ละตัวมีเรื่องน่ารักให้รู้จัก",
-          "Every animal has a little something to love.",
-        )}
-      </p>
-      <a class="cafe-link" href="#animal-family">
-        {t("ไปโหวตให้ตัวโปรด", "Vote for a favorite")}
-        <ArrowIcon direction="down" />
-      </a>
-    </header>
-    <AnimalOverview locale={locale} />
-  </div>
-  <AnimalDirectory locale={locale} venue={page.venue} />
+  <AnimalPartyMap locale={locale} venue={page.venue} />
   <section id="cat-room" class="animal-visit-intro">
     <h2>
       {t(
@@ -185,19 +162,3 @@ const page = await loadPage();
     </figure>
   </div>
 </SiteLayout>
-
-<style>
-  @media (min-width: 1000px) {
-    .animal-page-overview {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
-      align-items: center;
-      gap: clamp(2rem, 4vw, 4rem);
-    }
-
-    .animals-intro {
-      margin-inline: 0;
-      text-align: start;
-    }
-  }
-</style>

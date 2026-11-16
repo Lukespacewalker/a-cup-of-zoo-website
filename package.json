@@ -5,7 +5,7 @@
   "scripts": {
     "prepare:assets": "bun run scripts/prepare-assets.ts",
     "dev": "bun run prepare:assets && astro dev --host 127.0.0.1 --port 4321",
-    "check": "astro check",
+    "check": "wrangler types --include-runtime=false && astro check",
     "format": "prettier --write src tests/unit",
     "format:check": "prettier --check src tests/unit",
     "test:unit": "bun test tests/unit",
@@ -21,13 +21,12 @@
     "@fontsource/mali": "^5.3.0",
     "@fontsource/noto-sans-thai-looped": "^5.3.0",
     "@lukespace-cms/client": "file:./vendor/cms-client",
-    "astro": "7.3.4",
-    "three": "0.186.1"
+    "astro": "7.3.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@cloudflare/workers-types": "5.20260923.1",
     "@playwright/test": "^1.56.1",
-    "@types/three": "0.186.0",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.2",
     "typescript": "^5.9.3",

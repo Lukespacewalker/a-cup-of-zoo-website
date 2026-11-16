@@ -1,0 +1,31 @@
+---
+import type { PublicVenueMedia } from "@lukespace-cms/client";
+import type { NamedAnimal } from "../../lib/content/animal-parties";
+import AnimalPortrait from "../content/AnimalPortrait.astro";
+
+interface Props {
+  animal: NamedAnimal;
+  media: PublicVenueMedia[];
+}
+
+const {
+  animal: { id, name, note, mediaAssetId, imageFocus },
+  media,
+} = Astro.props;
+---
+
+<li id={`animal-${id}`} data-resident={id}>
+  {mediaAssetId && (
+    <span class="party-member-portrait">
+      <AnimalPortrait
+        mediaId={mediaAssetId}
+        media={media}
+        alt=""
+        focus={imageFocus}
+        compact
+      />
+    </span>
+  )}
+  <strong>{name}</strong>
+  {note && <small>{note}</small>}
+</li>

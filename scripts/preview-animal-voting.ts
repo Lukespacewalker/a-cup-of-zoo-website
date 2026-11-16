@@ -28,7 +28,8 @@ if (!(await admin("/api/venue", "POST", { content })).ok) throw new Error("Test 
 if (!(await admin("/api/venue/publish", "POST", { expectedVersion: 1 })).ok) throw new Error("Test publication failed");
 for (const [index, animal] of content.animals.entries()) for (let n = 0; n < [18,12,9,4,2,6][index]; n++) await fetch(cmsOrigin + "/api/public/animal-votes/" + animal.id, { method: "POST" });
 await mkdir("tmp/animal-voting", { recursive: true });
-await writeFile("tmp/animal-voting/wrangler.json", JSON.stringify({ name: "acupofzoo-local-voting-review", compatibility_date: "2026-09-25", compatibility_flags: ["nodejs_compat"], workers_dev: false, vars: { SITE_ENV: "local", CONTENT_MODE: "cms", CMS_BASE_URL: cmsOrigin, SEARCH_INDEXING: "disabled" } }));
+const { compatibility_date, compatibility_flags, durable_objects, migrations } = Bun.JSONC.parse(await Bun.file("wrangler.jsonc").text()) as Record<string, unknown>;
+await writeFile("tmp/animal-voting/wrangler.json", JSON.stringify({ name: "acupofzoo-local-voting-review", main: "../../src/worker.ts", compatibility_date, compatibility_flags, durable_objects, migrations, workers_dev: false, vars: { SITE_ENV: "local", CONTENT_MODE: "cms", CMS_BASE_URL: cmsOrigin, SEARCH_INDEXING: "disabled" } }));
 await writeFile("tmp/animal-voting/astro.config.mjs", `import base from '../../astro.config.mjs';\nimport cloudflare from '@astrojs/cloudflare';\nexport default {...base,root:process.cwd(),cacheDir:${JSON.stringify(join(root, "astro-cache"))},vite:{cacheDir:${JSON.stringify(join(root, "site-vite-cache"))}},adapter:cloudflare({configPath:'./tmp/animal-voting/wrangler.json',persistState:false,remoteBindings:false})};\n`);
 const cmsRoot = resolve("../CMS-Platform-acupofzoo");
 const adminConfig = resolve("tmp/animal-voting/admin.config.ts");

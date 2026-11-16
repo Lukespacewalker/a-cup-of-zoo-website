@@ -55,7 +55,7 @@ const optimized =
     : undefined;
 const useVariants = optimized && optimized.src !== remote?.url;
 const label =
-  alt ||
+  alt ??
   (localeFromPath(Astro.url.pathname) === "en"
     ? englishMediaAlt[mediaId ?? ""] || "Image from A Cup of Zoo"
     : remote?.altTh || "ภาพจากร้าน A Cup of Zoo");

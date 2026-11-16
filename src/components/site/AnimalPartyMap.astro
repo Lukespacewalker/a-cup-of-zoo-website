@@ -1,0 +1,339 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { PublicVenueDto } from "@lukespace-cms/client";
+import garden from "../../assets/watercolor/animal-friends-garden.webp";
+import AnimalPartyMember from "./AnimalPartyMember.astro";
+import ArrowIcon from "./ArrowIcon.astro";
+import { animalPartyCatalog } from "../../lib/content/animal-parties";
+import { localePath, translator, type Locale } from "../../lib/i18n/locale";
+import { loadPartyVoteTotals } from "../../lib/voting/party-gateway";
+import { rankByVotes, voteUnit } from "../../lib/voting/model";
+import "../../styles/animal-parties.css";
+
+interface Props {
+  locale: Locale;
+  venue: PublicVenueDto | null;
+  home?: boolean;
+}
+
+const { locale, venue, home = false } = Astro.props;
+const t = translator(locale);
+const Heading = home ? "h2" : "h1";
+const RankHeading = home ? "h3" : "h2";
+const { parties, otherResidents } = animalPartyCatalog(locale, venue);
+const media = venue?.media ?? [];
+const portraits = import.meta.glob<ImageMetadata>(
+  "../../assets/party-members/*.webp",
+  { eager: true, import: "default" },
+);
+const totals = await loadPartyVoteTotals();
+const counts = new Map(
+  totals?.items.map(({ partyId, count }) => [partyId, count]),
+);
+const leaders = rankByVotes(
+  parties.map((party) => ({ ...party, count: counts.get(party.id) ?? 0 })),
+)
+  .filter(({ rank }) => rank !== null)
+  .slice(0, 3);
+const format = new Intl.NumberFormat(locale === "th" ? "th-TH" : "en-GB");
+const detailHref = (id: string) => `#party-${id}`;
+---
+
+<section
+  id="animal-family"
+  class:list={["animal-parties", { "animal-parties--home": home }]}
+  aria-labelledby="animal-parties-title"
+  data-party-board
+  data-locale={locale}
+  data-ready={String(totals !== null)}
+  data-success={t("นับคะแนนให้ {party} แล้ว", "Vote counted for {party}.")}
+  data-failure={t(
+    "ยืนยันคะแนนไม่ได้ ลองโหลดคะแนนล่าสุดก่อนโหวตอีกครั้ง",
+    "We couldn't confirm your vote. Refresh the scores before voting again.",
+  )}
+  data-pending={t("กำลังนับคะแนน…", "Counting your vote…")}
+>
+  <header class="party-intro">
+    <Heading id="animal-parties-title">
+      {t("คุณอยู่พรรคไหน?", "Which party gets your vote?")}
+    </Heading>
+    <p>
+      {t(
+        "เลือกจากแผนที่ ทำความรู้จักสมาชิก แล้วโหวตให้พรรคโปรด",
+        "Pick a party on the map, meet its members, and cast your vote.",
+      )}
+    </p>
+  </header>
+
+  <section class="party-leaderboard" aria-labelledby="party-leaders-title">
+    <div class="party-leader-heading">
+      <RankHeading id="party-leaders-title">
+        {t("3 พรรคคะแนนนำ", "Top 3 parties")}
+      </RankHeading>
+      <div class="party-leader-actions">
+        <span class="party-total" hidden={!totals}>
+          <span aria-hidden="true">♡</span>
+          {t("รวม", "Total")}{" "}
+          <strong data-party-total>
+            {totals ? format.format(totals.total) : "—"}
+          </strong>{" "}
+          <span data-party-total-unit>{voteUnit(locale, totals?.total)}</span>
+        </span>
+        <a
+          class="party-refresh"
+          href={localePath(home ? "/" : "/animals/#animal-family", locale)}
+          data-party-refresh
+        >
+          {t("โหลดคะแนนใหม่", "Refresh scores")}
+        </a>
+      </div>
+    </div>
+    <ol class="party-leaders" data-party-leaders hidden={leaders.length === 0}>
+      {Array.from({ length: 3 }, (_, index) => {
+        const leader = leaders[index];
+        return (
+          <li data-party-leader hidden={!leader}>
+            <a
+              href={leader ? detailHref(leader.id) : undefined}
+              data-party-link={leader?.id}
+            >
+              <span class="party-place" data-place>
+                {leader?.rank}
+              </span>
+              <span class="party-leader-name" data-leader-name>
+                {leader?.name}
+              </span>
+              <span class="party-leader-score">
+                <strong data-leader-count>
+                  {leader && format.format(leader.count)}
+                </strong>{" "}
+                <span data-leader-unit>{voteUnit(locale, leader?.count)}</span>
+              </span>
+            </a>
+          </li>
+        );
+      })}
+    </ol>
+    <p
+      class="party-score-note"
+      data-party-zero
+      hidden={!totals || leaders.length > 0}
+    >
+      {t(
+        "ทุกพรรคเริ่มที่ 0 คะแนน โหวตแรกของคุณจะเปิดอันดับ",
+        "Every party starts at zero. Cast the first vote to open the leaderboard.",
+      )}
+    </p>
+    <p
+      class="party-score-note"
+      data-party-unavailable
+      hidden={!!totals}
+      role="status"
+    >
+      {t("โหลดคะแนนไม่ได้ในตอนนี้", "Scores are temporarily unavailable.")}
+    </p>
+  </section>
+
+  <div class="party-map-layout">
+    <figure class="party-map" id="animal-party-map">
+      <div class="party-map-art">
+        <Image
+          src={garden}
+          alt={t(
+            "ภาพสีน้ำของเพื่อนสัตว์ทั้ง 14 กลุ่มในสวนญี่ปุ่นริมบ่อปลาคาร์ฟ",
+            "Watercolor map of 14 animal groups in a Japanese garden by a koi pond",
+          )}
+          widths={[384, 576, 768, 1152, 1536]}
+          sizes="(max-width: 860px) calc(100vw - 2.5rem), 740px"
+          format="webp"
+          quality={80}
+          loading={home ? "lazy" : "eager"}
+        />
+        {parties.map(({ id, name, group, pin: [x, y] }) => (
+          <a
+            class="party-map-pin"
+            href={detailHref(id)}
+            style={`--pin-x:${x}%;--pin-y:${y}%`}
+            data-party-pin={id}
+            data-party-link={id}
+            aria-label={`${group} · ${name}`}
+          >
+            <span aria-hidden="true"></span>
+          </a>
+        ))}
+      </div>
+      <figcaption>
+        <span>
+          {t("แตะหมุดบนภาพเพื่อดูพรรค", "Tap a pin to meet its party")}
+        </span>
+        <form class="party-picker" data-party-picker hidden>
+          <label>
+            <span class="party-sr-only">
+              {t("เลือกพรรคสัตว์", "Choose an animal party")}
+            </span>
+            <select required>
+              <option value="">
+                {t("เลือกจากรายชื่อ 14 พรรค", "Choose from all 14 parties")}
+              </option>
+              {parties.map(({ id, group }) => (
+                <option value={id}>{group}</option>
+              ))}
+            </select>
+          </label>
+          <button type="submit">{t("ดูพรรค", "View party")}</button>
+        </form>
+      </figcaption>
+    </figure>
+
+    <div class="party-sheets">
+      <div class="party-sheet party-sheet--empty" data-party-empty hidden>
+        <span class="party-empty-pin" aria-hidden="true">
+          +
+        </span>
+        <h3>{t("ป้ายประจำพรรค", "Party details")}</h3>
+        <p>
+          {t(
+            "เลือกหมุดหรือชื่อกลุ่มเพื่อเปิดป้าย",
+            "Choose a pin or a group to open its details.",
+          )}
+        </p>
+      </div>
+      {parties.map(
+        ({ id, sortOrder, group, name, slogan, residents, memberImages }) => {
+          const count = counts.get(id);
+          const illustratedRoster =
+            residents.length === 0 &&
+            memberImages.every(({ kind }) => kind === "illustration");
+          return (
+            <article
+              class="party-sheet"
+              id={`party-${id}`}
+              data-party-sheet={id}
+              data-party-name={name}
+              data-party-order={sortOrder}
+              aria-labelledby={`party-title-${id}`}
+            >
+              <header class="party-sheet-header">
+                <div>
+                  <p class="party-group">{group}</p>
+                  <h3 id={`party-title-${id}`} tabindex="-1" data-party-heading>
+                    {name}
+                  </h3>
+                </div>
+                <div class="party-score">
+                  <strong data-party-score>
+                    {count === undefined ? "—" : format.format(count)}
+                  </strong>
+                  <span data-party-score-unit>{voteUnit(locale, count)}</span>
+                </div>
+              </header>
+              <p class="party-slogan">“{slogan}”</p>
+              <div class="party-ballot">
+                <button
+                  type="button"
+                  class="button party-vote"
+                  data-party-vote={id}
+                  disabled
+                  aria-describedby={`party-title-${id}`}
+                >
+                  <span aria-hidden="true">♡</span>{" "}
+                  {t("โหวตให้พรรคนี้", "Vote for this party")}
+                </button>
+                <p class="party-feedback" data-party-feedback role="status"></p>
+              </div>
+              <h4>{t("สมาชิกพรรค", "Party members")}</h4>
+              {residents.length + memberImages.length > 0 ? (
+                <ul
+                  class:list={[
+                    "party-members",
+                    { "party-members--illustrations": illustratedRoster },
+                  ]}
+                >
+                  {residents.map((animal) => (
+                    <AnimalPartyMember animal={animal} media={media} />
+                  ))}
+                  {memberImages.map(
+                    ({ id: imageId, name: animalName, kind, note }) => {
+                      const source =
+                        portraits[`../../assets/party-members/${imageId}.webp`];
+                      return (
+                        <li data-party-member={imageId} data-member-kind={kind}>
+                          <Image
+                            class:list={[
+                              "party-member-portrait",
+                              { "party-member-portrait--reference": !!kind },
+                            ]}
+                            src={source}
+                            alt=""
+                            widths={[128, Math.min(256, source.width)]}
+                            sizes="auto, 128px"
+                            loading="lazy"
+                          />
+                          <strong>{animalName}</strong>
+                          {note && <small>{note}</small>}
+                        </li>
+                      );
+                    },
+                  )}
+                </ul>
+              ) : (
+                <p class="party-member-note">
+                  {t(
+                    "ยังไม่มีรายชื่อสมาชิกให้ดู",
+                    "Member profiles aren't available yet.",
+                  )}
+                </p>
+              )}
+              {memberImages.some(({ kind }) => kind === "illustration") && (
+                <p class="party-member-note">
+                  {t(
+                    "ภาพประกอบและชื่อชนิดสัตว์จาก Canva",
+                    "Species illustrations and labels from Canva",
+                  )}
+                </p>
+              )}
+              <a class="party-back" href="#animal-party-map">
+                {t("กลับไปที่แผนที่", "Back to map")}{" "}
+                <ArrowIcon direction="up" />
+              </a>
+            </article>
+          );
+        },
+      )}
+    </div>
+  </div>
+  <noscript>
+    <p>
+      {t(
+        "เปิด JavaScript เพื่อโหวตให้พรรค",
+        "Enable JavaScript to cast a vote.",
+      )}
+    </p>
+  </noscript>
+  {!home && otherResidents.length > 0 && (
+    <section class="party-other" aria-labelledby="party-other-title">
+      <h2 id="party-other-title">
+        {t("เพื่อนสัตว์เพิ่มเติม", "More animal friends")}
+      </h2>
+      <ul class="party-members">
+        {otherResidents.map((animal) => (
+          <AnimalPartyMember animal={animal} media={media} />
+        ))}
+      </ul>
+    </section>
+  )}
+  {home && (
+    <a
+      class="cafe-link party-more"
+      href={localePath("/animals/#animal-family", locale)}
+    >
+      {t("ไปที่หน้าเพื่อนสัตว์", "Explore the animals page")} <ArrowIcon />
+    </a>
+  )}
+</section>
+
+<script>
+  import { initAnimalPartyMaps } from "../../lib/voting/party-map";
+  initAnimalPartyMaps();
+</script>

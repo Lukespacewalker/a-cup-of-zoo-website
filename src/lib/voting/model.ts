@@ -1,24 +1,20 @@
-export const JAR_CAPACITY = 50;
-const BALL_COLORS = ["#ddbd68", "#a8b9c3", "#d39479", "#a8b383"];
+import type { Locale } from "../i18n/locale";
 
-// Use the absolute, one-based vote number so colors survive jar changes and reloads.
-export function voteBallColor(voteNumber: number) {
-  return BALL_COLORS[(voteNumber - 1) % BALL_COLORS.length];
+export function voteUnit(locale: Locale, count?: number) {
+  if (locale === "th") return "คะแนน";
+  return count === 1 ? "vote" : "votes";
 }
 
-export function ballCount(count: number) {
-  return count % JAR_CAPACITY;
-}
-export function rankAnimals<T extends { count: number; sortOrder: number }>(
-  animals: T[],
+export function rankByVotes<T extends { count: number; sortOrder: number }>(
+  entries: T[],
 ): Array<T & { rank: number | null }> {
-  const sorted = [...animals].sort(
+  const sorted = [...entries].sort(
     (a, b) => b.count - a.count || a.sortOrder - b.sortOrder,
   );
   let rank = 0;
-  return sorted.map((animal, index) => {
-    if (index === 0 || animal.count !== sorted[index - 1].count)
+  return sorted.map((entry, index) => {
+    if (index === 0 || entry.count !== sorted[index - 1].count)
       rank = index + 1;
-    return { ...animal, rank: animal.count > 0 ? rank : null };
+    return { ...entry, rank: entry.count > 0 ? rank : null };
   });
 }

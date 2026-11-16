@@ -1,0 +1,176 @@
+{
+  "sources": {
+    "canva-21": {
+      "url": "https://www.canva.com/design/DAHYz2902Do/uNqLI2aFUF5ZNF389Mwscg/view#21",
+      "filename": "zoo-canva-sl21-animal-map.png",
+      "width": 1600,
+      "height": 900,
+      "sha256": "6ff2a96ccf8209646aa51d1506b17e1a1d88b5926976a37b165a77629eab7f90"
+    },
+    "rabbit-poster": {
+      "url": "https://drive.google.com/drive/folders/1u1XxQcNn1h3zVwTLp_3bxyIiMAEpGdeC",
+      "filename": "A4 Pet Poster (2).png",
+      "width": 1414,
+      "height": 2000,
+      "sha256": "988331b7e399be092c5079fde2d9468ca7f370c48542558a72c6a4c528b0592d"
+    }
+  },
+  "members": [
+    {
+      "id": "koi",
+      "partyId": "fish",
+      "nameTh": "ปลาคาร์ฟ",
+      "nameEn": "Koi",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 145,
+        "top": 741,
+        "width": 111,
+        "height": 78
+      }
+    },
+    {
+      "id": "snakehead",
+      "partyId": "fish",
+      "nameTh": "ปลาช่อนสวยงาม",
+      "nameEn": "Snakehead fish",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 268,
+        "top": 780,
+        "width": 153,
+        "height": 69
+      }
+    },
+    {
+      "id": "alligator-gar",
+      "partyId": "fish",
+      "nameTh": "ปลาอัลลิเกเตอร์",
+      "nameEn": "Alligator gar",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 655,
+        "top": 758,
+        "width": 206,
+        "height": 78
+      }
+    },
+    {
+      "id": "redtail-catfish",
+      "partyId": "fish",
+      "nameTh": "ปลาเรดเทลแคทฟิช",
+      "nameEn": "Redtail catfish",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 935,
+        "top": 791,
+        "width": 136,
+        "height": 99
+      }
+    },
+    {
+      "id": "sulcata-tortoise",
+      "partyId": "turtle",
+      "nameTh": "เต่าซูลคาต้า",
+      "nameEn": "African spurred tortoise",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 880,
+        "top": 634,
+        "width": 133,
+        "height": 75
+      }
+    },
+    {
+      "id": "red-eared-slider",
+      "partyId": "turtle",
+      "nameTh": "เต่าญี่ปุ่น",
+      "nameEn": "Red-eared slider",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 1023,
+        "top": 665,
+        "width": 126,
+        "height": 82
+      }
+    },
+    {
+      "id": "call-duck",
+      "partyId": "poultry",
+      "nameTh": "เป็ดคอลดั๊ก",
+      "nameEn": "Call duck",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 1200,
+        "top": 644,
+        "width": 94,
+        "height": 75
+      }
+    },
+    {
+      "id": "local-duck",
+      "partyId": "poultry",
+      "nameTh": "เป็ดพื้นบ้าน",
+      "nameEn": "Local duck",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 1292,
+        "top": 643,
+        "width": 63,
+        "height": 77
+      }
+    },
+    {
+      "id": "geese",
+      "partyId": "poultry",
+      "nameTh": "ห่าน",
+      "nameEn": "Geese",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 1459,
+        "top": 617,
+        "width": 138,
+        "height": 133
+      }
+    },
+    {
+      "id": "chickens",
+      "partyId": "poultry",
+      "nameTh": "ไก่หลายสายพันธุ์",
+      "nameEn": "Chicken breeds",
+      "kind": "illustration",
+      "source": "canva-21",
+      "crop": {
+        "left": 1295,
+        "top": 746,
+        "width": 223,
+        "height": 93
+      }
+    },
+    {
+      "id": "rabbit-family",
+      "partyId": "rabbit",
+      "nameTh": "ภาพหมู่กระต่าย",
+      "nameEn": "Rabbit family",
+      "kind": "group",
+      "noteTh": "โปสเตอร์ยังระบุชื่อข้าวสาลีและข้าวฟ่าง",
+      "noteEn": "The poster also lists Kao-Sa-Lee and Kao-Fang.",
+      "source": "rabbit-poster",
+      "crop": {
+        "left": 50,
+        "top": 706,
+        "width": 1320,
+        "height": 857
+      }
+    }
+  ]
+}
