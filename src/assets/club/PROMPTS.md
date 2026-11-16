@@ -1,6 +1,6 @@
 # Zoo Clubs tier artwork
 
-The current tier images come from the owner's [Membership folder](https://drive.google.com/drive/folders/1beo6R8-Pn0URSRFVv6BtPYeJW6dpPc0i). The 1080 × 1080 originals keep their full backgrounds. Astro serves responsive WebP versions, and tier names and benefits are rendered in HTML.
+The current tier images come from the owner's [Membership folder](https://drive.google.com/drive/folders/1beo6R8-Pn0URSRFVv6BtPYeJW6dpPc0i). The website uses transparent cutouts of the 1080 × 1080 originals. Astro serves responsive WebP versions, and tier names and benefits are rendered in HTML.
 
 | Tier     | Drive original | Website source |
 | -------- | -------------- | -------------- |
