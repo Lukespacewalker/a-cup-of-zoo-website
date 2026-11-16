@@ -1,0 +1,146 @@
+[
+  {
+    "partyId": "prairie-dog",
+    "id": "thung-ngern",
+    "nameTh": "ถุงเงิน",
+    "nameEn": "Thung Ngern",
+    "source": "A4 Pet Poster (9).png",
+    "crop": {
+      "left": 260,
+      "top": 644,
+      "size": 484
+    }
+  },
+  {
+    "partyId": "prairie-dog",
+    "id": "thung-thong",
+    "nameTh": "ถุงทอง",
+    "nameEn": "Thung Thong",
+    "source": "A4 Pet Poster (9).png",
+    "crop": {
+      "left": 827,
+      "top": 649,
+      "size": 476
+    }
+  },
+  {
+    "partyId": "bird",
+    "id": "yuzu",
+    "nameTh": "ยูซุ",
+    "nameEn": "Yuzu",
+    "source": "A4 Pet Poster (1).png",
+    "crop": {
+      "left": 260,
+      "top": 771,
+      "size": 293
+    }
+  },
+  {
+    "partyId": "bird",
+    "id": "ume",
+    "nameTh": "อุเมะ",
+    "nameEn": "Ume",
+    "source": "A4 Pet Poster (1).png",
+    "crop": {
+      "left": 627,
+      "top": 704,
+      "size": 264
+    }
+  },
+  {
+    "partyId": "bird",
+    "id": "ringo",
+    "nameTh": "ริงโกะ",
+    "nameEn": "Ringo",
+    "source": "A4 Pet Poster (1).png",
+    "crop": {
+      "left": 960,
+      "top": 836,
+      "size": 271
+    }
+  },
+  {
+    "partyId": "bird",
+    "id": "ichigo",
+    "nameTh": "อิจิโกะ",
+    "nameEn": "Ichigo",
+    "source": "A4 Pet Poster (1).png",
+    "crop": {
+      "left": 116,
+      "top": 1140,
+      "size": 267
+    }
+  },
+  {
+    "partyId": "bird",
+    "id": "mikan",
+    "nameTh": "มิกัง",
+    "nameEn": "Mikan",
+    "source": "A4 Pet Poster (1).png",
+    "crop": {
+      "left": 496,
+      "top": 1089,
+      "size": 296
+    }
+  },
+  {
+    "partyId": "bird",
+    "id": "momo",
+    "nameTh": "โมโมะ",
+    "nameEn": "Momo",
+    "source": "A4 Pet Poster (1).png",
+    "crop": {
+      "left": 809,
+      "top": 1136,
+      "size": 300
+    }
+  },
+  {
+    "partyId": "civet",
+    "id": "may-sa",
+    "nameTh": "เมษา",
+    "nameEn": "May-sa",
+    "source": "A4 Pet Poster (12).png",
+    "crop": {
+      "left": 676,
+      "top": 653,
+      "size": 678
+    }
+  },
+  {
+    "partyId": "snake",
+    "id": "whitemolt",
+    "nameTh": "ไวท์มอลต์",
+    "nameEn": "Whitemolt",
+    "source": "55.png",
+    "crop": {
+      "left": 631,
+      "top": 1058,
+      "size": 633
+    }
+  },
+  {
+    "partyId": "snake",
+    "id": "choco",
+    "nameTh": "โกโก้",
+    "nameEn": "Choco",
+    "source": "56.png",
+    "crop": {
+      "left": 111,
+      "top": 636,
+      "size": 751
+    }
+  },
+  {
+    "partyId": "snake",
+    "id": "cappu",
+    "nameTh": "คาปู",
+    "nameEn": "Cappu",
+    "source": "57.png",
+    "crop": {
+      "left": 100,
+      "top": 644,
+      "size": 889
+    }
+  }
+]
