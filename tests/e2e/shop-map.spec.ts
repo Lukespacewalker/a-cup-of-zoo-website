@@ -2,8 +2,23 @@ import { expect, test } from "@playwright/test";
 
 test("every numbered map stop and each facility can be explored, including places without photos", async ({ page }) => {
   const numberedStops = [
-    "cafe", "indoor", "kurama", "oracle", "alligator-gar", "little-farm", "garden", "lotus",
-    "koi", "fox", "rabbit", "sweet-garden", "goat", "bridge", "boats", "desert", "turtle",
+    ["cafe", "คาเฟ่และร้านอาหาร", "Café & Restaurant"],
+    ["indoor", "โซนสัตว์เลี้ยงด้านใน", "Pet Zone-Indoor"],
+    ["kurama", "สวนคุรามะ", "Kurama Garden"],
+    ["oracle", "จุดเซียมซีจิ้งจอกเก้าหาง", "Oracle Stick Zone"],
+    ["alligator-gar", "บ่อปลาจระเข้", "Alligator Gar Zone"],
+    ["little-farm", "ลานเพื่อนตัวจิ๋ว", "Little Farm Friend"],
+    ["garden", "สวนญี่ปุ่น", "Japanese Garden Zone"],
+    ["lotus", "บัวสี่ทิศ", "Four-Directional Lotus Zone"],
+    ["koi", "บ่อปลาคาร์ฟ", "Koi Pool"],
+    ["fox", "บ้านจิ้งจอก", "Fox House Zone"],
+    ["rabbit", "บ้านกระต่าย", "Rabbit House"],
+    ["sweet-garden", "สวนตามใจฉัน", "Sweet Garden"],
+    ["goat", "บ้านแพะแคระมินิปิ๊กมี่", "Mini Pygmy Goat House"],
+    ["bridge", "สะพานแดงญี่ปุ่น", "Japanese Red Bridge"],
+    ["boats", "จุดพายเรือชมวิว", "Boat Pier"],
+    ["desert", "สวนทะเลทราย", "Desert Zone"],
+    ["turtle", "บ้านพี่เต่า", "Turtle Zone"],
   ];
   for (const prefix of ["", "/en"]) {
     for (const route of ["/", "/activities/"]) {
@@ -18,19 +33,19 @@ test("every numbered map stop and each facility can be explored, including place
       await expect(map.locator("[data-map-pin]")).toHaveCount(20);
       await expect(map.locator(".map-detail")).toHaveCount(0);
       await expect(map.locator("[data-map-zoom]")).toBeVisible();
-      for (const [index, id] of numberedStops.entries()) {
+      for (const [index, [id, th, en]] of numberedStops.entries()) {
         const pin = map.locator(`[data-map-pin="${id}"]`);
         await expect(pin).toHaveAttribute("data-map-number", String(index + 1));
+        await expect(pin).toHaveAccessibleName(`${index + 1}. ${prefix ? en : th}`);
         await map.locator("[data-map-select]").selectOption(id);
         const panel = map.locator(`[data-map-panel="${id}"]`);
         await expect(panel).toBeVisible();
-        await expect(panel.locator("h3")).not.toBeEmpty();
+        await expect(panel.locator("h3")).toHaveText(prefix ? en : th);
         await expect(panel.locator("a")).toHaveAttribute("href", new RegExp(`^${prefix}/(?:(?:activities|animals|menu|visit)/|#(?:wishes|garden-story)$)`));
       }
       await expect(map.locator('[data-map-panel="cafe"] .map-stop-note')).toHaveText(
         prefix ? "No admission fee · Minimum 1 order per person" : "ไม่มีค่าเข้า · ขั้นต่ำ 1 ออร์เดอร์ต่อท่าน",
       );
-      await expect(map.locator('[data-map-panel="indoor"] h3')).toHaveText("Indoor Pet Zone");
       await expect(map.locator('[data-map-panel="indoor"] .map-stop-note')).toContainText(
         prefix ? "Indoor One Zone Pass or All Zone Pass" : "One Zone Pass (Indoor) หรือ All Zone Pass",
       );
@@ -44,7 +59,6 @@ test("every numbered map stop and each facility can be explored, including place
       }
       await map.locator("[data-map-select]").selectOption("desert");
       await expect(map.locator('[data-map-panel="desert"] img')).toHaveCount(0);
-      await expect(map.locator('[data-map-panel="desert"]')).toContainText(prefix ? "Desert garden" : "สวนทะเลทราย");
     }
   }
 });
@@ -121,7 +135,7 @@ test("mobile selection and zoom work without overflowing the page", async ({ pag
           verticalScroll: viewport.scrollHeight - viewport.clientHeight,
         };
       });
-      expect(bounds.ratio).toBeCloseTo(2245 / 3179, 2);
+      expect(bounds.ratio).toBeCloseTo(2095 / 2130, 2);
       expect(bounds.top).toBeCloseTo(0);
       expect(bounds.bottom).toBeCloseTo(0);
       expect(bounds.verticalScroll).toBeLessThanOrEqual(1);

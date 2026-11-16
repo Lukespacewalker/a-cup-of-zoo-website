@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import illustration from "../../assets/owner-brief/shop-map.webp";
-import { shopMapStops } from "../../lib/content/shop-map";
+import { shopMapCrop, shopMapStops } from "../../lib/content/shop-map";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import ArrowIcon from "./ArrowIcon.astro";
 import MapIcon from "./MapIcon.astro";
@@ -33,8 +33,8 @@ const alt = t(
     <div class="shop-map-toolbar" data-map-controls hidden>
       <p id="shop-map-help">
         {t(
-          "แตะหรือชี้ที่ไอคอนเพื่อสำรวจ · คลิกเพื่อเปิดค้าง",
-          "Tap or hover over an icon to explore · Click to keep it open",
+          "แตะหรือชี้ที่หมุดเพื่อสำรวจ · คลิกเพื่อเปิดค้าง",
+          "Tap or hover over a pin to explore · Click to keep it open",
         )}
       </p>
       <button class="map-zoom" type="button" data-map-zoom aria-pressed="false">
@@ -69,21 +69,22 @@ const alt = t(
               <button
                 type="button"
                 class:list={["map-pin", `map-pin--${stop.icon}`]}
-                style={`--pin-x:${(stop.x / illustration.width) * 100}%;--pin-y:${(stop.y / illustration.height) * 100}%`}
+                style={`--pin-x:${((stop.x - shopMapCrop.left) / illustration.width) * 100}%;--pin-y:${((stop.y - shopMapCrop.top) / illustration.height) * 100}%`}
                 data-map-pin={stop.id}
                 data-map-number={stop.number ?? undefined}
                 aria-label={`${stop.number ? `${stop.number}. ` : ""}${stop.title}`}
                 aria-pressed="false"
                 aria-controls={`map-panel-${stop.id}`}
               >
-                <span class="map-pin-symbol">
-                  <MapIcon name={stop.icon} />
+                <span
+                  class:list={[
+                    "map-pin-marker",
+                    { "map-pin-number": stop.number },
+                  ]}
+                  aria-hidden="true"
+                >
+                  {stop.number ?? <MapIcon name={stop.icon} />}
                 </span>
-                {stop.number && (
-                  <span class="map-pin-number" aria-hidden="true">
-                    {stop.number}
-                  </span>
-                )}
                 <span class="map-pin-label" aria-hidden="true">
                   {stop.title}
                 </span>
@@ -123,8 +124,8 @@ const alt = t(
           <h3>{t("เลือกมุมโปรดของคุณ", "Pick your favourite spot")}</h3>
           <p data-map-controls hidden>
             {t(
-              "เลือกไอคอนบนแผนที่ หรือเลือกจากรายชื่อด้านบน เพื่อดูรูป กิจกรรม และข้อมูลของแต่ละจุด",
-              "Choose an icon on the map, or a place from the list above, to discover photos, activities and visiting details.",
+              "เลือกหมุดบนแผนที่ หรือเลือกจากรายชื่อด้านบน เพื่อดูรูป กิจกรรม และข้อมูลของแต่ละจุด",
+              "Choose a pin on the map, or a place from the list above, to discover photos, activities and visiting details.",
             )}
           </p>
           <div class="map-key">

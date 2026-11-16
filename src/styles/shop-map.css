@@ -73,7 +73,7 @@
   min-width: 0;
   overflow: auto;
   overscroll-behavior-x: contain;
-  background: #fcf9e5;
+  background: #fff;
 }
 .shop-map-viewport:focus-visible {
   outline: 3px solid var(--fox-ink);
@@ -112,51 +112,28 @@
   cursor: pointer;
   z-index: 1;
 }
-.map-pin-number {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+.map-pin-marker {
   display: grid;
   place-items: center;
-  min-width: 17px;
-  height: 17px;
-  padding-inline: 2px;
-  border: 1px solid #85502f;
-  border-radius: 50%;
-  background: #fffaf0;
-  color: #40382c;
-  font-size: 0.6rem;
-  font-weight: 600;
-  line-height: 1;
-}
-.map-pin-symbol {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
   border: 2px solid #fffaf0;
   border-radius: 50%;
-  background: #85502f;
-  box-shadow: 0 2px 8px #35240c55;
+  background: #8d5400;
+  color: #fff;
+  box-shadow: 0 2px 6px #35240c55;
+  font: 700 0.9rem/1 var(--font);
   transition: transform 0.18s ease;
 }
-.map-pin-symbol svg {
-  width: 21px;
-  height: 21px;
+.map-pin-marker svg {
+  width: 16px;
+  height: 16px;
 }
-.map-pin--tree .map-pin-symbol,
-.map-pin--bridge .map-pin-symbol,
-.map-pin--flower .map-pin-symbol,
-.map-pin--cactus .map-pin-symbol {
-  background: #4f633a;
+.map-pin--parking .map-pin-marker {
+  background: #b20829;
 }
-.map-pin--fish .map-pin-symbol,
-.map-pin--boat .map-pin-symbol {
-  background: #2c6271;
-}
-.map-pin--parking .map-pin-symbol,
-.map-pin--restroom .map-pin-symbol {
-  background: #73516a;
+.map-pin--restroom .map-pin-marker {
+  background: #ae3355;
 }
 .map-pin-label {
   pointer-events: none;
@@ -179,11 +156,11 @@
   z-index: 3;
   outline: none;
 }
-.map-pin[data-active="true"] .map-pin-symbol {
+.map-pin[data-active="true"] .map-pin-marker {
   transform: scale(1.16);
   outline: 3px solid #e6ac48;
 }
-.map-pin:focus-visible .map-pin-symbol {
+.map-pin:focus-visible .map-pin-marker {
   outline: 3px solid #302415;
   outline-offset: 3px;
 }
@@ -295,7 +272,7 @@
 }
 .map-stop-content [data-map-panel="fox"] .map-stop-photo {
   object-fit: contain;
-  background: #fcf9e5;
+  background: #fff;
 }
 .map-stop-symbol {
   display: flex;
@@ -411,20 +388,40 @@
     :is([data-map-pin="desert"], [data-map-pin="parking"]) {
     --pin-size: 28px;
   }
-  .map-pin-symbol {
-    width: 24px;
-    height: 24px;
+  .map-pin-marker {
+    width: 20px;
+    height: 20px;
+    border-width: 1px;
+    font-size: 0.68rem;
   }
-  .map-pin-symbol svg {
-    width: 14px;
-    height: 14px;
+  .map-pin-marker svg {
+    width: 13px;
+    height: 13px;
   }
-  .map-pin-number {
-    right: calc((var(--pin-size) - 28px) / 2);
-    bottom: calc((var(--pin-size) - 28px) / 2);
-    min-width: 14px;
-    height: 14px;
-    font-size: 0.55rem;
+  :is(
+      [data-map-pin="desert"],
+      [data-map-pin="parking"],
+      [data-map-pin="sweet-garden"],
+      [data-map-pin="goat"]
+    )
+    .map-pin-label {
+    left: 0;
+    transform: none;
+  }
+  :is(
+      [data-map-pin="koi"],
+      [data-map-pin="boats"],
+      [data-map-pin="rabbit"],
+      [data-map-pin="bridge"]
+    )
+    .map-pin-label {
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+  :is([data-map-pin="parking-rear"], [data-map-pin="bridge"]) .map-pin-label {
+    top: calc(100% + 0.3rem);
+    bottom: auto;
   }
   .map-pin-label {
     font-size: 0.7rem;
@@ -432,7 +429,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .map-pin-symbol {
+  .map-pin-marker {
     transition: none;
   }
 }
