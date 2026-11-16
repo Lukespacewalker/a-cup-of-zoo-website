@@ -96,6 +96,42 @@
     }
   },
   {
+    "partyId": "bird",
+    "id": "cherry",
+    "nameTh": "เชอร์รี่",
+    "nameEn": "Cherry",
+    "source": "52.png",
+    "crop": {
+      "left": 658,
+      "top": 491,
+      "size": 707
+    }
+  },
+  {
+    "partyId": "bird",
+    "id": "ma-yom",
+    "nameTh": "มะยม",
+    "nameEn": "Ma-yom",
+    "source": "53.png",
+    "crop": {
+      "left": 427,
+      "top": 384,
+      "size": 880
+    }
+  },
+  {
+    "partyId": "bird",
+    "id": "gao-lat",
+    "nameTh": "เกาลัด",
+    "nameEn": "Gao-lat",
+    "source": "54.png",
+    "crop": {
+      "left": 58,
+      "top": 311,
+      "size": 667
+    }
+  },
+  {
     "partyId": "civet",
     "id": "may-sa",
     "nameTh": "เมษา",
