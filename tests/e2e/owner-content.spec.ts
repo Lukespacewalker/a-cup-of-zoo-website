@@ -83,9 +83,11 @@ test("map and every place link remain available without JavaScript", async ({ br
 
 test("menu books use the exact owner links and never embed the viewer", async ({ page }) => {
   await page.goto("/en/menu/");
-  await expect(page.locator(".menu-books a")).toHaveCount(2);
-  await expect(page.locator(".menu-books a").nth(0)).toHaveAttribute("href", "https://heyzine.com/flip-book/72a5470ad6.html");
-  await expect(page.locator(".menu-books a").nth(1)).toHaveAttribute("href", "https://heyzine.com/flip-book/587e5387cd.html");
+  const menuLinks = page.locator(".menu-books a");
+  await expect(menuLinks).toHaveCount(3);
+  await expect(menuLinks.nth(0)).toHaveAttribute("href", "https://heyzine.com/flip-book/72a5470ad6.html");
+  await expect(menuLinks.nth(1)).toHaveAttribute("href", "https://heyzine.com/flip-book/587e5387cd.html");
+  await expect(menuLinks.nth(2)).toHaveAttribute("href", "#menu-categories");
   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
   await expect(page.locator("iframe")).toHaveCount(0);
 });
