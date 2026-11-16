@@ -1,6 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import catRice from "../../assets/food-menu/signature-cat-rice.webp";
+import dogRice from "../../assets/food-menu/signature-dog-rice.webp";
+import parrotSalad from "../../assets/food-menu/signature-parrot-salad.webp";
 import "../../styles/menu-catalog.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { menuBooks } from "../../lib/content/owner-brief";
@@ -16,6 +19,33 @@ const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
 const menuCatalog = localizedMenu(locale);
+const signature = menuCatalog.find((section) => section.id === "signature");
+const otherSections = menuCatalog.filter(
+  (section) => section.id !== "signature",
+);
+const signaturePhotos: Record<string, { src: ImageMetadata; alt: string }> = {
+  SIG1: {
+    src: catRice,
+    alt: t(
+      "ข้าวผัดสมุนไพรกับปลาทู มะนาว และพริก",
+      "Herb fried rice with mackerel, lime and chillies",
+    ),
+  },
+  SIG2: {
+    src: dogRice,
+    alt: t(
+      "ข้าวผัดหมูผสมเส้น เสิร์ฟกับผักสดและมะนาว",
+      "Pork fried rice with noodles, lettuce and lime",
+    ),
+  },
+  SIG3: {
+    src: parrotSalad,
+    alt: t(
+      "ยำตะไคร้กับกุ้งและผักสด",
+      "Lemongrass salad with shrimp and fresh greens",
+    ),
+  },
+};
 const sandwichExtras = localizedExtras(locale);
 const page = await loadPage();
 const photos = import.meta.glob<{ default: ImageMetadata }>(
@@ -83,19 +113,67 @@ const menuSchema = {
       </div>
       <p>
         {t(
-          "เปิดอ่านเล่มเมนูของร้านบน Heyzine หรือเลือกชมเมนูพร้อมราคาด้านล่าง",
-          "Read the café’s menu books on Heyzine or browse the food menu and prices below.",
+          "เปิดอ่านเล่มเมนูของร้านบน Heyzine หรือ",
+          "Read the café’s menu books on Heyzine or ",
         )}
+        <a href="#menu-categories">
+          {t(
+            "เลือกชมเมนูพร้อมราคาด้านล่าง",
+            "browse the food menu and prices below",
+          )}
+        </a>
+        {t("", ".")}
       </p>
     </div>
-    <nav class="menu-jump" aria-label={t("หมวดเมนู", "Menu categories")}>
-      {menuCatalog.map((section) => (
-        <a href={`#${section.id}`}>{section.title}</a>
-      ))}
-    </nav>
   </header>
+  {signature && (
+    <section
+      class="signature-menu"
+      id="signature"
+      aria-labelledby="signature-title"
+    >
+      <h2 id="signature-title">{signature.title}</h2>
+      <ul class="signature-menu__dishes" role="list">
+        {signature.items.map((item) => {
+          const image = signaturePhotos[item.code];
+          return (
+            <li
+              data-menu-code={item.code}
+              id={`dish-${item.code.toLowerCase()}`}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                widths={[240, 400]}
+                sizes="(max-width: 600px) calc(100vw - 4rem), (max-width: 1264px) 30vw, 360px"
+                format="webp"
+                loading="lazy"
+              />
+              <div class="signature-menu__dish-heading">
+                <h3>{item.name}</h3>
+                <span class="signature-menu__price">
+                  {item.price}
+                  {t(" บาท", " THB")}
+                </span>
+              </div>
+              <p>{item.note}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )}
+  <nav
+    class="menu-jump"
+    id="menu-categories"
+    aria-label={t("หมวดเมนู", "Menu categories")}
+  >
+    {menuCatalog.map((section) => (
+      <a href={`#${section.id}`}>{section.title}</a>
+    ))}
+  </nav>
   <div class="food-catalog">
-    {menuCatalog.map((section, index) => (
+    {otherSections.map((section, index) => (
       <section
         class="food-section"
         id={section.id}
@@ -104,7 +182,7 @@ const menuSchema = {
         <header class="food-section__heading">
           <p class="eyebrow">
             {String(index + 1).padStart(2, "0")} /{" "}
-            {String(menuCatalog.length).padStart(2, "0")}
+            {String(otherSections.length).padStart(2, "0")}
           </p>
           <h2 id={`${section.id}-title`}>{section.title}</h2>
           <p>{section.lede}</p>
@@ -117,7 +195,7 @@ const menuSchema = {
               widths={[320, 560]}
               sizes="(max-width: 700px) 90vw, 30vw"
               format="webp"
-              loading={index === 0 ? "eager" : "lazy"}
+              loading="lazy"
             />
             {section.imagePages.length > 1 && (
               <div class="food-gallery">
@@ -193,7 +271,7 @@ const menuSchema = {
             )}
           </div>
         </div>
-        <a class="catalog-back" href="#menu-top">
+        <a class="catalog-back" href="#menu-categories">
           {t("กลับไปเลือกหมวด", "Back to menu categories")}{" "}
           <ArrowIcon direction="up" />
         </a>

@@ -3,14 +3,8 @@ import type { Locale } from "./locale";
 
 // Translate source text only. Prices, codes, portions and source images are inherited.
 export const englishDishes: Record<string, [string, string]> = {
-  SIG1: [
-    "Cat Rice",
-    "Herb fried rice with mackerel and side dishes. A dish for people.",
-  ],
-  SIG2: [
-    "Dog Rice",
-    "The café's fried rice with noodles and 3 kinds of pork. A dish for people.",
-  ],
+  SIG1: ["Cat Rice", "Herb fried rice with mackerel and side dishes."],
+  SIG2: ["Dog Rice", "The café's fried rice with noodles and 3 kinds of pork."],
   SIG3: [
     "Parrot Salad (Lemongrass Salad)",
     "Lemongrass and herbs tossed with shrimp, minced pork and crispy fish.",
@@ -142,7 +136,7 @@ const sections: Record<string, [string, string, string]> = {
   signature: [
     "Signature dishes",
     "Playful names, flavours from A Cup of Zoo.",
-    "Cat Rice and Dog Rice, two signature dishes for people",
+    "Two signature dishes, Cat Rice and Dog Rice",
   ],
   starters: [
     "Small plates",
