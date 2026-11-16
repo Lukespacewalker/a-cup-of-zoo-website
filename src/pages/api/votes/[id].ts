@@ -1,5 +1,7 @@
 import type { APIRoute } from "astro";
-import { runtimeConfig } from "../../../lib/content/runtime-config";
-import { forwardVote } from "../../../lib/voting/gateway";
-export const POST: APIRoute = ({ params, request }) =>
-  forwardVote(runtimeConfig(), params.id, request);
+
+export const POST: APIRoute = () =>
+  Response.json(
+    { error: "Individual voting has moved to the animal party ballot" },
+    { status: 410, headers: { "cache-control": "no-store" } },
+  );
