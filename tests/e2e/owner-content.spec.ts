@@ -67,13 +67,14 @@ test("map and every place link remain available without JavaScript", async ({ br
   await page.goto("/activities/#garden");
   const map = page.locator("[data-shop-map]");
   await expect(map.locator(".shop-map-illustration")).toBeVisible();
-  await expect(map.locator(".map-static-stops a")).toHaveCount(19);
+  await expect(map.locator(".map-static-stops a")).toHaveCount(20);
   await expect(map.locator(".map-detail")).toHaveCount(0);
   await expect(page.locator("#free-zone")).toContainText("1 ออร์เดอร์ต่อท่าน");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
-  await map.locator('.map-static-stops a[href="/activities/#wishing-corner"]').focus();
+  await map.locator('.map-static-stops a[href="/#wishes"]').focus();
   await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(/\/activities\/#wishing-corner$/);
+  await expect(page).toHaveURL(/\/#wishes$/);
+  await expect(page.locator("#wishes")).toContainText("น้องจิ้งจอกเก้าหาง");
   await page.goto("/animals/");
   await expect(page.locator("[data-resident]")).toHaveCount(23);
   await expect(page.locator("#animal-family")).toContainText("มีตังค์");

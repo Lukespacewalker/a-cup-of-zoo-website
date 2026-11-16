@@ -194,8 +194,7 @@
 .cat-story h2,
 .cafe-table h2,
 .garden-story h2,
-.visit-letter h2,
-.visit-preview h2 {
+.visit-letter h2 {
   font-size: clamp(1.9rem, 3.1vw, 3rem);
   line-height: 1.5;
   font-weight: 400;
@@ -269,6 +268,10 @@
   font-size: 0.87rem;
   color: var(--muted-text);
   margin: 0;
+}
+.cafe-admission a {
+  margin-inline-start: 0.6rem;
+  font-weight: 600;
 }
 .cat-story {
   display: grid;
@@ -418,48 +421,6 @@
 .garden-aside p {
   color: var(--muted-text);
 }
-.visit-preview {
-  padding: 3rem 0 4rem;
-  border-top: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 4rem;
-  align-items: center;
-}
-.visit-preview h2 {
-  font-size: clamp(1.8rem, 2.6vw, 2.5rem);
-}
-.visit-preview > div > p:not(.chapter-label) {
-  color: var(--muted-text);
-  font-size: 0.95rem;
-}
-.home-passes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.home-passes > a {
-  padding: 1.5rem;
-  text-decoration: none;
-}
-.home-passes > a + a {
-  border-left: 1px solid var(--line);
-}
-.home-passes strong {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 400;
-  color: var(--cocoa-deep);
-  margin: 0.7rem 0;
-}
-.home-passes small {
-  font-size: 0.75rem;
-}
-.home-passes p {
-  font-size: 0.85rem;
-  color: var(--muted-text);
-}
 .visit-letter {
   border-block: 1px solid var(--line);
   display: grid;
@@ -528,10 +489,6 @@
   .cat-story,
   .cafe-table {
     gap: 2.5rem;
-  }
-  .visit-preview {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 }
 @media (max-width: 700px) {
@@ -639,15 +596,6 @@
   .garden-aside figure {
     max-width: 24rem;
   }
-  .home-passes > a {
-    padding: 1.2rem 0.8rem;
-  }
-  .home-passes strong {
-    font-size: 2rem;
-  }
-  .home-passes small {
-    display: block;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .experience-paths figure img {
@@ -661,4 +609,8 @@
   .garden-story {
     padding: 2rem 0;
   }
+}
+
+#garden-story {
+  scroll-margin-top: 7rem;
 }

@@ -2,30 +2,33 @@
 import ShopMap from "../site/ShopMap.astro";
 import "../../styles/activities.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import WishingCorner from "../site/WishingCorner.astro";
-import WatercolorAnimal from "../site/WatercolorAnimal.astro";
-import ActivityPasses from "../site/ActivityPasses.astro";
+import ActivityAdmission from "../site/ActivityAdmission.astro";
 import ActivityPhoto from "../site/ActivityPhoto.astro";
 import ActivityPhotoDialog from "../site/ActivityPhotoDialog.astro";
 import { extraActivityPhotos } from "../../lib/content/activity-photos";
-import Picture from "../content/Picture.astro";
 import ContentUnavailable from "../content/ContentUnavailable.astro";
 import { loadPage } from "../../lib/content/load-page";
 import { localizedActivities } from "../../lib/i18n/activities";
-import { translator, localePath, type Locale } from "../../lib/i18n/locale";
-import { localizedVenue } from "../../lib/i18n/venue";
+import { translator, type Locale } from "../../lib/i18n/locale";
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = translator(locale);
-const href = (path: string) => localePath(path, locale);
-const { experiences, animalFood, gardenSpots } = localizedActivities(locale);
+const { experiences, animalFood } = localizedActivities(locale);
 const page = await loadPage();
-const items =
-  localizedVenue(page.venue, locale)
-    ?.content.activities.filter((item) => item.visible)
-    .sort((a, b) => a.sortOrder - b.sortOrder) ?? [];
+const includedExtras: Partial<
+  Record<(typeof experiences)[number]["id"], string>
+> = {
+  basket: t(
+    "ซื้อ All Zone Pass รับตะกร้าอาหารสัตว์ฟรี 1 ชุด",
+    "Get 1 animal food basket free with an All Zone Pass.",
+  ),
+  ema: t(
+    "ซื้อ Outdoor หรือ All Zone Pass รับป้ายเอมะฟรี 1 แผ่น",
+    "Get 1 ema wish plaque free with an Outdoor or All Zone Pass.",
+  ),
+};
 ---
 
 <SiteLayout
@@ -48,54 +51,10 @@ const items =
     <a href="#passes">{t("แพ็กเกจและเงื่อนไข", "Passes & terms")}</a>
     <a href="#animal-zones">{t("โซนสัตว์", "Animal zones")}</a>
     <a href="#experiences">{t("กิจกรรมและราคา", "Activities & prices")}</a>
-    <a href="#wishing-corner">{t("มุมขอพร", "Wishing corner")}</a>
     <a href="#garden">{t("แผนผังร้าน", "Shop map")}</a>
   </nav>
   {page.venueProblem && <ContentUnavailable />}
-  <section class="activity-section" id="passes" aria-labelledby="passes-title">
-    <h1 id="passes-title">{t("แพ็กเกจและการเข้าชม", "Passes & admission")}</h1>
-    <ActivityPasses locale={locale} />
-    <div class="activity-terms">
-      <h2>{t("เงื่อนไขการเข้าชม", "Admission terms")}</h2>
-      <ul>
-        <li>
-          {t(
-            "เด็กสูงต่ำกว่า 100 ซม. เข้าฟรี",
-            "Children under 100 cm tall enter free.",
-          )}
-        </li>
-        <li>
-          {t(
-            "เด็กทุกคนต้องมีผู้ใหญ่เข้าร่วมกิจกรรมด้วยอย่างน้อย 1 คน",
-            "Every child must be accompanied by at least 1 adult taking part in the activity.",
-          )}
-        </li>
-        <li>
-          {t(
-            "เด็กที่เข้าโซน Indoor ต้องซื้อถุงเท้าใหม่ 49 บาท",
-            "Children entering Indoor zones must buy new socks for 49 THB.",
-          )}
-        </li>
-      </ul>
-      <p>
-        <strong>
-          {t(
-            "น้องสัตว์โซน Outdoor เข้าบ้านเวลา 18:00 น.",
-            "Outdoor animals return to their houses at 18:00.",
-          )}
-        </strong>
-        <a href={href("/visit/")}>
-          {t(" ดูเวลาเปิดคาเฟ่", " See café opening hours")}
-        </a>
-      </p>
-      <p>
-        {t(
-          "สัตว์อาจข่วนหรือกัดได้ กรุณาดูแลเด็กและทรัพย์สินตลอดเวลา และทำกิจกรรมตามคำแนะนำของพนักงาน",
-          "Animals may scratch or bite. Supervise children and look after your belongings at all times, and follow staff instructions during activities.",
-        )}
-      </p>
-    </div>
-  </section>
+  <ActivityAdmission locale={locale} />
   <ShopMap locale={locale} />
   <section
     class="activity-section"
@@ -109,25 +68,17 @@ const items =
           <ActivityPhoto
             image={extraActivityPhotos[activity.id]}
             title={activity.name}
-            note={activity.note}
+            note={[activity.note, includedExtras[activity.id]]
+              .filter(Boolean)
+              .join(" ")}
             locale={locale}
             captioned={false}
           />
           <div>
             <h3>{activity.name}</h3>
             <p>{activity.note}</p>
-            {activity.id === "basket" && (
-              <p class="experience-inclusion">
-                {t("รวมใน All Zone Pass", "Included in All Zone Pass")}
-              </p>
-            )}
-            {activity.id === "ema" && (
-              <p class="experience-inclusion">
-                {t(
-                  "รวมใน Outdoor และ All Zone Pass",
-                  "Included in Outdoor and All Zone Pass",
-                )}
-              </p>
+            {includedExtras[activity.id] && (
+              <p class="experience-inclusion">{includedExtras[activity.id]}</p>
             )}
           </div>
           <p class="experience-price">
@@ -144,6 +95,11 @@ const items =
               {t(" บาท", " THB")}
             </strong>{" "}
             / {activity.unit}
+            {includedExtras[activity.id] && (
+              <span class="experience-purchase-label">
+                {t("ราคาซื้อแยก", "Separate purchase")}
+              </span>
+            )}
           </p>
         </li>
       ))}
@@ -170,89 +126,5 @@ const items =
       )}
     </p>
   </section>
-  <WishingCorner locale={locale} />
-  <section
-    class="activity-section"
-    id="garden-spots"
-    aria-labelledby="garden-title"
-  >
-    <div class="garden-section-heading">
-      <h2 id="garden-title">
-        {t("เดินเล่นตามมุมต่าง ๆ ของร้าน", "Explore the café and garden")}
-      </h2>
-      <WatercolorAnimal animal="ducks" class="garden-ducks" />
-    </div>
-    <p>
-      {t(
-        "เลือกแวะมุมที่ชอบจาก 16 จุดในแผนผังร้าน มีทั้งสวน มุมถ่ายรูป และพื้นที่สัตว์ที่เข้าตามแพ็กเกจ",
-        "Choose your favourite stops from 16 places on the shop map, including gardens, photo spots and animal areas accessed with a pass.",
-      )}
-    </p>
-    <ol class="garden-spots">
-      {gardenSpots.map((spot) => (
-        <li>{spot}</li>
-      ))}
-    </ol>
-    <p>
-      {t(
-        "ในแผนผังยังมีสวนทะเลทราย ห้องน้ำ และที่จอดรถ สำหรับกิจกรรมพายเรือสอบถามพนักงานก่อนใช้งาน",
-        "The map also shows a desert garden, toilets and parking. Ask staff before using the rowing boats.",
-      )}
-    </p>
-    <div class="actions">
-      <a class="button" href={href("/menu/")}>
-        {t("เลือกเมนูอาหาร", "Choose your food")}
-      </a>
-      <a class="button secondary" href={href("/visit/")}>
-        {t("ดูเวลาเปิดและเส้นทาง", "Opening hours & directions")}
-      </a>
-    </div>
-  </section>
-  {items.length > 0 && (
-    <section
-      class="spaces"
-      aria-label={t("มุมต่าง ๆ ของร้าน", "Around the café")}
-    >
-      {items.map((item, index) => (
-        <article class="space-feature">
-          <div class="space-feature__media">
-            <Picture
-              class="paper-photo paper-photo--soft"
-              mediaId={item.mediaAssetId}
-              media={page.venue?.media ?? []}
-              eager={index === 0}
-            />
-          </div>
-          <div class="space-feature__copy">
-            <span class="space-feature__number" aria-hidden="true">
-              {String(index + 1).padStart(2, "0")} /{" "}
-              {String(items.length).padStart(2, "0")}
-            </span>
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-          </div>
-        </article>
-      ))}
-    </section>
-  )}
-  {locale === "th" && page.venue && (
-    <section class="arrival" aria-labelledby="arrival-title">
-      <div class="arrival__heading">
-        <div>
-          <p class="chapter-label">
-            {t("เริ่มเดินเล่นจากตรงนี้", "Your visit starts here")}
-          </p>
-          <h2 id="arrival-title">{t("มุมทางเข้า", "The entrance")}</h2>
-        </div>
-        <p>
-          {t(
-            "บรรยากาศแรกที่ต้อนรับเมื่อมาถึง A Cup of Zoo",
-            "A first look at the entrance to A Cup of Zoo.",
-          )}
-        </p>
-      </div>
-      <Picture mediaId="entrance-promo-banner" media={page.venue.media} />
-    </section>
-  )}
   <ActivityPhotoDialog locale={locale} />
 </SiteLayout>

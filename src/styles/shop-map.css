@@ -82,33 +82,28 @@
 .shop-map-board {
   position: relative;
   width: 100%;
-  aspect-ratio: 1131 / 1120;
   overflow: hidden;
   isolation: isolate;
 }
 .shop-map-board .shop-map-illustration {
-  position: absolute;
-  top: 0;
-  left: 0;
   display: block;
   width: 100%;
   height: auto;
-  max-width: none;
-  transform: translateY(-17.5%);
 }
 .shop-map-pins {
   position: absolute;
   inset: 0;
 }
 .map-pin {
+  --pin-size: 44px;
   position: absolute;
   top: var(--pin-y);
   left: var(--pin-x);
   transform: translate(-50%, -50%);
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: var(--pin-size);
+  height: var(--pin-size);
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -408,6 +403,14 @@
   .map-stop-content article > p {
     max-width: 36rem;
   }
+  .shop-map-viewport:not(.is-zoomed) .map-pin {
+    --pin-size: 36px;
+  }
+  /* These markers sit next to each other on the artwork, even on narrow phones. */
+  .shop-map-viewport:not(.is-zoomed)
+    :is([data-map-pin="desert"], [data-map-pin="parking"]) {
+    --pin-size: 28px;
+  }
   .map-pin-symbol {
     width: 24px;
     height: 24px;
@@ -417,8 +420,8 @@
     height: 14px;
   }
   .map-pin-number {
-    right: 8px;
-    bottom: 8px;
+    right: calc((var(--pin-size) - 28px) / 2);
+    bottom: calc((var(--pin-size) - 28px) / 2);
     min-width: 14px;
     height: 14px;
     font-size: 0.55rem;

@@ -13,7 +13,8 @@ import ShopMap from "../site/ShopMap.astro";
 import OpeningHours from "../site/OpeningHours.astro";
 import SocialLinks from "../site/SocialLinks.astro";
 import AnimalVotes from "../site/AnimalVotes.astro";
-import { localizedActivities } from "../../lib/i18n/activities";
+import ActivityAdmission from "../site/ActivityAdmission.astro";
+import ActivityPhotoDialog from "../site/ActivityPhotoDialog.astro";
 import { loadPage } from "../../lib/content/load-page";
 import { allowedExternalUrl } from "../../lib/business/links";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
@@ -27,7 +28,6 @@ const href = (path: string) => localePath(path, locale);
 const heroPosterSrc = "/videos/hero-animal-poster.webp";
 const page = await loadPage({ includePosts: locale === "th" });
 const content = localizedVenue(page.venue, locale)?.content;
-const { admissionSummary, passes } = localizedActivities(locale);
 const hashtags = [
   "#Petcafe",
   "#Acupofzoo",
@@ -131,6 +131,7 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
   <HomeIntroduction locale={locale} />
 
   <ShopMap locale={locale} home />
+  <ActivityAdmission locale={locale} home />
   <AnimalVotes locale={locale} venue={page.venue} />
 
   <section class="club-invitation" aria-labelledby="home-club-title">
@@ -165,7 +166,7 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
   </section>
 
   <HomeStories locale={locale} />
-  <WishingCorner locale={locale} compact />
+  <WishingCorner locale={locale} />
   <section
     class="owner-section"
     aria-label={t("มาเที่ยวเป็นกลุ่ม", "Visit as a group")}
@@ -200,32 +201,6 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
     <SocialLinks facebookUrl={content?.facebookUrl} />
   </section>
 
-  <section class="visit-preview" aria-labelledby="choose-title">
-    <div>
-      <p class="chapter-label">{t("เลือกวันของคุณ", "Before you visit")}</p>
-      <h2 id="choose-title">
-        {t(
-          "แวะคาเฟ่ หรืออยู่กับเพื่อนสัตว์",
-          "Come for the café. Stay for the company.",
-        )}
-      </h2>
-      <p>{admissionSummary}</p>
-    </div>
-    <div class="home-passes">
-      {passes.map((pass) => (
-        <a href={href("/activities/") + "#" + pass.id}>
-          <span>{pass.name}</span>
-          <strong>
-            {pass.price} <small>{t("บาท / คน", "THB / person")}</small>
-          </strong>
-          <p>{pass.description}</p>
-          <span class="path-link">
-            {t("ดูสิทธิประโยชน์", "See what is included")} <ArrowIcon />
-          </span>
-        </a>
-      ))}
-    </div>
-  </section>
   {content && (
     <section class="visit-letter" aria-labelledby="visit-title">
       <div class="letter-heading">
@@ -276,4 +251,5 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
       ))}
     </section>
   )}
+  <ActivityPhotoDialog locale={locale} />
 </SiteLayout>

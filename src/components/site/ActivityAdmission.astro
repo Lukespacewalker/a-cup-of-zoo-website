@@ -1,0 +1,96 @@
+---
+import ActivityPasses from "./ActivityPasses.astro";
+import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+
+interface Props {
+  locale: Locale;
+  home?: boolean;
+}
+
+const { locale, home = false } = Astro.props;
+const t = translator(locale);
+const href = (path: string) => localePath(path, locale);
+const Heading = home ? "h2" : "h1";
+const TermsHeading = home ? "h3" : "h2";
+---
+
+<section
+  class:list={["activity-admission", { "activity-admission--home": home }]}
+  id="passes"
+  aria-labelledby="passes-title"
+>
+  <Heading id="passes-title">
+    {t("แพ็กเกจและการเข้าชม", "Passes & admission")}
+  </Heading>
+  <ActivityPasses locale={locale} home={home} />
+  <div class="activity-terms">
+    <TermsHeading>{t("เงื่อนไขการเข้าชม", "Admission terms")}</TermsHeading>
+    <ul>
+      <li>
+        {t(
+          "เด็กสูงต่ำกว่า 100 ซม. เข้าฟรี",
+          "Children under 100 cm tall enter free.",
+        )}
+      </li>
+      <li>
+        {t(
+          "เด็กทุกคนต้องมีผู้ใหญ่เข้าร่วมกิจกรรมด้วยอย่างน้อย 1 คน",
+          "Every child must be accompanied by at least 1 adult taking part in the activity.",
+        )}
+      </li>
+      <li>
+        {t(
+          "เด็กที่เข้าโซน Indoor ต้องซื้อถุงเท้าใหม่ 49 บาท",
+          "Children entering Indoor zones must buy new socks for 49 THB.",
+        )}
+      </li>
+    </ul>
+    <p>
+      <strong>
+        {t(
+          "น้องสัตว์โซน Outdoor เข้าบ้านเวลา 18:00 น.",
+          "Outdoor animals return to their houses at 18:00.",
+        )}
+      </strong>
+      <a href={href("/visit/")}>
+        {t(" ดูเวลาเปิดคาเฟ่", " See café opening hours")}
+      </a>
+    </p>
+    <p>
+      {t(
+        "สัตว์อาจข่วนหรือกัดได้ กรุณาดูแลเด็กและทรัพย์สินตลอดเวลา และทำกิจกรรมตามคำแนะนำของพนักงาน",
+        "Animals may scratch or bite. Supervise children and look after your belongings at all times, and follow staff instructions during activities.",
+      )}
+    </p>
+  </div>
+</section>
+
+<style>
+  .activity-admission {
+    padding: 1.4rem 0 2.5rem;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 8rem;
+  }
+
+  .activity-admission--home {
+    padding-block-start: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  #passes-title {
+    font-size: clamp(1.9rem, 3.6vw, 3.3rem);
+    line-height: 1.4;
+    margin: 0 0 1.15rem;
+  }
+
+  .activity-terms {
+    margin-block-start: 2rem;
+  }
+
+  .activity-terms ul {
+    padding-inline-start: 1.3rem;
+  }
+
+  .activity-terms li {
+    margin-block: 0.5rem;
+  }
+</style>

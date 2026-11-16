@@ -208,23 +208,10 @@
   padding: 1.5rem;
   background: var(--paper);
 }
-.activity-terms h2 {
+.activity-terms h2,
+.activity-terms h3 {
   font-weight: 500;
 }
-.garden-section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-.garden-section-heading h2 {
-  min-width: 0;
-}
-.garden-ducks {
-  width: 7rem;
-  flex-shrink: 0;
-}
-
 .food-section__photos img {
   border-radius: 2px;
   border: 0;
@@ -394,9 +381,6 @@
   .page-intro__fox {
     transform: scale(0.75);
     transform-origin: right top;
-  }
-  .garden-ducks {
-    width: 4.5rem;
   }
   .wishing-photo figcaption {
     font-size: 0.75rem;

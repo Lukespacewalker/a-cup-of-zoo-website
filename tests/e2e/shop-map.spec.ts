@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("every numbered map stop and each facility can be explored, including places without photos", async ({ page }) => {
   const numberedStops = [
     "cafe", "indoor", "kurama", "oracle", "alligator-gar", "little-farm", "garden", "lotus",
-    "koi", "fox", "rabbit", "sweet-garden", "goat", "bridge", "boats", "desert",
+    "koi", "fox", "rabbit", "sweet-garden", "goat", "bridge", "boats", "desert", "turtle",
   ];
   for (const prefix of ["", "/en"]) {
     for (const route of ["/", "/activities/"]) {
@@ -15,7 +15,7 @@ test("every numbered map stop and each facility can be explored, including place
       await expect(map.locator("[data-map-overview] h3")).toHaveText(
         prefix ? "Pick your favourite spot" : "เลือกมุมโปรดของคุณ",
       );
-      await expect(map.locator("[data-map-pin]")).toHaveCount(19);
+      await expect(map.locator("[data-map-pin]")).toHaveCount(20);
       await expect(map.locator(".map-detail")).toHaveCount(0);
       await expect(map.locator("[data-map-zoom]")).toBeVisible();
       for (const [index, id] of numberedStops.entries()) {
@@ -25,7 +25,7 @@ test("every numbered map stop and each facility can be explored, including place
         const panel = map.locator(`[data-map-panel="${id}"]`);
         await expect(panel).toBeVisible();
         await expect(panel.locator("h3")).not.toBeEmpty();
-        await expect(panel.locator("a")).toHaveAttribute("href", new RegExp(`^${prefix || ""}/(activities|animals|menu|visit)/`));
+        await expect(panel.locator("a")).toHaveAttribute("href", new RegExp(`^${prefix}/(?:(?:activities|animals|menu|visit)/|#(?:wishes|garden-story)$)`));
       }
       await expect(map.locator('[data-map-panel="cafe"] .map-stop-note')).toHaveText(
         prefix ? "No admission fee · Minimum 1 order per person" : "ไม่มีค่าเข้า · ขั้นต่ำ 1 ออร์เดอร์ต่อท่าน",
@@ -37,6 +37,7 @@ test("every numbered map stop and each facility can be explored, including place
       await expect(map.locator('[data-map-panel="kurama"] .map-stop-note')).toHaveText(
         prefix ? "Free to explore" : "เดินชมฟรี",
       );
+      await expect(map.locator('[data-map-panel="boats"] a')).toHaveAttribute("href", `${prefix}/activities/#free-zone`);
       for (const id of ["restroom", "parking", "parking-rear"]) {
         await map.locator("[data-map-select]").selectOption(id);
         await expect(map.locator(`[data-map-panel="${id}"]`)).toBeVisible();
@@ -48,11 +49,13 @@ test("every numbered map stop and each facility can be explored, including place
   }
 });
 
-test("map is the third home section and directly follows activities passes in both languages", async ({ page }) => {
+test("home packages follow the map, and activities packages precede the map", async ({ page }) => {
   for (const prefix of ["", "/en"]) {
     await page.goto(`${prefix}/`);
     const sections = page.locator("main > .shell > section");
     await expect(sections.nth(2)).toHaveAttribute("id", "garden");
+    await expect(sections.nth(3)).toHaveAttribute("id", "passes");
+    await expect(sections.nth(3).locator(".activity-pass")).toHaveCount(4);
     await expect(page.locator("[data-shop-map]")).toHaveCount(1);
     await page.locator("[data-map-activities]").click();
     await expect(page).toHaveURL(new RegExp(`${prefix}/activities/#garden$`));
@@ -105,6 +108,23 @@ test("mobile selection and zoom work without overflowing the page", async ({ pag
     for (const prefix of ["", "/en"]) {
       await page.goto(`${prefix}/#garden`);
       const map = page.locator("[data-shop-map]");
+      const bounds = await map.evaluate(async root => {
+        const image = root.querySelector<HTMLImageElement>(".shop-map-illustration")!;
+        const viewport = root.querySelector<HTMLElement>("[data-map-viewport]")!;
+        await image.decode();
+        const artwork = image.getBoundingClientRect();
+        const board = root.querySelector("[data-map-board]")!.getBoundingClientRect();
+        return {
+          ratio: image.naturalWidth / image.naturalHeight,
+          top: artwork.top - board.top,
+          bottom: board.bottom - artwork.bottom,
+          verticalScroll: viewport.scrollHeight - viewport.clientHeight,
+        };
+      });
+      expect(bounds.ratio).toBeCloseTo(2245 / 3179, 2);
+      expect(bounds.top).toBeCloseTo(0);
+      expect(bounds.bottom).toBeCloseTo(0);
+      expect(bounds.verticalScroll).toBeLessThanOrEqual(1);
       await map.locator("[data-map-select]").selectOption("indoor");
       await expect(map.locator('[data-map-panel="indoor"]')).toBeVisible();
       await expect(map.locator('[data-map-panel="indoor"] a')).toHaveAttribute("href", `${prefix}/activities/#animal-zones`);
@@ -119,9 +139,14 @@ test("mobile selection and zoom work without overflowing the page", async ({ pag
       }
       await map.locator("[data-map-zoom]").click();
       await expect(map.locator("[data-map-zoom]")).toHaveAttribute("aria-pressed", "true");
+      const viewport = map.locator("[data-map-viewport]");
+      expect(await viewport.evaluate(el => el.scrollHeight > el.clientHeight)).toBe(true);
+      await viewport.evaluate(el => el.scrollTo(el.scrollWidth, el.scrollHeight));
+      await expect.poll(() => viewport.evaluate(el => Math.abs(el.scrollHeight - el.clientHeight - el.scrollTop))).toBeLessThanOrEqual(1);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await map.locator("[data-map-zoom]").click();
       await expect(map.locator('[data-map-panel="indoor"]')).toBeVisible();
+      await expect.poll(() => viewport.evaluate(el => el.scrollTop)).toBe(0);
     }
   }
 });
@@ -150,7 +175,7 @@ test("every pin can be tapped directly on narrow phones", async ({ browser }) =>
     await page.goto("/#garden");
     const map = page.locator("[data-shop-map]");
     // Reverse order also checks that an active neighbouring pin does not block the next one.
-    const ids = ["parking-rear", "parking", "restroom", "desert", "boats", "bridge", "goat", "sweet-garden", "rabbit", "fox", "koi", "lotus", "garden", "little-farm", "alligator-gar", "oracle", "kurama", "indoor", "cafe"];
+    const ids = ["parking-rear", "parking", "restroom", "turtle", "desert", "boats", "bridge", "goat", "sweet-garden", "rabbit", "fox", "koi", "lotus", "garden", "little-farm", "alligator-gar", "oracle", "kurama", "indoor", "cafe"];
     const clippedNumbers = await map.locator(".map-pin-number").evaluateAll(numbers => numbers.filter(number => {
       const badge = number.getBoundingClientRect();
       const board = number.closest("[data-map-board]")!.getBoundingClientRect();

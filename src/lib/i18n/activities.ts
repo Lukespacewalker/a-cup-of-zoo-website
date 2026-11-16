@@ -18,7 +18,7 @@ const passText = {
       "Unlimited time in your chosen zones during opening hours",
       "95 THB discount on food and drinks",
       "Indoor choice: socks included",
-      "Outdoor choice: an ema wooden wish plaque included",
+      "Outdoor choice: 1 ema wooden wish plaque included",
     ],
   },
   "all-zone": {
@@ -26,8 +26,8 @@ const passText = {
     benefits: [
       "Access to all zones with unlimited time during opening hours",
       "95 THB discount on food and drinks",
-      "An animal food basket worth 120 THB",
-      "Socks and an ema wooden wish plaque",
+      "1 animal food basket worth 120 THB",
+      "Socks and 1 ema wooden wish plaque",
     ],
   },
 } satisfies Record<

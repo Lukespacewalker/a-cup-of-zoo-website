@@ -48,11 +48,10 @@ const t = translator(locale);
 
   .activity-photo--captioned {
     display: grid;
-    grid-template-columns: 3.75rem minmax(0, 1fr);
+    grid-template-columns: clamp(4.75rem, 7.5vw, 7rem) minmax(0, 1fr);
     align-items: center;
     gap: 0.65rem;
     min-height: 3rem;
-    border-radius: 4px;
     font-size: 0.9rem;
     line-height: 1.45;
     overflow-wrap: anywhere;
@@ -66,7 +65,6 @@ const t = translator(locale);
     display: block;
     position: relative;
     overflow: hidden;
-    border-radius: 4px;
   }
 
   .activity-photo__frame img {
@@ -97,5 +95,11 @@ const t = translator(locale);
   .activity-photo:hover .activity-photo__zoom {
     background: var(--button);
     color: var(--on-button);
+  }
+
+  @media (max-width: 585px) {
+    .activity-photo--captioned {
+      grid-template-columns: min(34%, 7rem) minmax(0, 1fr);
+    }
   }
 </style>

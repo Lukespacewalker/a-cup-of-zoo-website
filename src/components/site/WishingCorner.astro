@@ -6,18 +6,12 @@ import wishingCorner from "../../assets/watercolor/wishing-corner.png";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 interface Props {
   locale: Locale;
-  compact?: boolean;
 }
-const { locale, compact = false } = Astro.props;
+const { locale } = Astro.props;
 const t = translator(locale);
-const id = compact ? "wishes" : "wishing-corner";
 ---
 
-<section
-  class:list={["wishing-story", { "wishing-story--detail": !compact }]}
-  id={id}
-  aria-labelledby={`${id}-title`}
->
+<section class="wishing-story" id="wishes" aria-labelledby="wishes-title">
   <figure class="wishing-photo">
     <Image
       src={wishingCorner}
@@ -42,7 +36,7 @@ const id = compact ? "wishes" : "wishing-corner";
     <p class="chapter-label">
       {t("อีกหนึ่งมุมของสวน", "A little corner of the garden")}
     </p>
-    <h2 id={`${id}-title`}>
+    <h2 id="wishes-title">
       {t("มุมขอพรกับ", "Make a wish with our ")}
       <br />
       {t("น้องจิ้งจอกเก้าหาง", "Nine-Tailed Fox")}
@@ -53,21 +47,9 @@ const id = compact ? "wishes" : "wishing-corner";
         "Say hello to our Nine-Tailed Fox at the wishing corner. The wooden plaques hanging around the garden hold wishes left by visitors.",
       )}
     </p>
-    {compact ? (
-      <a
-        class="cafe-link"
-        href={localePath("/activities/", locale) + "#wishing-corner"}
-      >
-        {t("แวะดูมุมขอพร", "Discover the wishing corner")}
-        <ArrowIcon />
-      </a>
-    ) : (
-      <p>
-        {t(
-          "ในร้านยังมีน้องจิ้งจอกเก้าหางท่าประนมมืออยู่คู่กับจุดเซียมซี ให้ค่อย ๆ แวะชมระหว่างเดินเล่น",
-          "You can also find our Nine-Tailed Fox with its paws joined beside the fortune-stick corner as you explore the café.",
-        )}
-      </p>
-    )}
+    <a class="cafe-link" href={localePath("/activities/#ema", locale)}>
+      {t("ดูราคาและสิทธิรับป้ายเอมะ", "See ema price and pass benefits")}
+      <ArrowIcon />
+    </a>
   </div>
 </section>

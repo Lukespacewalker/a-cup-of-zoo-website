@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { ownerPhoto } from "../../lib/content/owner-brief";
+import illustration from "../../assets/owner-brief/shop-map.webp";
 import { shopMapStops } from "../../lib/content/shop-map";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import ArrowIcon from "./ArrowIcon.astro";
@@ -15,8 +15,8 @@ const t = translator(locale);
 const stops = shopMapStops(locale);
 const href = (path: string) => localePath(path, locale);
 const alt = t(
-  "แผนผังร้าน: คาเฟ่และสวนทะเลทรายอยู่ใกล้ทางเข้า สวนญี่ปุ่นและบ่อปลาอยู่กลางร้าน บ้านจิ้งจอก กระต่าย และแพะอยู่ด้านใน",
-  "Shop map: the café and desert garden are near the entrance, the Japanese garden and pond are in the centre, and the fox, rabbit and goat houses are further inside.",
+  "แผนผังร้าน: คาเฟ่ สวนทะเลทราย และบ้านพี่เต่าอยู่ใกล้ทางเข้า สวนญี่ปุ่นและบ่อปลาอยู่กลางร้าน บ้านจิ้งจอก กระต่าย และแพะอยู่ด้านใน",
+  "Shop map: the café, desert garden and Turtle Zone are near the entrance, the Japanese garden and pond are in the centre, and the fox, rabbit and goat houses are further inside.",
 );
 ---
 
@@ -56,10 +56,10 @@ const alt = t(
         <div class="shop-map-board" data-map-board>
           <Image
             class="shop-map-illustration"
-            src={ownerPhoto(5)}
+            src={illustration}
             alt={alt}
-            widths={[560, 720, 900, 1131]}
-            sizes="(max-width: 759px) 100vw, 68vw"
+            widths={[560, 720, 900, 1131, 1680]}
+            sizes="(max-width: 759px) 100vw, (max-width: 1440px) 68vw, 1000px"
             format="webp"
             quality={76}
             loading="lazy"
@@ -69,7 +69,7 @@ const alt = t(
               <button
                 type="button"
                 class:list={["map-pin", `map-pin--${stop.icon}`]}
-                style={`--pin-x:${(stop.x / 1131) * 100}%;--pin-y:${((stop.y - 280) / 1120) * 100}%`}
+                style={`--pin-x:${(stop.x / illustration.width) * 100}%;--pin-y:${(stop.y / illustration.height) * 100}%`}
                 data-map-pin={stop.id}
                 data-map-number={stop.number ?? undefined}
                 aria-label={`${stop.number ? `${stop.number}. ` : ""}${stop.title}`}
@@ -253,6 +253,10 @@ const alt = t(
     const explorer = map.querySelector<HTMLElement>("[data-map-explorer]")!;
     const viewport = map.querySelector<HTMLElement>("[data-map-viewport]")!;
     const zoom = map.querySelector<HTMLButtonElement>("[data-map-zoom]")!;
+    const mapImage = map.querySelector<HTMLImageElement>(
+      ".shop-map-illustration",
+    )!;
+    const overviewSizes = mapImage.sizes;
     let selected = "";
     let displayed = "";
 
@@ -326,6 +330,7 @@ const alt = t(
       zoom.querySelector<HTMLElement>("[data-zoom-in]")!.hidden = enlarged;
       zoom.querySelector<HTMLElement>("[data-zoom-out]")!.hidden = !enlarged;
       viewport.classList.toggle("is-zoomed", enlarged);
+      mapImage.sizes = enlarged ? `${mapImage.clientWidth}px` : overviewSizes;
       if (!enlarged) viewport.scrollTo({ top: 0, left: 0 });
     });
     for (const control of map.querySelectorAll<HTMLElement>(

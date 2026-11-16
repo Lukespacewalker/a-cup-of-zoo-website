@@ -5,21 +5,19 @@ import {
   freeActivityPhotos,
 } from "../../lib/content/activity-photos";
 import { localizedActivities } from "../../lib/i18n/activities";
-import { translator, type Locale } from "../../lib/i18n/locale";
+import { localePath, translator, type Locale } from "../../lib/i18n/locale";
 
 interface Props {
   locale: Locale;
+  home?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, home = false } = Astro.props;
 const t = translator(locale);
+const CardTitle = home ? "h3" : "h2";
 const { passes, animalZones } = localizedActivities(locale);
 const oneZone = passes.find((pass) => pass.id === "one-zone")!;
 const allZone = passes.find((pass) => pass.id === "all-zone")!;
-const boatNote = t(
-  "สอบถามพนักงานเรื่องการใช้เรือและค่าใช้จ่าย (ถ้ามี)",
-  "Ask staff about boat availability and any charges.",
-);
 const cafeOrder = t(
   "สั่งอาหารหรือเครื่องดื่มขั้นต่ำ 1 ออร์เดอร์ต่อท่าน",
   "At least 1 food or drink order per person",
@@ -39,9 +37,8 @@ const free = [
     note: t("มีอาหารปลาคาร์ฟให้ซื้อเพิ่ม", "Koi food is available to buy."),
   },
   {
-    title: t("พายเรือ", "Row a boat"),
+    title: t("พายเรือฟรี", "Free rowing"),
     image: freeActivityPhotos.boat,
-    note: boatNote,
   },
   {
     title: t("ชมสัตว์ในคาเฟ่", "Meet the café animals"),
@@ -84,7 +81,8 @@ const choices = [
     name: "Indoor",
     headingId: "animal-zones",
     price: oneZone.price,
-    includes: t("Free Zone + โซนสัตว์ในร่ม", "Free Zone + indoor animal zones"),
+    includes: t("โซนสัตว์ในร่ม", "Indoor animal zones"),
+    withFreeZone: true,
     photos: indoor,
     benefits: [oneZone.benefits[1], t("ถุงเท้า", "Socks")],
   },
@@ -93,14 +91,12 @@ const choices = [
     tone: "outdoor",
     name: "Outdoor",
     price: oneZone.price,
-    includes: t(
-      "Free Zone + โซนสัตว์กลางแจ้ง",
-      "Free Zone + outdoor animal zones",
-    ),
+    includes: t("โซนสัตว์กลางแจ้ง", "Outdoor animal zones"),
+    withFreeZone: true,
     photos: outdoor,
     benefits: [
       oneZone.benefits[1],
-      t("ป้ายไม้อธิษฐานเอมะ", "An ema wooden wish plaque"),
+      t("ป้ายไม้อธิษฐานเอมะ 1 แผ่น", "1 ema wooden wish plaque"),
     ],
   },
   {
@@ -123,9 +119,13 @@ const choices = [
       data-pass={choice.tone}
       aria-labelledby={choice.headingId ?? `${choice.id}-title`}
     >
-      <h2 id={choice.headingId ?? `${choice.id}-title`} lang="en">
+      <CardTitle
+        class="activity-pass__title"
+        id={choice.headingId ?? `${choice.id}-title`}
+        lang="en"
+      >
         {choice.name}
-      </h2>
+      </CardTitle>
       <p class="activity-pass__price">
         {choice.price === null ? (
           t("ไม่มีค่าเข้า", "No admission fee")
@@ -135,7 +135,17 @@ const choices = [
           </>
         )}
       </p>
-      <p class="activity-pass__includes">{choice.includes}</p>
+      <p class="activity-pass__includes">
+        {choice.withFreeZone && (
+          <>
+            <a class="activity-pass__free-zone" href="#free-zone" lang="en">
+              Free Zone
+            </a>
+            <span class="activity-pass__plus">+</span>
+          </>
+        )}
+        {choice.includes}
+      </p>
       <div class="activity-pass__body">
         <ul class="activity-pass__photos" data-activity-gallery>
           {choice.photos.map((photo) => (
@@ -144,9 +154,6 @@ const choices = [
             </li>
           ))}
         </ul>
-        {choice.tone === "free" && (
-          <p class="activity-pass__note">{boatNote}</p>
-        )}
         {choice.benefits.length > 0 && (
           <div class="activity-pass__benefits">
             <p>{t("สิทธิในแพ็กเกจ", "Pass benefits")}</p>
@@ -166,7 +173,13 @@ const choices = [
     "One Zone Pass เลือก Indoor หรือ Outdoor อย่างใดอย่างหนึ่ง แพ็กเกจเข้าโซนที่เลือกได้ตลอดช่วงเปิดบริการ",
     "With a One Zone Pass, choose either Indoor or Outdoor. Animal-zone passes allow unlimited time in the included zones during opening hours.",
   )}
-  <a href="#experiences">{t("ดูกิจกรรมซื้อเพิ่ม", "See optional extras")}</a>
+  <a
+    href={
+      home ? localePath("/activities/#experiences", locale) : "#experiences"
+    }
+  >
+    {t("ดูกิจกรรมซื้อเพิ่ม", "See optional extras")}
+  </a>
 </p>
 
 <style>
@@ -188,7 +201,6 @@ const choices = [
     padding: 1rem;
     border: 1px solid var(--line);
     border-block-start: 3px solid var(--pass-accent);
-    border-radius: 8px;
     background: var(--paper);
     scroll-margin-block-start: 7rem;
   }
@@ -209,12 +221,12 @@ const choices = [
     background: color-mix(in srgb, var(--pass-tint) 42%, var(--paper));
   }
 
-  .activity-pass h2,
+  .activity-pass__title,
   .activity-pass p {
     margin: 0;
   }
 
-  .activity-pass h2,
+  .activity-pass__title,
   .activity-pass__price {
     font-size: clamp(1.4rem, 2.05vw, 1.9rem);
     font-weight: 400;
@@ -238,6 +250,24 @@ const choices = [
     line-height: 1.5;
   }
 
+  .activity-pass__free-zone {
+    display: inline-block;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--leaf);
+    background: var(--garden-field);
+    color: var(--leaf);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .activity-pass__free-zone:hover {
+    text-decoration: underline;
+  }
+
+  .activity-pass__plus {
+    margin-inline: 0.3rem;
+  }
+
   .activity-pass__photos {
     display: grid;
     gap: 0.3rem;
@@ -250,11 +280,9 @@ const choices = [
     scroll-margin-block-start: 7rem;
   }
 
-  .activity-pass .activity-pass__note,
   .activity-pass__benefits {
     margin-block-start: 0.65rem;
     padding: 0.55rem 0.65rem;
-    border-radius: 4px;
     background: var(--pass-tint);
     font-size: 0.85rem;
     line-height: 1.55;

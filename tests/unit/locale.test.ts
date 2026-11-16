@@ -81,12 +81,12 @@ test("activity translations follow item identity when the source catalogs are re
       [
         "all-zone",
         "Visit both Indoor and Outdoor zones.",
-        "Socks and an ema wooden wish plaque",
+        "Socks and 1 ema wooden wish plaque",
       ],
       [
         "one-zone",
         "Choose either the Indoor or Outdoor group of zones.",
-        "Outdoor choice: an ema wooden wish plaque included",
+        "Outdoor choice: 1 ema wooden wish plaque included",
       ],
     ]);
     expect(

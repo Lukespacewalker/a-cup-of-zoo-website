@@ -60,7 +60,7 @@ const href = (path: string) => localePath(path, locale);
         "An Indoor One Zone Pass or an All Zone Pass lets you spend as long as you like in the Indoor Pet Zone during opening hours.",
       )}
     </p>
-    <a class="cafe-link" href={href("/activities/") + "#passes"}>
+    <a class="cafe-link" href="#passes">
       {t("ดูแพ็กเกจและเงื่อนไข", "Passes & visiting details")} <ArrowIcon />
     </a>
     <figure class="cat-story-small">
@@ -136,7 +136,7 @@ const href = (path: string) => localePath(path, locale);
   </figure>
 </section>
 
-<section class="garden-story" aria-labelledby="garden-title">
+<section class="garden-story" id="garden-story" aria-labelledby="garden-title">
   <div class="garden-heading">
     <div>
       <p class="chapter-label">{t("ออกไปเดินเล่นกัน", "Beyond the café")}</p>
@@ -185,8 +185,8 @@ const href = (path: string) => localePath(path, locale);
     </figure>
     <p>
       {t(
-        "แวะดูปลาคาร์ฟ เดินชมสวน พายเรือ หรือให้อาหารปลาตามคำแนะนำของพนักงาน",
-        "Watch the koi and stroll through the garden. Ask our team about rowing or feeding the fish.",
+        "แวะชมปลาคาร์ฟ เดินชมสวน และพายเรือฟรี มีอาหารปลาให้ซื้อเพิ่ม",
+        "Watch the koi, stroll through the garden and row a boat for free. Fish food is available to buy.",
       )}
     </p>
     <a class="cafe-link" href={href("/activities/") + "#experiences"}>

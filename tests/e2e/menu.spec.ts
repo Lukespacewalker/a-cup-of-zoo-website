@@ -45,20 +45,35 @@ test("activities explain separate admission, benefits, children and all feeding 
   await expect(page.locator(".experience-list > li")).toHaveCount(5);
   await expect(page.locator("#basket")).toContainText("80 บาท");
   await expect(page.locator("#basket")).toContainText("โปรโมชัน");
+  await expect(page.locator("#basket")).toContainText("ซื้อ All Zone Pass รับตะกร้าอาหารสัตว์ฟรี 1 ชุด");
+  await expect(page.locator("#ema")).toContainText("ซื้อ Outdoor หรือ All Zone Pass รับป้ายเอมะฟรี 1 แผ่น");
+  await expect(page.locator("#basket")).toContainText("ราคาซื้อแยก");
   await expect(page.locator(".animal-food-list > div")).toHaveCount(7);
-  await expect(page.locator(".garden-spots > li")).toHaveCount(16);
-  await expect(page.locator(".garden-spots > li").last()).toHaveText("สวนทะเลทราย");
+  await expect(page.locator("main > .shell > section").last()).toHaveAttribute("id", "experiences");
+  await expect(page.locator("#wishing-corner, #garden-spots, .spaces, .arrival")).toHaveCount(0);
   await expect(page.locator('iframe, a[href*="heyzine"]')).toHaveCount(0);
 });
 
-test("package photos match their cards and open a local gallery", async ({ page, request }) => {
-  for (const path of ["/activities/", "/en/activities/"]) {
+test("home and activities show the same four passes with larger photos", async ({ page, request }) => {
+  for (const path of ["/", "/en/", "/activities/", "/en/activities/"]) {
+    const home = !path.includes("activities");
+    const english = path.startsWith("/en/");
     await page.goto(path + "#animal-zones");
     await expect(page.locator("#animal-zones")).toHaveText("Indoor");
     await expect(page.locator("#animal-zones")).toBeInViewport();
-    await expect(page.locator(".activity-pass h2")).toHaveText(["Free Zone", "Indoor", "Outdoor", "All Zone Pass"]);
+    await expect(page.locator(`.activity-pass ${home ? "h3" : "h2"}`)).toHaveText(["Free Zone", "Indoor", "Outdoor", "All Zone Pass"]);
     for (const [id, count] of [["free-zone", 6], ["one-zone", 3], ["outdoor-pass", 3], ["all-zone", 6]] as const) {
       await expect(page.locator(`#${id} [data-activity-photo] img`)).toHaveCount(count);
+    }
+    const passes = page.locator("#passes");
+    await expect(passes.locator("#free-zone")).toContainText(english ? "Free rowing" : "พายเรือฟรี");
+    await expect(passes).not.toContainText(english ? "any charges" : "ค่าใช้จ่าย (ถ้ามี)");
+    await expect(passes.getByRole("link", { name: "Free Zone", exact: true })).toHaveCount(2);
+    await expect(passes.locator(".activity-pass").first()).toHaveCSS("border-top-left-radius", "0px");
+    const image = passes.locator(".activity-pass img").first();
+    expect((await image.boundingBox())!.width).toBeGreaterThan(75);
+    if (home) {
+      await expect(passes.locator(".activity-passes-note a")).toHaveAttribute("href", `${english ? "/en" : ""}/activities/#experiences`);
     }
     await expect(page.locator("#outdoor-pass")).toContainText("249");
     const photos = page.locator("#one-zone [data-activity-photo]");
