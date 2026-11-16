@@ -115,6 +115,7 @@ const switchHref = localePath(
     <button
       class="menu-button"
       type="button"
+      disabled
       aria-label={t("เมนู", "Open navigation")}
       aria-expanded="false"
       aria-controls="mobile-nav"
@@ -190,6 +191,7 @@ const switchHref = localePath(
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && !panel.hidden) close();
     });
+    button.disabled = false;
   }
 
   const themeButton = document.querySelector(".theme-button");
