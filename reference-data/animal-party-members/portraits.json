@@ -192,5 +192,18 @@
       "size": 1209
     },
     "kind": "group"
+  },
+  {
+    "partyId": "iguana",
+    "id": "iguana-family",
+    "nameTh": "ครอบครัวอีกัวนา",
+    "nameEn": "Iguana Family",
+    "source": "A4 Pet Poster (5).png",
+    "crop": {
+      "left": 33,
+      "top": 613,
+      "size": 1347
+    },
+    "kind": "group"
   }
 ]
