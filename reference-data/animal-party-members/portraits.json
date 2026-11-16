@@ -142,5 +142,55 @@
       "top": 644,
       "size": 889
     }
+  },
+  {
+    "partyId": "rabbit",
+    "id": "kao-griap",
+    "nameTh": "ข้าวเกรียบ",
+    "nameEn": "Kao-Griap",
+    "source": "A4 Pet Poster (2).png",
+    "crop": {
+      "left": 158,
+      "top": 916,
+      "size": 442
+    }
+  },
+  {
+    "partyId": "rabbit",
+    "id": "kao-khua",
+    "nameTh": "ข้าวคั่ว",
+    "nameEn": "Kao-Khua",
+    "source": "A4 Pet Poster (2).png",
+    "crop": {
+      "left": 889,
+      "top": 900,
+      "size": 418
+    }
+  },
+  {
+    "partyId": "goat",
+    "id": "mini-pygmy-goats",
+    "nameTh": "แพะแคระมินิปิ๊กมี่",
+    "nameEn": "Mini Pygmy Goats",
+    "source": "A4 Pet Poster (3).png",
+    "crop": {
+      "left": 87,
+      "top": 769,
+      "size": 1231
+    },
+    "kind": "group"
+  },
+  {
+    "partyId": "turtle",
+    "id": "turtle-family",
+    "nameTh": "ครอบครัวเต่า",
+    "nameEn": "Turtle Family",
+    "source": "A4 Pet Poster (4).png",
+    "crop": {
+      "left": 109,
+      "top": 782,
+      "size": 1209
+    },
+    "kind": "group"
   }
 ]
