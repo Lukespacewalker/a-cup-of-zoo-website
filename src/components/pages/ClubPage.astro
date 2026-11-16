@@ -3,7 +3,8 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import ArrowIcon from "../site/ArrowIcon.astro";
-import WatercolorAnimal from "../site/WatercolorAnimal.astro";
+import crownedFox from "../../assets/club/crowned-fox.png";
+import membershipCard from "../../assets/club/membership-card.png";
 import friendArtwork from "../../assets/club/friend.png";
 import buddyArtwork from "../../assets/club/buddy.png";
 import bestiesArtwork from "../../assets/club/besties.png";
@@ -58,7 +59,15 @@ const tiers = memberTiers.map((tier, index) => ({
         <p class="chapter-label">
           {t("มาเป็นเพื่อนกัน", "A little closer, every visit")}
         </p>
-        <h1 id="club-title">Zoo Clubs</h1>
+        <h1 id="club-title">
+          Zoo Clubs
+          <Image
+            src={membershipCard}
+            class="club-intro__card"
+            alt=""
+            format="webp"
+          />
+        </h1>
         <p class="club-intro__tagline">
           {t(
             "ยิ่งมาบ่อย ยิ่งสนิทกับน้อง ๆ",
@@ -84,7 +93,12 @@ const tiers = memberTiers.map((tier, index) => ({
       <div class="club-welcome">
         <div class="club-welcome__heading">
           <p>{t("เริ่มต้นที่ Friend", "Start as a Friend")}</p>
-          <WatercolorAnimal animal="meerkats" />
+          <Image
+            src={crownedFox}
+            class="club-welcome__mascot"
+            alt=""
+            format="webp"
+          />
         </div>
         <div class="club-facts">
           <p>
@@ -121,7 +135,7 @@ const tiers = memberTiers.map((tier, index) => ({
     </p>
     <ul class="tier-list">
       {tiers.map((tier) => (
-        <li data-member-tier={tier.name}>
+        <li data-member-tier={tier.name} class={`tier--${tier.id}`}>
           <div class="tier-heading">
             <Image
               src={tier.artwork}
