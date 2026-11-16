@@ -1,5 +1,17 @@
 [
   {
+    "partyId": "cat",
+    "id": "o-rin-gi",
+    "nameTh": "เห็ดออรินจิ",
+    "nameEn": "O-Rin-Gi",
+    "source": "31.png",
+    "crop": {
+      "left": 178,
+      "top": 353,
+      "size": 907
+    }
+  },
+  {
     "partyId": "prairie-dog",
     "id": "thung-ngern",
     "nameTh": "ถุงเงิน",
