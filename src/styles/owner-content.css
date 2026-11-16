@@ -121,10 +121,18 @@
   padding-block: 3rem;
 }
 .club-intro h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.22em;
   font-weight: 400;
   font-size: clamp(3rem, 5.5vw, 5rem);
   line-height: 1.1;
   margin: 0.7rem 0 1.2rem;
+}
+.club-intro__card {
+  flex-shrink: 0;
+  width: 1em;
+  height: auto;
 }
 .club-intro__tagline {
   font-size: clamp(1.3rem, 2.1vw, 1.8rem);
@@ -157,8 +165,10 @@
   font-size: 1.1rem;
   color: var(--leaf);
 }
-.club-welcome__heading .watercolor-animal {
-  width: 5rem;
+.club-welcome__mascot {
+  flex-shrink: 0;
+  width: clamp(5rem, 9vw, 7rem);
+  height: auto;
 }
 .club-facts {
   display: grid;
@@ -186,10 +196,28 @@
   margin-block: 1.8rem;
 }
 .tier-list > li {
+  --tier-ink: light-dark(#40291e, #fff0df);
+
   min-width: 0;
   border: 1px solid var(--line);
-  border-top: 3px solid var(--leaf);
-  background: color-mix(in srgb, var(--paper) 65%, transparent);
+  background: var(--tier-surface);
+  color: var(--tier-ink);
+}
+.tier--friend {
+  --tier-surface: light-dark(#fae4b6, #544326);
+}
+.tier--buddy {
+  --tier-surface: light-dark(#d9eafa, #28475e);
+}
+.tier--besties {
+  --tier-surface: light-dark(#f9d8d5, #5d3842);
+}
+.tier--soulmate {
+  --tier-surface: light-dark(#f7c89e, #663b24);
+}
+.tier-list > .tier--family {
+  --tier-surface: light-dark(#562a1b, #45251f);
+  --tier-ink: #ffe2a0;
 }
 .tier-heading {
   display: flex;
@@ -209,29 +237,29 @@
   display: block;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
-  color: var(--muted-text);
 }
 .tier-list h3 {
   margin: 0.1rem 0 0;
   font-size: 1.5rem;
   line-height: 1.4;
+  color: inherit;
 }
 .tier-spend {
   margin: 0.8rem 0.8rem 1rem;
   text-align: center;
   font-weight: 500;
-  color: var(--cocoa-deep);
 }
 .tier-spend > span {
   display: block;
   font-size: 0.75rem;
-  color: var(--muted-text);
   font-weight: 400;
 }
 .tier-benefits {
   margin: 0;
   padding: 0.4rem 0.6rem 0.6rem;
   border-top: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--cocoa-deep);
 }
 .tier-benefit {
   padding: 0.8rem 0.6rem;
