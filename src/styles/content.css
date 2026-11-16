@@ -309,12 +309,6 @@
   .menu-mast > p {
     margin-block: 0.5rem;
   }
-  .menu-mast .menu-jump {
-    gap: 0.1rem 0.9rem;
-    margin-top: 0.8rem;
-    padding-top: 0.5rem;
-    font-size: 0.85rem;
-  }
   .food-section:first-child {
     padding-top: 1.3rem;
   }

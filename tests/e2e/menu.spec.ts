@@ -31,6 +31,58 @@ test("all food and prices are server rendered with optional menu-book links", as
   await context.close();
 });
 
+test("signature dishes have matching photos and prices ahead of the category navigation", async ({ page }) => {
+  for (const locale of [
+    {
+      path: "/menu/",
+      names: ["ข้าวแมว", "ข้าวหมา", "ยำนกแก้ว (ยำตะไคร้)"],
+      price: "179 บาท",
+      browse: "เลือกชมเมนูพร้อมราคาด้านล่าง",
+    },
+    {
+      path: "/en/menu/",
+      names: ["Cat Rice", "Dog Rice", "Parrot Salad (Lemongrass Salad)"],
+      price: "179 THB",
+      browse: "browse the food menu and prices below",
+    },
+  ]) {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(locale.path);
+    const signature = page.locator("#signature");
+    const pictures = signature.getByRole("img");
+    await expect(signature.getByRole("heading", { level: 3 })).toHaveText(locale.names);
+    await expect(signature.locator(".signature-menu__price")).toHaveText(Array(3).fill(locale.price));
+    await expect(signature).not.toContainText(/อาหารสำหรับคน|for people/i);
+    await expect(pictures).toHaveCount(3);
+    for (const picture of await pictures.all()) {
+      await picture.scrollIntoViewIfNeeded();
+      await expect.poll(() => picture.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+    }
+    const positions = () => pictures.evaluateAll((images) =>
+      images.map((image) => {
+        const { left, top } = image.getBoundingClientRect();
+        return { left, top };
+      }),
+    );
+    const stacked = await positions();
+    expect(stacked[0].left).toBe(stacked[2].left);
+    expect(stacked[2].top).toBeGreaterThan(stacked[0].top);
+
+    const categories = page.locator("#signature + nav#menu-categories");
+    await page.getByRole("link", { name: locale.browse }).click();
+    await expect(page).toHaveURL(/#menu-categories$/);
+    await expect(categories).toBeInViewport();
+    await categories.locator('a[href="#signature"]').click();
+    await expect(page).toHaveURL(/#signature$/);
+    await expect(signature.getByRole("heading", { level: 2 })).toBeInViewport();
+
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const sideBySide = await positions();
+    expect(sideBySide[0].top).toBe(sideBySide[2].top);
+    expect(sideBySide[2].left).toBeGreaterThan(sideBySide[0].left);
+  }
+});
+
 test("activities explain separate admission, benefits, children and all feeding choices", async ({ page }) => {
   await page.goto("/activities/");
   await expect(page.locator("#passes")).toContainText("ขั้นต่ำ 1 ออร์เดอร์ต่อท่าน");
