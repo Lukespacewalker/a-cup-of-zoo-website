@@ -1,10 +1,40 @@
 {
   "folder": "https://drive.google.com/drive/folders/1RU96kOcj_OpxyBUBsBVSXAGe9-ukJjRZ?usp=sharing",
   "posters": {
+    "12.png": {
+      "width": 1414,
+      "height": 2000,
+      "sha256": "dd66858b8c3fdfd8e0acc4e129bb3f8348d97eeefdc71a4abbc10bb9e98a666d"
+    },
+    "14.png": {
+      "width": 1414,
+      "height": 2000,
+      "sha256": "e604f56042060cc509cdf8d52cde8a01f3a107d2f424f6cb3000ff13bc61de80"
+    },
+    "15.png": {
+      "width": 1414,
+      "height": 2000,
+      "sha256": "d2bcaf1c8469217ee3d9b299629d87f21eb3c459cd858fdabb46559b4b1926e4"
+    },
+    "16.png": {
+      "width": 1414,
+      "height": 2000,
+      "sha256": "9a703f5af3035373aafd5e1ca9c8d8cfba4f2736d6a35e7a8f12b825f77a8b69"
+    },
     "31.png": {
       "width": 1414,
       "height": 2000,
       "sha256": "d9941f6cd4a7bce3d7b30df0981e1aec6f8aef384253ca4e1a029325e562e6cf"
+    },
+    "33.png": {
+      "width": 1414,
+      "height": 2000,
+      "sha256": "6752573fc986805103fd365543baf2f1027c8b04d5dbd3df938c16dc2898311a"
+    },
+    "37.png": {
+      "width": 1414,
+      "height": 2000,
+      "sha256": "600a8355e3296556242e096d51937068487c0a20e014e713de02e2d4b8153d21"
     },
     "A4 Pet Poster (9).png": {
       "width": 1414,

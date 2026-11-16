@@ -1,5 +1,53 @@
 [
   {
+    "partyId": "dog",
+    "id": "mali",
+    "nameTh": "มะลิ",
+    "nameEn": "Mali",
+    "source": "12.png",
+    "crop": {
+      "left": 387,
+      "top": 482,
+      "size": 916
+    }
+  },
+  {
+    "partyId": "dog",
+    "id": "gamo",
+    "nameTh": "กาโม่",
+    "nameEn": "Gamo",
+    "source": "14.png",
+    "crop": {
+      "left": 269,
+      "top": 424,
+      "size": 833
+    }
+  },
+  {
+    "partyId": "dog",
+    "id": "barbie",
+    "nameTh": "บาร์บี้",
+    "nameEn": "Barbie",
+    "source": "15.png",
+    "crop": {
+      "left": 122,
+      "top": 529,
+      "size": 991
+    }
+  },
+  {
+    "partyId": "dog",
+    "id": "love",
+    "nameTh": "เลิฟ",
+    "nameEn": "Love",
+    "source": "16.png",
+    "crop": {
+      "left": 293,
+      "top": 424,
+      "size": 816
+    }
+  },
+  {
     "partyId": "cat",
     "id": "o-rin-gi",
     "nameTh": "เห็ดออรินจิ",
@@ -9,6 +57,30 @@
       "left": 178,
       "top": 353,
       "size": 907
+    }
+  },
+  {
+    "partyId": "cat",
+    "id": "hed-hom",
+    "nameTh": "เห็ดหอม",
+    "nameEn": "Hed-Hom",
+    "source": "33.png",
+    "crop": {
+      "left": 262,
+      "top": 367,
+      "size": 869
+    }
+  },
+  {
+    "partyId": "cat",
+    "id": "sua-phu-khao",
+    "nameTh": "เสือภูเขา",
+    "nameEn": "Sua Phu Khao",
+    "source": "37.png",
+    "crop": {
+      "left": 151,
+      "top": 416,
+      "size": 713
     }
   },
   {
