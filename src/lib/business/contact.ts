@@ -5,6 +5,9 @@ export const shopPhones = [
   { display: "092 279 1890", e164: "+66922791890" },
 ];
 
+// The owner's contact brief assigns this line to venue, marketing and events.
+export const eventTeamPhone = { display: "085 066 4451", e164: "+66850664451" };
+
 export function venuePhones(
   content?: Pick<
     VenueContentInput,

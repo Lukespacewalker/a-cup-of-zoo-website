@@ -49,6 +49,10 @@ const mapEmbed = `https://www.google.com/maps?cid=13571304804789208237&output=em
         "Check opening hours, the address and directions before you visit.",
       )}
     </p>
+    <a class="cafe-link" href={href("/events/#group-visits")}>
+      {t("ทัศนศึกษาและเยี่ยมชมเป็นกลุ่ม", "School trips & group visits")}{" "}
+      <ArrowIcon />
+    </a>
   </header>
   {page.venueProblem && (
     <ContentUnavailable

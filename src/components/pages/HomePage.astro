@@ -167,23 +167,25 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
 
   <HomeStories locale={locale} />
   <WishingCorner locale={locale} />
-  <section
-    class="owner-section"
-    aria-label={t("มาเที่ยวเป็นกลุ่ม", "Visit as a group")}
-  >
-    <article>
-      <p class="chapter-label">Group tours & events</p>
-      <h2>{t("ชวนกันมา ทั้งกลุ่ม", "Bring your whole group")}</h2>
-      <p>
-        {t(
-          "ทัวร์โรงเรียน กิจกรรมกลุ่ม และงานร่วมกับแบรนด์ คุยกับทีมร้านเพื่อวางแผนวันของคุณ",
-          "School visits, group gatherings and brand collaborations. Plan your day with the café team.",
-        )}
-      </p>
-      <a class="cafe-link" href={href("/events/")}>
-        {t("ดูทัวร์กลุ่มและร่วมงาน", "Groups & collaborations")} <ArrowIcon />
+  <section class="owner-section" aria-labelledby="home-events-title">
+    <h2 id="home-events-title">
+      {t("ทัวร์กลุ่ม & ร่วมงาน", "Group visits & collaborations")}
+    </h2>
+    <p>
+      {t(
+        "พาคณะมาเจอเพื่อนสัตว์ ชวนเราร่วมแคมเปญ หรือมาจัดอีเวนต์ที่ร้าน",
+        "Bring your group to meet our animals, involve us in your next campaign, or host an event at the café.",
+      )}
+    </p>
+    <div class="actions">
+      <a class="button" href={href("/events/#group-visits")}>
+        {t("ทัศนศึกษาและเยี่ยมชมเป็นกลุ่ม", "School & group visits")}{" "}
+        <ArrowIcon />
       </a>
-    </article>
+      <a class="button secondary" href={href("/events/#collaborations")}>
+        {t("ร่วมงานกับแบรนด์", "Brand collaborations")} <ArrowIcon />
+      </a>
+    </div>
   </section>
 
   <section class="home-follow" aria-labelledby="follow-title">

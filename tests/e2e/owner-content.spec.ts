@@ -26,6 +26,68 @@ test("owner content is bilingual, discoverable, and fits phones", async ({ page 
   }
 });
 
+test("school and brand enquiries have separate entry points in both languages", async ({ page }) => {
+  for (const { width, prefix } of [
+    { width: 390, prefix: "" },
+    { width: 1440, prefix: "/en" },
+  ]) {
+    const events = `${prefix}/events/`;
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(`${prefix}/`);
+
+    await page.locator(`main a[href="${events}#collaborations"]`).click();
+    await expect(page).toHaveURL(`${events}#collaborations`);
+    const brand = page.locator("#collaborations");
+    await expect(brand.locator('a[href="tel:+66850664451"]')).toBeVisible();
+    await expect(brand.getByRole("link", { name: /Facebook/ })).toHaveAttribute(
+      "href",
+      "https://www.facebook.com/Acupofzoocafe/",
+    );
+    await expect(brand.getByRole("heading", { name: "Yagi Milk Probiotic" })).toHaveCount(1);
+    await expect(brand.getByRole("img", { name: /Yagi Milk Probiotic/ })).toHaveCount(2);
+    await expect(brand.getByRole("heading", { name: "Suzuki Demo Day" })).toBeVisible();
+
+    await page.locator('#events-top a[href="#group-visits"]').click();
+    await expect(page).toHaveURL(`${events}#group-visits`);
+    await expect(page.locator('#group-visits a[href="tel:+66989838037"]')).toBeInViewport();
+    await page.locator('#events-top a[href="#collaborations"]').click();
+    await expect(page).toHaveURL(`${events}#collaborations`);
+    await expect(brand.locator('a[href="tel:+66850664451"]')).toBeInViewport();
+
+    await page.goto(`${prefix}/visit/`);
+    await page.locator(`main a[href="${events}#group-visits"]`).click();
+    await expect(page).toHaveURL(`${events}#group-visits`);
+    await expect(page.locator("#group-title")).toBeInViewport();
+
+    if (width === 390) await page.locator(".menu-button").click();
+    const nav = page.locator(width === 390 ? "#mobile-nav" : ".desktop-nav");
+    const entry = nav.locator(`a[href="${events}"]`);
+    await expect(entry).toHaveAttribute("aria-current", "page");
+    await entry.click();
+    await expect(page).toHaveURL(events);
+  }
+});
+
+test("desktop navigation fits at its compact and full-width breakpoints", async ({ page }) => {
+  for (const width of [1051, 1271]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const path of ["/events/", "/en/events/"]) {
+      await page.goto(path);
+      await page.evaluate(() => document.fonts.ready);
+      const nav = page.locator(".desktop-nav");
+      await expect(nav.locator(`a[href="${path}"]`)).toBeVisible();
+      const fits = await nav.evaluate((element) => {
+        const header = element.closest("header")!;
+        const navBox = element.getBoundingClientRect();
+        const logo = header.querySelector(".wordmark")!.getBoundingClientRect();
+        const tools = header.querySelector(".header-tools")!.getBoundingClientRect();
+        return navBox.left >= logo.right && navBox.right <= tools.left && tools.right <= innerWidth;
+      });
+      expect(fits, `${path} at ${width}px`).toBe(true);
+    }
+  }
+});
+
 test("club tiers keep their artwork, coupon separators and added benefits in both languages", async ({ page }) => {
   const tiers = ["Friend", "Buddy", "Besties", "Soulmate", "Family"];
   const highlightedRows = [0, 2, 3, 3, 2];

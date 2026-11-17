@@ -18,6 +18,7 @@ const links = [
   [href("/menu/"), t("เมนู", "Menu")],
   [href("/farm/"), t("ฟาร์มของเรา", "Our farm")],
   ["/news/", t("ข่าว", "News (Thai)")],
+  [href("/events/"), t("ทัวร์กลุ่ม & ร่วมงาน", "Groups & collaborations")],
 ];
 const currentPath = Astro.url.pathname;
 const isCurrent = (url: string) =>
@@ -143,12 +144,6 @@ const switchHref = localePath(
       {label}
     </a>
   ))}
-  <a
-    href={href("/events/")}
-    aria-current={isCurrent(href("/events/")) ? "page" : undefined}
-  >
-    {t("ทัวร์กลุ่ม & ร่วมงาน", "Group tours & collaborations")}
-  </a>
   <a
     href={href("/visit/")}
     aria-current={isCurrent(href("/visit/")) ? "page" : undefined}

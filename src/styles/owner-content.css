@@ -33,27 +33,18 @@
   min-width: 0;
 }
 .event-gallery img {
+  display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
-.event-gallery figcaption {
-  font-size: 0.85rem;
-  color: var(--muted-text);
-  padding-top: 0.6rem;
+.campaign-gallery {
+  grid-template-columns: repeat(2, 1fr);
 }
 .campaign-gallery img {
   aspect-ratio: auto;
   object-fit: contain;
-}
-.owner-contact {
-  margin-block: 2rem;
-  padding: 2rem 0;
-  border-top: 1px solid var(--line);
-}
-.owner-contact a {
-  white-space: nowrap;
 }
 .club-invitation {
   display: grid;
@@ -433,7 +424,11 @@
     padding: 0.8rem;
   }
   .event-gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+  .event-gallery:not(.campaign-gallery) figure:first-child {
+    grid-column: span 2;
   }
   .club-facts {
     grid-template-columns: 1fr;

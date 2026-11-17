@@ -5,153 +5,288 @@ import ArrowIcon from "../site/ArrowIcon.astro";
 import PageHero from "../site/PageHero.astro";
 import { loadPage } from "../../lib/content/load-page";
 import { ownerPhoto } from "../../lib/content/owner-brief";
-import { venuePhones } from "../../lib/business/contact";
+import { eventTeamPhone, venuePhones } from "../../lib/business/contact";
+import { allowedExternalUrl } from "../../lib/business/links";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
+
 interface Props {
   locale: Locale;
 }
+
 const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
 const page = await loadPage();
-const phones = venuePhones(page.venue?.content);
+const venue = page.venue?.content;
+const phones = venuePhones(venue);
+const schoolPhones = phones.length ? phones : [eventTeamPhone];
+const facebook = allowedExternalUrl(venue?.facebookUrl ?? null, "facebook");
+const title = t(
+  "ทัศนศึกษา จัดงาน และร่วมงานกับเรา",
+  "School visits, events & brand collaborations",
+);
 ---
 
 <SiteLayout
   locale={locale}
-  title={t(
-    "ทัวร์กลุ่ม จัดงาน และร่วมงานกับเรา",
-    "Group visits, events & collaborations",
-  )}
+  title={title}
   description={t(
-    "พาโรงเรียนหรือกลุ่มเพื่อนมาเที่ยว A Cup of Zoo คลอง 6 ดูภาพกิจกรรมกลุ่ม งาน Suzuki และผลงาน Yagi Milk พร้อมช่องทางติดต่อร้าน",
-    "Plan a school or group visit to A Cup of Zoo, Khlong 6. Explore past group visits, the Suzuki event and Yagi Milk work, and contact the café.",
+    "สอบถามทัศนศึกษาและการเยี่ยมชมเป็นกลุ่ม หรือติดต่อร่วมงานโฆษณาและจัดอีเวนต์กับ A Cup of Zoo คาเฟ่สัตว์คลอง 6 ปทุมธานี",
+    "Enquire about school trips, group visits, brand campaigns and events at A Cup of Zoo, an animal café in Khlong 6, Pathum Thani.",
   )}
   page={page}
 >
   <PageHero
     id="events-top"
-    label="Group tours & events"
-    title={t(
-      "ชวนกันมา เป็นความทรงจำของทั้งกลุ่ม",
-      "A day to share with your whole group",
-    )}
+    title={title}
     description={t(
-      "โรงเรียน กลุ่มเพื่อน หรือทีมงาน มาใช้เวลาท่ามกลางสวนและเพื่อนสัตว์ที่ A Cup of Zoo คลอง 6 ปทุมธานี",
-      "Bring your school, friends or team to spend time in the garden and meet the animal family at A Cup of Zoo in Khlong 6, Pathum Thani.",
+      "พาคณะมาเจอเพื่อนสัตว์ หรือชวน A Cup of Zoo ร่วมแคมเปญและจัดงานที่คลอง 6 ปทุมธานี",
+      "Bring your group to meet our animal friends, or work with us on a campaign or event in Khlong 6, Pathum Thani.",
     )}
     image={ownerPhoto(18)}
     alt={t(
-      "กลุ่มนักเรียนและครูเดินชมสวนของร้าน",
-      "Students and teachers exploring the café garden",
+      "นักเรียนและครูเดินชมสวนของร้าน",
+      "Students and teachers walking through the café garden",
     )}
     position="center 65%"
-    href="#event-contact"
-    action={t("คุยเรื่องวันของคุณ", "Enquire about your visit")}
+    href="#group-visits"
+    action={t("ทัศนศึกษาและเยี่ยมชมเป็นกลุ่ม", "School & group visits")}
+    secondaryAction={{
+      href: "#collaborations",
+      label: t("ร่วมงานกับแบรนด์", "Brand collaborations"),
+    }}
   />
+
   <section
-    class="owner-section"
+    class="owner-section event-service"
     id="group-visits"
     aria-labelledby="group-title"
+    tabindex="-1"
   >
-    <p class="chapter-label">A day together</p>
-    <h2 id="group-title">
-      {t("ทัวร์กลุ่มและกิจกรรมที่ร้าน", "Group visits & gatherings")}
-    </h2>
-    <p>
-      {t(
-        "ชมภาพบรรยากาศการมาเยือนของโรงเรียนและการรวมกลุ่มในร้าน แล้วเล่าให้เราฟังว่าคุณอยากจัดวันแบบไหน",
-        "Take a look at school visits and gatherings at the café, then tell us about the day you have in mind.",
-      )}
-    </p>
+    <div class="event-service__intro">
+      <div>
+        <h2 id="group-title">
+          {t("ทัศนศึกษาและเยี่ยมชมเป็นกลุ่ม", "School trips & group visits")}
+        </h2>
+        <p>
+          {t(
+            "พาเด็ก ๆ มารู้จักเพื่อนสัตว์ที่คลอง 6 เดินชมสวนและเลือกกิจกรรมในร้านให้เหมาะกับช่วงวัย เราต้อนรับทั้งคณะโรงเรียน กลุ่มเพื่อน และทีมที่อยากมาเที่ยวด้วยกัน",
+            "Bring your class to meet our animals in Khlong 6, explore the garden, and choose activities that suit their age. Groups of friends and teams are welcome too.",
+          )}
+        </p>
+        <a class="cafe-link" href={href("/activities/")}>
+          {t("ดูโซนสัตว์และกิจกรรมในร้าน", "Explore animal zones & activities")}{" "}
+          <ArrowIcon />
+        </a>
+      </div>
+      <div class="event-enquiry" id="event-contact">
+        <h3>{t("สอบถามทัศนศึกษา", "Enquire about a group visit")}</h3>
+        <p>
+          {t(
+            "แจ้งวันที่อยากมา ช่วงอายุ จำนวนเด็กและผู้ดูแล หรือจำนวนคนในกลุ่ม พร้อมกิจกรรมที่สนใจ ทีมร้านจะช่วยเช็กวันว่างและคุยรายละเอียดกับคุณ",
+            "Share your preferred date, age range, number of children and accompanying adults or total group size, and any activities you have in mind. We’ll check availability and discuss the details.",
+          )}
+        </p>
+        <div class="actions">
+          {schoolPhones.map((phone, index) => (
+            <a
+              class:list={["button", { secondary: index > 0 }]}
+              href={`tel:${phone.e164}`}
+            >
+              {t("โทร ", "Call ")}
+              {phone.display}
+            </a>
+          ))}
+        </div>
+        <a class="cafe-link" href={href("/visit/")}>
+          {t("ข้อมูลร้านและเส้นทาง", "Café details & directions")} <ArrowIcon />
+        </a>
+      </div>
+    </div>
     <EventGallery
-      photos={[16, 17, 20].map((number, index) => ({
-        src: ownerPhoto(number),
-        alt: t(
-          `บรรยากาศทัวร์กลุ่มและกิจกรรมที่ร้าน ภาพ ${index + 1}`,
-          `Group visits and gatherings at the café, photo ${index + 1}`,
-        ),
-      }))}
-    />
-    <a class="cafe-link" href={href("/activities/")}>
-      {t("ดูโซนสัตว์และกิจกรรมในร้าน", "Explore animal zones & activities")}{" "}
-      <ArrowIcon />
-    </a>
-  </section>
-  <section
-    class="owner-section"
-    id="brand-events"
-    aria-labelledby="brand-title"
-  >
-    <p class="chapter-label">Events at the café</p>
-    <h2 id="brand-title">Suzuki Demo Day</h2>
-    <p>
-      {t(
-        "อีกบรรยากาศของร้านในวันจัดกิจกรรม Suzuki Demo Day",
-        "A different side of the café during Suzuki Demo Day.",
-      )}
-    </p>
-    <EventGallery
-      photos={[22, 23, 24].map((number, index) => ({
-        src: ownerPhoto(number),
-        alt: t(
-          `กิจกรรม Suzuki Demo Day ที่ A Cup of Zoo ภาพ ${index + 1}`,
-          `Suzuki Demo Day at A Cup of Zoo, photo ${index + 1}`,
-        ),
-      }))}
+      photos={[
+        {
+          src: ownerPhoto(16),
+          alt: t(
+            "คณะนักเรียนมาทัศนศึกษาที่ A Cup of Zoo",
+            "A school group visiting A Cup of Zoo",
+          ),
+        },
+        {
+          src: ownerPhoto(17),
+          alt: t(
+            "เด็ก ๆ เดินชมโซนสัตว์ในสวน",
+            "Children visiting the outdoor animal area",
+          ),
+        },
+        {
+          src: ownerPhoto(20),
+          alt: t(
+            "คณะถ่ายภาพร่วมกันในห้องกิจกรรมของร้าน",
+            "A group posing for a photo inside the café",
+          ),
+        },
+      ]}
     />
   </section>
+
   <section
-    class="owner-section"
+    class="owner-section event-service"
     id="collaborations"
     aria-labelledby="collaboration-title"
+    tabindex="-1"
   >
-    <p class="chapter-label">Work with our animal family</p>
-    <h2 id="collaboration-title">
-      {t("โฆษณา รีวิว และงานอีเวนต์", "Campaigns, reviews & events")}
-    </h2>
-    <p>
-      {t(
-        "สนใจร่วมงานกับ A Cup of Zoo ทั้งงานถ่ายภาพ โฆษณา พรีเซ็นเตอร์ หรือออกอีเวนต์ ติดต่อเพื่อคุยรูปแบบงานกับทีมร้านได้",
-        "Contact the café team to discuss photography, advertising, presenter work or event appearances with A Cup of Zoo.",
-      )}
-    </p>
-    <EventGallery
-      campaign
-      caption="Yagi Milk · A Cup of Zoo"
-      photos={[26, 27].map((number, index) => ({
-        src: ownerPhoto(number),
-        alt: t(
-          `ผลงานโฆษณา Yagi Milk ร่วมกับ${index === 0 ? "น้องหมา" : "น้องแมว"}ของร้าน`,
-          `Yagi Milk campaign featuring one of the café's ${index === 0 ? "dogs" : "cats"}`,
-        ),
-      }))}
-    />
-  </section>
-  <section
-    class="owner-contact"
-    id="event-contact"
-    aria-labelledby="contact-title"
-  >
-    <h2 id="contact-title">
-      {t("วางแผนร่วมกับทีมร้าน", "Plan it with the café team")}
-    </h2>
-    <p>
-      {t(
-        "แจ้งวันที่สนใจ จำนวนคน ช่วงอายุ และรูปแบบกิจกรรมที่ต้องการ เพื่อให้ทีมร้านช่วยตรวจความพร้อมและเสนอรายละเอียดที่เหมาะกับกลุ่มของคุณ",
-        "Share your preferred date, group size, age range and activity ideas so the team can check availability and discuss suitable arrangements.",
-      )}
-    </p>
-    <div class="actions">
-      {phones.map((phone) => (
-        <a class="button secondary" href={`tel:${phone.e164}`}>
-          {t("โทร ", "Call ")}
-          {phone.display}
-        </a>
-      ))}
-      <a class="cafe-link" href={href("/visit/")}>
-        {t("ข้อมูลร้านและเส้นทาง", "Café details & directions")} <ArrowIcon />
-      </a>
+    <div class="event-service__intro">
+      <div>
+        <h2 id="collaboration-title">
+          {t("ร่วมงานกับแบรนด์", "Work with A Cup of Zoo")}
+        </h2>
+        <p>
+          {t(
+            "อยากชวนเพื่อนสัตว์ของเราไปอยู่ในแคมเปญ หรือมาจัดอีเวนต์ที่ร้าน? คุยกับทีมเราได้เรื่องงานโฆษณา ถ่ายภาพ รีวิว พรีเซ็นเตอร์ และกิจกรรมของแบรนด์",
+            "Interested in featuring one of our animal friends in a campaign or hosting an event at the café? Talk to us about advertising, photography, reviews, ambassador work or brand events.",
+          )}
+        </p>
+      </div>
+      <div class="event-enquiry">
+        <h3>{t("ส่งบรีฟให้ทีมร้าน", "Share your brief")}</h3>
+        <p>
+          {t(
+            "บอกชื่อแบรนด์ ประเภทงาน วันที่สนใจ และสิ่งที่อยากให้ทีมร้านหรือเพื่อนสัตว์ช่วยในโปรเจกต์",
+            "Tell us the brand, type of project, preferred date, and how you’d like the café team or animals to be involved.",
+          )}
+        </p>
+        <div class="actions">
+          {facebook && (
+            <a class="button" href={facebook}>
+              {t("ติดต่อทาง Facebook", "Contact us on Facebook")}
+            </a>
+          )}
+          <a
+            class:list={["button", { secondary: facebook }]}
+            href={`tel:${eventTeamPhone.e164}`}
+          >
+            {t("โทร ", "Call ")}
+            {eventTeamPhone.display}
+          </a>
+        </div>
+      </div>
     </div>
+
+    <article class="event-case" aria-labelledby="yagi-title">
+      <div>
+        <h3 id="yagi-title">Yagi Milk Probiotic</h3>
+        <p>
+          {t(
+            "แคมเปญอาหารเสริมสัตว์เลี้ยงที่มีน้องบันนี่และน้องออรินจิร่วมถ่ายโฆษณา",
+            "A pet supplement campaign featuring Bunny, our dog, and Orenji, our cat.",
+          )}
+        </p>
+      </div>
+      <EventGallery
+        campaign
+        photos={[
+          {
+            src: ownerPhoto(26),
+            alt: t(
+              "โปสเตอร์ Yagi Milk Probiotic ฉบับน้องบันนี่",
+              "Yagi Milk Probiotic ad featuring Bunny the dog",
+            ),
+          },
+          {
+            src: ownerPhoto(27),
+            alt: t(
+              "โปสเตอร์ Yagi Milk Probiotic ฉบับน้องออรินจิ",
+              "Yagi Milk Probiotic ad featuring Orenji the cat",
+            ),
+          },
+        ]}
+      />
+    </article>
+
+    <article
+      class="event-case"
+      id="brand-events"
+      aria-labelledby="suzuki-title"
+    >
+      <div>
+        <h3 id="suzuki-title">Suzuki Demo Day</h3>
+        <p>
+          {t(
+            "ภาพบรรยากาศงาน Suzuki Demo Day ที่ A Cup of Zoo",
+            "Scenes from Suzuki Demo Day at A Cup of Zoo.",
+          )}
+        </p>
+      </div>
+      <EventGallery
+        photos={[22, 23, 24].map((number, index) => ({
+          src: ownerPhoto(number),
+          alt: t(
+            `กิจกรรม Suzuki Demo Day ที่ A Cup of Zoo ภาพ ${index + 1}`,
+            `Suzuki Demo Day at A Cup of Zoo, photo ${index + 1}`,
+          ),
+        }))}
+      />
+    </article>
   </section>
 </SiteLayout>
+
+<style>
+  .event-service,
+  .event-enquiry,
+  .event-case {
+    scroll-margin-top: 1rem;
+  }
+  .event-service__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .event-service__intro p,
+  .event-case p {
+    max-width: 36rem;
+    color: var(--muted-text);
+  }
+  .event-enquiry {
+    padding: clamp(1rem, 2.5vw, 1.8rem);
+    background: var(--garden-field);
+    border: 1px solid var(--line);
+  }
+  .event-enquiry h3,
+  .event-case h3 {
+    margin: 0 0 0.55rem;
+    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  }
+  .event-enquiry p,
+  .event-case p {
+    margin-block: 0;
+  }
+  .event-enquiry .button {
+    padding-inline: 0.9rem;
+  }
+  .event-enquiry .cafe-link {
+    margin-top: 0.6rem;
+  }
+  .event-case {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    align-items: start;
+    gap: 1rem 2rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .event-case :global(.event-gallery) {
+    margin: 0;
+  }
+  .event-case :global(.campaign-gallery) {
+    max-width: 32rem;
+  }
+  @media (max-width: 780px) {
+    .event-service__intro,
+    .event-case {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
