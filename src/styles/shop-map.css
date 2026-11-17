@@ -5,6 +5,12 @@
   background: var(--garden-field);
   scroll-margin-top: 1rem;
 }
+.shop-map-section--home {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+}
 .shop-map {
   max-width: 1400px;
   margin-inline: auto;
@@ -24,6 +30,9 @@
 }
 .shop-map-heading {
   padding-inline: clamp(0rem, 2vw, 2rem);
+}
+.shop-map-section--home .shop-map-heading {
+  padding-inline: 0;
 }
 .shop-map-heading h2 {
   font-size: clamp(1.9rem, 3.1vw, 3rem);
@@ -336,9 +345,6 @@
   }
 }
 @media (max-width: 759px) {
-  .shop-map-section {
-    padding-inline: 1rem;
-  }
   .shop-map-heading {
     padding: 0;
   }

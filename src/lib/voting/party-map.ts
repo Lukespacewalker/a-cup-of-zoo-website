@@ -103,7 +103,9 @@ export function initAnimalPartyMaps() {
         const link = place.querySelector("a")!;
         link.href = `#party-${leader.id}`;
         link.dataset.partyLink = leader.id;
-        place.querySelector("[data-place]")!.textContent = String(leader.rank);
+        const rank = String(leader.rank);
+        place.dataset.rank = rank;
+        place.querySelector("[data-place]")!.textContent = rank;
         place.querySelector("[data-leader-name]")!.textContent = leader.name;
         place.querySelector("[data-leader-count]")!.textContent = format.format(
           leader.count,

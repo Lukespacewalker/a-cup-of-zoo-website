@@ -56,13 +56,20 @@ const detailHref = (id: string) => `#party-${id}`;
 >
   <header class="party-intro">
     <Heading id="animal-parties-title">
-      {t("คุณอยู่พรรคไหน?", "Which party gets your vote?")}
+      {home
+        ? t("สมาชิกที่นี่มีมีใครกันบ้าง ?", "Who lives here?")
+        : t("คุณอยู่พรรคไหน?", "Which party gets your vote?")}
     </Heading>
     <p>
-      {t(
-        "เลือกจากแผนที่ ทำความรู้จักสมาชิก แล้วโหวตให้พรรคโปรด",
-        "Pick a party on the map, meet its members, and cast your vote.",
-      )}
+      {home
+        ? t(
+            "รู้จักเพื่อนสัตว์ แล้วโหวดใจให้พรรคโปรด",
+            "Meet our animal friends and give your favourite party a heart.",
+          )
+        : t(
+            "เลือกจากแผนที่ ทำความรู้จักสมาชิก แล้วโหวตให้พรรคโปรด",
+            "Pick a party on the map, meet its members, and cast your vote.",
+          )}
     </p>
   </header>
 
@@ -73,8 +80,7 @@ const detailHref = (id: string) => `#party-${id}`;
       </RankHeading>
       <div class="party-leader-actions">
         <span class="party-total" hidden={!totals}>
-          <span aria-hidden="true">♡</span>
-          {t("รวม", "Total")}{" "}
+          <span aria-hidden="true">♡</span> {t("รวม", "Total")}{" "}
           <strong data-party-total>
             {totals ? format.format(totals.total) : "—"}
           </strong>{" "}
@@ -89,17 +95,24 @@ const detailHref = (id: string) => `#party-${id}`;
         </a>
       </div>
     </div>
-    <ol class="party-leaders" data-party-leaders hidden={leaders.length === 0}>
+    <ol
+      class:list={["party-leaders", { "party-leaders--podium": home }]}
+      data-party-leaders
+      hidden={leaders.length === 0}
+    >
       {Array.from({ length: 3 }, (_, index) => {
         const leader = leaders[index];
         return (
-          <li data-party-leader hidden={!leader}>
+          <li data-party-leader data-rank={leader?.rank} hidden={!leader}>
             <a
               href={leader ? detailHref(leader.id) : undefined}
               data-party-link={leader?.id}
             >
-              <span class="party-place" data-place>
-                {leader?.rank}
+              <span class="party-place">
+                {home && (
+                  <span class="party-sr-only">{t("อันดับ ", "Rank ")}</span>
+                )}
+                <span data-place>{leader?.rank}</span>
               </span>
               <span class="party-leader-name" data-leader-name>
                 {leader?.name}
@@ -285,14 +298,15 @@ const detailHref = (id: string) => `#party-${id}`;
                   )}
                 </p>
               )}
-              {memberImages.some(({ kind }) => kind === "illustration") && (
-                <p class="party-member-note">
-                  {t(
-                    "ภาพประกอบและชื่อชนิดสัตว์จาก Canva",
-                    "Species illustrations and labels from Canva",
-                  )}
-                </p>
-              )}
+              {!home &&
+                memberImages.some(({ kind }) => kind === "illustration") && (
+                  <p class="party-member-note">
+                    {t(
+                      "ภาพประกอบและชื่อชนิดสัตว์จาก Canva",
+                      "Species illustrations and labels from Canva",
+                    )}
+                  </p>
+                )}
               <a class="party-back" href="#animal-party-map">
                 {t("กลับไปที่แผนที่", "Back to map")}{" "}
                 <ArrowIcon direction="up" />

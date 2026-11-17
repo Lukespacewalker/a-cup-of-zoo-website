@@ -117,6 +117,75 @@ test("map targets and party picker work in keyboard order and on a small viewpor
   }
 });
 
+test("home aligns both maps and displays a circular podium with equal steps for ties", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 850 });
+  let counts: Partial<Record<PartyId, number>> = { fish: 12, dog: 8, civet: 3 };
+  await page.route("**/api/party-votes/", (route) =>
+    route.fulfill({ json: snapshot(counts) }),
+  );
+  await page.goto("/");
+  const heading = page.getByRole("heading", {
+    name: "สมาชิกที่นี่มีมีใครกันบ้าง ?",
+  });
+  await expect(heading).toBeVisible();
+  const map = page.locator("[data-shop-map]");
+  await expect(map.locator(".shop-map-footnote")).toHaveCount(0);
+  const mapBounds = await map.boundingBox();
+  const headingBounds = await heading.boundingBox();
+  expect(mapBounds?.x).toBe(headingBounds?.x);
+  expect(mapBounds?.width).toBe(headingBounds?.width);
+
+  await page.goto("/en/");
+  const refresh = page.getByRole("link", { name: "Refresh scores" });
+  await refresh.click();
+  const podium = page.locator("[data-party-leaders]");
+  await expect(podium.locator("[data-place]")).toHaveText(["1", "2", "3"]);
+  const medals = () =>
+    podium.locator(".party-place").evaluateAll((places) =>
+      places.map((place) => {
+        const { x, y, width, height } = place.getBoundingClientRect();
+        return {
+          x,
+          y,
+          width,
+          height,
+          radius: getComputedStyle(place).borderRadius,
+        };
+      }),
+    );
+  const [first, second, third] = await medals();
+  expect(first.x).toBeGreaterThan(second.x);
+  expect(first.x).toBeLessThan(third.x);
+  expect(first.y).toBeLessThan(second.y);
+  expect(second.y).toBeLessThan(third.y);
+  for (const medal of [first, second, third]) {
+    expect(medal.width).toBe(medal.height);
+    expect(medal.radius).toBe("50%");
+  }
+
+  counts = { fish: 12, dog: 12, civet: 3 };
+  await refresh.click();
+  const places = podium.locator("[data-party-leader]");
+  await expect(places.nth(1)).toHaveAttribute("data-rank", "1");
+  const [tiedFirst, tiedSecond] = await medals();
+  expect(tiedFirst.y).toBe(tiedSecond.y);
+  const steps = await places.evaluateAll((rows) =>
+    rows.map(
+      (row) => getComputedStyle(row.querySelector("a")!, "::after").height,
+    ),
+  );
+  expect(steps[0]).toBe(steps[1]);
+  expect(parseFloat(steps[0])).toBeGreaterThan(parseFloat(steps[2]));
+  await podium.locator('[data-party-link="fish"]').click();
+  const fish = page.locator('[data-party-sheet="fish"]');
+  await expect(fish.locator("h3")).toBeFocused();
+  await expect(
+    fish.getByText("Species illustrations and labels from Canva"),
+  ).toHaveCount(0);
+});
+
 test("a vote updates the party and three leading slots, with a shared rank for ties", async ({
   page,
 }) => {

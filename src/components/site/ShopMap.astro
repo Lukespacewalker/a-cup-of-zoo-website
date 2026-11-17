@@ -20,7 +20,11 @@ const alt = t(
 );
 ---
 
-<section class="shop-map-section" id="garden" aria-labelledby="shop-map-title">
+<section
+  class:list={["shop-map-section", { "shop-map-section--home": home }]}
+  id="garden"
+  aria-labelledby="shop-map-title"
+>
   <div class="shop-map" data-shop-map>
     <header class="shop-map-heading" data-map-heading>
       <p class="chapter-label">
@@ -234,12 +238,14 @@ const alt = t(
       role="status"
       aria-live="polite"
     ></p>
-    <p class="shop-map-footnote">
-      {t(
-        "แผนผังภาพประกอบสำหรับสำรวจร้าน · สอบถามพนักงานเรื่องกิจกรรมที่พร้อมให้บริการในวันที่มาเที่ยว",
-        "An illustrated guide to the café · Ask the team which activities are available on the day",
-      )}
-    </p>
+    {!home && (
+      <p class="shop-map-footnote">
+        {t(
+          "แผนผังภาพประกอบสำหรับสำรวจร้าน · สอบถามพนักงานเรื่องกิจกรรมที่พร้อมให้บริการในวันที่มาเที่ยว",
+          "An illustrated guide to the café · Ask the team which activities are available on the day",
+        )}
+      </p>
+    )}
   </div>
 </section>
 
