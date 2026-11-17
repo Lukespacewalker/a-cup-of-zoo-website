@@ -23,12 +23,20 @@ test("both languages and home use the same 14-party ballot and keep old links wo
       await page.goto(prefix + path);
       const board = page.locator("[data-party-board]");
       await expect(board).toHaveAttribute("data-party-enhanced", "true");
+      const siteFont = await page
+        .locator("main")
+        .evaluate((main) => getComputedStyle(main).fontFamily);
+      await expect(board.locator("#animal-parties-title")).toHaveCSS(
+        "font-family",
+        siteFont,
+      );
       await expect(board.locator("[data-party-pin]")).toHaveCount(14);
       await expect(board.locator("[data-party-sheet]:visible")).toHaveCount(0);
       await expect(board.locator("dialog")).toHaveCount(0);
       await board.locator('[data-party-pin="prairie-dog"]').click();
       const party = board.locator('[data-party-sheet="prairie-dog"]');
       await expect(party).toBeVisible();
+      await expect(party.locator("h3")).toHaveCSS("font-family", siteFont);
       await expect(party).toContainText(prefix ? "Thung Ngern" : "ถุงเงิน");
       await expect(party.locator("[data-party-member] img")).toHaveCount(2);
       await expect(party.locator("[data-party-vote]")).toBeEnabled();
@@ -117,7 +125,7 @@ test("map targets and party picker work in keyboard order and on a small viewpor
   }
 });
 
-test("home aligns both maps and displays a circular podium with equal steps for ties", async ({
+test("home aligns both maps and shows portraits above ranked podium steps", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 850 });
@@ -142,42 +150,62 @@ test("home aligns both maps and displays a circular podium with equal steps for 
   await refresh.click();
   const podium = page.locator("[data-party-leaders]");
   await expect(podium.locator("[data-place]")).toHaveText(["1", "2", "3"]);
-  const medals = () =>
-    podium.locator(".party-place").evaluateAll((places) =>
-      places.map((place) => {
-        const { x, y, width, height } = place.getBoundingClientRect();
+  const portraits = () =>
+    podium.locator(".party-podium-portrait").evaluateAll((images) =>
+      images.map((image) => {
+        const { x, y, width, height } = image.getBoundingClientRect();
+        const style = getComputedStyle(image);
         return {
           x,
           y,
           width,
           height,
-          radius: getComputedStyle(place).borderRadius,
+          radius: style.borderRadius,
+          source: style.backgroundImage,
+          crop: style.backgroundPosition,
         };
       }),
     );
-  const [first, second, third] = await medals();
+  const [first, second, third] = await portraits();
   expect(first.x).toBeGreaterThan(second.x);
   expect(first.x).toBeLessThan(third.x);
   expect(first.y).toBeLessThan(second.y);
   expect(second.y).toBeLessThan(third.y);
-  for (const medal of [first, second, third]) {
-    expect(medal.width).toBe(medal.height);
-    expect(medal.radius).toBe("50%");
+  for (const portrait of [first, second, third]) {
+    expect(portrait.width).toBe(portrait.height);
+    expect(portrait.radius).toBe("50%");
+    expect(portrait.source).toBe(first.source);
   }
+  expect(new Set([first.crop, second.crop, third.crop]).size).toBe(3);
+  const artwork = /^url\("(.+)"\)$/.exec(first.source)?.[1] ?? "";
+  expect(artwork).toBeTruthy();
+  expect(
+    await page.locator(".party-map-art img").evaluate(
+      (image, portraitUrl) =>
+        (image as HTMLImageElement).srcset.split(",").some((variant) => {
+          const [src] = variant.trim().split(" ");
+          return new URL(src, location.href).href === portraitUrl;
+        }),
+      artwork,
+    ),
+  ).toBe(true);
+  expect((await page.request.get(artwork)).ok()).toBe(true);
 
   counts = { fish: 12, dog: 12, civet: 3 };
   await refresh.click();
   const places = podium.locator("[data-party-leader]");
   await expect(places.nth(1)).toHaveAttribute("data-rank", "1");
-  const [tiedFirst, tiedSecond] = await medals();
+  const [tiedFirst, tiedSecond] = await portraits();
   expect(tiedFirst.y).toBe(tiedSecond.y);
-  const steps = await places.evaluateAll((rows) =>
-    rows.map(
-      (row) => getComputedStyle(row.querySelector("a")!, "::after").height,
-    ),
+  expect(tiedFirst.crop).toBe(second.crop);
+  expect(tiedSecond.crop).toBe(first.crop);
+  const steps = podium.locator(".party-podium-rank");
+  await expect(steps.locator("[data-place]")).toHaveText(["1", "1", "3"]);
+  const heights = await steps.evaluateAll((blocks) =>
+    blocks.map((block) => block.getBoundingClientRect().height),
   );
-  expect(steps[0]).toBe(steps[1]);
-  expect(parseFloat(steps[0])).toBeGreaterThan(parseFloat(steps[2]));
+  expect(heights[0]).toBe(heights[1]);
+  expect(heights[0]).toBeGreaterThan(heights[2]);
   await podium.locator('[data-party-link="fish"]').click();
   const fish = page.locator('[data-party-sheet="fish"]');
   await expect(fish.locator("h3")).toBeFocused();
