@@ -3,7 +3,7 @@ import ShopLogo from "./ShopLogo.astro";
 import ContactIcon from "./ContactIcon.astro";
 import SocialLinks from "./SocialLinks.astro";
 import { allowedExternalUrl } from "../../lib/business/links";
-import type { venuePhones } from "../../lib/business/contact";
+import { venuePhoneLabel, type venuePhones } from "../../lib/business/contact";
 import { localeFromPath, localePath, translator } from "../../lib/i18n/locale";
 const locale = localeFromPath(Astro.url.pathname);
 const t = translator(locale);
@@ -53,14 +53,20 @@ const maps = allowedExternalUrl(mapsUrl, "maps");
         </a>
       )}
       <ul class="footer-phones">
-        {phones.map((phone) => (
-          <li>
-            <a href={`tel:${phone.e164}`}>
-              <ContactIcon name="phone" />
-              <span>{phone.display}</span>
-            </a>
-          </li>
-        ))}
+        {phones.map((phone) => {
+          const label = venuePhoneLabel(phone.e164, locale);
+          return (
+            <li>
+              <a href={`tel:${phone.e164}`}>
+                <ContactIcon name="phone" />
+                <span>
+                  {label && <span class="footer-phone-label">{label}</span>}
+                  {phone.display}
+                </span>
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </section>
     <section class="footer-social" aria-labelledby="footer-social-title">

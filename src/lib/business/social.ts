@@ -3,6 +3,7 @@ import { allowedExternalUrl } from "./links";
 // Instagram and TikTok handles supplied by the owner on 27 October 2026.
 export const instagramUrl = "https://www.instagram.com/acupofzoo/";
 export const tiktokUrl = "https://www.tiktok.com/@acupofzoo";
+export const youtubeUrl = "https://www.youtube.com/@acupofzoofamily1786";
 
 export function socialProfiles(facebookUrl: string | null | undefined) {
   const facebook = allowedExternalUrl(facebookUrl ?? null, "facebook");
@@ -28,6 +29,12 @@ export function socialProfiles(facebookUrl: string | null | undefined) {
       name: "TikTok",
       handle: "@acupofzoo",
       url: tiktokUrl,
+    },
+    {
+      id: "youtube" as const,
+      name: "YouTube",
+      handle: "A Cup of Zoo",
+      url: youtubeUrl,
     },
   ];
 }

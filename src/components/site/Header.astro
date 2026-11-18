@@ -12,17 +12,17 @@ const locale = localeFromPath(Astro.url.pathname);
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
 const links = [
-  [href("/"), t("หน้าแรก", "Home")],
-  [href("/animals/"), t("เพื่อนสัตว์", "Animal friends")],
-  [href("/activities/"), t("กิจกรรม & แพ็กเกจ", "Activities & passes")],
-  [href("/menu/"), t("เมนู", "Menu")],
-  [href("/farm/"), t("ฟาร์มของเรา", "Our farm")],
+  ["/menu/", t("เมนู", "Menu")],
+  ["/animals/", t("เพื่อนสัตว์", "Animal friends")],
+  ["/activities/", t("กิจกรรม & แพ็กเกจ", "Activities & passes")],
   ["/news/", t("ข่าว", "News (Thai)")],
-  [href("/events/"), t("ทัวร์กลุ่ม & ร่วมงาน", "Groups & collaborations")],
+  ["/events/", t("ทัวร์กลุ่ม & ร่วมงาน", "Group tours & collaborations")],
+  ["/club/", t("สมาชิก Zoo Clubs", "Zoo Clubs membership")],
+  ["/visit/", t("เวลาทำการ/แผนที่", "Hours & directions")],
+  ["/farm/", t("ฟาร์มของเรา", "Our farm")],
 ];
 const currentPath = Astro.url.pathname;
-const isCurrent = (url: string) =>
-  basePath(url) === "/" ? currentPath === url : currentPath.startsWith(url);
+const isCurrent = (url: string) => currentPath.startsWith(url);
 const counterpart = bilingualPaths.includes(basePath(currentPath));
 const switchHref = localePath(
   counterpart ? currentPath : "/",
@@ -35,21 +35,16 @@ const switchHref = localePath(
     <ShopLogo id="header-logo" />
   </a>
   <nav class="desktop-nav" aria-label={t("หลัก", "Main navigation")}>
-    {links.map(([href, label]) => (
-      <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+    {links.map(([path, label]) => (
+      <a
+        class:list={[{ "visit-link": path === "/visit/" }]}
+        href={href(path)}
+        aria-current={isCurrent(href(path)) ? "page" : undefined}
+      >
         {label}
+        {path === "/visit/" && <ArrowIcon />}
       </a>
     ))}
-    <a
-      class="club-link"
-      href={href("/club/")}
-      aria-current={isCurrent(href("/club/")) ? "page" : undefined}
-    >
-      {t("สมาชิก Zoo Clubs", "Zoo Clubs membership")}
-    </a>
-    <a class="visit-link" href={href("/visit/")}>
-      {t("เวลาทำการ/แผนที่", "Hours & directions")} <ArrowIcon />
-    </a>
   </nav>
   <div class="header-tools">
     <a
@@ -121,7 +116,17 @@ const switchHref = localePath(
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
-      {t("เมนู", "Menu")}
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      >
+        <path class="menu-icon-open" d="M4 6h16M4 12h16M4 18h16" />
+        <path class="menu-icon-close" d="m6 6 12 12M6 18 18 6" />
+      </svg>
     </button>
   </div>
 </header>
@@ -131,25 +136,14 @@ const switchHref = localePath(
   aria-label={t("มือถือ", "Mobile navigation")}
   hidden
 >
-  <a
-    class="club-link"
-    href={href("/club/")}
-    aria-current={isCurrent(href("/club/")) ? "page" : undefined}
-  >
-    <span>{t("สมาชิก Zoo Clubs", "Zoo Clubs membership")}</span>
-    <span class="club-link__note">{t("สมัครฟรี", "Join free")}</span>
-  </a>
-  {links.map(([href, label]) => (
-    <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+  {links.map(([path, label]) => (
+    <a
+      href={href(path)}
+      aria-current={isCurrent(href(path)) ? "page" : undefined}
+    >
       {label}
     </a>
   ))}
-  <a
-    href={href("/visit/")}
-    aria-current={isCurrent(href("/visit/")) ? "page" : undefined}
-  >
-    {t("เวลาทำการ/แผนที่", "Hours & directions")}
-  </a>
 </nav>
 <script>
   const english = document.documentElement.lang === "en";

@@ -1,7 +1,12 @@
 import { expect, test } from "@playwright/test";
 
 test("contact details and owner social profiles stay usable in both languages and on phones", async ({ page }) => {
-  const profiles = ["https://www.facebook.com/Acupofzoocafe/", "https://www.instagram.com/acupofzoo/", "https://www.tiktok.com/@acupofzoo"];
+  const profiles = [
+    "https://www.facebook.com/Acupofzoocafe/",
+    "https://www.instagram.com/acupofzoo/",
+    "https://www.tiktok.com/@acupofzoo",
+    "https://www.youtube.com/@acupofzoofamily1786",
+  ];
   for (const width of [320, 390, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     for (const path of ["/", "/en/"]) {

@@ -22,6 +22,14 @@
 .menu-books p {
   font-size: 0.9rem;
 }
+.menu-books .button {
+  gap: 0.55rem;
+}
+.menu-books .button svg {
+  flex: none;
+  width: 1.2rem;
+  height: 1.2rem;
+}
 .event-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -48,18 +56,31 @@
 }
 .club-invitation {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: minmax(5rem, 9rem) minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
   align-items: center;
   margin-block: 0 3.5rem;
   padding: 2.5rem 3rem;
   background: #414f3e;
   color: #fffaf0;
 }
+.club-invitation__mascot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 .club-invitation__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.65rem;
   font-size: clamp(2rem, 3vw, 2.8rem);
   margin: 0 0 0.25rem;
   line-height: 1.25;
+}
+.club-invitation__card {
+  width: clamp(2rem, 5vw, 3.5rem);
+  height: auto;
 }
 .club-invitation h2 {
   font-size: clamp(1.4rem, 2.2vw, 1.9rem);
@@ -381,7 +402,6 @@
 }
 @media (max-width: 1050px) {
   .club-invitation {
-    gap: 2rem;
     padding: 2rem;
   }
 }
@@ -435,10 +455,16 @@
     gap: 0.5rem;
   }
   .club-invitation {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.6rem;
+    grid-template-columns: minmax(3rem, 4rem) minmax(0, 1fr);
+    gap: 1.25rem 0.85rem;
+    padding: 1.25rem;
     margin-bottom: 2.5rem;
+  }
+  .club-invitation__name {
+    font-size: 1.6rem;
+  }
+  .club-invitation__benefits {
+    grid-column: 1 / -1;
   }
   .club-invitation__facts {
     gap: 1rem;

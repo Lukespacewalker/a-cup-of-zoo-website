@@ -145,7 +145,7 @@ test("home aligns both maps and shows portraits above ranked podium steps", asyn
   );
   await page.goto("/");
   const heading = page.getByRole("heading", {
-    name: "สมาชิกที่นี่มีมีใครกันบ้าง ?",
+    name: "สมาชิกที่นี่มีใครกันบ้าง?",
   });
   await expect(heading).toBeVisible();
   const map = page.locator("[data-shop-map]");

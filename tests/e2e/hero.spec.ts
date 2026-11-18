@@ -20,8 +20,11 @@ test("home header receives clicks above the media on desktop and mobile", async 
     await expect(page.locator(".hero-hashtags")).toContainText("#คาเฟ่สัตว์คลองหก");
     if (width === 390) {
       const toggle = page.getByRole("button", { name: "เมนู", exact: true });
+      await expect(toggle).toHaveText("");
+      await expect(toggle.locator(".menu-icon-open")).toBeVisible();
       await toggle.click({ timeout: 3000 });
       await expect(toggle).toHaveAttribute("aria-expanded", "true");
+      await expect(toggle.locator(".menu-icon-close")).toBeVisible();
       await page.keyboard.press("Escape");
       await expect(toggle).toBeFocused();
     } else {

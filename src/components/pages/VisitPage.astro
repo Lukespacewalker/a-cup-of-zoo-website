@@ -7,7 +7,7 @@ import { loadPage } from "../../lib/content/load-page";
 import { allowedExternalUrl } from "../../lib/business/links";
 import OpeningHours from "../site/OpeningHours.astro";
 import { localizedActivities } from "../../lib/i18n/activities";
-import { venuePhones } from "../../lib/business/contact";
+import { venuePhoneLabel, venuePhones } from "../../lib/business/contact";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import { localizedVenue } from "../../lib/i18n/venue";
 interface Props {
@@ -134,12 +134,15 @@ const mapEmbed = `https://www.google.com/maps?cid=13571304804789208237&output=em
             {t("หน้า Facebook", "Facebook page")}
           </a>
         )}
-        {phones.map((phone) => (
-          <a class="button secondary" href={`tel:${phone.e164}`}>
-            {t("โทร ", "Call ")}
-            {phone.display}
-          </a>
-        ))}
+        {phones.map((phone) => {
+          const label = venuePhoneLabel(phone.e164, locale);
+          return (
+            <a class="button secondary" href={`tel:${phone.e164}`}>
+              {label ? `${label} · ` : t("โทร ", "Call ")}
+              {phone.display}
+            </a>
+          );
+        })}
       </div>
       <h2>{t("คำถามที่พบบ่อย", "Visitor questions")}</h2>
       {content.faqs.map((faq) => (

@@ -61,6 +61,11 @@ test("school and brand enquiries have separate entry points in both languages", 
 
     if (width === 390) await page.locator(".menu-button").click();
     const nav = page.locator(width === 390 ? "#mobile-nav" : ".desktop-nav");
+    const routes = ["menu", "animals", "activities", "news", "events", "club", "visit", "farm"];
+    expect(await nav.getByRole("link").evaluateAll(links => links.map(link => link.getAttribute("href")))).toEqual(
+      routes.map(route => `${route === "news" ? "" : prefix}/${route}/`),
+    );
+    await expect(nav.locator(`a[href="${prefix}/club/"]`)).toHaveCSS("border-top-width", "0px");
     const entry = nav.locator(`a[href="${events}"]`);
     await expect(entry).toHaveAttribute("aria-current", "page");
     await entry.click();
@@ -150,6 +155,24 @@ test("menu books use the exact owner links and never embed the viewer", async ({
   await expect(menuLinks.nth(0)).toHaveAttribute("href", "https://heyzine.com/flip-book/72a5470ad6.html");
   await expect(menuLinks.nth(1)).toHaveAttribute("href", "https://heyzine.com/flip-book/587e5387cd.html");
   await expect(menuLinks.nth(2)).toHaveAttribute("href", "#menu-categories");
+  await expect(page.locator(".menu-books .actions a svg[aria-hidden='true']")).toHaveCount(2);
   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
   await expect(page.locator("iframe")).toHaveCount(0);
+});
+
+test("home stories follow the owner order and club artwork fits phones and desktop", async ({ page }) => {
+  for (const {width, route} of [{width: 320, route: "/"}, {width: 1440, route: "/en/"}]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(route);
+    const stories = page.locator(".cafe-table + .cat-story + .garden-story");
+    await expect(stories).toHaveCount(1);
+    const invitation = page.locator(".club-invitation");
+    for (const className of ["club-invitation__mascot", "club-invitation__card"]) {
+      const image = invitation.locator(`img.${className}`);
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.naturalWidth)).toBeGreaterThan(0);
+    }
+    await expect(invitation.locator("a")).toHaveAttribute("href", route + "club/");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+  }
 });

@@ -3,10 +3,10 @@ import { expect, test } from "@playwright/test";
 test("every numbered map stop and each facility can be explored, including places without photos", async ({ page }) => {
   const numberedStops = [
     ["cafe", "คาเฟ่และร้านอาหาร", "Café & Restaurant"],
-    ["indoor", "โซนสัตว์เลี้ยงด้านใน", "Pet Zone-Indoor"],
+    ["indoor", "Indoor Pet Zone", "Indoor Pet Zone"],
     ["kurama", "สวนคุรามะ", "Kurama Garden"],
-    ["oracle", "จุดเซียมซีจิ้งจอกเก้าหาง", "Oracle Stick Zone"],
-    ["alligator-gar", "บ่อปลาจระเข้", "Alligator Gar Zone"],
+    ["oracle", "เซียมซีจิ้งจอกเก้าหาง", "Nine-Tailed Fox Fortune Sticks"],
+    ["alligator-gar", "บ่อปลาอัลลิเกเตอร์", "Alligator Gar Pond"],
     ["little-farm", "ลานเพื่อนตัวจิ๋ว", "Little Farm Friend"],
     ["garden", "สวนญี่ปุ่น", "Japanese Garden Zone"],
     ["lotus", "บัวสี่ทิศ", "Four-Directional Lotus Zone"],

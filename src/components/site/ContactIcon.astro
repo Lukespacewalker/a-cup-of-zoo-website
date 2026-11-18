@@ -1,6 +1,6 @@
 ---
 interface Props {
-  name: "facebook" | "instagram" | "tiktok" | "pin" | "phone";
+  name: "facebook" | "instagram" | "tiktok" | "youtube" | "pin" | "phone";
 }
 const { name } = Astro.props;
 ---
@@ -34,6 +34,12 @@ const { name } = Astro.props;
   )}
   {name === "tiktok" && (
     <path d="M14 3h3c.4 2.5 1.9 4 4 4.4v3.1a9 9 0 0 1-4-1.3v7a5.6 5.6 0 1 1-5-5.6v3.1a2.5 2.5 0 1 0 2 2.5z" />
+  )}
+  {name === "youtube" && (
+    <>
+      <rect x="2" y="5" width="20" height="14" rx="4" />
+      <path d="m10 9 5 3-5 3Z" fill="currentColor" stroke="none" />
+    </>
   )}
   {name === "pin" && (
     <>

@@ -86,6 +86,9 @@
   font-family: var(--font);
   font-weight: 500;
 }
+.desktop-nav .visit-link[aria-current="page"] {
+  color: var(--on-button);
+}
 .desktop-nav .visit-link:hover {
   background: var(--button-hover);
   color: var(--on-button-hover);
@@ -143,6 +146,14 @@
   color: var(--cocoa);
   font: inherit;
 }
+.menu-button svg {
+  width: 22px;
+  height: 22px;
+}
+.menu-button[aria-expanded="false"] .menu-icon-close,
+.menu-button[aria-expanded="true"] .menu-icon-open {
+  display: none;
+}
 .mobile-panel {
   display: none;
   position: fixed;
@@ -158,37 +169,6 @@
 }
 .mobile-panel[data-open="true"] {
   display: flex;
-}
-.desktop-nav .club-link,
-.mobile-panel .club-link {
-  background: var(--garden-field);
-  color: var(--cocoa-deep);
-  border: 1px solid var(--leaf);
-  border-radius: 2px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-.desktop-nav .club-link {
-  margin-left: 0.2rem;
-  padding-inline: 0.6rem;
-  white-space: normal;
-}
-.desktop-nav .club-link[aria-current="page"],
-.mobile-panel .club-link[aria-current="page"] {
-  color: var(--cocoa-deep);
-}
-.desktop-nav .club-link:hover,
-.mobile-panel .club-link:hover {
-  background: var(--button);
-  color: var(--on-button);
-}
-.mobile-panel .club-link {
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-.club-link__note {
-  font-size: 0.8rem;
 }
 
 .footer {
@@ -274,8 +254,7 @@
     background: none;
     border: 1px solid var(--line);
     border-radius: 3px;
-    padding: 0.2rem 0.7rem;
-    font-size: 0.85rem;
+    padding: 0;
   }
   .mobile-panel {
     inset: 5rem 1.25rem auto;
@@ -293,9 +272,6 @@
 @media (max-width: 360px) {
   .header-tools {
     gap: 0;
-  }
-  .header-tools .menu-button {
-    padding-inline: 0.4rem;
   }
   .language-switch[data-equivalent="false"] {
     width: 44px;

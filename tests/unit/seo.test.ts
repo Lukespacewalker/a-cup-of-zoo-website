@@ -5,7 +5,7 @@ import {
   sitemapXml,
 } from "../../src/lib/seo/metadata";
 import { fixtureVenue } from "../../src/lib/content/fixture-data";
-import { venuePhones } from "../../src/lib/business/contact";
+import { venuePhoneLabel, venuePhones } from "../../src/lib/business/contact";
 
 test("business hours use Google-supported day names and omit closed days", () => {
   const data = cafeJsonLd(fixtureVenue);
@@ -98,6 +98,7 @@ test("business links share one identity without inventing ratings or prices", ()
       "https://www.facebook.com/Acupofzoocafe/",
       "https://www.instagram.com/acupofzoo/",
       "https://www.tiktok.com/@acupofzoo",
+      "https://www.youtube.com/@acupofzoofamily1786",
     ],
   });
   expect(data).not.toHaveProperty("aggregateRating");
@@ -138,4 +139,23 @@ test("clearing the primary phone in a legacy venue is respected", () => {
   expect(venuePhones({ phoneE164: null, additionalPhoneE164s: [] })).toEqual(
     [],
   );
+});
+
+test("published phone numbers pick up their known role regardless of order", () => {
+  const phones = venuePhones({
+    phoneE164: "+66659956963",
+    additionalPhoneE164s: ["+66850664451", "+66894246908", "+66921234567"],
+  });
+  expect(phones.map(({ e164 }) => venuePhoneLabel(e164, "th"))).toEqual([
+    "คาเฟ่",
+    "สถานที่ การตลาด และกิจกรรมสัมพันธ์",
+    "ฟาร์มสัตว์",
+    undefined,
+  ]);
+  expect(phones.map(({ e164 }) => venuePhoneLabel(e164, "en"))).toEqual([
+    "Café",
+    "Venue, marketing & events",
+    "Animal farm",
+    undefined,
+  ]);
 });

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import ArrowIcon from "../site/ArrowIcon.astro";
 import "../../styles/cafe-home.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
@@ -15,6 +16,8 @@ import SocialLinks from "../site/SocialLinks.astro";
 import AnimalPartyMap from "../site/AnimalPartyMap.astro";
 import ActivityAdmission from "../site/ActivityAdmission.astro";
 import ActivityPhotoDialog from "../site/ActivityPhotoDialog.astro";
+import crownedFox from "../../assets/club/crowned-fox.png";
+import membershipCard from "../../assets/club/membership-card.png";
 import { loadPage } from "../../lib/content/load-page";
 import { allowedExternalUrl } from "../../lib/business/links";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
@@ -135,8 +138,26 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
   <AnimalPartyMap locale={locale} venue={page.venue} home />
 
   <section class="club-invitation" aria-labelledby="home-club-title">
+    <Image
+      src={crownedFox}
+      class="club-invitation__mascot"
+      alt=""
+      widths={[112, 192, 288]}
+      sizes="(max-width: 700px) 64px, 144px"
+      format="webp"
+    />
     <div class="club-invitation__copy">
-      <p class="club-invitation__name">Zoo Clubs</p>
+      <p class="club-invitation__name">
+        Zoo Clubs
+        <Image
+          src={membershipCard}
+          class="club-invitation__card"
+          alt=""
+          widths={[56, 112]}
+          sizes="56px"
+          format="webp"
+        />
+      </p>
       <h2 id="home-club-title">
         {t("ยิ่งมา ยิ่งสนิท", "Make yourself a regular")}
       </h2>

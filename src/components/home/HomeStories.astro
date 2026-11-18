@@ -13,6 +13,53 @@ const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
 ---
 
+<section class="cafe-table" aria-labelledby="table-title">
+  <div class="table-copy">
+    <p class="chapter-label">{t("ที่โต๊ะของเรา", "At our table")}</p>
+    <h2 id="table-title">
+      {t(
+        "เริ่มต้นที่ของอร่อย กับบรรยากาศแสนอบอุ่น",
+        "Good food and a cosy spot to settle in",
+      )}
+    </h2>
+    <p>
+      {t(
+        "เลือกอาหารที่ชอบ จิบเครื่องดื่มที่ใช่ แล้วนั่งสบาย ๆ มองสวน",
+        "Pick a dish and a drink you love, then settle in with a view of the garden.",
+      )}
+    </p>
+    <a class="cafe-link" href={href("/menu/")}>
+      {t("เปิดดูเมนูอาหาร", "Explore the food menu")} <ArrowIcon />
+    </a>
+    <Image
+      class="story-sign"
+      src={sign}
+      alt=""
+      widths={[240, 400]}
+      sizes="200px"
+      loading="lazy"
+    />
+  </div>
+  <figure class="table-photo">
+    <Image
+      src={photos.table}
+      alt={t(
+        "โต๊ะสำหรับนั่งทานอาหารริมหน้าต่างของร้าน",
+        "A sunny window table at the café",
+      )}
+      widths={[480, 720, 1080]}
+      sizes="(max-width: 700px) 90vw, 50vw"
+      loading="lazy"
+    />
+    <figcaption>
+      {t(
+        "แสงอุ่น ๆ กับมุมที่มองเห็นสวน",
+        "A little sunlight. A view of the garden.",
+      )}
+    </figcaption>
+  </figure>
+</section>
+
 <section class="cat-story" id="friends" aria-labelledby="friends-title">
   <figure class="cat-story-photo cat-crop">
     <a
@@ -87,53 +134,6 @@ const href = (path: string) => localePath(path, locale);
       </figcaption>
     </figure>
   </div>
-</section>
-
-<section class="cafe-table" aria-labelledby="table-title">
-  <div class="table-copy">
-    <p class="chapter-label">{t("ที่โต๊ะของเรา", "At our table")}</p>
-    <h2 id="table-title">
-      {t(
-        "เริ่มต้นที่ของอร่อย กับบรรยากาศแสนอบอุ่น",
-        "Good food and a cosy spot to settle in",
-      )}
-    </h2>
-    <p>
-      {t(
-        "เลือกอาหารที่ชอบ จิบเครื่องดื่มที่ใช่ แล้วนั่งสบาย ๆ มองสวน",
-        "Pick a dish and a drink you love, then settle in with a view of the garden.",
-      )}
-    </p>
-    <a class="cafe-link" href={href("/menu/")}>
-      {t("เปิดดูเมนูอาหาร", "Explore the food menu")} <ArrowIcon />
-    </a>
-    <Image
-      class="story-sign"
-      src={sign}
-      alt=""
-      widths={[240, 400]}
-      sizes="200px"
-      loading="lazy"
-    />
-  </div>
-  <figure class="table-photo">
-    <Image
-      src={photos.table}
-      alt={t(
-        "โต๊ะสำหรับนั่งทานอาหารริมหน้าต่างของร้าน",
-        "A sunny window table at the café",
-      )}
-      widths={[480, 720, 1080]}
-      sizes="(max-width: 700px) 90vw, 50vw"
-      loading="lazy"
-    />
-    <figcaption>
-      {t(
-        "แสงอุ่น ๆ กับมุมที่มองเห็นสวน",
-        "A little sunlight. A view of the garden.",
-      )}
-    </figcaption>
-  </figure>
 </section>
 
 <section class="garden-story" id="garden-story" aria-labelledby="garden-title">

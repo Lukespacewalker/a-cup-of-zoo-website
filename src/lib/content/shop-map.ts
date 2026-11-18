@@ -32,7 +32,7 @@ export function shopMapStops(locale: Locale) {
       icon: "wish",
       x: 1451.5,
       y: 2518,
-      title: t("จุดเซียมซีจิ้งจอกเก้าหาง", "Oracle Stick Zone"),
+      title: t("เซียมซีจิ้งจอกเก้าหาง", "Nine-Tailed Fox Fortune Sticks"),
       group: t("มุมขอพร", "Wishing corner"),
       image: null,
       copy: t(
@@ -52,7 +52,7 @@ export function shopMapStops(locale: Locale) {
       icon: "fish",
       x: 1224.5,
       y: 2346,
-      title: t("บ่อปลาจระเข้", "Alligator Gar Zone"),
+      title: t("บ่อปลาอัลลิเกเตอร์", "Alligator Gar Pond"),
       group: t("ริมบ่อ", "By the pond"),
       image: null,
       copy: t(
@@ -203,7 +203,7 @@ export function shopMapStops(locale: Locale) {
       icon: "paw",
       x: 1063.5,
       y: 2057.5,
-      title: t("โซนสัตว์เลี้ยงด้านใน", "Pet Zone-Indoor"),
+      title: "Indoor Pet Zone",
       group: "Indoor",
       image: photos.cats,
       copy: t(
