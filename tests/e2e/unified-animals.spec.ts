@@ -31,6 +31,16 @@ test("both languages and home use the same 14-party ballot and keep old links wo
         siteFont,
       );
       await expect(board.locator("[data-party-pin]")).toHaveCount(14);
+      const fullSize = board.getByRole("link", {
+        name: prefix ? "View full-size illustration" : "ดูภาพขนาดเต็ม",
+      });
+      const imageHref = await fullSize.getAttribute("href");
+      expect(imageHref).toContain("animal-friends-gouache");
+      const illustration = await request.get(
+        new URL(imageHref!, page.url()).href,
+      );
+      expect(illustration.ok()).toBe(true);
+      expect(illustration.headers()["content-type"]).toContain("image/webp");
       await expect(board.locator("[data-party-sheet]:visible")).toHaveCount(0);
       await expect(board.locator("dialog")).toHaveCount(0);
       await board.locator('[data-party-pin="prairie-dog"]').click();
@@ -178,17 +188,11 @@ test("home aligns both maps and shows portraits above ranked podium steps", asyn
   }
   expect(new Set([first.crop, second.crop, third.crop]).size).toBe(3);
   const artwork = /^url\("(.+)"\)$/.exec(first.source)?.[1] ?? "";
-  expect(artwork).toBeTruthy();
-  expect(
-    await page.locator(".party-map-art img").evaluate(
-      (image, portraitUrl) =>
-        (image as HTMLImageElement).srcset.split(",").some((variant) => {
-          const [src] = variant.trim().split(" ");
-          return new URL(src, location.href).href === portraitUrl;
-        }),
-      artwork,
-    ),
-  ).toBe(true);
+  expect(artwork).toContain("animal-friends-garden");
+  await expect(page.locator(".party-map-art img")).toHaveAttribute(
+    "src",
+    /animal-friends-gouache/,
+  );
   expect((await page.request.get(artwork)).ok()).toBe(true);
 
   counts = { fish: 12, dog: 12, civet: 3 };

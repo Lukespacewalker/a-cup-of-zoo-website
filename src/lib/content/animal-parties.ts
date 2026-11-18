@@ -31,7 +31,7 @@ const memberImageSources: MemberImageSource[] = [
 ];
 
 // The 14 groups and the individual names come from the owner's Canva brief.
-// Positions are percentages of the full watercolor artwork.
+// Positions are percentages of the full gouache map.
 const parties: Record<PartyId, PartyDetails> = {
   dog: {
     group: ["สุนัข", "Dogs"],
@@ -40,7 +40,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "ใครเดินผ่าน เรากระดิกหางให้หมด",
       "Walk past us and we'll wag for you.",
     ],
-    pin: [12, 23],
+    pin: [21, 39],
     memberIds: [
       "kai-jew",
       "kai-down",
@@ -62,7 +62,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "ทุกนโยบายผ่านมติแล้ว ขออีกห้านาที",
       "Motion passed. Five more minutes, please.",
     ],
-    pin: [33, 27],
+    pin: [60, 20],
     memberIds: ["tart", "sum-lee", "veres"],
   },
   bird: {
@@ -72,7 +72,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "ข่าวดีเราร้อง ข่าวลือเราร้องดังกว่า",
       "We chirp the news and squawk the gossip.",
     ],
-    pin: [53, 23],
+    pin: [88, 12],
   },
   civet: {
     group: ["อีเห็น", "Civets"],
@@ -81,7 +81,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "พระอาทิตย์เลิกงาน ถึงคิวเราเข้าเวร",
       "When the sun clocks out, we clock in.",
     ],
-    pin: [85, 22],
+    pin: [92, 32],
   },
   fox: {
     group: ["จิ้งจอก", "Foxes"],
@@ -90,7 +90,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "หางฟูได้อีก ขอแค่ไม่มีลมย้อน",
       "We stand for fluff and against headwinds.",
     ],
-    pin: [9, 50],
+    pin: [41, 46],
     memberIds: ["nama", "daifuku", "dorayaki", "mochi", "senbei"],
   },
   meerkat: {
@@ -100,7 +100,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "ยืนเฝ้าให้ทั้งสวน เห็นขนมก่อนใคร",
       "Watching over the garden. Spotting snacks first.",
     ],
-    pin: [30, 50],
+    pin: [70, 46],
     memberIds: ["mee-tang", "mee-thong", "mee-chok", "mee-heng"],
   },
   "prairie-dog": {
@@ -110,7 +110,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "อุโมงค์ทุกสายไปถึงห้องเก็บขนม",
       "Every tunnel leads to the snack cupboard.",
     ],
-    pin: [46, 53],
+    pin: [91, 46],
   },
   rabbit: {
     group: ["กระต่าย", "Rabbits"],
@@ -119,7 +119,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "ทุกเสียงเรารับฟัง โดยเฉพาะเสียงแกะถุงผัก",
       "We hear every voice, especially the rustle of a bag of greens.",
     ],
-    pin: [65, 52],
+    pin: [39, 60],
   },
   goat: {
     group: ["แพะแคระมินิปิ๊กมี่", "Pygmy goats"],
@@ -128,13 +128,13 @@ const parties: Record<PartyId, PartyDetails> = {
       "ทุกเวทีหาเสียง ต้องปีนขึ้นไปเอง",
       "We climb onto every stage ourselves.",
     ],
-    pin: [87, 48],
+    pin: [91, 61],
   },
   snake: {
     group: ["งู", "Snakes"],
     name: ["พรรคเลื้อยมาเอง", "The Smooth Movers"],
     slogan: ["ไม่มีขา แต่ไปถึงทุกเวที", "Zero legs. Full campaign schedule."],
-    pin: [10, 84],
+    pin: [12, 69],
   },
   iguana: {
     group: ["อีกัวนา", "Iguanas"],
@@ -143,7 +143,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "ขอแดดอ่อน ๆ กับที่นั่งหนึ่งกิ่ง",
       "A little sunshine and a branch for everyone.",
     ],
-    pin: [30, 84],
+    pin: [29, 69],
   },
   turtle: {
     group: ["เต่า", "Turtles & tortoises"],
@@ -152,7 +152,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "เร่งไม่ได้ แต่บ้านพร้อมย้ายทุกเมื่อ",
       "We take our time and bring our own homes.",
     ],
-    pin: [48, 75],
+    pin: [51, 74],
   },
   fish: {
     group: ["ปลา", "Fish"],
@@ -161,7 +161,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "ลงพื้นที่ทุกวัน ส่วนใหญ่เป็นพื้นที่ใต้น้ำ",
       "Out in the community every day. Mostly underwater.",
     ],
-    pin: [64, 86],
+    pin: [36, 91],
   },
   poultry: {
     group: ["ไก่ เป็ด และห่าน", "Chickens, ducks & geese"],
@@ -170,7 +170,7 @@ const parties: Record<PartyId, PartyDetails> = {
       "ไก่ขัน เป็ดก๊าบ ห่านรับช่วง ครบทุกย่าน",
       "A crow, a quack and a honk for every neighborhood.",
     ],
-    pin: [85, 77],
+    pin: [83, 75],
   },
 };
 

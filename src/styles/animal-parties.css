@@ -56,6 +56,7 @@
 }
 
 .party-refresh,
+.party-map-full,
 .party-back {
   display: inline-flex;
   align-items: center;

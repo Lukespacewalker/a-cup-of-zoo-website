@@ -2,7 +2,8 @@
 import { getImage, Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import type { PublicVenueDto } from "@lukespace-cms/client";
-import garden from "../../assets/watercolor/animal-friends-garden.webp";
+import animalMap from "../../assets/animal-friends-gouache.webp";
+import podiumArt from "../../assets/watercolor/animal-friends-garden.webp";
 import AnimalPartyMember from "./AnimalPartyMember.astro";
 import ArrowIcon from "./ArrowIcon.astro";
 import { animalPartyCatalog } from "../../lib/content/animal-parties";
@@ -32,7 +33,7 @@ const counts = new Map(
   totals?.items.map(({ partyId, count }) => [partyId, count]),
 );
 const podiumImage = home
-  ? await getImage({ src: garden, width: 768, format: "webp", quality: 80 })
+  ? await getImage({ src: podiumArt, width: 768, format: "webp", quality: 80 })
   : undefined;
 const leaders = rankByVotes(
   parties.map((party) => ({ ...party, count: counts.get(party.id) ?? 0 })),
@@ -102,7 +103,7 @@ const detailHref = (id: string) => `#party-${id}`;
       class:list={["party-leaders", { "party-leaders--podium": home }]}
       style={
         podiumImage &&
-        `--podium-art: url("${podiumImage.src}"); --art-width: ${garden.width}; --art-height: ${garden.height};`
+        `--podium-art: url("${podiumImage.src}"); --art-width: ${podiumArt.width}; --art-height: ${podiumArt.height};`
       }
       data-party-leaders
       hidden={leaders.length === 0}
@@ -166,10 +167,10 @@ const detailHref = (id: string) => `#party-${id}`;
     <figure class="party-map" id="animal-party-map">
       <div class="party-map-art">
         <Image
-          src={garden}
+          src={animalMap}
           alt={t(
-            "ภาพสีน้ำของเพื่อนสัตว์ทั้ง 14 กลุ่มในสวนญี่ปุ่นริมบ่อปลาคาร์ฟ",
-            "Watercolor map of 14 animal groups in a Japanese garden by a koi pond",
+            "ภาพวาดสีกวอชของสัตว์ 14 กลุ่ม พร้อมป้ายชื่อชนิดและสายพันธุ์",
+            "Gouache map of 14 animal groups with Thai species and breed labels",
           )}
           widths={[384, 576, 768, 1152, 1536]}
           sizes="(max-width: 860px) calc(100vw - 2.5rem), 740px"
@@ -194,6 +195,9 @@ const detailHref = (id: string) => `#party-${id}`;
         <span>
           {t("แตะหมุดบนภาพเพื่อดูพรรค", "Tap a pin to meet its party")}
         </span>
+        <a class="party-map-full" href={animalMap.src}>
+          {t("ดูภาพขนาดเต็ม", "View full-size illustration")}
+        </a>
         <form class="party-picker" data-party-picker hidden>
           <label>
             <span class="party-sr-only">
