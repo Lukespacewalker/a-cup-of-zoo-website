@@ -21,14 +21,15 @@ test("home header receives clicks above the media on desktop and mobile", async 
     if (width === 390) {
       const toggle = page.getByRole("button", { name: "เมนู", exact: true });
       await expect(toggle).toHaveText("");
-      await expect(toggle).toHaveAttribute("aria-expanded", "false");
+      const openNav = page.locator("#site-nav:popover-open");
+      await expect(openNav).toHaveCount(0);
       await toggle.click({ timeout: 3000 });
-      await expect(toggle).toHaveAttribute("aria-expanded", "true");
+      await expect(openNav).toBeVisible();
       await page.keyboard.press("Escape");
-      await expect(toggle).toHaveAttribute("aria-expanded", "false");
+      await expect(openNav).toHaveCount(0);
       await expect(toggle).toBeFocused();
     } else {
-      await page.locator(".desktop-nav").getByRole("link", { name: "เพื่อนสัตว์", exact: true }).click({ timeout: 3000 });
+      await page.locator("#site-nav").getByRole("link", { name: "เพื่อนสัตว์", exact: true }).click({ timeout: 3000 });
       await expect(page).toHaveURL(/\/animals\/$/);
     }
   }
@@ -123,4 +124,42 @@ test("a failed video request returns to the poster without a misleading pause bu
   await expect(page.locator("[data-hero-media]")).toHaveAttribute("data-ready", "false");
   await expect(page.locator("[data-hero-video]")).toHaveJSProperty("paused", true);
   await expect(page.locator("[data-hero-poster]")).toBeVisible();
+});
+
+test("hero headings and actions fit inside the hero at large text sizes", async ({ page }) => {
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 650 });
+    for (const route of ["/", "/en/", "/cafe/", "/en/cafe/", "/events/", "/en/events/"]) {
+      await page.goto(route);
+      await page.addStyleTag({ content: ":root { font-size: 32px; }" });
+      await page.evaluate(() => document.fonts.ready);
+      const fits = await page.locator(".garden-hero, .page-hero").evaluate(hero => {
+        const { top, bottom } = hero.getBoundingClientRect();
+        return Array.from(hero.querySelectorAll("h1, h1 span, .hero-actions a, .page-hero__actions a")).every(element => {
+          const text = document.createRange();
+          text.selectNodeContents(element);
+          return Array.from(text.getClientRects()).every(rect =>
+            rect.left >= 0 && rect.right <= document.documentElement.clientWidth &&
+            rect.top >= top && rect.bottom <= bottom
+          );
+        });
+      });
+      expect(fits, `${route} at ${width}px`).toBe(true);
+    }
+  }
+});
+
+test("café and club switch layouts at the same 700px boundary", async ({ page }) => {
+  for (const width of [700, 701]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/en/cafe/");
+    const cafe = page.locator(".page-hero");
+    await expect.poll(() => cafe.evaluate(hero =>
+      getComputedStyle(hero, "::before").display === "none" ? "stacked" :
+        getComputedStyle(hero, "::before").backgroundImage.includes("0.35") ? "overlay" : "other"
+    )).toBe(width <= 700 ? "stacked" : "overlay");
+    await page.goto("/en/club/");
+    const club = page.locator(".tier-list > li").first();
+    await expect(club).toHaveCSS("grid-template-rows", width <= 700 ? /^(?!subgrid)/ : /^subgrid/);
+  }
 });

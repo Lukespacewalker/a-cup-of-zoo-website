@@ -8,17 +8,22 @@ interface Props {
 const t = translator(Astro.props.locale);
 ---
 
-<dialog class="activity-photo-dialog" aria-labelledby="activity-photo-title">
+<dialog
+  class="activity-photo-dialog"
+  aria-labelledby="activity-photo-title"
+  closedby="any"
+>
   <div class="activity-photo-dialog__top">
     <span data-counter aria-hidden="true"></span>
-    <button
-      type="button"
-      data-close
-      aria-label={t("ปิดภาพขยาย", "Close enlarged photo")}
-      autofocus
-    >
-      ×
-    </button>
+    <form method="dialog">
+      <button
+        type="submit"
+        aria-label={t("ปิดภาพขยาย", "Close enlarged photo")}
+        autofocus
+      >
+        ×
+      </button>
+    </form>
   </div>
   <img alt="" />
   <div class="activity-photo-dialog__bottom">
@@ -90,9 +95,6 @@ const t = translator(Astro.props.locale);
   });
 
   dialog
-    .querySelector("[data-close]")!
-    .addEventListener("click", () => dialog.close());
-  dialog
     .querySelector("[data-previous]")!
     .addEventListener("click", () => showPhoto(index - 1));
   dialog
@@ -103,17 +105,32 @@ const t = translator(Astro.props.locale);
     event.preventDefault();
     showPhoto(index + (event.key === "ArrowRight" ? 1 : -1));
   });
-  dialog.addEventListener("click", (event) => {
-    if (event.target !== dialog) return;
-    const { left, right, top, bottom } = dialog.getBoundingClientRect();
-    if (
-      event.clientX < left ||
-      event.clientX > right ||
-      event.clientY < top ||
-      event.clientY > bottom
-    )
-      dialog.close();
-  });
+  if (!("closedBy" in HTMLDialogElement.prototype)) {
+    const isBackdrop = (event: PointerEvent) => {
+      if (event.target !== dialog) return false;
+      const { left, right, top, bottom } = dialog.getBoundingClientRect();
+      return (
+        event.clientX < left ||
+        event.clientX > right ||
+        event.clientY < top ||
+        event.clientY > bottom
+      );
+    };
+    let backdropPointer: number | undefined;
+    dialog.addEventListener("pointerdown", (event) => {
+      if (event.isPrimary && event.button === 0) {
+        backdropPointer = isBackdrop(event) ? event.pointerId : undefined;
+      }
+    });
+    dialog.addEventListener("pointerup", (event) => {
+      if (event.pointerId !== backdropPointer) return;
+      backdropPointer = undefined;
+      if (isBackdrop(event)) dialog.close();
+    });
+    dialog.addEventListener("pointercancel", () => {
+      backdropPointer = undefined;
+    });
+  }
   dialog.addEventListener("close", () => {
     image.removeAttribute("src");
     opener?.focus({ preventScroll: true });

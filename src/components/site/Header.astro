@@ -42,7 +42,12 @@ const switchHref = localePath(
   <a class="wordmark" href={href("/")}>
     <ShopLogo id="header-logo" />
   </a>
-  <nav class="desktop-nav" aria-label={t("หลัก", "Main navigation")}>
+  <nav
+    id="site-nav"
+    class="site-nav"
+    aria-label={t("หลัก", "Main navigation")}
+    popover="auto"
+  >
     {links.map(([path, label]) => (
       <a
         class:list={[{ "visit-link": path === "/visit/" }]}
@@ -81,6 +86,7 @@ const switchHref = localePath(
     <button
       class="theme-button"
       type="button"
+      hidden
       aria-label={t("โหมดสีตามเครื่อง", "System colour theme")}
     >
       <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true">
@@ -119,10 +125,9 @@ const switchHref = localePath(
     <button
       class="menu-button"
       type="button"
-      disabled
       aria-label={t("เมนู", "Open navigation")}
-      aria-expanded="false"
-      aria-controls="mobile-nav"
+      aria-controls="site-nav"
+      popovertarget="site-nav"
     >
       <svg
         viewBox="0 0 24 24"
@@ -139,18 +144,6 @@ const switchHref = localePath(
     </button>
   </div>
 </header>
-<nav
-  id="mobile-nav"
-  class="mobile-panel"
-  aria-label={t("มือถือ", "Mobile navigation")}
-  inert
->
-  {links.map(([path, label]) => (
-    <a href={href(path)} aria-current={currentSection(href(path))}>
-      {label}
-    </a>
-  ))}
-</nav>
 <script>
   const english = document.documentElement.lang === "en";
   const languageSwitch = document.querySelector<HTMLAnchorElement>(
@@ -163,43 +156,79 @@ const switchHref = localePath(
     updateHash();
     window.addEventListener("hashchange", updateHash);
   }
-  const button = document.querySelector(".menu-button");
-  const panel = document.querySelector("#mobile-nav");
-  if (button instanceof HTMLButtonElement && panel instanceof HTMLElement) {
-    const compactNav = window.matchMedia("(max-width: 1050px)");
-    const setMenuOpen = (open: boolean) => {
-      panel.inert = !open;
-      button.setAttribute("aria-expanded", String(open));
+  const menuButton = document.querySelector<HTMLButtonElement>(".menu-button");
+  const nav = document.querySelector<HTMLElement>("#site-nav");
+  if (menuButton && nav && "popover" in HTMLElement.prototype) {
+    const compact = matchMedia("(max-width: 1050px)");
+    const firstLink = nav.querySelector("a");
+    const syncLayout = () => {
+      const active = document.activeElement;
+      nav.toggleAttribute("popover", compact.matches);
+      if (compact.matches && nav.contains(active)) {
+        menuButton.focus({ preventScroll: true });
+      } else if (
+        !compact.matches &&
+        active instanceof HTMLElement &&
+        nav.contains(active)
+      ) {
+        active.focus({ preventScroll: true });
+      }
+    };
+    syncLayout();
+    compact.addEventListener("change", syncLayout);
+    nav.dataset.enhanced = "";
+
+    let closing = false;
+    nav.addEventListener("beforetoggle", (event) => {
+      const open = event.newState === "open";
+      closing = !open;
+      if (open) nav.classList.remove("focus-dismissed");
       if (english) {
-        button.setAttribute(
+        menuButton.setAttribute(
           "aria-label",
           open ? "Close navigation" : "Open navigation",
         );
       }
-      document.body.classList.toggle("menu-open", open);
+    });
+    nav.addEventListener("toggle", (event) => {
+      if (event.newState === "open") firstLink?.focus();
+    });
+    const dismiss = () => {
+      nav.classList.add("focus-dismissed");
+      nav.hidePopover();
     };
-    const close = () => {
-      setMenuOpen(false);
-      button.focus({ preventScroll: true });
-    };
-    button.addEventListener("click", () => {
-      if (panel.inert) {
-        setMenuOpen(true);
-        panel.querySelector("a")?.focus({ preventScroll: true });
-      } else {
-        close();
+    document.addEventListener("focusin", (event) => {
+      const next = event.target;
+      if (
+        !closing &&
+        next !== menuButton &&
+        !(next instanceof Node && nav.contains(next)) &&
+        nav.matches(":popover-open")
+      ) {
+        dismiss();
       }
     });
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && !panel.inert) close();
+    nav.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Tab" &&
+        event.shiftKey &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        event.target === firstLink &&
+        nav.matches(":popover-open")
+      ) {
+        event.preventDefault();
+        dismiss();
+        menuButton.focus({ preventScroll: true });
+      }
     });
-    compactNav.addEventListener("change", (event) => {
-      if (!event.matches && !panel.inert) setMenuOpen(false);
-    });
-    button.disabled = false;
   }
 
-  const themeButton = document.querySelector(".theme-button");
+  const themeButton =
+    document.querySelector<HTMLButtonElement>(".theme-button");
+  const colorScheme = document.querySelector<HTMLMetaElement>(
+    'meta[name="color-scheme"]',
+  );
   const order = ["auto", "light", "dark"] as const;
   type Theme = (typeof order)[number];
   const labels: Record<Theme, string> = english
@@ -211,22 +240,31 @@ const switchHref = localePath(
     : { auto: "โหมดสีตามเครื่อง", light: "โหมดสว่าง", dark: "โหมดมืด" };
   const paintTheme = (theme: Theme) => {
     document.documentElement.dataset.theme = theme;
-    if (!(themeButton instanceof HTMLButtonElement)) return;
-    themeButton.setAttribute("aria-label", labels[theme]);
-    for (const name of order) {
-      const icon = themeButton.querySelector(`.icon-${name}`);
-      if (icon instanceof SVGElement)
-        icon.style.display = name === theme ? "block" : "none";
-    }
+    if (colorScheme)
+      colorScheme.content = theme === "auto" ? "light dark" : theme;
+    themeButton?.setAttribute("aria-label", labels[theme]);
   };
-  const initial = document.documentElement.dataset.theme;
-  paintTheme(initial === "light" || initial === "dark" ? initial : "auto");
+  const parseTheme = (value: string | null | undefined): Theme =>
+    value === "light" || value === "dark" ? value : "auto";
+  paintTheme(parseTheme(document.documentElement.dataset.theme));
+  if (themeButton) themeButton.hidden = false;
   themeButton?.addEventListener("click", () => {
-    const saved = document.documentElement.dataset.theme;
-    const current: Theme =
-      saved === "light" || saved === "dark" ? saved : "auto";
+    const current = parseTheme(document.documentElement.dataset.theme);
     const next = order[(order.indexOf(current) + 1) % order.length];
-    localStorage.setItem("cup-theme", next);
     paintTheme(next);
+    try {
+      if (next === "auto") localStorage.removeItem("cup-theme");
+      else localStorage.setItem("cup-theme", next);
+    } catch {
+      // The current page still follows the selection when storage is blocked.
+    }
+  });
+  window.addEventListener("storage", (event) => {
+    if (
+      event.storageArea === localStorage &&
+      (event.key === "cup-theme" || event.key === null)
+    ) {
+      paintTheme(parseTheme(event.newValue));
+    }
   });
 </script>

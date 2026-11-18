@@ -12,13 +12,12 @@ test("home actions and mobile navigation reach the menu and visit pages", async 
   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
   const toggle = page.getByRole("button", { name: "เมนู", exact: true });
   await toggle.click();
-  await expect(toggle).toHaveAttribute("aria-expanded", "true");
-  await expect(page.locator("#mobile-nav a").first()).toBeFocused();
+  await expect(page.locator("#site-nav:popover-open a").first()).toBeFocused();
   await page.keyboard.press("Escape");
-  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(page.locator("#site-nav:popover-open")).toHaveCount(0);
   await expect(toggle).toBeFocused();
   await toggle.click();
-  await page.getByRole("navigation", { name: "มือถือ" }).getByRole("link", { name: "เวลาทำการ/แผนที่" }).click();
+  await page.getByRole("navigation", { name: "หลัก" }).getByRole("link", { name: "เวลาทำการ/แผนที่" }).click();
   await expect(page).toHaveURL(/\/visit\/$/);
 });
 
@@ -53,4 +52,38 @@ test("all primary pages fit supported widths in light, dark and automatic themes
       }
     }
   }
+});
+
+test("theme follows the system without JavaScript", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, colorScheme: "dark" });
+  try {
+    const page = await context.newPage();
+    await page.goto("/en/cafe/");
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "auto");
+    await expect(page.locator("html")).toHaveCSS("color-scheme", "dark");
+    await page.emulateMedia({ colorScheme: "light" });
+    await expect(page.locator("body")).toHaveCSS("background-color", "rgb(245, 241, 232)");
+  } finally {
+    await context.close();
+  }
+});
+
+test("live tabs share the selected theme and return to their system preference", async ({ context, page }) => {
+  const other = await context.newPage();
+  await page.emulateMedia({ colorScheme: "light" });
+  await other.emulateMedia({ colorScheme: "dark" });
+  await Promise.all([page.goto("/cafe/"), other.goto("/en/cafe/")]);
+
+  await page.getByRole("button", { name: "โหมดสีตามเครื่อง" }).click();
+  await expect(other.getByRole("button", { name: "Light colour theme" })).toBeVisible();
+  await expect(other.locator("html")).toHaveCSS("color-scheme", "light");
+  await other.getByRole("button", { name: "Light colour theme" }).click();
+  await expect(page.getByRole("button", { name: "โหมดมืด" })).toBeVisible();
+  await expect(page.locator("html")).toHaveCSS("color-scheme", "dark");
+  await other.reload();
+  await expect(other.getByRole("button", { name: "Dark colour theme" })).toBeVisible();
+  await other.getByRole("button", { name: "Dark colour theme" }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "auto");
+  await expect(page.locator("html")).toHaveCSS("color-scheme", "light dark");
+  await expect(other.locator("html")).toHaveCSS("color-scheme", "dark");
 });

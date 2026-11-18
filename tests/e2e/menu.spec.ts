@@ -5,7 +5,7 @@ test("the café shows signature dishes and shop photos before visitors choose a 
     await page.setViewportSize({ width, height: 900 });
     await page.goto(`${prefix}/`);
     if (!prefix) await page.getByRole("button", { name: "เมนู", exact: true }).click();
-    const siteNav = page.locator(prefix ? ".desktop-nav" : "#mobile-nav");
+    const siteNav = page.locator("#site-nav");
     await siteNav.getByRole("link", { name: prefix ? "Café" : "คาเฟ่", exact: true }).click();
     await expect(page).toHaveURL(`${prefix}/cafe/`);
     const hero = page.locator("#cafe-top");
@@ -193,3 +193,40 @@ test("café, menus and activities fit narrow phones and desktop with working cat
     await expect(page.getByRole("heading", { name: "กิจกรรมซื้อเพิ่ม" })).toBeInViewport();
   }
 });
+
+for (const fallback of [false, true]) {
+  test(`photo dialog dismisses only for deliberate backdrop clicks (${fallback ? "fallback" : "native"})`, async ({ page }) => {
+    await page.setViewportSize({ width: 1000, height: 800 });
+    if (fallback) {
+      await page.addInitScript(() => {
+        Reflect.deleteProperty(HTMLDialogElement.prototype, "closedBy");
+      });
+    }
+    await page.goto("/en/activities/");
+    const photo = page.locator("#one-zone [data-activity-photo]").first();
+    const dialog = page.locator(".activity-photo-dialog");
+    if (fallback) {
+      await dialog.evaluate(element => element.removeAttribute("closedby"));
+    }
+
+    await photo.click();
+    await dialog.getByRole("button", { name: "Close enlarged photo" }).click();
+    await expect(dialog).toBeHidden();
+    await expect(photo).toBeFocused();
+
+    await photo.click();
+    const box = (await dialog.boundingBox())!;
+    const inside = { x: box.x + 4, y: box.y + box.height / 2 };
+    const outside = { x: box.x - 8, y: inside.y };
+    await page.mouse.click(inside.x, inside.y);
+    await expect(dialog).toBeVisible();
+    await page.mouse.move(inside.x, inside.y);
+    await page.mouse.down();
+    await page.mouse.move(outside.x, outside.y);
+    await page.mouse.up();
+    await expect(dialog).toBeVisible();
+    await page.mouse.click(outside.x, outside.y);
+    await expect(dialog).toBeHidden();
+    await expect(photo).toBeFocused();
+  });
+}

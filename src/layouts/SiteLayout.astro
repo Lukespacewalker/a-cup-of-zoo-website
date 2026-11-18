@@ -45,18 +45,25 @@ const previewFont =
     : undefined;
 ---
 
-<html lang={locale} data-font-preview={previewFont}>
+<html lang={locale} data-font-preview={previewFont} data-theme="auto">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <slot name="head" />
+    <meta name="color-scheme" content="light dark" />
     <script is:inline>
       (() => {
-        const saved = localStorage.getItem("cup-theme");
-        document.documentElement.dataset.theme =
-          saved === "light" || saved === "dark" ? saved : "auto";
+        try {
+          const saved = localStorage.getItem("cup-theme");
+          if (saved === "light" || saved === "dark") {
+            document.documentElement.dataset.theme = saved;
+            document.querySelector('meta[name="color-scheme"]').content = saved;
+          }
+        } catch {
+          // The HTML default still follows the system preference.
+        }
       })();
     </script>
+    <slot name="head" />
     <SeoHead
       title={title}
       description={description}

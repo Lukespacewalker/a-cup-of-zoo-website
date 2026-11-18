@@ -308,7 +308,7 @@
 .tier-coupon + .tier-coupon {
   margin-top: 0.3rem;
 }
-@media (min-width: 701px) {
+@media (width > 700px) {
   .tier-list {
     row-gap: 0;
   }

@@ -31,9 +31,6 @@ body {
   background-size: auto, 760px;
   background-blend-mode: normal, var(--paper-blend);
 }
-body.menu-open {
-  overflow: hidden;
-}
 [data-theme="dark"] body {
   --paper-tint: 90%;
   --paper-blend: soft-light;

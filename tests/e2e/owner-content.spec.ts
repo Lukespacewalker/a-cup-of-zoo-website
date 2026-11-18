@@ -60,7 +60,7 @@ test("school and brand enquiries have separate entry points in both languages", 
     await expect(page.locator("#group-title")).toBeInViewport();
 
     if (width === 390) await page.locator(".menu-button").click();
-    const nav = page.locator(width === 390 ? "#mobile-nav" : ".desktop-nav");
+    const nav = page.locator("#site-nav");
     const routes = ["cafe", "animals", "activities", "news", "events", "club", "visit", "farm"];
     expect(await nav.getByRole("link").evaluateAll(links => links.map(link => link.getAttribute("href")))).toEqual(
       routes.map(route => `${route === "news" ? "" : prefix}/${route}/`),
@@ -79,7 +79,7 @@ test("desktop navigation fits at its compact and full-width breakpoints", async 
     for (const path of ["/events/", "/en/events/"]) {
       await page.goto(path);
       await page.evaluate(() => document.fonts.ready);
-      const nav = page.locator(".desktop-nav");
+      const nav = page.locator("#site-nav");
       await expect(nav.locator(`a[href="${path}"]`)).toBeVisible();
       const fits = await nav.evaluate((element) => {
         const header = element.closest("header")!;

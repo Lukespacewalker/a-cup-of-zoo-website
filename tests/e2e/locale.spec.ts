@@ -101,7 +101,7 @@ test("switching locale retains matching page and category hash on mobile", async
   await page.getByRole("navigation", { name: "Café and menus" }).getByRole("link", { name: "Food", exact: true }).click();
   await expect(page).toHaveURL(/\/en\/menu\/$/);
   await page.getByRole('button', { name: 'Open navigation' }).click();
-  await page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Hours & directions' }).click();
+  await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Hours & directions' }).click();
   await expect(page).toHaveURL(/\/en\/visit\/$/);
   await page.getByRole('link', { name: 'Pass benefits and child admission' }).click();
   await expect(page).toHaveURL(/\/en\/activities\/#passes$/);

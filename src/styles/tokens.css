@@ -1,5 +1,5 @@
 :root {
-  --page: min(1200px, calc(100% - 4rem));
+  --page: min(1200px, calc(100% - clamp(2.5rem, 7.5vw, 4rem)));
   --milk: #f5f1e8;
   --paper: #fffaf0;
   --blush: #eae1d2;
@@ -22,7 +22,7 @@
   --card-border: rgba(210, 195, 178, 0.5);
   --card-shadow: none;
   --card-shadow-hover: none;
-  color-scheme: light;
+  color-scheme: light dark;
   --leaf: #59634b;
   --fox: #a15434;
   --sun: #dbb967;
@@ -32,6 +32,10 @@
   --muted-text: #726754;
   --button-hover: #414b34;
   --on-button-hover: #fffaf0;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 html[data-theme="dark"] {
@@ -99,11 +103,5 @@ html[data-theme="dark"] {
     --muted-text: #c3b9a5;
     --button-hover: #e0e7cd;
     --on-button-hover: #292a23;
-  }
-}
-
-@media (max-width: 860px) {
-  :root {
-    --page: min(680px, calc(100% - 2.5rem));
   }
 }

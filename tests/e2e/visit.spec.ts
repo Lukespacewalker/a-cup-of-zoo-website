@@ -19,9 +19,9 @@ test("mobile menu opens and Escape closes it", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await page.getByRole("button", { name: "เมนู" }).click();
-  await expect(page.getByRole("navigation", { name: "มือถือ" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "หลัก" })).toBeVisible();
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("navigation", { name: "มือถือ" })).toBeHidden();
+  await expect(page.getByRole("navigation", { name: "หลัก" })).toBeHidden();
 });
 
 test("theme control responds to keyboard activation and persists after navigation", async ({ page }) => {
