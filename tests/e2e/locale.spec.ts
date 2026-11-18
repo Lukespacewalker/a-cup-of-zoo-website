@@ -17,7 +17,7 @@ test("English unknown routes return localized404 with an English home link", asy
 
 test("English primary paths render complete English content and matching metadata", async ({ page, baseURL }) => {
   const origin = new URL(baseURL!).origin;
-  for (const route of ["/en/", "/en/animals/", "/en/menu/", "/en/activities/", "/en/visit/"]) {
+  for (const route of ["/en/", "/en/animals/", "/en/cafe/", "/en/menu/", "/en/drinks/", "/en/activities/", "/en/visit/"]) {
     const response = await page.goto(route);
     expect(response?.status()).toBe(200);
     expect(response?.headers()['x-robots-tag']).toContain('noindex');
@@ -97,7 +97,8 @@ test("switching locale retains matching page and category hash on mobile", async
   await page.getByRole('link', { name: 'Thai', exact: true }).click();
   await expect(page).toHaveURL(/\/menu\/#plant-based$/);
   await page.goto('/en/');
-  await page.locator('.experience-paths a[href="/en/menu/"]').click();
+  await page.locator('.experience-paths a[href="/en/cafe/"]').click();
+  await page.getByRole("navigation", { name: "Café and menus" }).getByRole("link", { name: "Food", exact: true }).click();
   await expect(page).toHaveURL(/\/en\/menu\/$/);
   await page.getByRole('button', { name: 'Open navigation' }).click();
   await page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Hours & directions' }).click();

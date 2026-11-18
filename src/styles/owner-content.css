@@ -14,22 +14,6 @@
   max-width: 48rem;
   color: var(--muted-text);
 }
-.menu-books {
-  margin: 1.6rem 0;
-  padding: 1.2rem 0;
-  border-block: 1px solid var(--line);
-}
-.menu-books p {
-  font-size: 0.9rem;
-}
-.menu-books .button {
-  gap: 0.55rem;
-}
-.menu-books .button svg {
-  flex: none;
-  width: 1.2rem;
-  height: 1.2rem;
-}
 .event-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

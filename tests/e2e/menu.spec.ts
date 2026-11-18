@@ -1,13 +1,43 @@
 import { expect, test } from "@playwright/test";
 
+test("the café shows signature dishes and shop photos before visitors choose a menu", async ({ page }) => {
+  for (const [prefix, width] of [["", 390], ["/en", 1440]] as const) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(`${prefix}/`);
+    if (!prefix) await page.getByRole("button", { name: "เมนู", exact: true }).click();
+    const siteNav = page.locator(prefix ? ".desktop-nav" : "#mobile-nav");
+    await siteNav.getByRole("link", { name: prefix ? "Café" : "คาเฟ่", exact: true }).click();
+    await expect(page).toHaveURL(`${prefix}/cafe/`);
+    const hero = page.locator("#cafe-top");
+    await expect(hero.locator("h1")).toHaveText(prefix ? "Café & restaurant" : "คาเฟ่และร้านอาหาร");
+    await expect(page.locator("#signature [data-menu-code]")).toHaveCount(3);
+    const gallery = page.locator(".cafe-gallery img");
+    await expect(gallery).toHaveCount(3);
+    for (const image of [hero.locator("img"), ...(await gallery.all())]) {
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+    }
+
+    const tabs = page.locator(".cafe-nav");
+    await expect(tabs.getByRole("link")).toHaveText(prefix ? ["Café", "Food", "Drinks"] : ["คาเฟ่", "อาหาร", "เครื่องดื่ม"]);
+    for (const path of ["drinks", "menu", "cafe"]) {
+      const destination = `${prefix}/${path}/`;
+      const tab = tabs.locator(`a[href="${destination}"]`);
+      await tab.click();
+      await expect(page).toHaveURL(destination);
+      await expect(tab).toHaveAttribute("aria-current", "page");
+    }
+  }
+});
+
 test("all food and prices are server rendered with optional menu-book links", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   const requests: string[] = [];
   page.on("request", (request) => requests.push(request.url()));
   await page.goto("/menu/");
-  await expect(page.locator(".menu-books")).toContainText("เลือกชมเมนูพร้อมราคาด้านล่าง");
-  await expect(page.locator(".menu-mast")).not.toContainText("ราคาต่อจานเป็นบาท");
+  await expect(page.getByRole("heading", { name: "เมนูอาหาร", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "เลือกหมวดอาหาร" })).toHaveAttribute("href", "#menu-categories");
   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
   await expect(page.locator('[data-menu-code="B3"]')).toContainText("189 บาท");
   await expect(page.locator('[data-menu-code="R9"]')).toContainText("129 บาท");
@@ -27,7 +57,7 @@ test("all food and prices are server rendered with optional menu-book links", as
   expect(await gallery.locator("img").evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
   expect(requests.some((url) => /heyzine/i.test(url))).toBe(false);
   await expect(page.locator("iframe")).toHaveCount(0);
-  await expect(page.locator('a[href*="heyzine"]')).toHaveCount(2);
+  await expect(page.locator('a[href*="heyzine"]')).toHaveCount(1);
   await context.close();
 });
 
@@ -37,13 +67,13 @@ test("signature dishes have matching photos and prices ahead of the category nav
       path: "/menu/",
       names: ["ข้าวแมว", "ข้าวหมา", "ยำนกแก้ว (ยำตะไคร้)"],
       price: "179 บาท",
-      browse: "เลือกชมเมนูพร้อมราคาด้านล่าง",
+      browse: "เลือกหมวดอาหาร",
     },
     {
       path: "/en/menu/",
       names: ["Cat Rice", "Dog Rice", "Parrot Salad (Lemongrass Salad)"],
       price: "179 THB",
-      browse: "browse the food menu and prices below",
+      browse: "Browse food categories",
     },
   ]) {
     await page.setViewportSize({ width: 390, height: 844 });
@@ -150,10 +180,10 @@ test("home and activities show the same four passes with larger photos", async (
   }
 });
 
-test("menu and activities fit narrow phones and desktop with working category navigation", async ({ page }) => {
+test("café, menus and activities fit narrow phones and desktop with working category navigation", async ({ page }) => {
   for (const width of [320, 390, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const path of ["/menu/", "/activities/"]) {
+    for (const path of ["/cafe/", "/menu/", "/drinks/", "/activities/"]) {
       await page.goto(path);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);

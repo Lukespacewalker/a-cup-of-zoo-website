@@ -69,8 +69,8 @@
 .mobile-panel a:hover {
   color: var(--fox-ink);
 }
-.desktop-nav a[aria-current="page"],
-.mobile-panel a[aria-current="page"] {
+.desktop-nav a[aria-current],
+.mobile-panel a[aria-current] {
   color: var(--fox-ink);
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -140,19 +140,40 @@
   display: none;
   min-width: 44px;
   min-height: 44px;
-  border-radius: 999px;
-  border: 0;
-  background: var(--blush);
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: transparent;
   color: var(--cocoa);
   font: inherit;
+}
+.menu-button:enabled {
+  cursor: pointer;
+}
+.menu-button:hover:enabled,
+.menu-button[aria-expanded="true"] {
+  background: var(--blush);
 }
 .menu-button svg {
   width: 22px;
   height: 22px;
 }
-.menu-button[aria-expanded="false"] .menu-icon-close,
-.menu-button[aria-expanded="true"] .menu-icon-open {
-  display: none;
+.menu-button svg path {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 200ms ease,
+    opacity 200ms ease;
+}
+.menu-button[aria-expanded="true"] path:first-child {
+  transform: translateY(6px) rotate(45deg);
+}
+.menu-button[aria-expanded="true"] path:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.menu-button[aria-expanded="true"] path:last-child {
+  transform: translateY(-6px) rotate(-45deg);
 }
 .mobile-panel {
   display: none;
@@ -162,13 +183,23 @@
   border-radius: 1.6rem;
   padding: 0.8rem;
   box-shadow: var(--shadow);
-  z-index: 9;
+  z-index: 40;
   flex-direction: column;
   max-height: calc(100dvh - 7rem);
   overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    visibility 0s linear 200ms;
 }
-.mobile-panel[data-open="true"] {
-  display: flex;
+.mobile-panel:not([inert]) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
 }
 
 .footer {
@@ -239,6 +270,9 @@
     align-items: center;
     justify-content: center;
   }
+  .mobile-panel {
+    display: flex;
+  }
 }
 @media (max-width: 860px) {
   .site-header {
@@ -250,17 +284,10 @@
     height: 3.7rem;
     margin-right: auto;
   }
-  .menu-button {
-    background: none;
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    padding: 0;
-  }
   .mobile-panel {
     inset: 5rem 1.25rem auto;
     border: 1px solid var(--line);
     border-radius: 3px;
-    z-index: 40;
   }
   .footer {
     padding: 2.5rem 1.25rem calc(var(--sticky) + 1rem);

@@ -11,7 +11,7 @@ test("home experiences preserve locale and mobile shortcuts do not duplicate the
     await expect(page.locator("#experiences")).toBeInViewport();
     await expect(page.locator(".sticky-cta")).toBeVisible();
     const experiences = page.locator(".experience-paths");
-    await expect(experiences.locator(`a[href="${prefix}/menu/"]`)).toHaveCount(1);
+    await expect(experiences.locator(`a[href="${prefix}/cafe/"]`)).toHaveCount(1);
     await expect(experiences.locator(`a[href="${prefix}/animals/"]`)).toHaveCount(1);
     await expect(experiences.locator(`a[href="${prefix}/activities/"]`)).toHaveCount(1);
     await page.locator("[data-cat-room-link]").click();

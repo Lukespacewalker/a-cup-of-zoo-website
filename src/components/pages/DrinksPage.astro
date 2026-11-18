@@ -1,0 +1,28 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { loadPage } from "../../lib/content/load-page";
+import { translator, type Locale } from "../../lib/i18n/locale";
+import CafeNav from "../content/CafeNav.astro";
+import MenuBook from "../content/MenuBook.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = translator(locale);
+const page = await loadPage();
+---
+
+<SiteLayout
+  locale={locale}
+  title={t("เมนูเครื่องดื่มและขนม", "Drinks & desserts menu")}
+  description={t(
+    "เปิดเล่มเมนูเครื่องดื่มและขนมของ A Cup of Zoo คลอง 6 ปทุมธานี",
+    "Open the A Cup of Zoo drinks and desserts menu in Khlong 6, Pathum Thani.",
+  )}
+  page={page}
+>
+  <CafeNav locale={locale} />
+  <MenuBook locale={locale} book="drinks" />
+</SiteLayout>

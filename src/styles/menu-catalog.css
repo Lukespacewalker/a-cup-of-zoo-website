@@ -11,64 +11,8 @@ html:has(.food-catalog) {
   scroll-margin-top: 8rem;
 }
 #menu-top,
-#menu-categories,
-.signature-menu,
-.signature-menu__dishes > li {
+#menu-categories {
   scroll-margin-top: 8rem;
-}
-.signature-menu {
-  margin-top: clamp(1.25rem, 3vw, 2.5rem);
-  padding: clamp(1.25rem, 4vw, 2.625rem);
-  background: light-dark(#30392c, #242c22);
-  color: light-dark(#fff5e4, #f7ecda);
-}
-.signature-menu h2 {
-  margin: 0 0 clamp(1rem, 2.8vw, 1.75rem);
-  color: inherit;
-  font-size: clamp(1.95rem, 5vw, 3.2rem);
-  font-weight: 700;
-  line-height: 1.3;
-}
-.signature-menu__dishes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 2.5vw, 1.625rem);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.signature-menu__dishes img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 5px;
-}
-.signature-menu__dish-heading {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-.signature-menu h3 {
-  margin: 0;
-  color: inherit;
-  font-size: clamp(1.2rem, 2.4vw, 1.625rem);
-  font-weight: 700;
-  line-height: 1.4;
-}
-.signature-menu__price {
-  color: light-dark(#f1cca1, #e9c49b);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-.signature-menu p {
-  margin: 0.3rem 0 0;
-  color: light-dark(#dfd8c7, #d6cebd);
-  font-size: 0.9rem;
-  line-height: 1.6;
 }
 .food-section__heading {
   margin-bottom: 1.5rem;
@@ -196,9 +140,6 @@ html:has(.food-catalog) {
   margin-top: 1.1rem;
   text-underline-offset: 0.2em;
 }
-.catalog-end {
-  padding: 2rem 0 3rem;
-}
 @media (max-width: 700px) {
   #menu-categories {
     gap: 0.1rem 0.9rem;
@@ -221,14 +162,5 @@ html:has(.food-catalog) {
   .food-list__title {
     flex-wrap: wrap;
     gap: 0.2rem 0.75rem;
-  }
-}
-@media (max-width: 600px) {
-  .signature-menu__dishes {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
-  }
-  .signature-menu__dishes img {
-    aspect-ratio: 6 / 5;
   }
 }

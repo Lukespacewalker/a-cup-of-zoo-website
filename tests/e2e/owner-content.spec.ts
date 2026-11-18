@@ -61,7 +61,7 @@ test("school and brand enquiries have separate entry points in both languages", 
 
     if (width === 390) await page.locator(".menu-button").click();
     const nav = page.locator(width === 390 ? "#mobile-nav" : ".desktop-nav");
-    const routes = ["menu", "animals", "activities", "news", "events", "club", "visit", "farm"];
+    const routes = ["cafe", "animals", "activities", "news", "events", "club", "visit", "farm"];
     expect(await nav.getByRole("link").evaluateAll(links => links.map(link => link.getAttribute("href")))).toEqual(
       routes.map(route => `${route === "news" ? "" : prefix}/${route}/`),
     );
@@ -148,16 +148,23 @@ test("map and every place link remain available without JavaScript", async ({ br
   await context.close();
 });
 
-test("menu books use the exact owner links and never embed the viewer", async ({ page }) => {
-  await page.goto("/en/menu/");
-  const menuLinks = page.locator(".menu-books a");
-  await expect(menuLinks).toHaveCount(3);
-  await expect(menuLinks.nth(0)).toHaveAttribute("href", "https://heyzine.com/flip-book/72a5470ad6.html");
-  await expect(menuLinks.nth(1)).toHaveAttribute("href", "https://heyzine.com/flip-book/587e5387cd.html");
-  await expect(menuLinks.nth(2)).toHaveAttribute("href", "#menu-categories");
-  await expect(page.locator(".menu-books .actions a svg[aria-hidden='true']")).toHaveCount(2);
-  await expect(page.locator("[data-menu-code]")).toHaveCount(47);
-  await expect(page.locator("iframe")).toHaveCount(0);
+test("the food and drinks covers open the owner’s Heyzine books in a new tab", async ({ page, context }) => {
+  await context.route("https://heyzine.com/flip-book/**", (route) => route.fulfill({ body: "Menu book" }));
+  for (const [path, bookId] of [["menu", "72a5470ad6"], ["drinks", "587e5387cd"]]) {
+    const destination = `https://heyzine.com/flip-book/${bookId}.html`;
+    await page.goto(`/en/${path}/`);
+    await expect(page.locator("iframe")).toHaveCount(0);
+    const cover = page.locator(".menu-book__link");
+    await expect(cover).toHaveAttribute("href", destination);
+    const image = cover.locator("img");
+    await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+    const opened = page.waitForEvent("popup");
+    await image.click();
+    const book = await opened;
+    await expect(book).toHaveURL(destination);
+    await expect(page).toHaveURL(`/en/${path}/`);
+    await book.close();
+  }
 });
 
 test("home stories follow the owner order and club artwork fits phones and desktop", async ({ page }) => {

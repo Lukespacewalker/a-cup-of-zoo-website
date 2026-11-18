@@ -247,11 +247,6 @@
 .food-section {
   padding-top: 2rem;
 }
-.menu-mast {
-  padding-top: 1.8rem;
-  padding-bottom: 1.2rem;
-}
-
 .wishing-story {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
@@ -305,20 +300,6 @@
   }
   .page-intro__fox {
     display: none;
-  }
-  .menu-mast {
-    padding-top: 1.2rem;
-    padding-bottom: 0.6rem;
-  }
-  .menu-mast .eyebrow {
-    margin-top: 0;
-  }
-  .menu-mast h1 {
-    font-size: 1.9rem;
-    margin-block: 0.5rem;
-  }
-  .menu-mast > p {
-    margin-block: 0.5rem;
   }
   .food-section:first-child {
     padding-top: 1.3rem;

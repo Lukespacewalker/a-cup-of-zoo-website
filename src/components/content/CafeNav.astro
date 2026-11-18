@@ -1,0 +1,57 @@
+---
+import { localePath, translator, type Locale } from "../../lib/i18n/locale";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = translator(locale);
+const links = [
+  ["/cafe/", t("คาเฟ่", "Café")],
+  ["/menu/", t("อาหาร", "Food")],
+  ["/drinks/", t("เครื่องดื่ม", "Drinks")],
+];
+---
+
+<nav class="cafe-nav" aria-label={t("หน้าคาเฟ่และเมนู", "Café and menus")}>
+  {links.map(([path, label]) => {
+    const href = localePath(path, locale);
+    return (
+      <a
+        href={href}
+        aria-current={Astro.url.pathname === href ? "page" : undefined}
+      >
+        {label}
+      </a>
+    );
+  })}
+</nav>
+
+<style>
+  .cafe-nav {
+    display: flex;
+    gap: clamp(0.2rem, 2vw, 1.25rem);
+    border-bottom: 1px solid var(--line);
+    margin-block: clamp(0.75rem, 2.5vw, 1.6rem);
+  }
+  .cafe-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.35rem clamp(0.8rem, 2.5vw, 1.65rem);
+    border-bottom: 2px solid transparent;
+    color: var(--muted-text);
+    text-decoration: none;
+  }
+  .cafe-nav a:hover {
+    background: var(--blush);
+    color: var(--cocoa-deep);
+  }
+  .cafe-nav [aria-current="page"] {
+    border-color: var(--fox-ink);
+    color: var(--cocoa-deep);
+    font-weight: 700;
+  }
+</style>

@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import room from "../../assets/menu/cafe-room.webp";
+import table from "../../assets/menu/cafe-table.webp";
+import noren from "../../assets/menu/cafe-noren.webp";
+import art from "../../assets/menu/cafe-art.webp";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { loadPage } from "../../lib/content/load-page";
+import { translator, type Locale } from "../../lib/i18n/locale";
+import CafeNav from "../content/CafeNav.astro";
+import SignatureDishes from "../content/SignatureDishes.astro";
+import PageHero from "../site/PageHero.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = translator(locale);
+const page = await loadPage();
+const photos = [
+  {
+    src: table,
+    alt: t(
+      "โต๊ะริมกระจกกับตุ๊กตาในร้าน",
+      "Window table with figurines at the café",
+    ),
+  },
+  {
+    src: noren,
+    alt: t(
+      "ผ้าม่านญี่ปุ่นเหนือที่นั่งริมสวน",
+      "Japanese fabric panels above the garden-side seating",
+    ),
+  },
+  {
+    src: art,
+    alt: t(
+      "ผนังร้านที่แขวนรูปวาดสัตว์",
+      "Framed animal illustrations on the café wall",
+    ),
+  },
+];
+---
+
+<SiteLayout
+  locale={locale}
+  title={t("คาเฟ่และร้านอาหาร คลอง 6", "Café & restaurant in Khlong 6")}
+  description={t(
+    "ดูบรรยากาศในร้าน เมนูซิกเนเจอร์ อาหารและเครื่องดื่มของ A Cup of Zoo คลอง 6 ปทุมธานี",
+    "See inside A Cup of Zoo in Khlong 6, Pathum Thani, and browse our signature dishes, food and drinks menus.",
+  )}
+  page={page}
+>
+  <PageHero
+    id="cafe-top"
+    title={t("คาเฟ่และร้านอาหาร", "Café & restaurant")}
+    description={t(
+      "แวะมาทานข้าวหรือจิบกาแฟที่ A Cup of Zoo คลอง 6 มีที่นั่งในร้านและโต๊ะริมสวน",
+      "Stop by A Cup of Zoo in Khlong 6 for a meal or a coffee. Sit indoors or by the garden.",
+    )}
+    image={room}
+    alt={t(
+      "ที่นั่งในคาเฟ่ใต้เพดานไม้และหน้าต่างบานใหญ่",
+      "Café seating beneath a timber ceiling and large windows",
+    )}
+    position="center 55%"
+    href="#signature"
+    action={t("ดูเมนูซิกเนเจอร์", "See the signature dishes")}
+  />
+  <CafeNav locale={locale} />
+  <SignatureDishes locale={locale} />
+
+  <section class="cafe-gallery" aria-labelledby="cafe-gallery-title">
+    <h2 id="cafe-gallery-title">{t("บรรยากาศในร้าน", "Inside the café")}</h2>
+    <div class="cafe-gallery__photos">
+      {photos.map(({ src, alt }, index) => (
+        <Image
+          src={src}
+          alt={alt}
+          widths={index === 0 ? [360, 720, 1024] : [360, 560, 768]}
+          sizes={
+            index === 0
+              ? "(max-width: 1264px) 92vw, 1200px"
+              : "(max-width: 1264px) 46vw, 600px"
+          }
+          format="webp"
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </section>
+</SiteLayout>
+
+<style>
+  .cafe-gallery {
+    margin-top: clamp(2rem, 6vw, 4.75rem);
+  }
+  .cafe-gallery h2 {
+    margin: 0 0 0.85rem;
+    font-size: clamp(1.75rem, 3vw, 2.6rem);
+  }
+  .cafe-gallery__photos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.5rem, 1.6vw, 1rem);
+  }
+  .cafe-gallery__photos img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 3;
+    object-fit: cover;
+  }
+  .cafe-gallery__photos img:first-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 1024 / 461;
+  }
+  @media (max-width: 480px) {
+    .cafe-gallery__photos img {
+      aspect-ratio: 1;
+    }
+  }
+</style>

@@ -7,7 +7,8 @@ test("home actions and mobile navigation reach the menu and visit pages", async 
   await expect(actions.getByRole("link", { name: "สำรวจประสบการณ์" })).toBeInViewport();
   await expect(actions.getByRole("link", { name: "วางแผนมาเที่ยว" })).toBeInViewport();
   await actions.getByRole("link", { name: "สำรวจประสบการณ์" }).click();
-  await page.locator('.experience-paths a[href="/menu/"]').click();
+  await page.locator('.experience-paths a[href="/cafe/"]').click();
+  await page.getByRole("navigation", { name: "หน้าคาเฟ่และเมนู" }).getByRole("link", { name: "อาหาร", exact: true }).click();
   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
   const toggle = page.getByRole("button", { name: "เมนู", exact: true });
   await toggle.click();
