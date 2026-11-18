@@ -23,6 +23,14 @@ test("both languages and home use the same 14-party ballot and keep old links wo
       await page.goto(prefix + path);
       const board = page.locator("[data-party-board]");
       await expect(board).toHaveAttribute("data-party-enhanced", "true");
+      await expect(board.locator("#animal-parties-title")).toHaveText(
+        prefix ? "Who lives here?" : "สมาชิกที่นี่มีใครกันบ้าง?",
+      );
+      await expect(board.locator(".party-intro p")).toHaveText(
+        prefix
+          ? "Meet our animal friends and give your favourite party a heart."
+          : "รู้จักเพื่อนสัตว์ แล้วโหวดใจให้พรรคโปรด",
+      );
       const siteFont = await page
         .locator("main")
         .evaluate((main) => getComputedStyle(main).fontFamily);
@@ -135,7 +143,7 @@ test("map targets and party picker work in keyboard order and on a small viewpor
   }
 });
 
-test("home aligns both maps and shows portraits above ranked podium steps", async ({
+test("home aligns both maps and both pages show the illustrated podium", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 850 });
@@ -237,6 +245,58 @@ test("home aligns both maps and shows portraits above ranked podium steps", asyn
     }
   }
   expect(crops.size).toBe(partyIds.length);
+
+  counts = { fish: 12, dog: 8, civet: 3 };
+  await page.goto("/en/animals/");
+  await refresh.click();
+  await expect(podium.locator("[data-place]")).toHaveText(["1", "2", "3"]);
+  const directoryPortraits = await portraits();
+  expect(
+    directoryPortraits.map(({ partyId, source }) => ({ partyId, source })),
+  ).toEqual(
+    [first, second, third].map(({ partyId, source }) => ({ partyId, source })),
+  );
+  await podium.locator('[data-party-link="fish"]').click();
+  await expect(fish.locator("h3")).toBeFocused();
+});
+
+test("both animal maps leave room for the details beside them only on wide screens", async ({
+  page,
+}) => {
+  for (const path of ["/", "/animals/"]) {
+    await page.goto(path);
+    const pin = page.locator('[data-party-pin="dog"]');
+    const map = page.locator(".party-map");
+    const layout = page.locator(".party-map-layout");
+    const details = page.locator('[data-party-sheet="dog"]');
+    for (const width of [390, 1440, 1920, 2560]) {
+      const height = width === 390 ? 844 : 1000;
+      await page.setViewportSize({ width, height });
+      await pin.click();
+      await expect(details.locator("h3")).toBeFocused();
+      const mapBox = (await map.boundingBox())!;
+      const layoutBox = (await layout.boundingBox())!;
+      const detailsBox = (await details.boundingBox())!;
+      const voteBox = (await details
+        .locator("[data-party-vote]")
+        .boundingBox())!;
+      const shortcutsBox = await page.locator(".sticky-cta").boundingBox();
+      expect(voteBox.y).toBeGreaterThanOrEqual(0);
+      expect(voteBox.y + voteBox.height).toBeLessThanOrEqual(
+        shortcutsBox?.y ?? height,
+      );
+      if (width < 2400) {
+        expect(mapBox.width).toBeCloseTo(layoutBox.width);
+        expect(detailsBox.y).toBeGreaterThan(mapBox.y + mapBox.height);
+      } else {
+        expect(mapBox.width).toBeGreaterThan(1200);
+        expect(detailsBox.x).toBeGreaterThan(mapBox.x + mapBox.width);
+        expect(detailsBox.y).toBeCloseTo(mapBox.y);
+      }
+      expect(mapBox.x).toBeGreaterThanOrEqual(0);
+      expect(detailsBox.x + detailsBox.width).toBeLessThanOrEqual(width);
+    }
+  }
 });
 
 test("a vote updates the party and three leading slots, with a shared rank for ties", async ({

@@ -31,9 +31,12 @@ const totals = await loadPartyVoteTotals();
 const counts = new Map(
   totals?.items.map(({ partyId, count }) => [partyId, count]),
 );
-const podiumImage = home
-  ? await getImage({ src: animalMap, width: 1536, format: "webp", quality: 80 })
-  : undefined;
+const podiumImage = await getImage({
+  src: animalMap,
+  width: 1536,
+  format: "webp",
+  quality: 80,
+});
 const leaders = rankByVotes(
   parties.map((party) => ({ ...party, count: counts.get(party.id) ?? 0 })),
 )
@@ -59,20 +62,13 @@ const detailHref = (id: string) => `#party-${id}`;
 >
   <header class="party-intro">
     <Heading id="animal-parties-title">
-      {home
-        ? t("สมาชิกที่นี่มีใครกันบ้าง?", "Who lives here?")
-        : t("คุณอยู่พรรคไหน?", "Which party gets your vote?")}
+      {t("สมาชิกที่นี่มีใครกันบ้าง?", "Who lives here?")}
     </Heading>
     <p>
-      {home
-        ? t(
-            "รู้จักเพื่อนสัตว์ แล้วโหวดใจให้พรรคโปรด",
-            "Meet our animal friends and give your favourite party a heart.",
-          )
-        : t(
-            "เลือกจากแผนที่ ทำความรู้จักสมาชิก แล้วโหวตให้พรรคโปรด",
-            "Pick a party on the map, meet its members, and cast your vote.",
-          )}
+      {t(
+        "รู้จักเพื่อนสัตว์ แล้วโหวดใจให้พรรคโปรด",
+        "Meet our animal friends and give your favourite party a heart.",
+      )}
     </p>
   </header>
 
@@ -99,11 +95,8 @@ const detailHref = (id: string) => `#party-${id}`;
       </div>
     </div>
     <ol
-      class:list={["party-leaders", { "party-leaders--podium": home }]}
-      style={
-        podiumImage &&
-        `--podium-art: url("${podiumImage.src}"); --art-width: ${animalMap.width}; --art-height: ${animalMap.height};`
-      }
+      class="party-leaders"
+      style={`--podium-art: url("${podiumImage.src}"); --art-width: ${animalMap.width}; --art-height: ${animalMap.height};`}
       data-party-leaders
       hidden={leaders.length === 0}
     >
@@ -115,13 +108,7 @@ const detailHref = (id: string) => `#party-${id}`;
               href={leader ? detailHref(leader.id) : undefined}
               data-party-link={leader?.id}
             >
-              {home ? (
-                <span class="party-podium-portrait" aria-hidden="true" />
-              ) : (
-                <span class="party-place" data-place>
-                  {leader?.rank}
-                </span>
-              )}
+              <span class="party-podium-portrait" aria-hidden="true" />
               <span class="party-leader-name" data-leader-name>
                 {leader?.name}
               </span>
@@ -131,12 +118,10 @@ const detailHref = (id: string) => `#party-${id}`;
                 </strong>{" "}
                 <span data-leader-unit>{voteUnit(locale, leader?.count)}</span>
               </span>
-              {home && (
-                <span class="party-podium-rank">
-                  <span class="party-sr-only">{t("อันดับ ", "Rank ")}</span>
-                  <span data-place>{leader?.rank}</span>
-                </span>
-              )}
+              <span class="party-podium-rank">
+                <span class="party-sr-only">{t("อันดับ ", "Rank ")}</span>
+                <span data-place>{leader?.rank}</span>
+              </span>
             </a>
           </li>
         );
@@ -171,8 +156,8 @@ const detailHref = (id: string) => `#party-${id}`;
             "ภาพวาดสีกวอชของสัตว์ 14 กลุ่ม พร้อมป้ายชื่อชนิดและสายพันธุ์",
             "Gouache map of 14 animal groups with Thai species and breed labels",
           )}
-          widths={[384, 576, 768, 1152, 1536]}
-          sizes="(max-width: 860px) calc(100vw - 2.5rem), 740px"
+          widths={[384, 576, 768, 1152, 1536, 2048]}
+          sizes="(min-width: 1264px) 1200px, (min-width: 861px) calc(100vw - 4rem), (min-width: 720px) 680px, calc(100vw - 2.5rem)"
           format="webp"
           quality={80}
           loading={home ? "lazy" : "eager"}
