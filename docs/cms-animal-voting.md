@@ -4,7 +4,7 @@
 
 หน้าแรกและหน้าสัตว์ทั้งภาษาไทยและอังกฤษใช้ [ภาพสีกวอชพร้อมป้ายชื่อ](../src/assets/animal-friends-gouache.webp) เป็นแผนที่ 14 พรรค มีลิงก์เปิดภาพเต็มสำหรับอ่านป้าย แตะหมุดหรือเลือกจากรายชื่อเพื่อดูสมาชิก สโลแกน คะแนน และปุ่มโหวต แถบด้านบนแสดงสูงสุดสามพรรคที่มีคะแนน โดยพรรคที่คะแนนเท่ากันใช้อันดับร่วมกัน `/vote/` และ `/en/vote/` ยังพาไปที่แผนที่ในภาษานั้น
 
-เก็บ [ภาพดินปั้น 3D](../reference-data/animal-map-artwork/animal-friends-clay.png) เป็นอีกแบบสำหรับใช้อ้างอิง และใช้ [ภาพสีน้ำเดิม](../src/assets/watercolor/animal-friends-garden.webp) สำหรับภาพวงกลมบนแท่นคะแนนหน้าแรก
+ภาพวงกลมบนแท่นคะแนนหน้าแรกครอปจากภาพสีกวอชชุดเดียวกับแผนที่ตามกลุ่มของแต่ละพรรค เก็บ [ภาพดินปั้น 3D](../reference-data/animal-map-artwork/animal-friends-clay.png) เป็นอีกแบบสำหรับใช้อ้างอิง
 
 รายชื่อ 14 กลุ่มอ้างอิง Canva หน้า 21 รูปและชื่อรายตัวจาก CMS ใช้ข้อมูลฉบับเผยแพร่ รูปเพิ่มจาก Drive อ้างอิงโปสเตอร์ที่ยืนยันชื่อหรือชนิดสัตว์ได้ [Canva](https://www.canva.com/design/DAHYz2902Do/uNqLI2aFUF5ZNF389Mwscg/view#21) · [Drive Animal Friends](https://drive.google.com/drive/folders/1RU96kOcj_OpxyBUBsBVSXAGe9-ukJjRZ) · [ตำแหน่งครอปรูปจากโปสเตอร์](../reference-data/animal-party-members/portraits.json)
 

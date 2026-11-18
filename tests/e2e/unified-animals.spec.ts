@@ -161,11 +161,12 @@ test("home aligns both maps and shows portraits above ranked podium steps", asyn
   const podium = page.locator("[data-party-leaders]");
   await expect(podium.locator("[data-place]")).toHaveText(["1", "2", "3"]);
   const portraits = () =>
-    podium.locator(".party-podium-portrait").evaluateAll((images) =>
+    podium.locator(".party-podium-portrait:visible").evaluateAll((images) =>
       images.map((image) => {
         const { x, y, width, height } = image.getBoundingClientRect();
         const style = getComputedStyle(image);
         return {
+          partyId: image.closest("a")?.dataset.partyLink,
           x,
           y,
           width,
@@ -173,6 +174,7 @@ test("home aligns both maps and shows portraits above ranked podium steps", asyn
           radius: style.borderRadius,
           source: style.backgroundImage,
           crop: style.backgroundPosition,
+          zoom: style.backgroundSize,
         };
       }),
     );
@@ -188,11 +190,14 @@ test("home aligns both maps and shows portraits above ranked podium steps", asyn
   }
   expect(new Set([first.crop, second.crop, third.crop]).size).toBe(3);
   const artwork = /^url\("(.+)"\)$/.exec(first.source)?.[1] ?? "";
-  expect(artwork).toContain("animal-friends-garden");
-  await expect(page.locator(".party-map-art img")).toHaveAttribute(
-    "src",
-    /animal-friends-gouache/,
+  expect(artwork).toContain("animal-friends-gouache");
+  const mapVariants = await page.locator(".party-map-art img").evaluate((img) =>
+    (img as HTMLImageElement).srcset.split(",").map((variant) => {
+      const [src] = variant.trim().split(" ");
+      return new URL(src, location.href).href;
+    }),
   );
+  expect(mapVariants).toContain(artwork);
   expect((await page.request.get(artwork)).ok()).toBe(true);
 
   counts = { fish: 12, dog: 12, civet: 3 };
@@ -216,6 +221,22 @@ test("home aligns both maps and shows portraits above ranked podium steps", asyn
   await expect(
     fish.getByText("Species illustrations and labels from Canva"),
   ).toHaveCount(0);
+
+  const crops = new Set<string>();
+  for (let start = 0; start < partyIds.length; start += 3) {
+    const batch = partyIds.slice(start, start + 3);
+    counts = Object.fromEntries(batch.map((id, index) => [id, 3 - index]));
+    await refresh.click();
+    await expect
+      .poll(async () => (await portraits()).map(({ partyId }) => partyId))
+      .toEqual(batch);
+    for (const { crop, source, zoom } of await portraits()) {
+      expect(source).toBe(first.source);
+      expect(Number.parseFloat(zoom)).toBeGreaterThan(100);
+      crops.add(crop);
+    }
+  }
+  expect(crops.size).toBe(partyIds.length);
 });
 
 test("a vote updates the party and three leading slots, with a shared rank for ties", async ({

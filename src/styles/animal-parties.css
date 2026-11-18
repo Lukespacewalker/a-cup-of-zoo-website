@@ -226,89 +226,89 @@
     0 2px 5px #40382c2e;
 }
 
-/* Crop centers and diameters in pixels of the original garden artwork. */
+/* Crop centers and diameters in pixels of the full gouache artwork. */
 .party-leaders--podium [data-party-link="dog"] {
-  --crop-x: 250;
-  --crop-y: 140;
-  --crop-size: 219;
+  --crop-x: 274;
+  --crop-y: 366;
+  --crop-size: 174;
 }
 
 .party-leaders--podium [data-party-link="cat"] {
-  --crop-x: 516;
-  --crop-y: 173;
-  --crop-size: 199;
+  --crop-x: 1200;
+  --crop-y: 324;
+  --crop-size: 200;
 }
 
 .party-leaders--podium [data-party-link="bird"] {
-  --crop-x: 822;
-  --crop-y: 126;
-  --crop-size: 214;
+  --crop-x: 1769;
+  --crop-y: 202;
+  --crop-size: 200;
 }
 
 .party-leaders--podium [data-party-link="civet"] {
-  --crop-x: 1224;
-  --crop-y: 190;
-  --crop-size: 231;
+  --crop-x: 2009;
+  --crop-y: 408;
+  --crop-size: 112;
 }
 
 .party-leaders--podium [data-party-link="fox"] {
-  --crop-x: 193;
-  --crop-y: 424;
-  --crop-size: 205;
+  --crop-x: 1038;
+  --crop-y: 729;
+  --crop-size: 157;
 }
 
 .party-leaders--podium [data-party-link="meerkat"] {
-  --crop-x: 458;
-  --crop-y: 433;
-  --crop-size: 163;
+  --crop-x: 1576;
+  --crop-y: 676;
+  --crop-size: 127;
 }
 
 .party-leaders--podium [data-party-link="prairie-dog"] {
-  --crop-x: 714;
-  --crop-y: 497;
-  --crop-size: 177;
+  --crop-x: 1958;
+  --crop-y: 712;
+  --crop-size: 158;
 }
 
 .party-leaders--podium [data-party-link="rabbit"] {
-  --crop-x: 988;
-  --crop-y: 464;
-  --crop-size: 207;
+  --crop-x: 1208;
+  --crop-y: 945;
+  --crop-size: 158;
 }
 
 .party-leaders--podium [data-party-link="goat"] {
-  --crop-x: 1233;
-  --crop-y: 385;
-  --crop-size: 218;
+  --crop-x: 1739;
+  --crop-y: 905;
+  --crop-size: 155;
 }
 
 .party-leaders--podium [data-party-link="snake"] {
-  --crop-x: 155;
-  --crop-y: 833;
-  --crop-size: 228;
+  --crop-x: 186;
+  --crop-y: 1095;
+  --crop-size: 146;
 }
 
 .party-leaders--podium [data-party-link="iguana"] {
-  --crop-x: 522;
-  --crop-y: 764;
-  --crop-size: 228;
+  --crop-x: 643;
+  --crop-y: 1031;
+  --crop-size: 174;
 }
 
 .party-leaders--podium [data-party-link="turtle"] {
-  --crop-x: 761;
-  --crop-y: 732;
-  --crop-size: 235;
+  --crop-x: 1081;
+  --crop-y: 1156;
+  --crop-size: 118;
 }
 
 .party-leaders--podium [data-party-link="fish"] {
-  --crop-x: 946;
-  --crop-y: 888;
-  --crop-size: 261;
+  --crop-x: 398;
+  --crop-y: 1380;
+  --crop-size: 146;
 }
 
 .party-leaders--podium [data-party-link="poultry"] {
-  --crop-x: 1227;
-  --crop-y: 740;
-  --crop-size: 230;
+  --crop-x: 2025;
+  --crop-y: 1132;
+  --crop-size: 163;
 }
 
 .party-leaders--podium .party-leader-name {
