@@ -42,7 +42,7 @@ test("mobile plays the portrait edit and tries the wide edit if it cannot load",
     (element: HTMLVideoElement) => new URL(element.currentSrc).pathname,
   )).toBe(portraitVideoPath);
 
-  await page.route("**" + portraitVideoPath, route => route.abort("failed"));
+  await page.route(url => url.pathname === portraitVideoPath, route => route.abort("failed"));
   await page.reload();
   await control.click();
   await expect(video).toHaveJSProperty("videoWidth", 1920);
@@ -73,7 +73,7 @@ test("resizing keeps the hero playback position and pause state", async ({ page 
   await page.setViewportSize({ width: 701, height: 844 });
   const poster = page.locator("[data-hero-poster]");
   await expect.poll(() => poster.evaluate(
-    (image: HTMLImageElement) => new URL(image.currentSrc).pathname,
+    (image: HTMLImageElement) => image.currentSrc && new URL(image.currentSrc).pathname,
   )).toBe("/videos/homepage-hero-poster.webp");
   await expect(video).toHaveJSProperty("paused", true);
   expect(mediaRequests).toEqual([]);
@@ -123,7 +123,7 @@ for (const state of ["playing", "paused"] as const) {
     }
     let releasePortrait!: () => void;
     const portraitReady = new Promise<void>(resolve => { releasePortrait = resolve; });
-    await page.route("**" + portraitVideoPath, async route => {
+    await page.route(url => url.pathname === portraitVideoPath, async route => {
       await portraitReady;
       await route.abort("aborted");
     });
@@ -138,7 +138,7 @@ for (const state of ["playing", "paused"] as const) {
       await video.evaluate((element: HTMLVideoElement) => { element.currentTime = 6; });
 
       await Promise.all([
-        page.waitForRequest("**" + portraitVideoPath),
+        page.waitForRequest(request => new URL(request.url()).pathname === portraitVideoPath),
         page.setViewportSize({ width: 700, height: 844 }),
       ]);
       if (state === "paused") {
@@ -269,7 +269,7 @@ test("home remains usable without JavaScript and does not autoplay an uncontroll
 });
 
 test("a failed video request returns to the poster without a misleading pause button", async ({ page }) => {
-  await page.route("**" + wideVideoPath, route => route.abort("failed"));
+  await page.route(url => url.pathname === wideVideoPath, route => route.abort("failed"));
   await page.goto("/en/");
   await expect(page.locator("[data-hero-toggle]")).toBeHidden();
   await expect(page.locator("[data-hero-media]")).toHaveAttribute("data-ready", "false");
