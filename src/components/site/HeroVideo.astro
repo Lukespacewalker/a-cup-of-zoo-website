@@ -141,7 +141,12 @@ const t = translator(locale);
     // The browser can try the desktop source when the mobile source fails.
     video.querySelector("source:last-of-type")?.addEventListener("error", fail);
     portraitViewport.addEventListener("change", () => {
-      restoreFrame ||= root.dataset.ready === "true";
+      const position = pendingPosition ?? video.currentTime;
+      // A source swap can already own a playback position before showing a frame.
+      restoreFrame ||=
+        root.dataset.ready === "true" ||
+        pendingPosition !== undefined ||
+        position > 0;
       failed = false;
       button.hidden = false;
       // Explicit load() can fetch media even with preload="none".
@@ -149,14 +154,13 @@ const t = translator(locale);
         reselectOnPlay = true;
         return;
       }
-      const position = pendingPosition ?? video.currentTime;
-      pendingPosition = position > 0 ? position : undefined;
+      pendingPosition = position;
       root.dataset.ready = "false";
       if (restoreFrame) video.preload = "auto";
       playRequest += 1;
       // Reselect the native sources, including the wide fallback.
       video.load();
-      if (pendingPosition !== undefined) video.currentTime = pendingPosition;
+      if (position > 0) video.currentTime = position;
       if (wantsPlayback) void play();
       else sync();
     });

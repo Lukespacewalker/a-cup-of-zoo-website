@@ -107,6 +107,20 @@ for (const state of ["playing", "paused"] as const) {
   test(`a rapid resize keeps the hero ${state} as the portrait request is abandoned`, async ({ page }) => {
     await page.setViewportSize({ width: 701, height: 844 });
     await page.emulateMedia({ reducedMotion: "reduce" });
+    if (state === "paused") {
+      await page.addInitScript(() => {
+        const frameEvents = ["loadeddata", "playing", "seeked"];
+        const delayFrame = (event: Event) => {
+          if (event.target instanceof HTMLVideoElement && event.target.matches("[data-hero-video]")) {
+            event.stopPropagation();
+          }
+        };
+        for (const event of frameEvents) document.addEventListener(event, delayFrame, true);
+        document.addEventListener("release-hero-frame", () => {
+          for (const event of frameEvents) document.removeEventListener(event, delayFrame, true);
+        }, { once: true });
+      });
+    }
     let releasePortrait!: () => void;
     const portraitReady = new Promise<void>(resolve => { releasePortrait = resolve; });
     await page.route("**" + portraitVideoPath, async route => {
@@ -127,7 +141,11 @@ for (const state of ["playing", "paused"] as const) {
         page.waitForRequest("**" + portraitVideoPath),
         page.setViewportSize({ width: 700, height: 844 }),
       ]);
-      if (state === "paused") await pause.click();
+      if (state === "paused") {
+        await pause.click();
+        await expect(page.locator("[data-hero-media]")).toHaveAttribute("data-ready", "false");
+        await page.evaluate(() => document.dispatchEvent(new Event("release-hero-frame")));
+      }
       await page.setViewportSize({ width: 701, height: 844 });
       await expect(video).toHaveJSProperty("videoWidth", 1920);
       releasePortrait();
