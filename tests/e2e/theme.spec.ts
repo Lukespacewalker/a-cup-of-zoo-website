@@ -45,7 +45,7 @@ test("all primary pages fit supported widths in light, dark and automatic themes
     await page.addInitScript(value => localStorage.setItem("cup-theme", value), theme);
     for (const width of [320, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 900 });
-      for (const path of ["/", "/animals/", "/activities/", "/menu/", "/visit/", "/news/"]) {
+      for (const path of ["/", "/animals/", "/activities/", "/cafe/food/", "/visit/", "/news/"]) {
         await page.goto(path);
         await page.evaluate(() => document.fonts.ready);
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth), `${path} ${theme} ${width}`).toBe(true);

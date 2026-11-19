@@ -68,7 +68,7 @@ export function cafeJsonLd(
   if (site) {
     data["@id"] = new URL("/#cafe", site).href;
     data.url = new URL(localePath("/", locale), site).href;
-    data.menu = new URL(localePath("/menu/", locale), site).href;
+    data.menu = new URL(localePath("/cafe/food/", locale), site).href;
   }
   if (image) data.image = image;
   if (hoursAreStructured(venue.content.hoursVerification)) {

@@ -1,5 +1,3 @@
 ---
-import Page from "../components/pages/DrinksPage.astro";
+return Astro.redirect("/cafe/drinks/" + Astro.url.search, 301);
 ---
-
-<Page locale="th" />

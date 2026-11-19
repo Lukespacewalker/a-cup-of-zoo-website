@@ -71,11 +71,11 @@ test("placeholder domains do not become public site URLs", () => {
 test("sitemap uses the configured domain and produces XML-safe URLs", () => {
   const xml = sitemapXml(new URL("https://cafe.example"), [
     "/",
-    "/menu/",
+    "/cafe/food/",
     "/news/weekend/?a=1&b=2",
   ]);
   expect(xml).toContain("<loc>https://cafe.example/</loc>");
-  expect(xml).toContain("<loc>https://cafe.example/menu/</loc>");
+  expect(xml).toContain("<loc>https://cafe.example/cafe/food/</loc>");
   expect(xml).toContain(
     "<loc>https://cafe.example/news/weekend/?a=1&amp;b=2</loc>",
   );
@@ -92,7 +92,7 @@ test("business links share one identity without inventing ratings or prices", ()
     "@type": "CafeOrCoffeeShop",
     "@id": "https://cafe.example/#cafe",
     url: "https://cafe.example/",
-    menu: "https://cafe.example/menu/",
+    menu: "https://cafe.example/cafe/food/",
     image: "https://cafe.example/shop.jpg",
     sameAs: [
       "https://www.facebook.com/Acupofzoocafe/",

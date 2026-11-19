@@ -150,11 +150,11 @@ test("map and every place link remain available without JavaScript", async ({ br
 
 test("the food and drinks covers open the owner’s Heyzine books in a new tab", async ({ page, context }) => {
   await context.route("https://heyzine.com/flip-book/**", (route) => route.fulfill({ body: "Menu book" }));
-  for (const [path, bookId] of [["menu", "72a5470ad6"], ["drinks", "587e5387cd"]]) {
+  for (const [path, bookId] of [["cafe/food", "72a5470ad6"], ["cafe/drinks", "587e5387cd"]]) {
     const destination = `https://heyzine.com/flip-book/${bookId}.html`;
     await page.goto(`/en/${path}/`);
     await expect(page.locator("iframe")).toHaveCount(0);
-    const cover = page.locator(".menu-book__link");
+    const cover = page.locator(".menu-book");
     await expect(cover).toHaveAttribute("href", destination);
     const image = cover.locator("img");
     await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);

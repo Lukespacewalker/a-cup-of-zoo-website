@@ -23,13 +23,9 @@ const links = [
 ];
 const currentPath = Astro.url.pathname;
 const currentSection = (url: string) => {
-  if (currentPath.startsWith(url)) return "page";
-  if (
-    url === href("/cafe/") &&
-    ["/menu/", "/drinks/"].includes(basePath(currentPath))
-  ) {
-    return "true";
-  }
+  if (currentPath === url) return "page";
+  if (currentPath.startsWith(url))
+    return url === href("/cafe/") ? "true" : "page";
 };
 const counterpart = bilingualPaths.includes(basePath(currentPath));
 const switchHref = localePath(

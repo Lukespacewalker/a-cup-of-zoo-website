@@ -18,7 +18,8 @@ test("preview keeps crawlers out and its sitemap empty", async ({ request }) => 
 test("public pages have distinct metadata and usable social images", async ({ page, request }) => {
   const titles = new Set<string>();
   const descriptions = new Set<string>();
-  for (const path of ["/", "/animals/", "/activities/", "/menu/", "/visit/", "/news/"]) {
+  const paths = ["/", "/animals/", "/activities/", "/cafe/", "/cafe/food/", "/cafe/drinks/", "/visit/", "/news/"];
+  for (const path of paths) {
     await page.goto(`${path}?utm_source=seo-check`);
     const title = await page.title();
     const description = await page.locator('meta[name="description"]').getAttribute("content");
@@ -40,8 +41,8 @@ test("public pages have distinct metadata and usable social images", async ({ pa
     expect(imageResponse.ok()).toBe(true);
     expect(imageResponse.headers()["content-type"]).toMatch(/^image\//);
   }
-  expect(titles.size).toBe(6);
-  expect(descriptions.size).toBe(6);
+  expect(titles.size).toBe(paths.length);
+  expect(descriptions.size).toBe(paths.length);
 });
 
 test("unknown route is a real 404", async ({ request }) => {

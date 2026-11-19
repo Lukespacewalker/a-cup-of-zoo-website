@@ -194,7 +194,7 @@ export function shopMapStops(locale: Locale) {
         "ไม่มีค่าเข้า · ขั้นต่ำ 1 ออร์เดอร์ต่อท่าน",
         "No admission fee · Minimum 1 order per person",
       ),
-      path: "/menu/",
+      path: "/cafe/food/",
       link: t("ดูเมนูอาหาร", "Explore the menu"),
     },
     {

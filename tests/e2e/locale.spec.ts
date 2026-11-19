@@ -17,11 +17,17 @@ test("English unknown routes return localized404 with an English home link", asy
 
 test("English primary paths render complete English content and matching metadata", async ({ page, baseURL }) => {
   const origin = new URL(baseURL!).origin;
-  for (const route of ["/en/", "/en/animals/", "/en/cafe/", "/en/menu/", "/en/drinks/", "/en/activities/", "/en/visit/"]) {
+  for (const route of ["/en/", "/en/animals/", "/en/cafe/", "/en/cafe/food/", "/en/cafe/drinks/", "/en/activities/", "/en/visit/"]) {
     const response = await page.goto(route);
     expect(response?.status()).toBe(200);
     expect(response?.headers()['x-robots-tag']).toContain('noindex');
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    if (route.startsWith("/en/cafe/")) {
+      await expect(page.locator('#site-nav a[href="/en/cafe/"]')).toHaveAttribute(
+        "aria-current",
+        route === "/en/cafe/" ? "page" : "true",
+      );
+    }
     await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute("content", "en_US");
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
     expect(await page.locator("body").innerText()).not.toMatch(/[\u0E00-\u0E7F]/);
@@ -34,7 +40,7 @@ test("English primary paths render complete English content and matching metadat
     expect(await page.getByRole('link', { name: 'Thai', exact: true }).evaluate((link: HTMLAnchorElement) => link.href))
       .toBe(`${origin}${route.slice(3)}`);
   }
-  await page.goto("/en/menu/");
+  await page.goto("/en/cafe/food/");
   await expect(page.locator('[data-menu-code]')).toHaveCount(47);
   await expect(page.locator('[data-menu-code="SIG1"]')).toContainText("179");
   await expect(page.locator('[data-menu-code="R9"]')).toContainText("159");
@@ -64,7 +70,7 @@ test("English menu and child planning work without JavaScript and match Thai num
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 320, height: 900 } });
   const page = await context.newPage();
   for (const [route, selectors] of [
-    ['menu', ['[data-menu-code]', '.sandwich-extras']],
+    ['cafe/food', ['[data-menu-code]', '.sandwich-extras']],
     ['activities', ['#passes', '.experience-list', '.animal-food-list']],
     ['visit', ['.hours', '.band']]
   ] as const) {
@@ -75,7 +81,7 @@ test("English menu and child planning work without JavaScript and match Thai num
     }
     expect(digits[1]).toEqual(digits[0]);
   }
-  await page.goto('/en/menu/');
+  await page.goto('/en/cafe/food/');
   await page.getByRole('navigation', { name: 'Menu categories' }).getByRole('link', { name: 'Plant-based dishes' }).click();
   await expect(page.getByRole('heading', { name: 'Plant-based dishes', exact: true })).toBeInViewport();
   await expect(page.locator('#plant-based .food-section__photos img')).toHaveCount(2);
@@ -86,20 +92,34 @@ test("English menu and child planning work without JavaScript and match Thai num
   await context.close();
 });
 
+test("legacy menu URLs permanently redirect to the matching café page", async ({ request }) => {
+  for (const prefix of ["", "/en"]) {
+    for (const [legacy, section] of [["menu", "food"], ["drinks", "drinks"]]) {
+      const query = "?utm_source=old-menu";
+      const response = await request.get(`${prefix}/${legacy}/${query}`, {
+        maxRedirects: 0,
+      });
+      expect(response.status()).toBe(301);
+      expect(response.headers().location).toBe(`${prefix}/cafe/${section}/${query}`);
+    }
+  }
+});
+
 test("switching locale retains matching page and category hash on mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/menu/#plant-based');
+  await page.goto("/menu/?utm_source=old-menu#plant-based");
+  await expect(page).toHaveURL("/cafe/food/?utm_source=old-menu#plant-based");
   await page.getByRole('link', { name: 'English', exact: true }).click();
-  await expect(page).toHaveURL(/\/en\/menu\/#plant-based$/);
+  await expect(page).toHaveURL(/\/en\/cafe\/food\/#plant-based$/);
   await page.getByRole('heading', { name: 'Plant-based dishes', exact: true }).scrollIntoViewIfNeeded();
   const gallery = page.locator('#plant-based .food-gallery');
   await expect(gallery).toBeVisible();
   await page.getByRole('link', { name: 'Thai', exact: true }).click();
-  await expect(page).toHaveURL(/\/menu\/#plant-based$/);
+  await expect(page).toHaveURL(/\/cafe\/food\/#plant-based$/);
   await page.goto('/en/');
   await page.locator('.experience-paths a[href="/en/cafe/"]').click();
   await page.getByRole("navigation", { name: "Café and menus" }).getByRole("link", { name: "Food", exact: true }).click();
-  await expect(page).toHaveURL(/\/en\/menu\/$/);
+  await expect(page).toHaveURL(/\/en\/cafe\/food\/$/);
   await page.getByRole('button', { name: 'Open navigation' }).click();
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Hours & directions' }).click();
   await expect(page).toHaveURL(/\/en\/visit\/$/);

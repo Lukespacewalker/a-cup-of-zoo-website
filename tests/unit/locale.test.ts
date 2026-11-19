@@ -193,7 +193,7 @@ test("English business metadata shares Thai identity on the configured origin", 
   expect(data).toMatchObject({
     "@id": "https://cafe.example/#cafe",
     url: "https://cafe.example/en/",
-    menu: "https://cafe.example/en/menu/",
+    menu: "https://cafe.example/en/cafe/food/",
   });
   expect(data.address.streetAddress).not.toMatch(/[\u0E00-\u0E7F]/);
 });
