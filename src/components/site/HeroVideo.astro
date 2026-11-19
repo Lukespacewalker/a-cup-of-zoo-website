@@ -4,30 +4,41 @@ interface Props {
   locale: Locale;
   videoSrc: string;
   posterSrc: string;
+  mobile: { media: string; videoSrc: string; posterSrc: string };
 }
-const { locale, videoSrc, posterSrc } = Astro.props;
+const { locale, videoSrc, posterSrc, mobile } = Astro.props;
 const t = translator(locale);
 ---
 
 <div class="hero-media" data-hero-media>
   <div class="hero-media__scene" aria-hidden="true">
-    <img
-      data-hero-poster
-      src={posterSrc}
-      alt=""
-      width="1920"
-      height="1080"
-      fetchpriority="high"
-    />
+    <picture>
+      <source
+        media={mobile.media}
+        srcset={mobile.posterSrc}
+        width="540"
+        height="960"
+      />
+      <img
+        data-hero-poster
+        src={posterSrc}
+        alt=""
+        width="960"
+        height="540"
+        fetchpriority="high"
+      />
+    </picture>
     <video
       data-hero-video
       muted
       loop
       playsinline
       preload="none"
-      poster={posterSrc}
+      width="1920"
+      height="1080"
       tabindex="-1"
     >
+      <source src={mobile.videoSrc} media={mobile.media} type="video/mp4" />
       <source src={videoSrc} type="video/mp4" />
     </video>
   </div>
@@ -108,8 +119,8 @@ const t = translator(locale);
       button.hidden = true;
     };
     video.addEventListener("error", fail);
-    // A failed nested source does not bubble an error to the video element.
-    video.querySelector("source")?.addEventListener("error", fail);
+    // The browser can try the desktop source when the mobile source fails.
+    video.querySelector("source:last-of-type")?.addEventListener("error", fail);
     motion.addEventListener("change", () => {
       if (!motion.matches) return;
       allowAutoplay = false;

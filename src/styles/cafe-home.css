@@ -22,7 +22,6 @@
 .hero-media__scene {
   overflow: hidden;
 }
-/* Scale past the film and poster's 118px letterbox bands in a 1080px frame. */
 .hero-media__scene img,
 .hero-media__scene video {
   position: absolute;
@@ -30,8 +29,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 60% 40%;
-  transform: scale(1.29);
 }
 .hero-media__scene video {
   opacity: 0;
@@ -80,7 +77,7 @@
 .hero-place {
   position: absolute;
   top: 1.8rem;
-  inset-inline-start: var(--page-inset);
+  inset-inline: var(--page-inset);
   margin: 0;
   font-size: 0.76rem;
   letter-spacing: 0.17em;
@@ -480,17 +477,14 @@
   }
 }
 @media (max-width: 700px) {
-  .hero-media__scene img,
-  .hero-media__scene video {
-    object-position: 58% 25%;
-  }
   .hero-media__scene::after {
     background:
       linear-gradient(
         0deg,
         rgb(25 25 19 / 0.9) 0%,
-        rgb(25 25 19 / 0.66) 28%,
-        transparent 68%
+        rgb(25 25 19 / 0.72) 32%,
+        rgb(25 25 19 / 0.54) 80%,
+        rgb(25 25 19 / 0.44) 100%
       ),
       linear-gradient(180deg, rgb(25 25 19 / 0.25), transparent 20%);
   }

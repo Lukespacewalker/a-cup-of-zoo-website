@@ -28,7 +28,12 @@ interface Props {
 const { locale } = Astro.props;
 const t = translator(locale);
 const href = (path: string) => localePath(path, locale);
-const heroPosterSrc = "/videos/hero-animal-poster.webp";
+const heroPosterSrc = "/videos/homepage-hero-poster.webp";
+const mobileHero = {
+  media: "(width <= 700px)",
+  posterSrc: "/videos/homepage-hero-mobile-poster.webp",
+  videoSrc: "/videos/homepage-hero-mobile.mp4",
+};
 const page = await loadPage({ includePosts: locale === "th" });
 const content = localizedVenue(page.venue, locale)?.content;
 const hashtags = [
@@ -60,13 +65,23 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
     rel="preload"
     as="image"
     href={heroPosterSrc}
+    media="(width > 700px)"
+    fetchpriority="high"
+  />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={mobileHero.posterSrc}
+    media={mobileHero.media}
     fetchpriority="high"
   />
   <section class="garden-hero page-bleed" aria-labelledby="home-title">
     <HeroVideo
       locale={locale}
-      videoSrc="/videos/hero-animal.mp4"
+      videoSrc="/videos/homepage-hero.mp4"
       posterSrc={heroPosterSrc}
+      mobile={mobileHero}
     />
     <p class="hero-place">
       A CUP OF ZOO <span>CAFÉ & RESTAURANT · KHLONG 6 · PATHUM THANI</span>

@@ -1,15 +1,53 @@
 import { expect, test } from "@playwright/test";
 
-test("only the home pages preload their hero poster", async ({ page }) => {
+test("only the home pages preload the poster selected for the viewport", async ({ page }) => {
   const preload = page.locator('head link[rel="preload"][as="image"][fetchpriority="high"]');
-  for (const path of ["/", "/en/"]) {
-    await page.goto(path);
-    const poster = await page.locator("[data-hero-poster]").getAttribute("src");
-    expect(poster).toBeTruthy();
-    await expect(preload).toHaveAttribute("href", poster!);
+  const posterPaths = [
+    [390, "/videos/homepage-hero-mobile-poster.webp"],
+    [1440, "/videos/homepage-hero-poster.webp"],
+  ] as const;
+
+  for (const [width, path] of posterPaths) {
+    await page.setViewportSize({ width, height: 844 });
+    for (const route of ["/", "/en/"]) {
+      await page.goto(route);
+      const poster = page.locator("[data-hero-poster]");
+      await expect.poll(() => poster.evaluate(
+        (img: HTMLImageElement) => new URL(img.currentSrc).pathname,
+      )).toBe(path);
+      const activePreloads = await preload.evaluateAll((links) => links
+        .filter((link) => matchMedia((link as HTMLLinkElement).media).matches)
+        .map((link) => new URL((link as HTMLLinkElement).href).pathname));
+      expect(activePreloads).toEqual([path]);
+    }
   }
+
   await page.goto("/en/visit/");
   await expect(preload).toHaveCount(0);
+});
+
+test("mobile plays the portrait edit and tries the wide edit if it cannot load", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const video = page.locator("[data-hero-video]");
+  const control = page.getByRole("button", { name: "Play video", exact: true });
+  const portraitPath = "/videos/homepage-hero-mobile.mp4";
+
+  await page.goto("/en/");
+  await control.click();
+  await expect(video).toHaveJSProperty("videoWidth", 608);
+  await expect.poll(() => video.evaluate(
+    (element: HTMLVideoElement) => new URL(element.currentSrc).pathname,
+  )).toBe(portraitPath);
+
+  await page.route("**" + portraitPath, route => route.abort("failed"));
+  await page.reload();
+  await control.click();
+  await expect(video).toHaveJSProperty("videoWidth", 1920);
+  await expect.poll(() => video.evaluate(
+    (element: HTMLVideoElement) => new URL(element.currentSrc).pathname,
+  )).toBe("/videos/homepage-hero.mp4");
+  await expect(page.getByRole("button", { name: "Pause video", exact: true })).toBeVisible();
 });
 
 test("home header receives clicks above the media on desktop and mobile", async ({ page }) => {
@@ -39,7 +77,7 @@ test("hero autoplay waits for the poster while manual playback is available", as
   await page.setViewportSize({ width: 390, height: 844 });
   let releasePoster!: () => void;
   const posterReady = new Promise<void>(resolve => { releasePoster = resolve; });
-  await page.route("**/videos/hero-animal-poster.webp", async route => {
+  await page.route("**/videos/homepage-hero-mobile-poster.webp", async route => {
     await posterReady;
     await route.continue();
   });
@@ -118,7 +156,7 @@ test("home remains usable without JavaScript and does not autoplay an uncontroll
 });
 
 test("a failed video request returns to the poster without a misleading pause button", async ({ page }) => {
-  await page.route("**/videos/hero-animal.mp4", route => route.abort("failed"));
+  await page.route("**/videos/homepage-hero.mp4", route => route.abort("failed"));
   await page.goto("/en/");
   await expect(page.locator("[data-hero-toggle]")).toBeHidden();
   await expect(page.locator("[data-hero-media]")).toHaveAttribute("data-ready", "false");
