@@ -66,13 +66,19 @@ const t = translator(locale);
     const poster = root.querySelector<HTMLImageElement>("[data-hero-poster]");
     const video = root.querySelector<HTMLVideoElement>("[data-hero-video]");
     const button = root.querySelector<HTMLButtonElement>("[data-hero-toggle]");
-    if (!poster || !video || !button) continue;
+    const portrait = video?.querySelector<HTMLSourceElement>("source[media]");
+    if (!poster || !video || !button || !portrait) continue;
     const playIcon = button.querySelector<HTMLElement>("[data-play-icon]")!;
     const pauseIcon = button.querySelector<HTMLElement>("[data-pause-icon]")!;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const portraitViewport = window.matchMedia(portrait.media);
     let failed = false;
     let wantsPlayback = false;
     let allowAutoplay = !motion.matches;
+    let playRequest = 0;
+    let pendingPosition: number | undefined;
+    let restoreFrame = false;
+    let reselectOnPlay = false;
     const sync = () => {
       const playing = !video.paused && !video.ended;
       button.setAttribute(
@@ -84,20 +90,25 @@ const t = translator(locale);
     };
     const stop = () => {
       wantsPlayback = false;
+      playRequest += 1;
       video.pause();
       sync();
     };
     const play = async () => {
       if (failed) return;
+      if (reselectOnPlay) {
+        reselectOnPlay = false;
+        video.load();
+      }
+      const request = ++playRequest;
       wantsPlayback = true;
       try {
         await video.play();
-        if (!wantsPlayback) video.pause();
       } catch {
-        wantsPlayback = false;
-        video.pause();
+        if (request === playRequest) stop();
+        return;
       }
-      sync();
+      if (request === playRequest) sync();
     };
     video.muted = true;
     button.hidden = false;
@@ -109,11 +120,19 @@ const t = translator(locale);
     video.addEventListener("play", sync);
     video.addEventListener("pause", sync);
     video.addEventListener("ended", sync);
-    video.addEventListener("playing", () => {
-      root.dataset.ready = "true";
-    });
+    const showFrame = () => {
+      if (video.seeking || video.readyState < video.HAVE_CURRENT_DATA) return;
+      pendingPosition = undefined;
+      if (restoreFrame || wantsPlayback) root.dataset.ready = "true";
+      restoreFrame = false;
+    };
+    video.addEventListener("playing", showFrame);
+    video.addEventListener("loadeddata", showFrame);
+    video.addEventListener("seeked", showFrame);
     const fail = () => {
       failed = true;
+      pendingPosition = undefined;
+      restoreFrame = false;
       stop();
       root.dataset.ready = "false";
       button.hidden = true;
@@ -121,6 +140,26 @@ const t = translator(locale);
     video.addEventListener("error", fail);
     // The browser can try the desktop source when the mobile source fails.
     video.querySelector("source:last-of-type")?.addEventListener("error", fail);
+    portraitViewport.addEventListener("change", () => {
+      restoreFrame ||= root.dataset.ready === "true";
+      failed = false;
+      button.hidden = false;
+      // Explicit load() can fetch media even with preload="none".
+      if (!restoreFrame && !wantsPlayback) {
+        reselectOnPlay = true;
+        return;
+      }
+      const position = pendingPosition ?? video.currentTime;
+      pendingPosition = position > 0 ? position : undefined;
+      root.dataset.ready = "false";
+      if (restoreFrame) video.preload = "auto";
+      playRequest += 1;
+      // Reselect the native sources, including the wide fallback.
+      video.load();
+      if (pendingPosition !== undefined) video.currentTime = pendingPosition;
+      if (wantsPlayback) void play();
+      else sync();
+    });
     motion.addEventListener("change", () => {
       if (!motion.matches) return;
       allowAutoplay = false;

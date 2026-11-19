@@ -1,5 +1,8 @@
 import { expect, test } from "@playwright/test";
 
+const wideVideoPath = "/videos/homepage-hero-dissolve.mp4";
+const portraitVideoPath = "/videos/homepage-hero-mobile-dissolve.mp4";
+
 test("only the home pages preload the poster selected for the viewport", async ({ page }) => {
   const preload = page.locator('head link[rel="preload"][as="image"][fetchpriority="high"]');
   const posterPaths = [
@@ -31,24 +34,116 @@ test("mobile plays the portrait edit and tries the wide edit if it cannot load",
   await page.emulateMedia({ reducedMotion: "reduce" });
   const video = page.locator("[data-hero-video]");
   const control = page.getByRole("button", { name: "Play video", exact: true });
-  const portraitPath = "/videos/homepage-hero-mobile.mp4";
 
   await page.goto("/en/");
   await control.click();
   await expect(video).toHaveJSProperty("videoWidth", 608);
   await expect.poll(() => video.evaluate(
     (element: HTMLVideoElement) => new URL(element.currentSrc).pathname,
-  )).toBe(portraitPath);
+  )).toBe(portraitVideoPath);
 
-  await page.route("**" + portraitPath, route => route.abort("failed"));
+  await page.route("**" + portraitVideoPath, route => route.abort("failed"));
   await page.reload();
   await control.click();
   await expect(video).toHaveJSProperty("videoWidth", 1920);
   await expect.poll(() => video.evaluate(
     (element: HTMLVideoElement) => new URL(element.currentSrc).pathname,
-  )).toBe("/videos/homepage-hero.mp4");
+  )).toBe(wideVideoPath);
   await expect(page.getByRole("button", { name: "Pause video", exact: true })).toBeVisible();
 });
+
+test("resizing keeps the hero playback position and pause state", async ({ page }) => {
+  await page.setViewportSize({ width: 700, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const mediaRequests: string[] = [];
+  page.on("request", request => {
+    if (request.resourceType() === "media") mediaRequests.push(request.url());
+  });
+  await page.goto("/en/");
+  const origin = await page.evaluate(() => performance.timeOrigin);
+  const video = page.locator("[data-hero-video]");
+  const hero = page.locator("[data-hero-media]");
+  const currentPath = () => video.evaluate(
+    (element: HTMLVideoElement) => element.currentSrc && new URL(element.currentSrc).pathname,
+  );
+  const currentTime = () => video.evaluate((element: HTMLVideoElement) => element.currentTime);
+  const play = page.getByRole("button", { name: "Play video", exact: true });
+  const pause = page.getByRole("button", { name: "Pause video", exact: true });
+
+  await page.setViewportSize({ width: 701, height: 844 });
+  const poster = page.locator("[data-hero-poster]");
+  await expect.poll(() => poster.evaluate(
+    (image: HTMLImageElement) => new URL(image.currentSrc).pathname,
+  )).toBe("/videos/homepage-hero-poster.webp");
+  await expect(video).toHaveJSProperty("paused", true);
+  expect(mediaRequests).toEqual([]);
+
+  await play.click();
+  await expect.poll(currentPath).toBe(wideVideoPath);
+  await expect(video).toHaveJSProperty("videoWidth", 1920);
+  await video.evaluate((element: HTMLVideoElement) => { element.currentTime = 7; });
+  await expect.poll(currentTime).toBeGreaterThanOrEqual(7);
+
+  await page.setViewportSize({ width: 700, height: 844 });
+  await expect.poll(currentPath).toBe(portraitVideoPath);
+  await expect(video).toHaveJSProperty("videoWidth", 608);
+  await expect(hero).toHaveAttribute("data-ready", "true");
+  await expect(video).toHaveJSProperty("paused", false);
+  await expect.poll(currentTime).toBeGreaterThan(7);
+
+  await pause.click();
+  const pausedAt = await currentTime();
+  await page.setViewportSize({ width: 701, height: 844 });
+  await expect.poll(currentPath).toBe(wideVideoPath);
+  await expect(video).toHaveJSProperty("videoWidth", 1920);
+  await expect(hero).toHaveAttribute("data-ready", "true");
+  await expect(video).toHaveJSProperty("paused", true);
+  await expect.poll(currentTime).toBeCloseTo(pausedAt, 1);
+  await expect(play).toBeVisible();
+  expect(await page.evaluate(() => performance.timeOrigin)).toBe(origin);
+});
+
+for (const state of ["playing", "paused"] as const) {
+  test(`a rapid resize keeps the hero ${state} as the portrait request is abandoned`, async ({ page }) => {
+    await page.setViewportSize({ width: 701, height: 844 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    let releasePortrait!: () => void;
+    const portraitReady = new Promise<void>(resolve => { releasePortrait = resolve; });
+    await page.route("**" + portraitVideoPath, async route => {
+      await portraitReady;
+      await route.abort("aborted");
+    });
+    const video = page.locator("[data-hero-video]");
+    const currentTime = () => video.evaluate((element: HTMLVideoElement) => element.currentTime);
+    const play = page.getByRole("button", { name: "Play video", exact: true });
+    const pause = page.getByRole("button", { name: "Pause video", exact: true });
+    try {
+      await page.goto("/en/");
+      await play.click();
+      await expect(video).toHaveJSProperty("videoWidth", 1920);
+      await video.evaluate((element: HTMLVideoElement) => { element.currentTime = 6; });
+
+      await Promise.all([
+        page.waitForRequest("**" + portraitVideoPath),
+        page.setViewportSize({ width: 700, height: 844 }),
+      ]);
+      if (state === "paused") await pause.click();
+      await page.setViewportSize({ width: 701, height: 844 });
+      await expect(video).toHaveJSProperty("videoWidth", 1920);
+      releasePortrait();
+
+      await expect(state === "paused" ? play : pause).toBeVisible();
+      await expect(video).toHaveJSProperty("paused", state === "paused");
+      await expect.poll(currentTime).toBeGreaterThanOrEqual(6);
+      if (state === "playing") {
+        const before = await currentTime();
+        await expect.poll(currentTime).toBeGreaterThan(before);
+      }
+    } finally {
+      releasePortrait();
+    }
+  });
+}
 
 test("home header receives clicks above the media on desktop and mobile", async ({ page }) => {
   for (const width of [390, 1440]) {
@@ -156,7 +251,7 @@ test("home remains usable without JavaScript and does not autoplay an uncontroll
 });
 
 test("a failed video request returns to the poster without a misleading pause button", async ({ page }) => {
-  await page.route("**/videos/homepage-hero.mp4", route => route.abort("failed"));
+  await page.route("**" + wideVideoPath, route => route.abort("failed"));
   await page.goto("/en/");
   await expect(page.locator("[data-hero-toggle]")).toBeHidden();
   await expect(page.locator("[data-hero-media]")).toHaveAttribute("data-ready", "false");

@@ -32,7 +32,7 @@ const heroPosterSrc = "/videos/homepage-hero-poster.webp";
 const mobileHero = {
   media: "(width <= 700px)",
   posterSrc: "/videos/homepage-hero-mobile-poster.webp",
-  videoSrc: "/videos/homepage-hero-mobile.mp4",
+  videoSrc: "/videos/homepage-hero-mobile-dissolve.mp4",
 };
 const page = await loadPage({ includePosts: locale === "th" });
 const content = localizedVenue(page.venue, locale)?.content;
@@ -79,7 +79,7 @@ const news = locale === "th" ? page.posts.slice(0, 2) : [];
   <section class="garden-hero page-bleed" aria-labelledby="home-title">
     <HeroVideo
       locale={locale}
-      videoSrc="/videos/homepage-hero.mp4"
+      videoSrc="/videos/homepage-hero-dissolve.mp4"
       posterSrc={heroPosterSrc}
       mobile={mobileHero}
     />
