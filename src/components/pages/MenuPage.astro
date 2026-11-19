@@ -4,7 +4,7 @@ import type { ImageMetadata } from "astro";
 import "../../styles/menu-catalog.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import CafeNav from "../content/CafeNav.astro";
-import MenuBook from "../content/MenuBook.astro";
+import MenuHeading from "../content/MenuHeading.astro";
 import SignatureDishes from "../content/SignatureDishes.astro";
 import ArrowIcon from "../site/ArrowIcon.astro";
 import { loadPage } from "../../lib/content/load-page";
@@ -66,7 +66,7 @@ const menuSchema = {
   page={page}
 >
   <CafeNav locale={locale} />
-  <MenuBook locale={locale} book="food" />
+  <MenuHeading locale={locale} book="food" />
   <SignatureDishes locale={locale} />
   <nav
     class="menu-jump"
@@ -78,49 +78,19 @@ const menuSchema = {
     ))}
   </nav>
   <div class="food-catalog">
-    {otherSections.map((section, index) => (
+    {otherSections.map((section) => (
       <section
         class="food-section"
         id={section.id}
         aria-labelledby={`${section.id}-title`}
       >
         <header class="food-section__heading">
-          <p class="eyebrow">
-            {String(index + 1).padStart(2, "0")} /{" "}
-            {String(otherSections.length).padStart(2, "0")}
-          </p>
           <h2 id={`${section.id}-title`}>{section.title}</h2>
           <p>{section.lede}</p>
         </header>
         <div class="food-section__body">
-          <div class="food-section__photos">
-            <Image
-              src={photo(section.imagePages[0])}
-              alt={section.imageAlt}
-              widths={[320, 560]}
-              sizes="(max-width: 700px) 90vw, 30vw"
-              format="webp"
-              loading="lazy"
-            />
-            {section.imagePages.length > 1 && (
-              <div class="food-gallery">
-                {section.imagePages.slice(1).map((number) => (
-                  <Image
-                    src={photo(number)}
-                    alt={t(
-                      `ภาพเมนู${section.title}จากร้าน`,
-                      `${section.title} from the café's menu`,
-                    )}
-                    width={560}
-                    format="webp"
-                    loading="lazy"
-                  />
-                ))}
-              </div>
-            )}
-          </div>
           <div>
-            <ul class="food-list">
+            <ul class="food-list" role="list">
               {section.items.map((item) => (
                 <li
                   data-menu-code={item.code}
@@ -171,6 +141,32 @@ const menuSchema = {
                       ))}
                     </dl>
                   </section>
+                ))}
+              </div>
+            )}
+          </div>
+          <div class="food-section__photos">
+            <Image
+              src={photo(section.imagePages[0])}
+              alt={section.imageAlt}
+              widths={[320, 560]}
+              sizes="(max-width: 700px) 90vw, 34vw"
+              format="webp"
+              loading="lazy"
+            />
+            {section.imagePages.length > 1 && (
+              <div class="food-gallery">
+                {section.imagePages.slice(1).map((number) => (
+                  <Image
+                    src={photo(number)}
+                    alt={t(
+                      `ภาพเมนู${section.title}จากร้าน`,
+                      `${section.title} from the café's menu`,
+                    )}
+                    width={560}
+                    format="webp"
+                    loading="lazy"
+                  />
                 ))}
               </div>
             )}

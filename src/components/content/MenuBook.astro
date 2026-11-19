@@ -9,132 +9,84 @@ import ArrowIcon from "../site/ArrowIcon.astro";
 interface Props {
   locale: Locale;
   book: keyof typeof menuBooks;
+  compact?: boolean;
 }
 
-const { locale, book } = Astro.props;
+const { locale, book, compact = false } = Astro.props;
 const t = translator(locale);
 const food = book === "food";
-const title = food
-  ? t("เมนูอาหาร", "Food menu")
-  : t("เมนูเครื่องดื่มและขนม", "Drinks & desserts");
 const action = food
   ? t("เปิดเล่มเมนูอาหาร", "Open the food menu book")
   : t("เปิดเล่มเครื่องดื่มและขนม", "Open the drinks & desserts book");
 ---
 
-<header class="menu-book" id="menu-top">
-  <div class="menu-book__copy">
-    <h1>{title}</h1>
-    {food && (
-      <p>
-        {t(
-          "ดูรูปและราคาในเล่ม หรือเลือกหมวดอาหารด้านล่าง",
-          "See photos and prices in the book, or browse by category below.",
-        )}
-      </p>
-    )}
-    {food && (
-      <a class="catalog-back" href="#menu-categories">
-        {t("เลือกหมวดอาหาร", "Browse food categories")}
-      </a>
-    )}
-  </div>
-  <a
-    class="menu-book__link"
-    href={menuBooks[book]}
-    target="_blank"
-    rel="noopener"
-  >
-    <Image
-      src={food ? foodCover : drinksCover}
-      alt=""
-      widths={[240, 400, 538]}
-      sizes="(max-width: 580px) 210px, 240px"
-      format="webp"
-      loading="eager"
-    />
-    <span class="menu-book__action">
-      {action} <ArrowIcon />
-    </span>
+<a
+  class:list={["menu-book", { "menu-book--compact": compact }]}
+  href={menuBooks[book]}
+  target="_blank"
+  rel="noopener"
+>
+  <Image
+    src={food ? foodCover : drinksCover}
+    alt=""
+    widths={[120, 240, 400]}
+    sizes={compact ? "64px" : "(max-width: 40rem) 80px, 144px"}
+    format="webp"
+    loading="lazy"
+  />
+  <span class="menu-book__body">
+    <span class="menu-book__action">{action}</span>
     <span class="menu-book__hint">
       {t("Heyzine · เปิดแท็บใหม่", "Heyzine · Opens in a new tab")}
     </span>
-  </a>
-</header>
+  </span>
+  <ArrowIcon />
+</a>
 
 <style>
   .menu-book {
     display: grid;
-    grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) auto;
     align-items: center;
-    gap: clamp(1.5rem, 6.5vw, 5rem);
-    padding: clamp(1.25rem, 4vw, 3rem);
-    background: var(--garden-field);
-    border: 1px solid var(--line);
-  }
-  .menu-book__copy {
-    grid-column: 2;
-    grid-row: 1;
-  }
-  .menu-book h1 {
-    width: fit-content;
-    margin: 0;
-    font-size: clamp(2rem, 4vw, 3.3rem);
-    line-height: 1.4;
-  }
-  .menu-book p {
-    margin: 0.65rem 0 0;
-    color: var(--muted-text);
-  }
-  .catalog-back {
-    margin: 0;
-  }
-  .menu-book__link {
-    grid-column: 1;
-    grid-row: 1;
-    display: grid;
-    width: 100%;
+    gap: clamp(0.65rem, 2vw, 1.35rem);
+    min-inline-size: 0;
+    padding: clamp(0.8rem, 2.5vw, 1.35rem);
     color: var(--cocoa-deep);
     background: var(--paper);
-    box-shadow: var(--shadow);
-    border-radius: 3px;
+    border: 1px solid var(--line);
     text-decoration: none;
   }
-  .menu-book__link:hover {
-    background: var(--blush);
-    transform: translateY(-2px);
+  .menu-book--compact {
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    padding: 0.75rem;
   }
-  .menu-book__link img {
-    border-radius: 3px 3px 0 0;
+  .menu-book:hover {
+    background: var(--blush);
+  }
+  .menu-book img {
     width: 100%;
     height: auto;
   }
+  .menu-book__body {
+    display: grid;
+    gap: 0.3rem;
+  }
   .menu-book__action {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.45rem;
-    padding: 0.6rem 0.8rem 0;
     font-weight: 700;
     line-height: 1.45;
   }
+  .menu-book:hover .menu-book__action {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
   .menu-book__hint {
-    padding: 0 0.8rem 0.55rem;
     color: var(--muted-text);
     font-size: 0.78rem;
   }
-  @media (max-width: 580px) {
-    .menu-book {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1rem;
-    }
-    .menu-book__copy,
-    .menu-book__link {
-      grid-column: auto;
-      grid-row: auto;
-    }
-    .menu-book__link {
-      max-width: 210px;
+  @media (width <= 40rem) {
+    .menu-book:not(.menu-book--compact) {
+      grid-template-columns: 5rem minmax(0, 1fr) auto;
     }
   }
 </style>

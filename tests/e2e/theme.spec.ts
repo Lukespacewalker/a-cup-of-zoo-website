@@ -10,6 +10,7 @@ test("home actions and mobile navigation reach the menu and visit pages", async 
   await page.locator('.experience-paths a[href="/cafe/"]').click();
   await page.getByRole("navigation", { name: "หน้าคาเฟ่และเมนู" }).getByRole("link", { name: "อาหาร", exact: true }).click();
   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
+  await expect(page.locator("#site-nav")).toHaveAttribute("data-enhanced", "");
   const toggle = page.getByRole("button", { name: "เมนู", exact: true });
   await toggle.click();
   await expect(page.locator("#site-nav:popover-open a").first()).toBeFocused();

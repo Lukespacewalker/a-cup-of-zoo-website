@@ -9,8 +9,8 @@ const { locale } = Astro.props;
 const t = translator(locale);
 const links = [
   ["/cafe/", t("คาเฟ่", "Café")],
-  ["/menu/", t("อาหาร", "Food")],
-  ["/drinks/", t("เครื่องดื่ม", "Drinks")],
+  ["/cafe/food/", t("อาหาร", "Food")],
+  ["/cafe/drinks/", t("เครื่องดื่ม", "Drinks")],
 ];
 ---
 
@@ -31,6 +31,7 @@ const links = [
 <style>
   .cafe-nav {
     display: flex;
+    flex-wrap: wrap;
     gap: clamp(0.2rem, 2vw, 1.25rem);
     border-bottom: 1px solid var(--line);
     margin-block: clamp(0.75rem, 2.5vw, 1.6rem);
@@ -50,7 +51,7 @@ const links = [
     color: var(--cocoa-deep);
   }
   .cafe-nav [aria-current="page"] {
-    border-color: var(--fox-ink);
+    border-color: currentColor;
     color: var(--cocoa-deep);
     font-weight: 700;
   }

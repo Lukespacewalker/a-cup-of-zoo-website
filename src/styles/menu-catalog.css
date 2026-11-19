@@ -1,5 +1,5 @@
 /* Long category jumps should land immediately, including with scripts disabled. */
-html:has(.food-catalog) {
+html:has(.food-catalog, .drink-catalog) {
   scroll-behavior: auto;
 }
 .food-list > li > p {
@@ -15,58 +15,36 @@ html:has(.food-catalog) {
   scroll-margin-top: 8rem;
 }
 .food-section__heading {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.15rem;
 }
 .food-section__heading h2 {
   font-size: clamp(1.8rem, 3vw, 2.7rem);
-  margin: 0.35rem 0;
+  font-weight: 400;
+  margin: 0;
 }
 .food-section__heading p {
-  margin: 0.35rem 0;
+  margin: 0.35rem 0 0;
+  color: var(--muted-text);
 }
 .food-section__body {
   display: grid;
-  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 6vw, 5rem);
   align-items: start;
 }
 .food-section__photos img {
   width: 100%;
   height: auto;
-  border-radius: 18px;
-  border: 1px solid var(--gold-border, rgba(194, 157, 98, 0.35));
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.6) inset,
-    var(--card-shadow);
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
-    border-color 0.35s ease;
-}
-.food-section__photos img:hover {
-  transform: translateY(-3px) scale(1.015);
-  border-color: var(--gold, #c29d62);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.8) inset,
-    var(--card-shadow-hover);
 }
 .food-list {
   list-style: none;
-  padding: 1.2rem 1.6rem;
+  padding: 0;
   margin: 0;
-  background: var(--card-sheet);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--card-border);
-  border-radius: 18px;
-  box-shadow: var(--card-shadow);
 }
 .food-list > li {
-  padding: 1rem 0;
-  border-top: 1px solid rgba(210, 195, 178, 0.35);
-}
-.food-list > li:first-child {
-  padding-top: 0;
-  border-top: 0;
+  padding-block: 0.85rem;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 8rem;
 }
 .food-list__title {
   display: flex;
@@ -111,31 +89,23 @@ html:has(.food-catalog) {
   margin: 0;
 }
 .sandwich-extras {
-  padding-top: 1rem;
+  padding: 0.85rem 1rem;
+  background: var(--garden-field);
 }
 .sandwich-extras h3 {
   font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem;
 }
-.sandwich-extras section {
-  margin-top: 1.5rem;
+.sandwich-extras section + section {
+  margin-top: 1rem;
 }
 .food-gallery {
   margin-top: 0.7rem;
 }
-.food-gallery summary {
-  cursor: pointer;
-  padding: 0.5rem 0;
-  min-height: 44px;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-.food-gallery img {
-  margin-top: 0.8rem;
-}
 .catalog-back {
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
   min-height: 44px;
   margin-top: 1.1rem;
   text-underline-offset: 0.2em;
@@ -152,9 +122,6 @@ html:has(.food-catalog) {
   .food-section__photos {
     max-width: 24rem;
     margin-inline: auto;
-  }
-  .food-section__photos {
-    order: 2;
   }
   .food-section {
     padding-top: 2rem;

@@ -1,13 +1,18 @@
 ---
 import { Image } from "astro:assets";
-import room from "../../assets/menu/cafe-room.webp";
-import table from "../../assets/menu/cafe-table.webp";
-import noren from "../../assets/menu/cafe-noren.webp";
 import art from "../../assets/menu/cafe-art.webp";
+import bannerSeating from "../../assets/menu/cafe-banner-seating.webp";
+import room from "../../assets/menu/cafe-room.webp";
+import sharedTable from "../../assets/menu/cafe-shared-table.webp";
+import table from "../../assets/menu/cafe-table.webp";
+import tanuki from "../../assets/menu/cafe-tanuki.webp";
+import groupVisit from "../../assets/owner-brief/asset-20.png";
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import { experienceImages } from "../../lib/content/experience-images";
 import { loadPage } from "../../lib/content/load-page";
 import { translator, type Locale } from "../../lib/i18n/locale";
 import CafeNav from "../content/CafeNav.astro";
+import MenuBook from "../content/MenuBook.astro";
 import SignatureDishes from "../content/SignatureDishes.astro";
 import PageHero from "../site/PageHero.astro";
 
@@ -18,26 +23,79 @@ interface Props {
 const { locale } = Astro.props;
 const t = translator(locale);
 const page = await loadPage();
-const photos = [
+const spaces = [
   {
-    src: table,
+    src: experienceImages.table,
     alt: t(
-      "โต๊ะริมกระจกกับตุ๊กตาในร้าน",
-      "Window table with figurines at the café",
+      "โต๊ะไม้ริมกระจกที่มองออกไปเห็นสวน",
+      "A wooden table by the window overlooking the garden",
+    ),
+    title: t("โต๊ะริมกระจกมองสวน", "A table with a garden view"),
+    description: t(
+      "แสงส่องถึงโต๊ะไม้ข้างกระจก มองเห็นสวนได้ระหว่างกินข้าวหรือจิบกาแฟ",
+      "Sunlight reaches the wooden tables by the window, with a view of the garden over lunch or coffee.",
     ),
   },
   {
-    src: noren,
+    src: table,
     alt: t(
-      "ผ้าม่านญี่ปุ่นเหนือที่นั่งริมสวน",
-      "Japanese fabric panels above the garden-side seating",
+      "ที่นั่งเบาะริมหน้าต่างกับตุ๊กตาสัตว์",
+      "Cushioned window seats with soft animal toys",
+    ),
+    title: t("มุมนั่งพื้นข้างหน้าต่าง", "A low seat by the window"),
+    description: t(
+      "โต๊ะเตี้ยกับเบาะนั่งเรียงอยู่ริมหน้าต่าง มีตุ๊กตาสัตว์อยู่เป็นเพื่อน",
+      "Low tables and floor cushions line the window, with a few soft animal friends for company.",
     ),
   },
   {
     src: art,
     alt: t(
-      "ผนังร้านที่แขวนรูปวาดสัตว์",
+      "ผนังร้านที่แขวนกรอบรูปวาดสัตว์",
       "Framed animal illustrations on the café wall",
+    ),
+    title: t("ผนังรูปวาดเพื่อนสัตว์", "The animal picture wall"),
+    description: t(
+      "ลองมองทีละกรอบแล้วดูว่าเจอเพื่อนสัตว์ตัวไหนบ้าง",
+      "Take a closer look and see which animal friends you can spot in the frames.",
+    ),
+  },
+];
+
+// Café photographs from the owner's Website Resource Support Drive and Canva brief.
+const cafePhotos = [
+  {
+    src: sharedTable,
+    alt: t(
+      "มือประคองจานรองกาแฟข้างอาหารหลายจานบนโต๊ะ",
+      "Hands holding a coffee saucer beside plates of food",
+    ),
+    caption: t("อาหารและกาแฟสำหรับมื้อนี้", "Lunch and coffee at the café"),
+    position: "center top",
+  },
+  {
+    src: groupVisit,
+    alt: t(
+      "กลุ่มนักเรียนยิ้มถ่ายรูปด้วยกันในร้าน",
+      "A smiling school group taking a photo inside the café",
+    ),
+    caption: t(
+      "กลุ่มนักเรียนมาเที่ยวด้วยกัน",
+      "A school group visiting together",
+    ),
+  },
+  {
+    src: bannerSeating,
+    alt: t(
+      "โต๊ะไม้ใต้ผ้าประดับหลากสีในร้าน",
+      "Wooden tables beneath colourful fabric decorations",
+    ),
+  },
+  {
+    src: tanuki,
+    alt: t(
+      "ตุ๊กตาทานูกิหลายตัวใต้ต้นไม้ในร้าน",
+      "Tanuki figurines at the foot of a tree inside the café",
     ),
   },
 ];
@@ -61,8 +119,8 @@ const photos = [
     )}
     image={room}
     alt={t(
-      "ที่นั่งในคาเฟ่ใต้เพดานไม้และหน้าต่างบานใหญ่",
-      "Café seating beneath a timber ceiling and large windows",
+      "ที่นั่งและเคาน์เตอร์คาเฟ่ใต้เพดานไม้",
+      "Café tables and counter beneath a timber ceiling",
     )}
     position="center 55%"
     href="#signature"
@@ -71,53 +129,139 @@ const photos = [
   <CafeNav locale={locale} />
   <SignatureDishes locale={locale} />
 
-  <section class="cafe-gallery" aria-labelledby="cafe-gallery-title">
-    <h2 id="cafe-gallery-title">{t("บรรยากาศในร้าน", "Inside the café")}</h2>
-    <div class="cafe-gallery__photos">
-      {photos.map(({ src, alt }, index) => (
+  <section class="cafe-books" aria-labelledby="cafe-books-title">
+    <h2 id="cafe-books-title">{t("เล่มเมนู", "Menu books")}</h2>
+    <div class="cafe-books__links">
+      <MenuBook locale={locale} book="food" />
+      <MenuBook locale={locale} book="drinks" />
+    </div>
+  </section>
+
+  <section class="cafe-spaces" aria-labelledby="cafe-spaces-title">
+    <h2 id="cafe-spaces-title">{t("มุมในร้าน", "Around the café")}</h2>
+    {spaces.map(({ src, alt, title, description }) => (
+      <article class="cafe-space">
         <Image
           src={src}
           alt={alt}
-          widths={index === 0 ? [360, 720, 1024] : [360, 560, 768]}
-          sizes={
-            index === 0
-              ? "(max-width: 1264px) 92vw, 1200px"
-              : "(max-width: 1264px) 46vw, 600px"
-          }
+          widths={[360, 600, 840, 1080]}
+          sizes="(max-width: 700px) 92vw, (max-width: 1264px) 52vw, 660px"
           format="webp"
           loading="lazy"
         />
+        <div class="cafe-space__copy">
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="cafe-gallery" aria-labelledby="cafe-gallery-title">
+    <h2 id="cafe-gallery-title">{t("บรรยากาศในร้าน", "Inside the café")}</h2>
+    <div class="cafe-gallery__photos">
+      {cafePhotos.map(({ src, alt, caption, position }) => (
+        <figure>
+          <Image
+            src={src}
+            alt={alt}
+            widths={[360, 640, 960]}
+            sizes="(max-width: 640px) 92vw, (max-width: 1264px) 46vw, 600px"
+            format="webp"
+            loading="lazy"
+            style={position && `--photo-position: ${position}`}
+          />
+          {caption && <figcaption>{caption}</figcaption>}
+        </figure>
       ))}
     </div>
   </section>
 </SiteLayout>
 
 <style>
+  .cafe-books,
+  .cafe-spaces,
   .cafe-gallery {
-    margin-top: clamp(2rem, 6vw, 4.75rem);
+    margin-top: clamp(2.75rem, 7vw, 5.5rem);
   }
-  .cafe-gallery h2 {
-    margin: 0 0 0.85rem;
-    font-size: clamp(1.75rem, 3vw, 2.6rem);
+  h2 {
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 0 0 clamp(1rem, 2.4vw, 1.75rem);
+    font-size: clamp(1.75rem, 3.4vw, 2.75rem);
   }
+  .cafe-books__links,
   .cafe-gallery__photos {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(0.5rem, 1.6vw, 1rem);
+    gap: clamp(0.75rem, 2vw, 1.5rem);
   }
+  .cafe-spaces {
+    padding-block-start: clamp(1.75rem, 4vw, 3.35rem);
+    border-block-start: 1px solid var(--line);
+  }
+  .cafe-space {
+    display: grid;
+    align-items: center;
+    gap: clamp(1rem, 6vw, 5rem);
+    grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
+  }
+  .cafe-space + .cafe-space {
+    margin-top: clamp(2rem, 5vw, 4.25rem);
+  }
+  .cafe-space img,
   .cafe-gallery__photos img {
     width: 100%;
     height: auto;
-    aspect-ratio: 5 / 3;
+    aspect-ratio: 7 / 5;
     object-fit: cover;
   }
-  .cafe-gallery__photos img:first-child {
-    grid-column: 1 / -1;
-    aspect-ratio: 1024 / 461;
+  .cafe-space:nth-of-type(2) img {
+    object-position: 70% center;
   }
-  @media (max-width: 480px) {
-    .cafe-gallery__photos img {
-      aspect-ratio: 1;
+  .cafe-space__copy h3 {
+    font-size: clamp(1.35rem, 2.6vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0 0 0.5rem;
+  }
+  .cafe-space__copy p {
+    color: var(--muted-text);
+    margin: 0;
+    max-width: 29rem;
+  }
+  .cafe-gallery__photos figure {
+    margin: 0;
+  }
+  .cafe-gallery__photos img {
+    aspect-ratio: 4 / 3;
+    object-position: var(--photo-position, center 45%);
+  }
+  .cafe-gallery__photos figcaption {
+    margin-block-start: 0.5rem;
+    color: var(--muted-text);
+    font-size: 0.9rem;
+  }
+  @media (width > 700px) {
+    .cafe-space:nth-of-type(even) {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.32fr);
+    }
+    .cafe-space:nth-of-type(even) img {
+      grid-area: 1 / 2;
+    }
+    .cafe-space:nth-of-type(even) .cafe-space__copy {
+      grid-area: 1 / 1;
+    }
+  }
+  @media (width <= 700px) {
+    .cafe-space {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (width <= 40rem) {
+    .cafe-books__links,
+    .cafe-gallery__photos {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>

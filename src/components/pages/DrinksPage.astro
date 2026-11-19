@@ -1,9 +1,12 @@
 ---
+import "../../styles/menu-catalog.css";
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import { coffeeExtras, drinkSections } from "../../lib/content/drinks-menu";
 import { loadPage } from "../../lib/content/load-page";
 import { translator, type Locale } from "../../lib/i18n/locale";
 import CafeNav from "../content/CafeNav.astro";
-import MenuBook from "../content/MenuBook.astro";
+import MenuHeading from "../content/MenuHeading.astro";
+import ArrowIcon from "../site/ArrowIcon.astro";
 
 interface Props {
   locale: Locale;
@@ -12,17 +15,145 @@ interface Props {
 const { locale } = Astro.props;
 const t = translator(locale);
 const page = await loadPage();
+const nameIndex = locale === "th" ? 0 : 1;
+const preparations = [
+  t("ร้อน", "Hot"),
+  t("เย็น", "Iced"),
+  t("ปั่น", "Blended"),
+];
+const unit = t("บาท", "THB");
 ---
 
 <SiteLayout
   locale={locale}
-  title={t("เมนูเครื่องดื่มและขนม", "Drinks & desserts menu")}
+  title={t("เมนูเครื่องดื่มและราคา", "Drinks menu & prices")}
   description={t(
-    "เปิดเล่มเมนูเครื่องดื่มและขนมของ A Cup of Zoo คลอง 6 ปทุมธานี",
-    "Open the A Cup of Zoo drinks and desserts menu in Khlong 6, Pathum Thani.",
+    "ดูรายการกาแฟ ชา มัทฉะ โกโก้ โซดา และสมูทตี้พร้อมราคาที่ A Cup of Zoo คลอง 6 ปทุมธานี",
+    "Browse coffee, tea, matcha, cocoa, sodas and smoothies with prices at A Cup of Zoo in Khlong 6, Pathum Thani.",
   )}
   page={page}
 >
   <CafeNav locale={locale} />
-  <MenuBook locale={locale} book="drinks" />
+  <MenuHeading locale={locale} book="drinks" />
+  <nav
+    class="menu-jump"
+    id="menu-categories"
+    aria-label={t("หมวดเครื่องดื่ม", "Drinks categories")}
+  >
+    {drinkSections.map((section) => (
+      <a href={`#${section.id}`}>{section.title[locale]}</a>
+    ))}
+  </nav>
+  <div class="drink-catalog">
+    {drinkSections.map((section) => (
+      <section
+        class="food-section"
+        id={section.id}
+        aria-labelledby={`${section.id}-title`}
+      >
+        <header class="food-section__heading">
+          <h2 id={`${section.id}-title`}>{section.title[locale]}</h2>
+        </header>
+        <ul class="drink-list" role="list">
+          {section.items.map((item) => {
+            const pricing = item[2];
+            return (
+              <li data-drink-item>
+                <h3>{item[nameIndex]}</h3>
+                {typeof pricing === "number" ? (
+                  <p class="dish-price">
+                    {pricing} {unit}
+                  </p>
+                ) : (
+                  <dl class="drink-options">
+                    {pricing.map(
+                      (price, index) =>
+                        price != null && (
+                          <div>
+                            <dt>{preparations[index]}</dt>
+                            <dd class="dish-price">
+                              {price} {unit}
+                            </dd>
+                          </div>
+                        ),
+                    )}
+                  </dl>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+        {section.id === "coffee" && (
+          <div class="drink-extras">
+            <h3>{t("เพิ่มในกาแฟ", "Coffee add-ons")}</h3>
+            <dl class="drink-options">
+              {coffeeExtras.map((item) => (
+                <div>
+                  <dt>{item[nameIndex]}</dt>
+                  <dd class="dish-price">
+                    +{item[2]} {unit}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+        <a class="catalog-back" href="#menu-categories">
+          {t("กลับไปเลือกหมวด", "Back to drinks categories")}
+          <ArrowIcon direction="up" />
+        </a>
+      </section>
+    ))}
+  </div>
 </SiteLayout>
+
+<style>
+  .drink-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(1.5rem, 6vw, 5rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .drink-list > li {
+    padding-block: 0.8rem;
+    border-top: 1px solid var(--line);
+  }
+  .drink-list h3,
+  .drink-extras h3 {
+    margin: 0;
+    font-size: 1.08rem;
+  }
+  .drink-list p {
+    margin: 0.25rem 0 0;
+  }
+  .drink-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 1rem;
+    margin: 0.25rem 0 0;
+  }
+  .drink-options > div {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+  }
+  .drink-options dt {
+    color: var(--muted-text);
+    font-size: 0.9rem;
+  }
+  .drink-options dd {
+    margin: 0;
+  }
+  .drink-extras {
+    margin-top: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: var(--garden-field);
+  }
+  @media (width <= 42rem) {
+    .drink-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

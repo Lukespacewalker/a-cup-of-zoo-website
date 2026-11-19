@@ -11,17 +11,27 @@ test("the café shows signature dishes and shop photos before visitors choose a 
     const hero = page.locator("#cafe-top");
     await expect(hero.locator("h1")).toHaveText(prefix ? "Café & restaurant" : "คาเฟ่และร้านอาหาร");
     await expect(page.locator("#signature [data-menu-code]")).toHaveCount(3);
+    const books = page.locator(".cafe-books");
+    await expect(books.locator('a[href*="heyzine"]')).toHaveCount(2);
+    const stories = page.locator(".cafe-space");
+    await expect(stories).toHaveCount(3);
+    await expect(stories.locator("h3")).toHaveCount(3);
+    await expect(stories.locator("p")).toHaveCount(3);
     const gallery = page.locator(".cafe-gallery img");
-    await expect(gallery).toHaveCount(3);
-    for (const image of [hero.locator("img"), ...(await gallery.all())]) {
+    await expect(gallery).toHaveCount(4);
+    const sectionOrder = await page.locator("#signature, .cafe-books, .cafe-spaces, .cafe-gallery").evaluateAll(
+      (sections) => sections.map((section) => section.id || section.className),
+    );
+    expect(sectionOrder).toEqual(["signature", "cafe-books", "cafe-spaces", "cafe-gallery"]);
+    for (const image of [hero.locator("img"), ...(await stories.locator("img").all()), ...(await gallery.all())]) {
       await image.scrollIntoViewIfNeeded();
       await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
     }
 
     const tabs = page.locator(".cafe-nav");
     await expect(tabs.getByRole("link")).toHaveText(prefix ? ["Café", "Food", "Drinks"] : ["คาเฟ่", "อาหาร", "เครื่องดื่ม"]);
-    for (const path of ["drinks", "menu", "cafe"]) {
-      const destination = `${prefix}/${path}/`;
+    for (const path of ["/cafe/drinks/", "/cafe/food/", "/cafe/"]) {
+      const destination = `${prefix}${path}`;
       const tab = tabs.locator(`a[href="${destination}"]`);
       await tab.click();
       await expect(page).toHaveURL(destination);
@@ -35,7 +45,7 @@ test("all food and prices are server rendered with optional menu-book links", as
   const page = await context.newPage();
   const requests: string[] = [];
   page.on("request", (request) => requests.push(request.url()));
-  await page.goto("/menu/");
+  await page.goto("/cafe/food/");
   await expect(page.getByRole("heading", { name: "เมนูอาหาร", exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "เลือกหมวดอาหาร" })).toHaveAttribute("href", "#menu-categories");
   await expect(page.locator("[data-menu-code]")).toHaveCount(47);
@@ -54,23 +64,61 @@ test("all food and prices are server rendered with optional menu-book links", as
   await expect(page.locator("#plant-based .food-section__photos img")).toHaveCount(2);
   await expect(gallery).toBeVisible();
   await expect(page.locator(".food-gallery summary")).toHaveCount(0);
-  expect(await gallery.locator("img").evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+  await gallery.locator("img").scrollIntoViewIfNeeded();
+  await expect.poll(() => gallery.locator("img").evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
   expect(requests.some((url) => /heyzine/i.test(url))).toBe(false);
   await expect(page.locator("iframe")).toHaveCount(0);
   await expect(page.locator('a[href*="heyzine"]')).toHaveCount(1);
   await context.close();
 });
 
+test("the food book link moves from above the dishes to the right of the heading", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/cafe/food/");
+  const title = page.locator("#menu-top h1");
+  const book = page.locator("#menu-top .menu-book");
+  const signature = page.locator("#signature");
+  const mobileTitle = (await title.boundingBox())!;
+  const mobileBook = (await book.boundingBox())!;
+  expect(mobileBook.y).toBeGreaterThan(mobileTitle.y + mobileTitle.height);
+  expect(mobileBook.y + mobileBook.height).toBeLessThan((await signature.boundingBox())!.y);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const desktopTitle = (await title.boundingBox())!;
+  const desktopBook = (await book.boundingBox())!;
+  expect(desktopBook.x).toBeGreaterThanOrEqual(desktopTitle.x + desktopTitle.width);
+  expect(Math.abs(desktopBook.y - desktopTitle.y)).toBeLessThan(5);
+});
+
+test("the drinks catalog and its preparation prices work without JavaScript", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 320, height: 844 } });
+  const page = await context.newPage();
+  for (const english of [false, true]) {
+    await page.goto(english ? "/en/cafe/drinks/" : "/cafe/drinks/");
+    await expect(page.locator("[data-drink-item]")).toHaveCount(48);
+    await expect(page.locator('a[href*="heyzine"]')).toHaveCount(1);
+    const matcha = page.locator("[data-drink-item]").filter({ has: page.getByRole("heading", { name: english ? "Matcha Latte" : "มัทฉะลาเต้", exact: true }) });
+    await expect(matcha.locator("dt")).toHaveText(english ? ["Hot", "Iced", "Blended"] : ["ร้อน", "เย็น", "ปั่น"]);
+    await expect(matcha.locator("dd")).toHaveText(["95", "135", "155"].map((price) => `${price} ${english ? "THB" : "บาท"}`));
+    const categories = page.getByRole("navigation", { name: english ? "Drinks categories" : "หมวดเครื่องดื่ม" });
+    await expect(categories.getByRole("link")).toHaveCount(6);
+    await categories.getByRole("link", { name: english ? "Fruit & smoothies" : "น้ำผลไม้และสมูทตี้" }).click();
+    await expect(page).toHaveURL(/#fruit-smoothies$/);
+    const smoothie = page.locator("#fruit-smoothies [data-drink-item]").filter({ hasText: english ? "Passion Fruit Smoothie" : "เสาวรสสมูทตี้" });
+    await expect(smoothie.locator("dd")).toHaveText(english ? "145 THB" : "145 บาท");
+  }
+  await context.close();
+});
+
 test("signature dishes have matching photos and prices ahead of the category navigation", async ({ page }) => {
   for (const locale of [
     {
-      path: "/menu/",
+      path: "/cafe/food/",
       names: ["ข้าวแมว", "ข้าวหมา", "ยำนกแก้ว (ยำตะไคร้)"],
       price: "179 บาท",
       browse: "เลือกหมวดอาหาร",
     },
     {
-      path: "/en/menu/",
+      path: "/en/cafe/food/",
       names: ["Cat Rice", "Dog Rice", "Parrot Salad (Lemongrass Salad)"],
       price: "179 THB",
       browse: "Browse food categories",
@@ -183,7 +231,7 @@ test("home and activities show the same four passes with larger photos", async (
 test("café, menus and activities fit narrow phones and desktop with working category navigation", async ({ page }) => {
   for (const width of [320, 390, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const path of ["/cafe/", "/menu/", "/drinks/", "/activities/"]) {
+    for (const path of ["/cafe/", "/cafe/food/", "/cafe/drinks/", "/activities/"]) {
       await page.goto(path);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
