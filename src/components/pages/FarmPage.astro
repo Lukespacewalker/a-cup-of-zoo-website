@@ -1,5 +1,7 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageHero from "../site/PageHero.astro";
+import garden from "../../assets/watercolor/animal-friends-garden.webp";
 import { loadPage } from "../../lib/content/load-page";
 import {
   listingImage,
@@ -29,18 +31,16 @@ const unavailable = result.status === 503;
     "Browse photos, descriptions and prices from A Cup of Zoo. Contact the café for details and to arrange collection.",
   )}
 >
-  <header class="farm-intro">
-    <p class="eyebrow">A CUP OF ZOO · FARM</p>
-    <h1>
-      {t("เพื่อนตัวใหม่\nกำลังรอคุณอยู่", "Meet your\nnext little friend")}
-    </h1>
-    <p>
-      {t(
-        "รู้จักน้องผ่านรูปและรายละเอียด แล้วคุยกับทีมงานเรื่องการดูแลและการนัดรับ",
-        "Get to know each animal through photos and details, then talk to our team about care and collection.",
-      )}
-    </p>
-  </header>
+  <PageHero
+    id="farm-top"
+    title={t("เพื่อนตัวใหม่กำลังรอคุณอยู่", "Meet your next little friend")}
+    description={t(
+      "รู้จักน้องผ่านรูปและรายละเอียด แล้วคุยกับทีมงานเรื่องการดูแลและการนัดรับ",
+      "Get to know each animal through photos and details, then talk to our team about care and collection.",
+    )}
+    image={garden}
+    alt=""
+  />
   {unavailable ? (
     <section class="farm-empty" role="status">
       <h2>

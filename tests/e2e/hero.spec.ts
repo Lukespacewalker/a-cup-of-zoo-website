@@ -129,7 +129,7 @@ test("a failed video request returns to the poster without a misleading pause bu
 test("hero headings and actions fit inside the hero at large text sizes", async ({ page }) => {
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 650 });
-    for (const route of ["/", "/en/", "/cafe/", "/en/cafe/", "/events/", "/en/events/"]) {
+    for (const route of ["/", "/en/", "/cafe/", "/en/cafe/", "/events/", "/en/events/", "/farm/", "/en/farm/"]) {
       await page.goto(route);
       await page.addStyleTag({ content: ":root { font-size: 32px; }" });
       await page.evaluate(() => document.fonts.ready);
@@ -145,6 +145,31 @@ test("hero headings and actions fit inside the hero at large text sizes", async 
         });
       });
       expect(fits, `${route} at ${width}px`).toBe(true);
+    }
+  }
+});
+
+test("the bilingual Farm hero uses the site font, illustration and content gutters", async ({ page }) => {
+  for (const width of [320, 768, 1920]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const [path, title] of [
+      ["/farm/", "เพื่อนตัวใหม่กำลังรอคุณอยู่"],
+      ["/en/farm/", "Meet your next little friend"],
+    ]) {
+      await page.goto(path);
+      const hero = page.locator("#farm-top");
+      const heading = hero.getByRole("heading", { level: 1 });
+      await expect(heading).toHaveText(title);
+      await expect(heading).toHaveCSS("font-family", /^"Noto Sans Thai Looped"/);
+      expect(await hero.locator("img").evaluate(async (image) => {
+        await image.decode();
+        return image.naturalWidth;
+      })).toBeGreaterThan(0);
+      const { left, width: innerWidth } = await hero.locator(".page-hero__inner").evaluate((el) => el.getBoundingClientRect().toJSON());
+      const shell = (await page.locator("main > .shell").boundingBox())!;
+      expect(Math.abs(left - shell.x)).toBeLessThan(1);
+      expect(Math.abs(innerWidth - shell.width)).toBeLessThan(1);
+      await expect(page.locator(".farm-empty a")).toHaveAttribute("href", /line\.me/);
     }
   }
 });

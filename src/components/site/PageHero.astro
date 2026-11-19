@@ -3,17 +3,15 @@ import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import ArrowIcon from "./ArrowIcon.astro";
 
-interface Props {
+type Props = {
   id: string;
   title: string;
   description: string;
   image: ImageMetadata;
   alt: string;
   position?: string;
-  href: string;
-  action: string;
   secondaryAction?: { href: string; label: string };
-}
+} & ({ href: string; action: string } | { href?: never; action?: never });
 const {
   id,
   title,
@@ -25,10 +23,11 @@ const {
   action,
   secondaryAction,
 } = Astro.props;
+const hasPrimaryAction = Boolean(href && action);
 ---
 
 <header
-  class="page-hero"
+  class="page-hero page-bleed"
   id={id}
   aria-labelledby={`${id}-title`}
   style={`--hero-position: ${position}`}
@@ -43,23 +42,27 @@ const {
     loading="eager"
     fetchpriority="high"
   />
-  <div class="page-hero__inner">
+  <div class="page-hero__inner shell">
     <div class="page-hero__copy">
       <h1 id={`${id}-title`}>{title}</h1>
       <p class="page-hero__description">{description}</p>
-      <div class="page-hero__actions">
-        <a class="page-hero__action" href={href}>
-          {action} <ArrowIcon />
-        </a>
-        {secondaryAction && (
-          <a
-            class="page-hero__action page-hero__action--secondary"
-            href={secondaryAction.href}
-          >
-            {secondaryAction.label} <ArrowIcon />
-          </a>
-        )}
-      </div>
+      {(hasPrimaryAction || secondaryAction) && (
+        <div class="page-hero__actions">
+          {hasPrimaryAction && (
+            <a class="page-hero__action" href={href}>
+              {action} <ArrowIcon />
+            </a>
+          )}
+          {secondaryAction && (
+            <a
+              class="page-hero__action page-hero__action--secondary"
+              href={secondaryAction.href}
+            >
+              {secondaryAction.label} <ArrowIcon />
+            </a>
+          )}
+        </div>
+      )}
     </div>
   </div>
 </header>
@@ -68,8 +71,6 @@ const {
   .page-hero {
     position: relative;
     isolation: isolate;
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
     background: #303a2d;
     color: #fffaf0;
     scroll-margin-top: 1rem;
@@ -96,8 +97,6 @@ const {
     );
   }
   .page-hero__inner {
-    width: var(--page);
-    margin-inline: auto;
     min-height: 460px;
     display: flex;
     align-items: center;
@@ -117,13 +116,15 @@ const {
   }
   .page-hero__description {
     max-width: 30rem;
-    margin: 0 0 1.4rem;
+    margin: 0;
     line-height: 1.85;
+    text-wrap: pretty;
   }
   .page-hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 0.65rem;
+    margin-block-start: 1.4rem;
   }
   .page-hero__action {
     display: inline-flex;
@@ -189,7 +190,9 @@ const {
     }
     .page-hero__description {
       font-size: 0.95rem;
-      margin-bottom: 1rem;
+    }
+    .page-hero__actions {
+      margin-block-start: 1rem;
     }
     .page-hero__action {
       background: var(--button);

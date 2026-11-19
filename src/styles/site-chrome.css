@@ -200,7 +200,8 @@
 .footer {
   width: 100%;
   margin: 4rem auto 0;
-  padding: 2.5rem max(2rem, calc((100vw - 1200px) / 2)) 3rem;
+  padding-block: 2.5rem 3rem;
+  padding-inline: max(var(--page-gutter), calc((100% - var(--page-max)) / 2));
   background: var(--garden-field);
   border-top: 1px solid var(--line);
 }
@@ -339,7 +340,7 @@
     border-radius: 3px;
   }
   .footer {
-    padding: 2.5rem 1.25rem calc(var(--sticky) + 1rem);
+    padding-block-end: calc(var(--sticky) + 1rem);
   }
   .sticky-cta {
     display: flex;

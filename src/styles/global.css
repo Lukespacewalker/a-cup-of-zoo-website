@@ -111,6 +111,14 @@ html[lang="en"] h2 {
   min-width: 0;
   margin: 0 auto;
 }
+#content {
+  container-type: inline-size;
+}
+.page-bleed {
+  --page-inset: max(var(--page-gutter), calc((100cqi - var(--page-max)) / 2));
+  inline-size: 100cqi;
+  margin-inline: calc(50% - 50cqi);
+}
 .actions {
   display: flex;
   flex-wrap: wrap;

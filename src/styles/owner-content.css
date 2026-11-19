@@ -103,13 +103,9 @@
   outline-color: #fffaf0;
 }
 .club-intro {
-  width: 100vw;
-  margin-inline: calc(50% - 50vw);
   background: var(--garden-field);
 }
 .club-intro__inner {
-  width: var(--page);
-  margin-inline: auto;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: clamp(2rem, 6vw, 6rem);

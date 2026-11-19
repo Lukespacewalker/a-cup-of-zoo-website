@@ -1,5 +1,27 @@
 import { expect, test } from "@playwright/test";
 
+test("the activities map aligns with the page gutters from phone to ultrawide", async ({ page }) => {
+  for (const width of [320, 768, 860, 861, 1440, 2560]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/activities/#garden");
+    const gutters = await page.locator("main > .shell").evaluate((shell) => {
+      const expected = shell.getBoundingClientRect();
+      return [
+        ".shop-map-heading h2",
+        ".shop-map-toolbar",
+        ".shop-map-explorer",
+      ].map((selector) => {
+        const actual = shell.querySelector(selector)!.getBoundingClientRect();
+        return Math.max(
+          Math.abs(actual.left - expected.left),
+          Math.abs(actual.right - expected.right),
+        );
+      });
+    });
+    expect(Math.max(...gutters), `${width}px`).toBeLessThan(1);
+  }
+});
+
 test("every numbered map stop and each facility can be explored, including places without photos", async ({ page }) => {
   const numberedStops = [
     ["cafe", "คาเฟ่และร้านอาหาร", "Café & Restaurant"],
@@ -41,7 +63,10 @@ test("every numbered map stop and each facility can be explored, including place
         const panel = map.locator(`[data-map-panel="${id}"]`);
         await expect(panel).toBeVisible();
         await expect(panel.locator("h3")).toHaveText(prefix ? en : th);
-        await expect(panel.locator("a")).toHaveAttribute("href", new RegExp(`^${prefix}/(?:(?:activities|animals|menu|visit)/|#(?:wishes|garden-story)$)`));
+        const destination = id === "cafe"
+          ? `${prefix}/cafe/food/`
+          : new RegExp(`^${prefix}/(?:(?:activities|animals|visit)/|#(?:wishes|garden-story)$)`);
+        await expect(panel.locator("a")).toHaveAttribute("href", destination);
       }
       await expect(map.locator('[data-map-panel="cafe"] .map-stop-note')).toHaveText(
         prefix ? "No admission fee · Minimum 1 order per person" : "ไม่มีค่าเข้า · ขั้นต่ำ 1 ออร์เดอร์ต่อท่าน",

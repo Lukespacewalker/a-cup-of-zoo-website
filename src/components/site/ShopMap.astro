@@ -21,11 +21,11 @@ const alt = t(
 ---
 
 <section
-  class:list={["shop-map-section", { "shop-map-section--home": home }]}
+  class:list={["shop-map-section", { "page-bleed": !home }]}
   id="garden"
   aria-labelledby="shop-map-title"
 >
-  <div class="shop-map" data-shop-map>
+  <div class:list={["shop-map", { shell: !home }]} data-shop-map>
     <header class="shop-map-heading" data-map-heading>
       <p class="chapter-label">
         {t("แผนที่วันสบาย ๆ ของคุณ", "A little map. A whole afternoon.")}

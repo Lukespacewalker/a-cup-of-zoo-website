@@ -609,12 +609,9 @@ img.party-member-portrait {
 }
 
 @media (min-width: 2400px) {
-  .animal-parties {
-    width: 1600px;
-    margin-inline: calc((100% - 1600px) / 2);
-  }
-
   .party-map-layout {
+    inline-size: 1600px;
+    margin-inline: calc((100% - 1600px) / 2);
     grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
   }
 }
