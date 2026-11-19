@@ -1,23 +1,24 @@
 ---
-import ArrowIcon from "../site/ArrowIcon.astro";
+import { Image } from "astro:assets";
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import FoxSeal from "../site/FoxSeal.astro";
+import ArrowIcon from "../site/ArrowIcon.astro";
 import ContentUnavailable from "../content/ContentUnavailable.astro";
+import OpeningHours from "../site/OpeningHours.astro";
+import cafePhoto from "../../assets/menu/cafe-noren.webp";
+import groupPhoto from "../../assets/owner-brief/asset-18.png";
+import { experienceImages } from "../../lib/content/experience-images";
 import { loadPage } from "../../lib/content/load-page";
 import { allowedExternalUrl } from "../../lib/business/links";
-import OpeningHours from "../site/OpeningHours.astro";
-import { localizedActivities } from "../../lib/i18n/activities";
 import { venuePhoneLabel, venuePhones } from "../../lib/business/contact";
 import { translator, localePath, type Locale } from "../../lib/i18n/locale";
 import { localizedVenue } from "../../lib/i18n/venue";
+
 interface Props {
   locale: Locale;
 }
+
 const { locale } = Astro.props;
 const t = translator(locale);
-const { admissionSummary, passes } = localizedActivities(locale);
-const href = (path: string) => localePath(path, locale);
-
 const page = await loadPage();
 const phones = venuePhones(page.venue?.content);
 const content = localizedVenue(page.venue, locale)?.content;
@@ -25,6 +26,34 @@ const maps = allowedExternalUrl(content?.mapsUrl ?? null, "maps");
 const facebook = allowedExternalUrl(content?.facebookUrl ?? null, "facebook");
 // Google Maps CID from the café's existing directions link.
 const mapEmbed = `https://www.google.com/maps?cid=13571304804789208237&output=embed&hl=${locale}`;
+
+const options = [
+  {
+    id: "family",
+    title: t(
+      "มาเที่ยวส่วนตัวหรือกับครอบครัว",
+      "Visiting on your own or with family",
+    ),
+    description: t(
+      "แวะโซนคาเฟ่ได้ฟรี เพียงสั่งอาหารหรือเครื่องดื่ม ถ้าอยากใกล้ชิดกับเพื่อนสัตว์ เลือกแพ็กเกจเข้าชมได้",
+      "Stop by the café with no entry fee when you order food or a drink, or choose a package to spend time with the animals.",
+    ),
+    image: experienceImages.cats,
+    label: t("ดูแพ็กเกจ", "View packages"),
+    href: localePath("/activities/#passes", locale),
+  },
+  {
+    id: "group",
+    title: t("มาเที่ยวเป็นกลุ่ม", "Visiting as a group"),
+    description: t(
+      "สำหรับทัศนศึกษาและการเยี่ยมชมเป็นหมู่คณะ ติดต่อร้านล่วงหน้าเพื่อคุยเรื่องวัน จำนวนคน และกิจกรรม",
+      "For school trips and group visits, get in touch ahead of time to discuss dates, group size and activities.",
+    ),
+    image: groupPhoto,
+    label: t("ดูข้อมูลสำหรับกลุ่ม", "Group visit information"),
+    href: localePath("/events/#group-visits", locale),
+  },
+];
 ---
 
 <SiteLayout
@@ -34,135 +63,362 @@ const mapEmbed = `https://www.google.com/maps?cid=13571304804789208237&output=em
     "Opening hours, map & directions · Khlong 6",
   )}
   description={t(
-    "วางแผนมาเที่ยว A Cup of Zoo คลอง 6 ปทุมธานี เช็กเวลาเปิด วันหยุด ที่อยู่ แผนที่ และช่องทางติดต่อ พร้อมคำถามที่พบบ่อยก่อนเดินทาง",
-    "Plan a visit to A Cup of Zoo, Khlong 6, Pathum Thani. Check opening hours, holiday notices, upcoming exceptions, the address, map, phone numbers and visitor questions.",
+    "เช็กเวลาเปิดร้าน แพ็กเกจสำหรับครอบครัว ข้อมูลการเยี่ยมชมเป็นกลุ่ม และแผนที่ไป A Cup of Zoo คลอง 6 ปทุมธานี",
+    "Check opening hours, packages for families, group visit information and directions to A Cup of Zoo in Khlong 6, Pathum Thani.",
   )}
   page={page}
   includeJsonLd
 >
-  <header class="page-intro">
-    <FoxSeal class="page-intro__fox" />
-    <h1>{t("แวะมาหาเราที่ร้าน", "Plan your visit")}</h1>
-    <p>
-      {t(
-        "เช็กเวลาเปิด ที่อยู่ และเส้นทางก่อนแวะมา",
-        "Check opening hours, the address and directions before you visit.",
+  <div class="visit">
+    <section id="visit-hours" aria-labelledby="visit-title">
+      <h1 id="visit-title">{t("แวะมาหาเราที่ร้าน", "Plan your visit")}</h1>
+      {content ? (
+        <div class="visit-hours-panel">
+          <div class="visit-schedule">
+            <h2>{t("เวลาเปิดร้าน", "Opening hours")}</h2>
+            <OpeningHours
+              exceptions={content.hoursExceptions}
+              entries={content.regularHours}
+              holidayNote={content.holidayNote}
+              locale={locale}
+            />
+          </div>
+          <div class="visit-hours-photo">
+            <Image
+              src={cafePhoto}
+              alt=""
+              widths={[480, 640, 768]}
+              sizes="(max-width: 1200px) 44vw, 520px"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      ) : (
+        <ContentUnavailable
+          detail={
+            page.venueProblem === "missing"
+              ? t(
+                  "ยังไม่ได้เผยแพร่ข้อมูลร้าน",
+                  "Café information has not been published yet.",
+                )
+              : undefined
+          }
+        />
       )}
-    </p>
-    <a class="cafe-link" href={href("/events/#group-visits")}>
-      {t("ทัศนศึกษาและเยี่ยมชมเป็นกลุ่ม", "School trips & group visits")}{" "}
-      <ArrowIcon />
-    </a>
-  </header>
-  {page.venueProblem && (
-    <ContentUnavailable
-      detail={
-        page.venueProblem === "missing"
-          ? t(
-              "ยังไม่ได้เผยแพร่ข้อมูลร้าน",
-              "Café information has not been published yet.",
-            )
-          : undefined
-      }
-    />
-  )}
-  {content && (
-    <section class="band">
-      <h2>{t("เวลาเปิดร้าน", "Opening hours")}</h2>
-      <p>{t("เวลาเปิดปกติของร้าน", "Regular café opening hours")}</p>
-      <OpeningHours
-        exceptions={content.hoursExceptions}
-        entries={content.regularHours}
-        holidayNote={content.holidayNote}
-        locale={locale}
-      />
-      <h2>{t("เลือกมาเที่ยวแบบที่ชอบ", "Choose your visit")}</h2>
-      <p>{admissionSummary}</p>
-      <p>
-        {passes.map((pass, index) => (
-          <>
-            {index > 0 && " · "}
-            {pass.name} {pass.price} {t("บาท", "THB")}
-          </>
-        ))}
-      </p>
-      <p>
-        <a class="cafe-link" href={href("/activities/#passes")}>
-          {t(
-            "ดูสิทธิประโยชน์แพ็กเกจและเงื่อนไขเด็ก",
-            "Pass benefits and child admission",
-          )}{" "}
-          <ArrowIcon />
+    </section>
+
+    <section
+      id="visit-options"
+      class="visit-options"
+      aria-label={t("รูปแบบการเยี่ยมชม", "Visit options")}
+    >
+      {options.map((option) => (
+        <a
+          class="visit-card"
+          href={option.href}
+          aria-labelledby={`visit-${option.id}-action`}
+        >
+          <article>
+            <Image
+              src={option.image}
+              alt=""
+              width={768}
+              widths={[360, 540, 768]}
+              sizes="(max-width: 46rem) calc(100vw - 2.5rem), (max-width: 72rem) 45vw, 540px"
+              loading="lazy"
+              class:list={["visit-card-photo", `visit-photo-${option.id}`]}
+            />
+            <h2>{option.title}</h2>
+            <p>{option.description}</p>
+            <span class="visit-card-action" id={`visit-${option.id}-action`}>
+              {option.label}{" "}
+              <span class="visit-card-arrow">
+                <ArrowIcon />
+              </span>
+            </span>
+          </article>
         </a>
-      </p>
-      <h2>{t("ที่อยู่และเส้นทาง", "Address & directions")}</h2>
-      <p>{content.locationLabel}</p>
-      {content.addressLine && (
-        <p>
-          {t("ที่อยู่ร้าน: ", "Address: ")}
-          {content.addressLine}
-        </p>
-      )}
-      {maps?.includes("0xbc56f5d0ec0344ad") && <iframe
-        class="visit-map"
-        src={mapEmbed}
-        title={t(
-          "แผนที่ร้าน A Cup of Zoo บน Google Maps",
-          "A Cup of Zoo location on Google Maps",
-        )}
-        width="960"
-        height="420"
-        loading="lazy"
-        allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>}
-      <p>
-        {content.admissionText ??
-          t(
-            "สอบถามค่าเข้าชมและเงื่อนไขกับทางร้าน",
-            "Check admission prices and conditions with the café.",
-          )}
-      </p>
-      <div class="actions">
-        {maps && (
-          <a class="button" href={maps}>
-            {t("ดูเส้นทาง", "Directions")}
-          </a>
-        )}
-        {facebook && (
-          <a class="button secondary" href={facebook}>
-            {t("หน้า Facebook", "Facebook page")}
-          </a>
-        )}
-        {phones.map((phone) => {
-          const label = venuePhoneLabel(phone.e164, locale);
-          return (
-            <a class="button secondary" href={`tel:${phone.e164}`}>
-              {label ? `${label} · ` : t("โทร ", "Call ")}
-              {phone.display}
-            </a>
-          );
-        })}
-      </div>
-      <h2>{t("คำถามที่พบบ่อย", "Visitor questions")}</h2>
-      {content.faqs.map((faq) => (
-        <article>
-          <h3>{faq.question}</h3>
-          <p>{faq.answer}</p>
-        </article>
       ))}
     </section>
-  )}
+
+    {content && (
+      <section
+        id="visit-location"
+        class="visit-location"
+        aria-labelledby="visit-location-title"
+      >
+        <div class="visit-address">
+          <h2 id="visit-location-title">
+            {t("แผนที่และการเดินทาง", "Map & directions")}
+          </h2>
+          <p class="visit-location-label">{content.locationLabel}</p>
+          {content.addressLine && <p>{content.addressLine}</p>}
+          {maps && (
+            <a class="button visit-directions" href={maps}>
+              {t("ดูเส้นทาง", "Directions")} <ArrowIcon />
+            </a>
+          )}
+          <div class="visit-contacts">
+            {phones.map((phone) => {
+              const label = venuePhoneLabel(phone.e164, locale);
+              return (
+                <a href={`tel:${phone.e164}`}>
+                  {label ? `${label} · ` : t("โทร ", "Call ")}
+                  {phone.display}
+                </a>
+              );
+            })}
+            {facebook && (
+              <a href={facebook}>{t("หน้า Facebook", "Facebook page")}</a>
+            )}
+          </div>
+        </div>
+        {maps?.includes("0xbc56f5d0ec0344ad") && <iframe
+          class="visit-map"
+          src={mapEmbed}
+          title={t(
+            "แผนที่ร้าน A Cup of Zoo บน Google Maps",
+            "A Cup of Zoo location on Google Maps",
+          )}
+          width="960"
+          height="420"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>}
+      </section>
+    )}
+  </div>
 </SiteLayout>
 
 <style>
+  .visit {
+    --visit-radius: 1.1rem;
+    max-inline-size: 70rem;
+    margin-inline: auto;
+    padding-block: clamp(1.4rem, 3.5vw, 2.8rem) clamp(2.5rem, 6vw, 4.5rem);
+    display: grid;
+    gap: clamp(1.2rem, 3vw, 2.2rem);
+  }
+
+  .visit h1 {
+    font-size: clamp(1.9rem, 4vw, 3.3rem);
+    margin: 0 0 clamp(0.8rem, 2vw, 1.4rem);
+  }
+
+  .visit h2 {
+    margin: 0;
+    font-size: clamp(1.28rem, 2.5vw, 1.82rem);
+    font-weight: 600;
+    text-wrap: pretty;
+  }
+
+  .visit-hours-panel,
+  .visit-location {
+    display: grid;
+    border: 1px solid var(--line);
+    border-radius: var(--visit-radius);
+    background: var(--paper);
+  }
+
+  .visit-hours-panel {
+    background: var(--garden-field);
+  }
+
+  .visit-schedule,
+  .visit-address {
+    min-inline-size: 0;
+    padding: clamp(1rem, 3vw, 2.2rem);
+  }
+
+  .visit-schedule h2 {
+    margin-block-end: 0.55rem;
+    color: var(--leaf);
+  }
+
+  .visit-schedule :global(.opening-hours .hours li) {
+    gap: 0.6rem;
+    padding-block: 0.38rem;
+    font-size: 1rem;
+  }
+
+  .visit-schedule :global(.hours li span:last-child) {
+    text-align: end;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .visit-schedule :global(.hours-exceptions h3) {
+    margin-block-end: 0.35rem;
+  }
+
+  .visit-schedule :global(.hours-exceptions ul) {
+    margin-block-start: 0;
+    padding-inline-start: 1.3rem;
+  }
+
+  .visit-schedule :global(.outdoor-hours) {
+    margin-block-end: 0;
+    color: var(--ink);
+  }
+
+  .visit-hours-photo {
+    display: none;
+  }
+
+  .visit-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: clamp(1rem, 2.4vw, 1.6rem);
+  }
+
+  .visit-card {
+    display: grid;
+    min-inline-size: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--visit-radius);
+    background: var(--paper);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+  }
+
+  .visit-card article {
+    --card-inset: clamp(1rem, 2.8vw, 1.5rem);
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    min-inline-size: 0;
+    padding-block-end: var(--card-inset);
+  }
+
+  .visit-card-photo {
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 2.35;
+    object-fit: cover;
+    border-radius: calc(var(--visit-radius) - 1px)
+      calc(var(--visit-radius) - 1px) 0 0;
+    background: var(--blush);
+  }
+
+  .visit-photo-family {
+    object-position: center 36%;
+  }
+
+  .visit-photo-group {
+    object-position: center 63%;
+  }
+
+  .visit-card h2,
+  .visit-card p,
+  .visit-card-action {
+    margin-inline: var(--card-inset);
+  }
+
+  .visit-card h2 {
+    margin-block-start: var(--card-inset);
+  }
+
+  .visit-card p {
+    margin-block: 0.35rem 1rem;
+    color: var(--muted-text);
+    line-height: 1.75;
+  }
+
+  .visit-card-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+    min-block-size: 44px;
+    padding-block-start: 0.65rem;
+    border-block-start: 1px solid var(--line);
+    color: var(--leaf);
+    font-weight: 700;
+  }
+
+  .visit-card-arrow {
+    display: grid;
+    place-items: center;
+    flex: none;
+    inline-size: 2.1rem;
+    block-size: 2.1rem;
+    border-radius: 50%;
+    background: var(--garden-field);
+  }
+
+  .visit-card:is(:hover, :focus-visible) .visit-card-arrow {
+    background: var(--button);
+    color: var(--on-button);
+  }
+
+  .visit-address p {
+    margin-block: 0.3rem;
+    color: var(--muted-text);
+  }
+
+  .visit-address .visit-location-label {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .visit-directions {
+    margin-block: 0.8rem 0.5rem;
+    border-radius: 0.4rem;
+  }
+
+  .visit-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+  }
+
+  .visit-contacts a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+    text-underline-offset: 0.2em;
+  }
+
   .visit-map {
     display: block;
-    width: 100%;
-    height: clamp(320px, 50vw, 420px);
-    margin-block: 1.5rem;
-    border: 1px solid var(--line);
-    border-radius: 0.4rem;
-    background: var(--paper);
+    inline-size: 100%;
+    block-size: clamp(17rem, 32vw, 24rem);
+    border: 0;
+    border-radius: 0 0 calc(var(--visit-radius) - 1px)
+      calc(var(--visit-radius) - 1px);
+    background: var(--blush);
+  }
+
+  @media (min-width: 48rem) {
+    .visit-hours-panel {
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+    }
+
+    .visit-hours-photo {
+      display: block;
+      position: relative;
+    }
+
+    .visit-hours-photo img {
+      position: absolute;
+      inset: 0;
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      border-radius: 0 calc(var(--visit-radius) - 1px)
+        calc(var(--visit-radius) - 1px) 0;
+    }
+
+    .visit-location:has(.visit-map) {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    }
+
+    .visit-map {
+      block-size: 100%;
+      min-block-size: 22rem;
+      border-radius: 0 calc(var(--visit-radius) - 1px)
+        calc(var(--visit-radius) - 1px) 0;
+    }
   }
 </style>

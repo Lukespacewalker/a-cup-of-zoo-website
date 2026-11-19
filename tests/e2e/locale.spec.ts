@@ -72,7 +72,7 @@ test("English menu and child planning work without JavaScript and match Thai num
   for (const [route, selectors] of [
     ['cafe/food', ['[data-menu-code]', '.sandwich-extras']],
     ['activities', ['#passes', '.experience-list', '.animal-food-list']],
-    ['visit', ['.hours', '.band']]
+    ['visit', ['.hours', '#visit-location']]
   ] as const) {
     const digits: string[][] = [];
     for (const prefix of ['', '/en']) {
@@ -87,7 +87,7 @@ test("English menu and child planning work without JavaScript and match Thai num
   await expect(page.locator('#plant-based .food-section__photos img')).toHaveCount(2);
   await expect(page.locator('#plant-based .food-gallery')).toBeVisible();
   await page.getByRole('navigation', { name: 'Visit shortcuts' }).getByRole('link', { name: 'Plan your visit' }).click();
-  await page.getByRole('link', { name: 'Pass benefits and child admission' }).click();
+  await page.getByRole('link', { name: 'View packages', exact: true }).click();
   await expect(page.locator('.activity-terms')).toContainText('Every child must be accompanied by at least 1 adult');
   await context.close();
 });
@@ -123,7 +123,7 @@ test("switching locale retains matching page and category hash on mobile", async
   await page.getByRole('button', { name: 'Open navigation' }).click();
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Hours & directions' }).click();
   await expect(page).toHaveURL(/\/en\/visit\/$/);
-  await page.getByRole('link', { name: 'Pass benefits and child admission' }).click();
+  await page.getByRole('link', { name: 'View packages', exact: true }).click();
   await expect(page).toHaveURL(/\/en\/activities\/#passes$/);
   await expect(page.getByRole('link', { name: 'News (Thai)', exact: true }).first()).toHaveAttribute('href', '/news/');
 });

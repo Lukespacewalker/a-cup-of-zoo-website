@@ -9,6 +9,33 @@ test("visit CTA keeps the supplied Maps destination", async ({ page }) => {
   await expect(page.locator('footer a[href="tel:+66922791890"]')).toBeVisible();
 });
 
+test("mobile Visit shows hours, two visit options, and the map in order", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/visit/");
+
+  const main = page.locator("main");
+  const sections = main.locator("section[id^='visit-']");
+  expect(await sections.evaluateAll(elements => elements.map(element => element.id))).toEqual([
+    "visit-hours",
+    "visit-options",
+    "visit-location",
+  ]);
+  await expect(main.locator("#visit-hours .hours")).toBeVisible();
+
+  const options = main.locator("#visit-options");
+  const packages = options.getByRole("link", { name: "ดูแพ็กเกจ", exact: true });
+  const groups = options.getByRole("link", { name: "ดูข้อมูลสำหรับกลุ่ม", exact: true });
+  await expect(options.getByRole("link")).toHaveCount(2);
+  await expect(packages).toBeVisible();
+  await expect(packages).toHaveAttribute("href", "/activities/#passes");
+  await expect(groups).toBeVisible();
+  await expect(groups).toHaveAttribute("href", "/events/#group-visits");
+  await expect(main.locator("#visit-location iframe")).toHaveAttribute("src", /[?&]cid=13571304804789208237&/);
+  await expect(main.getByRole("heading", { name: "เลือกมาเที่ยวแบบที่ชอบ" })).toHaveCount(0);
+  await expect(main).not.toContainText(/ขั้นต่ำ\s*1\s*ออร์เดอร์ต่อคน|One Zone Pass|All Zone Pass|(?:249|349)\s*บาท/);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+});
+
 test("mobile layout has no horizontal overflow", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
