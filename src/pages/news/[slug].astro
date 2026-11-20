@@ -18,7 +18,10 @@ const translation = result.post ? thaiTranslation(result.post) : null;
 ---
 
 <SiteLayout
-  title={translation?.title ?? "ไม่พบข่าว"}
+  title={
+    translation?.title ??
+    (result.problem === "missing" ? "ไม่พบข่าว" : "ข่าวของร้าน")
+  }
   description={
     translation?.seoDescription ||
     translation?.excerpt ||
@@ -26,11 +29,19 @@ const translation = result.post ? thaiTranslation(result.post) : null;
   }
   page={shell}
 >
-  {result.problem === "unavailable" && <ContentUnavailable />}
+  {result.problem === "unavailable" && (
+    <section class="page-intro">
+      <h1>ข่าวของร้าน</h1>
+      <ContentUnavailable />
+    </section>
+  )}
   {result.problem === "missing" && (
-    <p class="page-intro">
-      ไม่พบข่าวนี้ <a href="/news/">กลับไปหน้าข่าว</a>
-    </p>
+    <section class="page-intro">
+      <h1>ไม่พบข่าวนี้</h1>
+      <p>
+        <a href="/news/">กลับไปหน้าข่าว</a>
+      </p>
+    </section>
   )}
   {result.post && translation && (
     <article class="page-intro prose">

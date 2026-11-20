@@ -332,7 +332,7 @@ test("café and club switch layouts at the same 700px boundary", async ({ page }
     const cafe = page.locator(".page-hero");
     await expect.poll(() => cafe.evaluate(hero =>
       getComputedStyle(hero, "::before").display === "none" ? "stacked" :
-        getComputedStyle(hero, "::before").backgroundImage.includes("0.35") ? "overlay" : "other"
+        getComputedStyle(hero, "::before").backgroundImage.includes("0.66") ? "overlay" : "other"
     )).toBe(width <= 700 ? "stacked" : "overlay");
     await page.goto("/en/club/");
     const club = page.locator(".tier-list > li").first();

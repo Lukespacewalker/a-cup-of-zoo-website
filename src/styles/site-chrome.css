@@ -1,15 +1,15 @@
 .skip-link {
   position: absolute;
-  left: 1rem;
-  top: -4rem;
-  background: var(--cocoa);
-  color: white;
+  inset-inline-start: 1rem;
+  inset-block-start: 1rem;
+  background: var(--button);
+  color: var(--on-button);
   padding: 0.75rem 1rem;
   border-radius: 999px;
   z-index: 60;
 }
-.skip-link:focus {
-  top: 1rem;
+.skip-link:not(:focus) {
+  clip-path: inset(50%);
 }
 .site-header {
   width: var(--page);
@@ -82,6 +82,13 @@
   text-decoration-thickness: 1px;
   text-underline-offset: 0.55rem;
 }
+.site-nav .visit-link[aria-current] {
+  color: var(--on-button);
+}
+.site-nav .visit-link:hover {
+  background: var(--button-hover);
+  color: var(--on-button-hover);
+}
 @media not all and (max-width: 1050px) {
   .site-nav .visit-link {
     background: var(--button);
@@ -92,13 +99,6 @@
     padding: 0.4rem 0.65rem;
     font-family: var(--font);
     font-weight: 500;
-  }
-  .site-nav .visit-link[aria-current="page"] {
-    color: var(--on-button);
-  }
-  .site-nav .visit-link:hover {
-    background: var(--button-hover);
-    color: var(--on-button-hover);
   }
   .site-nav .visit-link .arrow-icon {
     margin-left: 0.6rem;
@@ -160,6 +160,8 @@
 }
 .menu-button {
   display: none;
+  align-items: center;
+  justify-content: center;
   min-width: 44px;
   min-height: 44px;
   padding: 0;
@@ -168,6 +170,10 @@
   background: transparent;
   color: var(--cocoa);
   font: inherit;
+}
+/* Keep the trigger focusable until the resize handler can hand focus to the nav. */
+.site-nav[data-enhanced] + .header-tools .menu-button:focus {
+  display: inline-flex;
 }
 .menu-button:enabled {
   cursor: pointer;
@@ -279,8 +285,6 @@
     }
     .menu-button {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
     }
     .site-nav[popover] {
       display: none;

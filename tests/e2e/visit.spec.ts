@@ -34,6 +34,12 @@ test("mobile Visit shows hours, two visit options, and the map in order", async 
   await expect(main.getByRole("heading", { name: "เลือกมาเที่ยวแบบที่ชอบ" })).toHaveCount(0);
   await expect(main).not.toContainText(/ขั้นต่ำ\s*1\s*ออร์เดอร์ต่อคน|One Zone Pass|All Zone Pass|(?:249|349)\s*บาท/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+
+  const image = options.locator(".visit-card-photo").first();
+  await image.scrollIntoViewIfNeeded();
+  const bounds = (await image.boundingBox())!;
+  await page.mouse.click(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+  await expect(page).toHaveURL("/activities/#passes");
 });
 
 test("mobile layout has no horizontal overflow", async ({ page }) => {

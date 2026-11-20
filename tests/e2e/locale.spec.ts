@@ -9,7 +9,7 @@ test("English unknown routes return localized404 with an English home link", asy
     const text = await page.locator('main, title, meta[content], [aria-label], [alt]').evaluateAll(elements => elements.map(element => element.getAttribute('content') ?? element.getAttribute('aria-label') ?? element.getAttribute('alt') ?? element.textContent).join(' '));
     expect(text).not.toMatch(/[\u0E00-\u0E7F]/);
     await expect(page.locator('main').getByRole('link', { name: 'Back to home' })).toHaveAttribute('href', '/en/');
-    await expect(page.getByRole('link', { name: 'Thai home', exact: true })).toHaveAttribute('href', '/');
+    await expect(page.getByRole('link', { name: 'TH · Home (Thai)', exact: true })).toHaveAttribute('href', '/');
   }
   await page.locator('main').getByRole('link', { name: 'Back to home' }).click();
   await expect(page).toHaveURL(/\/en\/$/);
@@ -37,7 +37,7 @@ test("English primary paths render complete English content and matching metadat
     expect(metadata).not.toMatch(/[\u0E00-\u0E7F]/);
     await expect(page.locator('link[hreflang="th"]')).toHaveAttribute("href", `${origin}${route.slice(3)}`);
     await expect(page.locator('link[hreflang="en"]')).toHaveAttribute("href", `${origin}${route}`);
-    expect(await page.getByRole('link', { name: 'Thai', exact: true }).evaluate((link: HTMLAnchorElement) => link.href))
+    expect(await page.getByRole('link', { name: 'TH (Thai)', exact: true }).evaluate((link: HTMLAnchorElement) => link.href))
       .toBe(`${origin}${route.slice(3)}`);
   }
   await page.goto("/en/cafe/food/");
@@ -59,8 +59,8 @@ test("English primary paths render complete English content and matching metadat
 test("untranslated news explicitly returns to English home without false alternates", async ({ page }) => {
   await page.goto('/news/');
   await expect(page.locator('link[hreflang]')).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'English home', exact: true })).toHaveAttribute('href', '/en/');
-  await page.getByRole('link', { name: 'English home', exact: true }).click();
+  await expect(page.getByRole('link', { name: 'EN · Home (English)', exact: true })).toHaveAttribute('href', '/en/');
+  await page.getByRole('link', { name: 'EN · Home (English)', exact: true }).click();
   await expect(page).toHaveURL(/\/en\/$/);
   const response = await page.goto('/en/news/');
   expect(response?.status()).toBe(404);
@@ -109,12 +109,12 @@ test("switching locale retains matching page and category hash on mobile", async
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/menu/?utm_source=old-menu#plant-based");
   await expect(page).toHaveURL("/cafe/food/?utm_source=old-menu#plant-based");
-  await page.getByRole('link', { name: 'English', exact: true }).click();
+  await page.getByRole('link', { name: 'EN (English)', exact: true }).click();
   await expect(page).toHaveURL(/\/en\/cafe\/food\/#plant-based$/);
   await page.getByRole('heading', { name: 'Plant-based dishes', exact: true }).scrollIntoViewIfNeeded();
   const gallery = page.locator('#plant-based .food-gallery');
   await expect(gallery).toBeVisible();
-  await page.getByRole('link', { name: 'Thai', exact: true }).click();
+  await page.getByRole('link', { name: 'TH (Thai)', exact: true }).click();
   await expect(page).toHaveURL(/\/cafe\/food\/#plant-based$/);
   await page.goto('/en/');
   await page.locator('.experience-paths a[href="/en/cafe/"]').click();

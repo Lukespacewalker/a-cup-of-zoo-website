@@ -34,7 +34,7 @@ const t = translator(Astro.props.locale);
     >
       ‹
     </button>
-    <div aria-live="polite">
+    <div class="activity-photo-dialog__caption" aria-live="polite">
       <h2 id="activity-photo-title"></h2>
       <p data-note hidden></p>
     </div>
@@ -139,6 +139,7 @@ const t = translator(Astro.props.locale);
 
 <style>
   .activity-photo-dialog {
+    container-type: inline-size;
     width: min(43rem, calc(100% - 1.5rem));
     max-height: calc(100dvh - 1.5rem);
     padding: 0.75rem;
@@ -175,24 +176,37 @@ const t = translator(Astro.props.locale);
 
   .activity-photo-dialog__bottom {
     display: grid;
-    grid-template-columns: 2.75rem minmax(0, 1fr) 2.75rem;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    grid-template-areas: "previous caption next";
     align-items: center;
     gap: 0.5rem;
     text-align: center;
   }
 
+  .activity-photo-dialog__caption {
+    grid-area: caption;
+  }
+
+  [data-previous] {
+    grid-area: previous;
+  }
+
+  [data-next] {
+    grid-area: next;
+  }
+
   .activity-photo-dialog button {
     display: grid;
     place-items: center;
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 44px;
+    height: 44px;
     padding: 0;
     border: 1px solid var(--line);
     border-radius: 50%;
     background: var(--milk);
     color: var(--cocoa-deep);
     font: inherit;
-    font-size: 1.5rem;
+    font-size: 24px;
     line-height: 1;
     cursor: pointer;
   }
@@ -215,5 +229,16 @@ const t = translator(Astro.props.locale);
   .activity-photo-dialog [data-counter] {
     color: var(--muted-text);
     font-size: 0.85rem;
+  }
+
+  @container (inline-size < 12rem) {
+    .activity-photo-dialog img {
+      max-height: 30dvh;
+    }
+    .activity-photo-dialog__bottom {
+      grid-template-areas:
+        "caption caption caption"
+        "previous . next";
+    }
   }
 </style>

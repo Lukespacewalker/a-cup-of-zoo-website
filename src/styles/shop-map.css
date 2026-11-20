@@ -424,3 +424,17 @@
     transition: none;
   }
 }
+
+@media (width <= 450px) {
+  /* Keep a usable hit area between nearby stops on the smallest overview maps. */
+  .shop-map-viewport:not(.is-zoomed) [data-map-pin="desert"] {
+    top: calc(var(--pin-y) - 12px);
+  }
+  .shop-map-viewport:not(.is-zoomed) [data-map-pin="indoor"] {
+    left: calc(var(--pin-x) - 9px);
+    top: calc(var(--pin-y) + 5px);
+  }
+  .shop-map-viewport:not(.is-zoomed) [data-map-pin="kurama"] {
+    left: calc(var(--pin-x) + 10px);
+  }
+}

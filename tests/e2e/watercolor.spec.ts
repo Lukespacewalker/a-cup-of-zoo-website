@@ -4,7 +4,7 @@ test("the home wishing corner and ema details keep their section when switching 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/en/#wishes");
   await expect(page.locator("#wishes")).toContainText("Nine-Tailed Fox");
-  await page.getByRole("link", { name: "Thai", exact: true }).click();
+  await page.getByRole("link", { name: "TH (Thai)", exact: true }).click();
   await expect(page).toHaveURL(/\/#wishes$/);
   await expect(page.locator("#wishes")).toContainText("น้องจิ้งจอกเก้าหาง");
   await page.getByRole("link", { name: "ดูราคาและสิทธิรับป้ายเอมะ" }).click();

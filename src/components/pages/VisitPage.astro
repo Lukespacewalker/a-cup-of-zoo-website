@@ -113,31 +113,25 @@ const options = [
       aria-label={t("รูปแบบการเยี่ยมชม", "Visit options")}
     >
       {options.map((option) => (
-        <a
-          class="visit-card"
-          href={option.href}
-          aria-labelledby={`visit-${option.id}-action`}
-        >
-          <article>
-            <Image
-              src={option.image}
-              alt=""
-              width={768}
-              widths={[360, 540, 768]}
-              sizes="(max-width: 46rem) calc(100vw - 2.5rem), (max-width: 72rem) 45vw, 540px"
-              loading="lazy"
-              class:list={["visit-card-photo", `visit-photo-${option.id}`]}
-            />
-            <h2>{option.title}</h2>
-            <p>{option.description}</p>
-            <span class="visit-card-action" id={`visit-${option.id}-action`}>
-              {option.label}{" "}
-              <span class="visit-card-arrow">
-                <ArrowIcon />
-              </span>
+        <article class="visit-card">
+          <Image
+            src={option.image}
+            alt=""
+            width={768}
+            widths={[360, 540, 768]}
+            sizes="(max-width: 46rem) calc(100vw - 2.5rem), (max-width: 72rem) 45vw, 540px"
+            loading="lazy"
+            class:list={["visit-card-photo", `visit-photo-${option.id}`]}
+          />
+          <h2>{option.title}</h2>
+          <p>{option.description}</p>
+          <a class="visit-card-action" href={option.href}>
+            {option.label}{" "}
+            <span class="visit-card-arrow">
+              <ArrowIcon />
             </span>
-          </article>
-        </a>
+          </a>
+        </article>
       ))}
     </section>
 
@@ -273,22 +267,17 @@ const options = [
   }
 
   .visit-card {
-    display: grid;
-    min-inline-size: 0;
-    border: 1px solid var(--line);
-    border-radius: var(--visit-radius);
-    background: var(--paper);
-    box-shadow: var(--shadow);
-    text-decoration: none;
-  }
-
-  .visit-card article {
     --card-inset: clamp(1rem, 2.8vw, 1.5rem);
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto 1fr auto;
     min-inline-size: 0;
     padding-block-end: var(--card-inset);
+    border: 1px solid var(--line);
+    border-radius: var(--visit-radius);
+    background: var(--paper);
+    box-shadow: var(--shadow);
   }
 
   .visit-card-photo {
@@ -336,6 +325,23 @@ const options = [
     color: var(--leaf);
     font-weight: 700;
     overflow-wrap: anywhere;
+    text-decoration: none;
+  }
+
+  .visit-card-action::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--visit-radius);
+  }
+
+  .visit-card-action:focus-visible {
+    outline: none;
+  }
+
+  .visit-card-action:focus-visible::after {
+    outline: 2px solid var(--fox-ink);
+    outline-offset: 6px;
   }
 
   .visit-card-arrow {
@@ -348,7 +354,7 @@ const options = [
     background: var(--garden-field);
   }
 
-  .visit-card:is(:hover, :focus-visible) .visit-card-arrow {
+  .visit-card:is(:hover, :focus-within) .visit-card-arrow {
     background: var(--button);
     color: var(--on-button);
   }

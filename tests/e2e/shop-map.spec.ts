@@ -141,6 +141,34 @@ test("a hovered stop link navigates even when another pin still has keyboard foc
   }
 });
 
+test("keyboard activation reaches map details and closing returns to the source control", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 500 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/en/activities/#garden");
+  const map = page.locator("[data-shop-map]");
+  const fox = map.getByRole("button", { name: "10. Fox House Zone" });
+  const panel = map.locator('[data-map-panel="fox"]');
+  const select = map.getByRole("combobox", { name: "Pick your next stop" });
+
+  await fox.focus();
+  await page.keyboard.press("Enter");
+  await expect(panel.getByRole("heading")).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(panel.getByRole("link")).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(fox).toBeFocused();
+  await expect(fox).toBeInViewport();
+  await expect(panel).toBeHidden();
+
+  await map.locator("[data-map-zoom]").click();
+  await select.selectOption("fox");
+  await map.getByRole("button", { name: "Close stop details" }).focus();
+  await page.keyboard.press("Enter");
+  await expect(select).toBeFocused();
+  await expect(select).toBeInViewport({ ratio: 1 });
+  await expect(panel).toBeHidden();
+});
+
 test("mobile selection and zoom work without overflowing the page", async ({ page }) => {
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });

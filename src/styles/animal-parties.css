@@ -398,6 +398,7 @@
 
 .party-sheets {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.8rem;
   min-width: 0;
   width: min(100%, 44rem);
@@ -440,8 +441,14 @@
 
 .party-sheet-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.7rem;
+}
+
+.party-sheet-header > div:first-child {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
 }
 
 .party-sheet h3 {

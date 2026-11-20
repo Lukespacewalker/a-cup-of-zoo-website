@@ -62,3 +62,10 @@ test("news empty state is not an error", async ({ page }) => {
   await page.goto("/news/");
   await expect(page.getByText("ยังไม่มีข่าวที่เผยแพร่")).toBeVisible();
 });
+
+test("a missing news article has a heading and a route back to news", async ({ page }) => {
+  const response = await page.goto("/news/missing-article/");
+  expect(response?.status()).toBe(404);
+  await expect(page.getByRole("heading", { level: 1, name: "ไม่พบข่าวนี้" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "กลับไปหน้าข่าว" })).toHaveAttribute("href", "/news/");
+});

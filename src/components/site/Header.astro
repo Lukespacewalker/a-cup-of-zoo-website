@@ -32,6 +32,9 @@ const switchHref = localePath(
   counterpart ? currentPath : "/",
   locale === "th" ? "en" : "th",
 );
+const switchCode = locale === "en" ? "TH" : "EN";
+const switchText = counterpart ? switchCode : `${switchCode} · Home`;
+const switchLanguage = locale === "en" ? "Thai" : "English";
 ---
 
 <header class="site-header">
@@ -61,23 +64,9 @@ const switchHref = localePath(
       data-equivalent={counterpart ? "true" : "false"}
       href={switchHref}
       lang="en"
-      aria-label={
-        locale === "en"
-          ? counterpart
-            ? "Thai"
-            : "Thai home"
-          : counterpart
-            ? "English"
-            : "English home"
-      }
+      aria-label={`${switchText} (${switchLanguage})`}
     >
-      {locale === "en"
-        ? counterpart
-          ? "TH"
-          : "TH · Home"
-        : counterpart
-          ? "EN"
-          : "EN · Home"}
+      {switchText}
     </a>
     <button
       class="theme-button"
@@ -162,6 +151,8 @@ const switchHref = localePath(
       nav.toggleAttribute("popover", compact.matches);
       if (compact.matches && nav.contains(active)) {
         menuButton.focus({ preventScroll: true });
+      } else if (!compact.matches && active === menuButton) {
+        firstLink?.focus({ preventScroll: true });
       } else if (
         !compact.matches &&
         active instanceof HTMLElement &&

@@ -132,4 +132,42 @@ test.describe("enlarged text", () => {
       shortcuts.getByRole("link", { name: "Food menu" }),
     ).toBeInViewport({ ratio: 1 });
   });
+
+  test("enlarged photo captions have room without losing the gallery controls", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 500 });
+    await page.goto("/en/activities/#one-zone");
+    await page.evaluate(() => document.fonts.ready);
+    const photos = page.locator("#one-zone [data-activity-photo]");
+    await photos.first().focus();
+    await page.keyboard.press("Enter");
+    const dialog = page.getByRole("dialog");
+    await page.keyboard.press("ArrowRight");
+    await expect(dialog.getByRole("heading")).toHaveText(
+      (await photos.nth(1).getAttribute("data-caption"))!,
+    );
+    const caption = dialog.locator(".activity-photo-dialog__caption");
+    await expectTextToFit(caption);
+    expect((await caption.boundingBox())!.width).toBeGreaterThan(170);
+    await page.keyboard.press("Escape");
+    await expect(photos.first()).toBeFocused();
+  });
+
+  test("animal party details and the vote button fit the narrow viewport", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 500 });
+    await page.goto("/en/animals/#animal-family");
+    await page.evaluate(() => document.fonts.ready);
+    const dog = page.locator('[data-party-pin="dog"]');
+    await dog.focus();
+    await page.keyboard.press("Enter");
+    const party = page.locator('[data-party-sheet="dog"]');
+    await expectTextToFit(party.locator(".party-sheet-header"));
+    const vote = party.getByRole("button", { name: "Vote for this party" });
+    await page.keyboard.press("Tab");
+    await expect(vote).toBeFocused();
+    await expect(vote).toBeInViewport({ ratio: 1 });
+  });
 });

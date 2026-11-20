@@ -189,7 +189,7 @@ const alt = t(
                   : ""}
                 {stop.group}
               </p>
-              <h3>{stop.title}</h3>
+              <h3 tabindex="-1">{stop.title}</h3>
               <p>{stop.copy}</p>
               <p class="map-stop-note">{stop.note}</p>
               <a class="cafe-link" href={href(stop.path)}>
@@ -266,6 +266,7 @@ const alt = t(
     const overviewSizes = mapImage.sizes;
     let selected = "";
     let displayed = "";
+    let selectionSource: HTMLButtonElement | HTMLSelectElement | undefined;
 
     const show = (id: string) => {
       displayed = id;
@@ -280,8 +281,12 @@ const alt = t(
         );
       }
     };
-    const choose = (id: string) => {
+    const choose = (
+      id: string,
+      source?: HTMLButtonElement | HTMLSelectElement,
+    ) => {
       selected = id;
+      selectionSource = id ? source : undefined;
       select.value = id;
       show(id);
       map.querySelector<HTMLElement>("[data-map-status]")!.textContent = id
@@ -290,13 +295,11 @@ const alt = t(
             .getAttribute("aria-label")
         : overview.querySelector("h3")!.textContent;
     };
-    const close = () => {
-      const previous = pins.find(
-        (pin) => pin.dataset.mapPin === (selected || displayed),
-      );
+    const close = (restoreFocus: boolean) => {
+      const previous =
+        selectionSource ?? pins.find((pin) => pin.dataset.mapPin === displayed);
       choose("");
-      if (previous && document.activeElement !== select)
-        previous.focus({ preventScroll: true });
+      if (restoreFocus) previous?.focus();
       show("");
     };
 
@@ -315,7 +318,16 @@ const alt = t(
         )
           show(selected);
       });
-      pin.addEventListener("click", () => choose(pin.dataset.mapPin!));
+      pin.addEventListener("click", (event) => {
+        const id = pin.dataset.mapPin!;
+        choose(id, pin);
+        if (event.detail === 0) {
+          panels
+            .find((panel) => panel.dataset.mapPanel === id)
+            ?.querySelector("h3")
+            ?.focus();
+        }
+      });
     }
     document.addEventListener("pointermove", (event) => {
       if (
@@ -326,10 +338,14 @@ const alt = t(
       )
         show(selected);
     });
-    select.addEventListener("change", () => choose(select.value));
-    map.querySelector("[data-map-close]")!.addEventListener("click", close);
+    select.addEventListener("change", () => choose(select.value, select));
+    map
+      .querySelector("[data-map-close]")!
+      .addEventListener("click", () => close(true));
     map.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") close();
+      if (event.key === "Escape" && displayed) {
+        close(content.contains(document.activeElement));
+      }
     });
     zoom.addEventListener("click", () => {
       const enlarged = zoom.getAttribute("aria-pressed") !== "true";

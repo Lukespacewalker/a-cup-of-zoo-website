@@ -71,6 +71,10 @@ test("tablet menu animates in both directions and resets at the desktop breakpoi
   await page.setViewportSize({ width: 1050, height: 768 });
   await expect(toggle).toHaveAccessibleName("Open navigation");
   await expect(panel).toBeHidden();
+
+  await toggle.focus();
+  await page.setViewportSize({ width: 1051, height: 768 });
+  await expect(panel.getByRole("link").first()).toBeFocused();
 });
 
 test("mobile menu opens and closes immediately with reduced motion", async ({
