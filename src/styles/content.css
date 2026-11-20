@@ -92,13 +92,21 @@
 }
 .opening-hours .hours li {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 0 1.5rem;
   background: none;
   padding: 0.3rem 0;
   margin: 0;
   border-bottom: 1px solid var(--line);
   font-size: 0.95rem;
+}
+.opening-hours .hours li span {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+.opening-hours .hours li span + span {
+  margin-inline-start: auto;
 }
 .opening-hours > p {
   font-size: 0.85rem;
@@ -206,15 +214,6 @@
   color: var(--muted-text);
 }
 
-.experience-list > li {
-  display: grid;
-  grid-template-columns: 10rem 1fr auto;
-  gap: 1.5rem;
-  align-items: center;
-}
-.experience-list > li > .activity-photo {
-  width: 100%;
-}
 .activity-terms {
   padding: 1.5rem;
   background: var(--paper);
@@ -316,17 +315,6 @@
   }
   .animal-photo-pair {
     gap: 1rem;
-  }
-  .experience-list > li {
-    grid-template-columns: 6.5rem 1fr;
-    gap: 0.6rem 1rem;
-    align-items: start;
-  }
-  .experience-list .experience-price {
-    grid-column: 2;
-  }
-  .experience-list > li > .activity-photo {
-    grid-row: span 2;
   }
   .food-section__photos {
     order: 0;

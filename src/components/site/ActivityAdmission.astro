@@ -92,5 +92,16 @@ const TermsHeading = home ? "h3" : "h2";
 
   .activity-terms li {
     margin-block: 0.5rem;
+    overflow-wrap: anywhere;
+  }
+
+  @container (inline-size < 19rem) {
+    .activity-terms {
+      padding: 0.9rem;
+    }
+
+    .activity-terms ul {
+      padding-inline-start: 0.85rem;
+    }
   }
 </style>

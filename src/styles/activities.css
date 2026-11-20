@@ -14,9 +14,10 @@
   padding: 0;
 }
 .experience-list > li {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: min(10rem, 25%) minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  align-items: center;
   padding: 1.1rem 0;
   border-bottom: 1px solid var(--line);
 }
@@ -32,7 +33,6 @@
   color: var(--muted-text);
 }
 .experience-price {
-  flex-shrink: 0;
   font-variant-numeric: tabular-nums;
 }
 .experience-price span,
@@ -48,20 +48,41 @@
 }
 .animal-food-list > div {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0 1rem;
   border-bottom: 1px solid var(--line);
   padding: 0.6rem 0;
 }
 .animal-food-list dd {
   margin: 0;
+  margin-inline-start: auto;
   white-space: nowrap;
 }
 .animal-food-list small {
   display: block;
 }
-@media (max-width: 700px) {
+@media (width <= 700px) {
   .experience-list > li {
-    display: block;
+    grid-template-columns: min(6.5rem, 28%) minmax(0, 1fr);
+    gap: 0.6rem 1rem;
+    align-items: start;
+  }
+  .experience-list .experience-price {
+    grid-column: 2;
+  }
+  .experience-list .activity-photo {
+    grid-row: span 2;
+  }
+}
+@container (inline-size < 19rem) {
+  .experience-list > li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .experience-list :is(.experience-price, .activity-photo) {
+    grid-area: auto;
+  }
+  .experience-list .activity-photo {
+    max-inline-size: 10rem;
   }
 }

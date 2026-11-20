@@ -28,6 +28,7 @@
 }
 .shop-map-toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -43,6 +44,7 @@
   align-items: center;
   gap: 0.5rem;
   flex: none;
+  max-inline-size: 100%;
   min-height: 44px;
   padding: 0.5rem 0.8rem;
   border: 1px solid var(--line);
@@ -51,6 +53,7 @@
   font: inherit;
   font-size: 0.85rem;
   cursor: pointer;
+  overflow-wrap: anywhere;
 }
 .map-zoom svg {
   width: 19px;

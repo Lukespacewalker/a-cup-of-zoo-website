@@ -61,6 +61,7 @@
   font-size: clamp(2rem, 3vw, 2.8rem);
   margin: 0 0 0.25rem;
   line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 .club-invitation__card {
   width: clamp(2rem, 5vw, 3.5rem);
@@ -78,7 +79,7 @@
 }
 .club-invitation__facts {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr));
   gap: 1.5rem;
   margin-bottom: 1.4rem;
 }
@@ -107,19 +108,21 @@
 }
 .club-intro__inner {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: clamp(2rem, 6vw, 6rem);
   align-items: center;
   padding-block: 3rem;
 }
 .club-intro h1 {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.22em;
   font-weight: 400;
   font-size: clamp(3rem, 5.5vw, 5rem);
   line-height: 1.1;
   margin: 0.7rem 0 1.2rem;
+  overflow-wrap: anywhere;
 }
 .club-intro__card {
   flex-shrink: 0;
@@ -146,6 +149,7 @@
 }
 .club-welcome__heading {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
@@ -164,6 +168,7 @@
 }
 .club-facts {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.8rem;
   margin-top: 1rem;
 }
@@ -181,7 +186,10 @@
 }
 .tier-list {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, max(10rem, (100% - 4rem) / 5)), 1fr)
+  );
   gap: 1rem;
   list-style: none;
   padding: 0;
@@ -235,6 +243,10 @@
   font-size: 1.5rem;
   line-height: 1.4;
   color: inherit;
+}
+.tier-heading__copy {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
 }
 .tier-spend {
   margin: 0.8rem 0.8rem 1rem;
@@ -331,12 +343,13 @@
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.5rem;
 }
 .club-rewards li {
   border-top: 1px solid var(--line);
   padding-block: 1rem;
+  overflow-wrap: anywhere;
 }
 .club-rewards strong {
   display: block;
@@ -374,7 +387,10 @@
 }
 @media (max-width: 1000px) {
   .tier-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, max(10rem, (100% - 2rem) / 3)), 1fr)
+    );
   }
   .partner-list {
     grid-template-columns: repeat(3, 1fr);
@@ -390,7 +406,7 @@
     padding-block: 2rem;
   }
   .club-rewards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
   }
   .tier-list {
     grid-template-columns: 1fr;
@@ -398,6 +414,7 @@
   }
   .tier-heading {
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 0.6rem 1rem 0;
     text-align: left;
@@ -430,8 +447,13 @@
   .event-gallery:not(.campaign-gallery) figure:first-child {
     grid-column: span 2;
   }
+  .partner-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+@container (inline-size <= 43.75rem) {
   .club-facts {
-    grid-template-columns: 1fr;
     gap: 0.5rem;
   }
   .club-invitation {
@@ -458,7 +480,7 @@
     text-align: left;
   }
   .club-intro__inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.6rem;
     padding-block: 2rem;
   }
@@ -468,8 +490,15 @@
   .club-welcome {
     padding: 1.2rem 1.4rem;
   }
-  .partner-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+}
+@container (inline-size < 18rem) {
+  .club-intro h1 {
+    font-size: 2.5rem;
+  }
+  .club-invitation {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .club-invitation__mascot {
+    max-inline-size: 4rem;
   }
 }

@@ -367,12 +367,15 @@
 
 .party-picker {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.35rem;
   max-width: 100%;
 }
 
 .party-picker label {
-  min-width: 0;
+  position: relative;
+  min-inline-size: 0;
+  max-inline-size: 100%;
 }
 
 .party-picker :is(select, button) {

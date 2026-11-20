@@ -188,9 +188,7 @@ const detailHref = (id: string) => `#party-${id}`;
               {t("เลือกพรรคสัตว์", "Choose an animal party")}
             </span>
             <select required>
-              <option value="">
-                {t("เลือกจากรายชื่อ 14 พรรค", "Choose from all 14 parties")}
-              </option>
+              <option value="">{t("เลือกพรรค", "Select a party")}</option>
               {parties.map(({ id, group }) => (
                 <option value={id}>{group}</option>
               ))}

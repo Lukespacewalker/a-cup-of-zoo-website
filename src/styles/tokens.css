@@ -14,7 +14,7 @@
   --shadow: 0 8px 18px #3d291714;
   --button: #586149;
   --on-button: #fffaf0;
-  --sticky: calc(4.75rem + env(safe-area-inset-bottom));
+  --sticky: calc(6.25rem + env(safe-area-inset-bottom));
   --font: "Noto Sans Thai Looped", sans-serif;
   --gold: #c29d62;
   --gold-deep: #9d7b42;

@@ -8,7 +8,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-bottom: 7rem;
   overflow-x: hidden;
 }
 body {
@@ -179,6 +178,7 @@ html[lang="en"] h2 {
   border-bottom: 1px solid var(--cocoa);
   text-decoration: none;
   font-size: 0.95rem;
+  overflow-wrap: anywhere;
 }
 .cafe-link span {
   transition: transform 0.2s ease;

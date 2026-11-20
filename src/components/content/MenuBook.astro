@@ -71,6 +71,8 @@ const action = food
   .menu-book__body {
     display: grid;
     gap: 0.3rem;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
   }
   .menu-book__action {
     font-weight: 700;
@@ -85,8 +87,28 @@ const action = food
     font-size: 0.78rem;
   }
   @media (width <= 40rem) {
-    .menu-book:not(.menu-book--compact) {
+    .menu-book:where(:not(.menu-book--compact)) {
       grid-template-columns: 5rem minmax(0, 1fr) auto;
+    }
+  }
+  @container (inline-size < 18rem) {
+    .menu-book {
+      grid-template-columns: minmax(0, 1fr) auto;
+      row-gap: 0.5rem;
+    }
+    .menu-book img {
+      inline-size: min(5rem, 100%);
+    }
+    .menu-book--compact img {
+      inline-size: min(4rem, 100%);
+    }
+    .menu-book__body {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    .menu-book > :global(svg) {
+      grid-column: 2;
+      grid-row: 1;
     }
   }
 </style>

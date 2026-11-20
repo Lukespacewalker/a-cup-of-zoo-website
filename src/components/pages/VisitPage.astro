@@ -202,13 +202,13 @@ const options = [
   }
 
   .visit h1 {
-    font-size: clamp(1.9rem, 4vw, 3.3rem);
+    font-size: clamp(1.9rem, 1rem + 2.6vw, 3.3rem);
     margin: 0 0 clamp(0.8rem, 2vw, 1.4rem);
   }
 
   .visit h2 {
     margin: 0;
-    font-size: clamp(1.28rem, 2.5vw, 1.82rem);
+    font-size: clamp(1.28rem, 0.8rem + 1.2vw, 1.82rem);
     font-weight: 600;
     text-wrap: pretty;
   }
@@ -237,7 +237,7 @@ const options = [
   }
 
   .visit-schedule :global(.opening-hours .hours li) {
-    gap: 0.6rem;
+    column-gap: 0.6rem;
     padding-block: 0.38rem;
     font-size: 1rem;
   }
@@ -285,6 +285,7 @@ const options = [
   .visit-card article {
     --card-inset: clamp(1rem, 2.8vw, 1.5rem);
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto 1fr auto;
     min-inline-size: 0;
     padding-block-end: var(--card-inset);
@@ -334,6 +335,7 @@ const options = [
     border-block-start: 1px solid var(--line);
     color: var(--leaf);
     font-weight: 700;
+    overflow-wrap: anywhere;
   }
 
   .visit-card-arrow {
@@ -364,6 +366,10 @@ const options = [
   .visit-directions {
     margin-block: 0.8rem 0.5rem;
     border-radius: 0.4rem;
+    max-inline-size: 100%;
+    padding-inline: min(1.6rem, 5vw);
+    gap: min(0.8rem, 2.5vw);
+    overflow-wrap: anywhere;
   }
 
   .visit-contacts {
@@ -376,6 +382,7 @@ const options = [
     display: inline-flex;
     align-items: center;
     min-block-size: 44px;
+    overflow-wrap: anywhere;
     text-underline-offset: 0.2em;
   }
 

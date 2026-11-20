@@ -369,7 +369,7 @@
 }
 .garden-story {
   display: grid;
-  grid-template-columns: 1.7fr 1fr;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
   gap: 2.5rem;
   padding-block: 4rem 5rem;
   background: transparent;
@@ -420,8 +420,8 @@
 .visit-letter {
   border-block: 1px solid var(--line);
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 6rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 8vw, 6rem);
   padding-block: 4rem;
 }
 .letter-heading > p {
@@ -550,7 +550,7 @@
   .cafe-table,
   .garden-story,
   .visit-letter {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     padding-block: 3rem;
   }
@@ -583,10 +583,16 @@
 }
 @media (max-width: 560px) {
   .garden-heading > .watercolor-animal {
-    width: 5.5rem;
+    width: min(5.5rem, 30%);
   }
   .garden-story {
     padding: 2rem 0;
+  }
+}
+
+@container (inline-size < 38rem) {
+  .visit-letter {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
